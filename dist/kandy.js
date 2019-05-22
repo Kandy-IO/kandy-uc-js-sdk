@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.4.0-beta.77378
+ * Version: 4.4.0-beta.77806
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -518,7 +518,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 const platforms = exports.platforms = {
   LINK: 'link',
-  CPAAS: 'cpaas',
+  UC: 'uc',
   CPAAS2: 'cpaas2'
 };
 
@@ -1247,7 +1247,7 @@ function getRequestInfo(state, platform) {
         }
       }
     };
-  } else if (platform === _constants2.platforms.CPAAS) {
+  } else if (platform === _constants2.platforms.UC) {
     requestInfo = {
       baseURL: `${subscription.protocol}://${subscription.server}:${subscription.port}`,
       version: subscription.version,
@@ -1261,12 +1261,12 @@ function getRequestInfo(state, platform) {
 
       /*
        * If the requested platform was Link but the platform set in state is
-       *    CPaaS, then we're using CPaaS 1.5 but making a request for SPiDR.
+       *    UC, and so we're using UC but making a request for SPiDR.
        * Change the requestInfo provided to ensure the URL will be valid for
        *    SPiDR and authentication will be valid for CIM.
        */
     };const setPlatform = getPlatform(state);
-    if (setPlatform === _constants2.platforms.CPAAS) {
+    if (setPlatform === _constants2.platforms.UC) {
       requestInfo.version = '1';
 
       const connInfo = getConnectionInfo(state, setPlatform);
@@ -10317,8 +10317,8 @@ var _fp = __webpack_require__(1);
  *  }]
  * @return {Function}        [description]
  *
- * INSTRUCTIONS FOR EXPOSING FUNCTION TO CPAAS VERSION OF THE SDK:
- * the following code will need to be added to the appropriate index files (ie: kandy.cpaas.js)
+ * INSTRUCTIONS FOR EXPOSING FUNCTION TO UC VERSION OF THE SDK:
+ * the following code will need to be added to the appropriate index files (ie: kandy.uc.js)
  * this will expose the createCodecRemover function in the browser
     import createCodecRemover from '../../fcs/src/js/sdp/codecRemover';
     kandy.sdpHandlers = {
@@ -14399,9 +14399,9 @@ var _basePlugins = __webpack_require__(256);
 
 var _basePlugins2 = _interopRequireDefault(_basePlugins);
 
-var _cpaas = __webpack_require__(274);
+var _uc = __webpack_require__(274);
 
-var _cpaas2 = _interopRequireDefault(_cpaas);
+var _uc2 = _interopRequireDefault(_uc);
 
 var _link = __webpack_require__(292);
 
@@ -14423,9 +14423,9 @@ var _connectivity = __webpack_require__(400);
 
 var _connectivity2 = _interopRequireDefault(_connectivity);
 
-var _cpaas3 = __webpack_require__(409);
+var _uc3 = __webpack_require__(409);
 
-var _cpaas4 = _interopRequireDefault(_cpaas3);
+var _uc4 = _interopRequireDefault(_uc3);
 
 var _link3 = __webpack_require__(418);
 
@@ -14454,7 +14454,7 @@ var _codecRemover2 = _interopRequireDefault(_codecRemover);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Plugins
-const defaultPlugins = [..._basePlugins2.default, { name: 'authentication', fn: _cpaas2.default }, { name: 'webrtc', fn: _webrtc2.default }, { name: 'call', fn: _link2.default }, { name: 'callHistory', fn: _callHistory2.default }, { name: 'clickToCall', fn: _clickToCall2.default }, { name: 'connectivity', fn: _connectivity2.default }, { name: 'messaging', fn: _cpaas4.default }, { name: 'mwi', fn: _link4.default }, { name: 'notifications', fn: _link6.default }, { name: 'presence', fn: _link8.default }, { name: 'sipEvents', fn: _sipEvents2.default }, { name: 'users', fn: _link10.default }];
+const defaultPlugins = [..._basePlugins2.default, { name: 'authentication', fn: _uc2.default }, { name: 'webrtc', fn: _webrtc2.default }, { name: 'call', fn: _link2.default }, { name: 'callHistory', fn: _callHistory2.default }, { name: 'clickToCall', fn: _clickToCall2.default }, { name: 'connectivity', fn: _connectivity2.default }, { name: 'messaging', fn: _uc4.default }, { name: 'mwi', fn: _link4.default }, { name: 'notifications', fn: _link6.default }, { name: 'presence', fn: _link8.default }, { name: 'sipEvents', fn: _sipEvents2.default }, { name: 'users', fn: _link10.default }];
 
 function root(options = {}, plugins = []) {
   return (0, _index2.default)(options, [...defaultPlugins, ...plugins]);
@@ -14648,8 +14648,8 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.4.0-beta.77378';
-  log.info(`CPaaS SDK version: ${version}`);
+  let version = '4.4.0-beta.77806';
+  log.info(`UC SDK version: ${version}`);
 
   var sagas = [];
   var store;
@@ -22180,7 +22180,7 @@ var actionTypes = _interopRequireWildcard(_actionTypes);
 
 var _selectors = __webpack_require__(7);
 
-var _cpaas = __webpack_require__(285);
+var _uc = __webpack_require__(285);
 
 var _requests = __webpack_require__(289);
 
@@ -22217,7 +22217,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 // Other plugins.
-const platform = _constants.platforms.CPAAS;
+const platform = _constants.platforms.UC;
 
 // Constants
 // Auth plugin.
@@ -22270,7 +22270,7 @@ function* connect(action) {
     log.info('Attempting to connect using Username / Password');
     // If this is a username/password connect scenario, we need to generate
     //      the token ourselves.
-    tokenInfo = yield (0, _effects4.call)(_cpaas.createToken, action, config);
+    tokenInfo = yield (0, _effects4.call)(_uc.createToken, action, config);
 
     if (tokenInfo.error) {
       // If token generation failed, stop the connection process.
@@ -22290,7 +22290,7 @@ function* connect(action) {
     log.info('Attempting to connect using a RefreshToken');
     // The user is attempting to log in with a refreshToken (and username).
 
-    tokenInfo = yield (0, _effects4.call)(_cpaas.refreshToken, action, config);
+    tokenInfo = yield (0, _effects4.call)(_uc.refreshToken, action, config);
 
     if (tokenInfo.error) {
       // If token generation failed, stop the connection process.
@@ -22304,7 +22304,7 @@ function* connect(action) {
      * Unlike the conventional authToken method, we won't be making use of the refreshToken
      */
 
-    log.info('Setting Connection with OAuth in CPaaS 1.5');
+    log.info('Setting Connection with OAuth in UC');
     tokenInfo = {
       oauthToken: credentials.oauthToken,
       username: credentials.username
@@ -22333,7 +22333,7 @@ function* connect(action) {
 }
 
 /**
- * This subscribe function makes a request to the CPAAS gateway for a subscription.
+ * This subscribe function makes a request to the UC gateway for a subscription.
  * If successful it triggers a connectFinished action containing subscription and connection information.
  * @method subscribe
  * @param  {Object}    config       Config values.
@@ -22347,7 +22347,7 @@ function* subscribe(config, tokenInfo) {
   const { username, accessToken, refreshToken, tokenExpires, oauthToken } = tokenInfo;
 
   let requestOptions = {};
-  // CPAAS requires a token attached to every request.
+  // UC requires a token attached to every request.
   if (oauthToken && !accessToken) {
     // For subscription requests using an OAuth Token, attach is as a header.
     // TODO: setting of the `Content-Type` header should be managed elsewhere
@@ -22541,7 +22541,7 @@ function* disconnect() {
       yield (0, _effects4.put)(actions.disconnectFinished({
         error: new _errors2.default({
           message: `There was an error revoking the token. Error: ${tokenResponse.payload.body.error.human}`,
-          code: _errors.authCodes.CPAAS_DISCONNECT_FAIL
+          code: _errors.authCodes.UC_DISCONNECT_FAIL
         })
       }));
     } else {
@@ -22550,7 +22550,7 @@ function* disconnect() {
       yield (0, _effects4.put)(actions.disconnectFinished({
         error: new _errors2.default({
           message: 'Request to revoke token failed. Access and refresh tokens removed from state.',
-          code: _errors.authCodes.CPAAS_DISCONNECT_FAIL
+          code: _errors.authCodes.UC_DISCONNECT_FAIL
         })
       }));
     }
@@ -22744,7 +22744,7 @@ function* createToken(action, config) {
       return {
         error: new _errors2.default({
           message: `There was an error connecting. Error: ${response.payload.body.error.human}`,
-          code: _errors.authCodes.CPAAS_CREATE_TOKEN_FAIL
+          code: _errors.authCodes.UC_CREATE_TOKEN_FAIL
         })
       };
     } else {
@@ -22753,7 +22753,7 @@ function* createToken(action, config) {
       return {
         error: new _errors2.default({
           message: 'Login request failed. Check your credentials.',
-          code: _errors.authCodes.CPAAS_CREATE_TOKEN_FAIL
+          code: _errors.authCodes.UC_CREATE_TOKEN_FAIL
         })
       };
     }
@@ -22792,7 +22792,7 @@ function* refreshToken(action, config) {
     return {
       error: new _errors2.default({
         message: 'Something went wrong while attempting to create an accessToken from the supplied refreshToken.',
-        code: _errors.authCodes.CPAAS_CREATE_TOKEN_FAIL
+        code: _errors.authCodes.UC_CREATE_TOKEN_FAIL
       })
     };
   } else {
@@ -23227,11 +23227,11 @@ const authCodes = exports.authCodes = {
   LINK_SUBSCRIBE_FAIL: 'authentication:4',
   LINK_EXTEND_SUBSCRIPTION_FAIL: 'authentication:5',
   LINK_UPDATE_SUBSCRIPTION_FAIL: 'authentication:6',
-  CPAAS_SUBSCRIBE_FAIL: 'authentication:7',
-  CPAAS_REFRESH_TOKEN_FAIL: 'authentication:8',
-  CPAAS_CREATE_TOKEN_FAIL: 'authentication:9',
-  CPAAS_EXTEND_SUBSCRIPTION_FAIL: 'authentication:10',
-  CPAAS_DISCONNECT_FAIL: 'authentication:11',
+  UC_SUBSCRIBE_FAIL: 'authentication:7',
+  UC_REFRESH_TOKEN_FAIL: 'authentication:8',
+  UC_CREATE_TOKEN_FAIL: 'authentication:9',
+  UC_EXTEND_SUBSCRIPTION_FAIL: 'authentication:10',
+  UC_DISCONNECT_FAIL: 'authentication:11',
   MISSING_SERVICE: 'authentication:12'
 
   /**
@@ -23670,7 +23670,7 @@ var _constants = __webpack_require__(106);
  * @return {Object} Information about the SDK's subscriptions.
  */
 function parseSpidrServices(requested, received) {
-  // CPaaS platform is not case-sensitive (Link is), so filter without caring about case.
+  // UC platform is not case-sensitive (Link is), so filter without caring about case.
   let upperReceived = received.map(service => service.toUpperCase());
 
   // Find the missing services.
@@ -23848,8 +23848,8 @@ function callsLink(options = {}) {
   const defaultOptions = {
     // The list of TURN/STUN servers to use.
 
-    // TODO: Remove this default once the CPaaS server configuration feature is implemented. These
-    // servers should be sent to us by CPaaS. This default is just here fo ease of use in production.
+    // TODO: Remove this default once the UC server configuration feature is implemented. These
+    // servers should be sent to us by UC. This default is just here fo ease of use in production.
     iceServers: [{
       url: 'turns:turn-ucc-1.genband.com:443?transport=tcp',
       credential: ''
@@ -38282,7 +38282,7 @@ function* retrieveCallLogs(action) {
   // TODO: Break the callHistory requests into its own file.
   const requestInfo = yield (0, _effects3.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : requestInfo.version;
+  const version = platform === _constants.platforms.UC ? 1 : requestInfo.version;
   let url = `${requestInfo.baseURL}/rest/version/${version}/user/${requestInfo.username}/logHistory`;
 
   let queryParams = {
@@ -38384,7 +38384,7 @@ function* removeCallLogs(action) {
 
   const requestInfo = yield (0, _effects3.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : requestInfo.version;
+  const version = platform === _constants.platforms.UC ? 1 : requestInfo.version;
   let url = `${requestInfo.baseURL}/rest/version/${version}/user/${requestInfo.username}/`;
 
   if (action.payload === 'all') {
@@ -39234,7 +39234,7 @@ function* clickToCallSaga() {
 
     const { server, username, requestOptions } = conn;
 
-    const version = platform === _constants.platforms.CPAAS ? 1 : server.version;
+    const version = platform === _constants.platforms.UC ? 1 : server.version;
 
     const url = `${server.protocol}://${server.server}:${server.port}/rest/version/${version}/user/${username}/clicktocall`;
 
@@ -39945,7 +39945,7 @@ function* websocketLifecycle(wsConnectAction) {
   } else {
     // If this is a Link websocket, we need to ensure the URL is using the
     //     "latest" access token from state.
-    if (wsConnectAction.meta.platform === _constants.platforms.CPAAS) {
+    if (wsConnectAction.meta.platform === _constants.platforms.UC) {
       let { notificationChannel } = yield (0, _effects.select)(_selectors2.getSubscriptionInfo);
       let { accessToken, oauthToken } = yield (0, _effects.select)(_selectors2.getConnectionInfo);
       wsInfo.url = notificationChannel;
@@ -40369,7 +40369,7 @@ function* wsEmitter(ws, platform) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = cpaasMessaging;
+exports.default = ucMessaging;
 
 var _effects = __webpack_require__(0);
 
@@ -40396,7 +40396,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Config
 
 // Events
-function cpaasMessaging(options = {}) {
+function ucMessaging(options = {}) {
   const defaultOptions = {
     features: ['base', 'parts', 'rich', 'history', 'group']
   };
@@ -40631,7 +40631,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Other plugins.
-const platform = _constants.platforms.CPAAS;
+const platform = _constants.platforms.UC;
 
 // Constants
 
@@ -40642,7 +40642,7 @@ const platform = _constants.platforms.CPAAS;
 const log = (0, _logs.getLogManager)().getLogger('MESSAGING');
 
 /**
- * CPaaS send message saga.
+ * UC send message saga.
  * Performs the workflow of forming a CIM readable message URL and sending the message.
  * @method send
  */
@@ -40865,7 +40865,7 @@ function* receiveMessage() {
   }
 }
 /**
- * CPaaS fetch message saga.
+ * UC fetch message saga.
  * Performs the workflow of fetching the CIM `thread` of a specific conversation / user.
  * @method fetchMessages
  */
@@ -43018,7 +43018,7 @@ function* fetchMwi() {
     const options = (0, _extends3.default)({}, action.payload, connInfo);
 
     let platform = yield (0, _effects.select)(_selectors.getPlatform);
-    const version = platform === _constants.platforms.CPAAS ? 1 : options.server.version;
+    const version = platform === _constants.platforms.UC ? 1 : options.server.version;
     const response = yield (0, _effects3.default)({
       url: `${options.server.protocol}://${options.server.server}:${options.server.port}/rest/version/${version}/user/${options.username}/voicemail`,
       method: 'GET'
@@ -43574,7 +43574,7 @@ function* processNotification() {
       case _constants.platforms.LINK:
         notificationId = action.payload.notificationMessage.eventId;
         break;
-      case _constants.platforms.CPAAS:
+      case _constants.platforms.UC:
         // A Link notification can be in either the Link format or the SPiDR format (for calls).
         notificationId = action.payload.notificationMessage.id || action.payload.notificationMessage.eventId;
         break;
@@ -50837,7 +50837,7 @@ function* updatePresence({ payload }) {
 
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.UC ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.updatePresenceRequest, payload, requestInfo);
   if (res instanceof Error) {
     yield (0, _effects.put)(actions.updatePresenceFinish(res));
@@ -50850,7 +50850,7 @@ function* getPresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.UC ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'get', requestInfo);
   yield (0, _effects.put)(actions.getPresenceFinish(res));
 }
@@ -50859,7 +50859,7 @@ function* subscribePresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.UC ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'watch', requestInfo);
   yield (0, _effects.put)(actions.subscribePresenceFinish(res));
 }
@@ -50868,7 +50868,7 @@ function* unsubscribePresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.UC ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'stopwatch', requestInfo);
   yield (0, _effects.put)(actions.unsubscribePresenceFinish(res));
 }
@@ -51503,8 +51503,8 @@ function* sipEventSubscribe() {
     let platform = yield (0, _effects3.select)(_selectors2.getPlatform);
     let { server, username, token, accessToken, requestOptions: commonOptions } = yield (0, _effects3.select)(_selectors2.getConnectionInfo);
 
-    // TODO: CPaaS should store it's token the same way as Link.
-    if (platform === _constants.platforms.CPAAS && !token) {
+    // TODO: UC should store it's token the same way as Link.
+    if (platform === _constants.platforms.UC && !token) {
       token = accessToken;
     }
 
@@ -51634,8 +51634,8 @@ function* sipEventUpdate() {
     let platform = yield (0, _effects3.select)(_selectors2.getPlatform);
     let { server, username, token, accessToken, requestOptions: commonOptions } = yield (0, _effects3.select)(_selectors2.getConnectionInfo);
 
-    // TODO: CPaaS should store it's token the same way as Link.
-    if (platform === _constants.platforms.CPAAS && !token) {
+    // TODO: UC should store it's token the same way as Link.
+    if (platform === _constants.platforms.UC && !token) {
       token = accessToken;
     }
 
@@ -51722,8 +51722,8 @@ function* sipEventUnsubscribe() {
     let platform = yield (0, _effects3.select)(_selectors2.getPlatform);
     let { server, username, token, accessToken, requestOptions: commonOptions } = yield (0, _effects3.select)(_selectors2.getConnectionInfo);
 
-    // TODO: CPaaS should store it's token the same way as Link.
-    if (platform === _constants.platforms.CPAAS && !token) {
+    // TODO: UC should store it's token the same way as Link.
+    if (platform === _constants.platforms.UC && !token) {
       token = accessToken;
     }
 
@@ -52237,7 +52237,7 @@ function usersLink() {
 
 function* contactRequest(method, conn, extraURL, body) {
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : conn.server.version;
+  const version = platform === _constants.platforms.UC ? 1 : conn.server.version;
   var url;
   if (extraURL) {
     url = `${conn.server.protocol}://${conn.server.server}:${conn.server.port}/rest/version/${version}/user/${conn.username}/addressbook/${extraURL}`;
@@ -52317,7 +52317,7 @@ function searchTypeInteger(searchType) {
 
 function* getDirectory(conn, params = {}) {
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : conn.server.version;
+  const version = platform === _constants.platforms.UC ? 1 : conn.server.version;
   var url = `${conn.server.protocol}://${conn.server.server}:${conn.server.port}/rest/version/${version}/user/${conn.username}/directory`;
 
   let queryParams = {};
@@ -52365,7 +52365,7 @@ function* getDirectory(conn, params = {}) {
  */
 function* fetchSelfInfo(connection) {
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : connection.server.version;
+  const version = platform === _constants.platforms.UC ? 1 : connection.server.version;
   var url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}/rest/version/${version}/user/${connection.username}/userProfileData`;
 
   var params = {
@@ -52415,7 +52415,7 @@ function* fetchSelfInfo(connection) {
  */
 function* fetchUserLocale(connection) {
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : connection.server.version;
+  const version = platform === _constants.platforms.UC ? 1 : connection.server.version;
   const url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}/rest/version/${version}/localization`;
 
   var params = {
