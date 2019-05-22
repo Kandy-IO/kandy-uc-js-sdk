@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.4.0-beta.77806
+ * Version: 4.4.0-beta.77822
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -14648,7 +14648,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.4.0-beta.77806';
+  let version = '4.4.0-beta.77822';
   log.info(`UC SDK version: ${version}`);
 
   var sagas = [];
@@ -40407,7 +40407,7 @@ function ucMessaging(options = {}) {
     yield (0, _effects.put)((0, _actions.mapEvents)(_events2.default));
   }
 
-  const capabilities = ['richMessagingWithoutLocation', 'conversationHistory', 'multiUserConversation', 'fetchConversations', 'onlyInternalMessaging'];
+  const capabilities = ['richMessagingWithoutLocation', 'conversationHistory', 'multiUserConversation', 'fetchConversations'];
 
   return {
     sagas: [_sagas.send, _sagas.fetchConversations, _sagas.fetchMessages, _sagas.receiveMessage, _sagas.deleteMessage, _sagas.deleteConversation],
@@ -41757,6 +41757,9 @@ function api(context) {
      * @method get
      * @param {string} destination The destination for messages created in this conversation. This will
      * be a user's sip address.
+     * @param {Object} [options] An optional configuration object to query for more specific results.
+     * If this object is not passed, the function will query for "im" conversation with that recipient.
+     * @param {string} [options.type] The type of conversation to retrieve. Can be one of "im", "sms" or "other".
      * @returns {Conversation} A Conversation object.
      */
     /**
@@ -41770,6 +41773,9 @@ function api(context) {
      * @method get
      * @param {Array} destination An array of destinations for messages created in this conversation.
      * These will be a user's sip address.
+     * @param {Object} [options] An optional configuration object to query for more specific results.
+     * If this object is not passed, the function will query for "im" conversations associated with those destinations.
+     * @param {string} [options.type] The type of conversation to retrieve. Can be one of "im", "sms" or "other".
      * @returns {Conversation} A Conversation object.
      */
     /**
@@ -41783,7 +41789,9 @@ function api(context) {
      * @method get
      * @param {string} recipient The destination for messages created in this conversation. This
      * will be a user's sip address.
-     * @param {string} type The type of conversation to create. Can be one of "im", "sms" or "other"
+     * @param {Object} [options] An optional configuration object to query for more specific results.
+     * If this object is not passed, the function will query for "im" conversation with that recipient.
+     * @param {string} [options.type] The type of conversation to retrieve. Can be one of "im", "sms" or "other".
      * @returns {Object} A Conversation object.
      */
     get: function (recipient, options = { type: 'im' }) {
