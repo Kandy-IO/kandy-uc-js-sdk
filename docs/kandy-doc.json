@@ -102,7 +102,7 @@
           "column": 35
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/index.common.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/index.common.js"
     },
     "augments": [],
     "examples": [
@@ -291,7 +291,7 @@
           "column": 59
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -437,7 +437,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -778,7 +778,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -1105,7 +1105,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -1371,7 +1371,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -1638,7 +1638,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -1808,7 +1808,7 @@
                 "column": 40
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -2032,7 +2032,7 @@
                 "column": 38
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -2320,7 +2320,7 @@
                 "column": 38
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -2562,440 +2562,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing a refresh token.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 38,
-                        "offset": 37
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 38,
-                    "offset": 37
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 38,
-                "offset": 37
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "Authentication",
-              "lineNumber": 4
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "accessTokenAuth"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 6,
-              "name": "connect"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username without the application's domain.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "A refresh token for the same user.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.refreshToken"
-            },
-            {
-              "title": "param",
-              "description": "The time in seconds until the access token will expire.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "number"
-                }
-              },
-              "name": "credentials.expires"
-            },
-            {
-              "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
-              "lineNumber": 11
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 94,
-              "column": 4
-            },
-            "end": {
-              "line": 111,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 128,
-                "column": 4
-              },
-              "end": {
-                "line": 133,
-                "column": 5
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 8,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username without the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 47,
-                                "offset": 46
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 47,
-                            "offset": 46
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 47,
-                        "offset": 46
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.refreshToken",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "A refresh token for the same user.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 35,
-                                "offset": 34
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 35,
-                            "offset": 34
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 35,
-                        "offset": 34
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.expires",
-                  "lineNumber": 10,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The time in seconds until the access token will expire.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 56,
-                                "offset": 55
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 56,
-                            "offset": 55
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 56,
-                        "offset": 55
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "number"
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "Authentication",
-          "kind": "function",
-          "name": "connect",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "Authentication",
-              "kind": "module"
-            },
-            {
-              "name": "connect",
-              "kind": "function"
-            }
-          ],
-          "namespace": "Authenticationconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Connect by providing an OAuth token.",
                     "position": {
                       "start": {
@@ -3121,7 +2687,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -3504,7 +3070,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -4002,7 +3568,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -4298,6 +3864,440 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "Connect by providing a refresh token.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 38,
+                        "offset": 37
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 38,
+                    "offset": 37
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 38,
+                "offset": 37
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Authentication",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "accessTokenAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "connect"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username without the application's domain.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "A refresh token for the same user.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.refreshToken"
+            },
+            {
+              "title": "param",
+              "description": "The time in seconds until the access token will expire.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "number"
+                }
+              },
+              "name": "credentials.expires"
+            },
+            {
+              "title": "example",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
+              "lineNumber": 11
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 94,
+              "column": 4
+            },
+            "end": {
+              "line": 111,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 128,
+                "column": 4
+              },
+              "end": {
+                "line": 133,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username without the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 47,
+                                "offset": 46
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 47,
+                            "offset": 46
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47,
+                        "offset": 46
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.refreshToken",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "A refresh token for the same user.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 35,
+                                "offset": 34
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 35,
+                            "offset": 34
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 35,
+                        "offset": 34
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.expires",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The time in seconds until the access token will expire.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 56,
+                                "offset": 55
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 56,
+                            "offset": 55
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 56,
+                        "offset": 55
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "number"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Authentication",
+          "kind": "function",
+          "name": "connect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Authentication",
+              "kind": "module"
+            },
+            {
+              "name": "connect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "Authenticationconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "Disconnects from the backend. This will close the websocket and you will stop receiving events.",
                     "position": {
                       "start": {
@@ -4400,7 +4400,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -4635,7 +4635,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -5075,7 +5075,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -5536,7 +5536,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -5904,7 +5904,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -6400,7 +6400,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -6616,7 +6616,7 @@
                 "column": 42
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -6969,7 +6969,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
     },
     "augments": [],
     "examples": [],
@@ -7150,7 +7150,7 @@
                 "column": 40
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -7488,7 +7488,7 @@
                 "column": 43
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/eventTypes.js"
           },
           "augments": [],
           "examples": [
@@ -7915,7 +7915,7 @@
                 "column": 51
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/eventTypes.js"
           },
           "augments": [],
           "examples": [
@@ -8625,7 +8625,7 @@
                 "column": 47
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -9046,7 +9046,7 @@
                 "column": 53
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -9416,7 +9416,7 @@
                 "column": 45
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -9847,7 +9847,7 @@
                 "column": 49
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -10284,7 +10284,7 @@
                 "column": 50
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -11096,7 +11096,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [
@@ -12152,7 +12152,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -12714,7 +12714,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -13668,7 +13668,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -14091,7 +14091,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -14439,7 +14439,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -14650,7 +14650,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [
@@ -14868,7 +14868,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -15310,7 +15310,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -15675,7 +15675,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -16517,7 +16517,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -16814,7 +16814,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -17262,7 +17262,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -17534,7 +17534,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -17854,7 +17854,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -18174,7 +18174,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -18494,7 +18494,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [],
@@ -18821,7 +18821,7 @@
                 "column": 23
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/call.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
           "examples": [
@@ -19422,7 +19422,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
     },
     "augments": [],
     "examples": [],
@@ -19575,7 +19575,7 @@
                 "column": 47
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [
@@ -19733,7 +19733,7 @@
                 "column": 41
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -19969,7 +19969,7 @@
                 "column": 45
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -20188,7 +20188,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/api/media.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/api/media.js"
           },
           "augments": [],
           "examples": [],
@@ -20393,7 +20393,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/api/media.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/api/media.js"
           },
           "augments": [],
           "examples": [],
@@ -20660,7 +20660,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/api/media.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/api/media.js"
           },
           "augments": [],
           "examples": [],
@@ -20963,7 +20963,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/api/media.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/api/media.js"
           },
           "augments": [],
           "examples": [
@@ -21370,7 +21370,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/api/media.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/api/media.js"
           },
           "augments": [],
           "examples": [],
@@ -21633,7 +21633,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/api/media.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/api/media.js"
           },
           "augments": [],
           "examples": [],
@@ -21835,7 +21835,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/api/media.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/api/media.js"
           },
           "augments": [],
           "examples": [],
@@ -22068,7 +22068,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -22212,7 +22212,7 @@
                 "column": 55
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -22357,7 +22357,7 @@
                 "column": 53
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -22555,7 +22555,7 @@
                 "column": 66
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -22758,7 +22758,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -23025,7 +23025,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -23219,7 +23219,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -23406,7 +23406,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -23611,7 +23611,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -23812,7 +23812,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -24079,7 +24079,7 @@
           "column": 40
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -24189,7 +24189,7 @@
                 "column": 52
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -24344,7 +24344,7 @@
                 "column": 58
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -24752,7 +24752,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -25193,7 +25193,7 @@
                 "column": 46
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -25465,7 +25465,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -25926,7 +25926,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26358,7 +26358,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26719,7 +26719,7 @@
           "column": 42
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
     },
     "augments": [],
     "examples": [],
@@ -27066,7 +27066,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [
@@ -27573,7 +27573,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -27783,7 +27783,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -28469,7 +28469,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -28750,7 +28750,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -29142,7 +29142,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -29354,7 +29354,7 @@
           "column": 42
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
     },
     "augments": [],
     "examples": [],
@@ -29466,7 +29466,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -29651,7 +29651,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -30145,7 +30145,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -30311,7 +30311,7 @@
                 "column": 41
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -30750,7 +30750,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -30901,7 +30901,7 @@
                 "column": 37
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -31130,7 +31130,7 @@
                 "column": 37
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/link/index.js"
           },
           "augments": [],
           "examples": [
@@ -31360,7 +31360,7 @@
                 "column": 41
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/link/index.js"
           },
           "augments": [],
           "examples": [],
@@ -31600,7 +31600,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -31956,7 +31956,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32237,7 +32237,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32438,7 +32438,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32662,7 +32662,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32884,7 +32884,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -33088,7 +33088,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -33327,7 +33327,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -33523,7 +33523,7 @@
                 "column": 44
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -34165,7 +34165,7 @@
                 "column": 42
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -34410,7 +34410,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -34542,7 +34542,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -34715,7 +34715,7 @@
           "column": 45
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -34881,7 +34881,7 @@
                 "column": 66
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -35288,7 +35288,7 @@
                 "column": 38
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -35532,7 +35532,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -35956,7 +35956,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -36337,7 +36337,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -36738,7 +36738,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -36954,7 +36954,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -37250,7 +37250,7 @@
           "column": 54
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -37380,7 +37380,7 @@
                 "column": 36
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -37595,7 +37595,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -37794,7 +37794,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -37943,7 +37943,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -38079,7 +38079,7 @@
                 "column": 49
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -38313,7 +38313,7 @@
                 "column": 47
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -38604,7 +38604,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -38869,7 +38869,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -39266,7 +39266,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -39408,7 +39408,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -39637,7 +39637,7 @@
           "column": 3
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
     },
     "augments": [],
     "examples": [],
@@ -39767,7 +39767,7 @@
                 "column": 50
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -39985,7 +39985,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -40234,7 +40234,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -40460,7 +40460,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -40596,7 +40596,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -40784,7 +40784,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -41101,7 +41101,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -42038,7 +42038,7 @@
           "column": 3
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
     },
     "augments": [],
     "examples": [],
@@ -42158,7 +42158,7 @@
                 "column": 42
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -42365,7 +42365,7 @@
                 "column": 46
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -42568,7 +42568,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [
@@ -42930,7 +42930,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -44029,7 +44029,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -44286,7 +44286,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -44510,7 +44510,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -44684,7 +44684,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -45102,7 +45102,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -46230,7 +46230,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -46344,337 +46344,6 @@
           "children": [
             {
               "type": "text",
-              "value": "A set of handlers for manipulating SDP information.\nThese handlers are used to customize low-level call behaviour for very specific\nenvironments and/or scenarios. They can be provided during SDK instantiation\nto be used for all calls.",
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 4,
-                  "column": 26,
-                  "offset": 234
-                },
-                "indent": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 4,
-              "column": 26,
-              "offset": 234
-            },
-            "indent": [
-              1,
-              1,
-              1
-            ]
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
-        },
-        "end": {
-          "line": 4,
-          "column": 26,
-          "offset": 234
-        }
-      }
-    },
-    "tags": [
-      {
-        "title": "public",
-        "description": null,
-        "lineNumber": 5,
-        "type": null
-      },
-      {
-        "title": "module",
-        "description": null,
-        "lineNumber": 6,
-        "type": null,
-        "name": "sdpHandlers"
-      }
-    ],
-    "loc": {
-      "start": {
-        "line": 27,
-        "column": 0
-      },
-      "end": {
-        "line": 34,
-        "column": 3
-      }
-    },
-    "context": {
-      "loc": {
-        "start": {
-          "line": 62,
-          "column": 0
-        },
-        "end": {
-          "line": 62,
-          "column": 35
-        }
-      },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/index.common.js"
-    },
-    "augments": [],
-    "examples": [],
-    "params": [],
-    "properties": [],
-    "returns": [],
-    "sees": [],
-    "throws": [],
-    "todos": [],
-    "access": "public",
-    "kind": "module",
-    "name": "sdpHandlers",
-    "members": {
-      "global": [],
-      "inner": [],
-      "instance": [],
-      "events": [],
-      "static": [
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 264,
-                        "offset": 263
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 264,
-                    "offset": 263
-                  },
-                  "indent": []
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.",
-                    "position": {
-                      "start": {
-                        "line": 3,
-                        "column": 1,
-                        "offset": 265
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 108,
-                        "offset": 372
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 3,
-                    "column": 1,
-                    "offset": 265
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 108,
-                    "offset": 372
-                  },
-                  "indent": []
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.",
-                    "position": {
-                      "start": {
-                        "line": 5,
-                        "column": 1,
-                        "offset": 374
-                      },
-                      "end": {
-                        "line": 5,
-                        "column": 167,
-                        "offset": 540
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 5,
-                    "column": 1,
-                    "offset": 374
-                  },
-                  "end": {
-                    "line": 5,
-                    "column": 167,
-                    "offset": 540
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 5,
-                "column": 167,
-                "offset": 540
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 7,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "sdpHandlers",
-              "lineNumber": 8
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 9,
-              "name": "createCodecRemover"
-            },
-            {
-              "title": "example",
-              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})",
-              "lineNumber": 10
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 38,
-              "column": 0
-            },
-            "end": {
-              "line": 57,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 62,
-                "column": 0
-              },
-              "end": {
-                "line": 62,
-                "column": 35
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/index.common.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})"
-            }
-          ],
-          "params": [],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "sdpHandlers",
-          "kind": "function",
-          "name": "createCodecRemover",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "sdpHandlers",
-              "kind": "module"
-            },
-            {
-              "name": "createCodecRemover",
-              "kind": "function"
-            }
-          ],
-          "namespace": "sdpHandlerscreateCodecRemover"
-        }
-      ]
-    },
-    "path": [
-      {
-        "name": "sdpHandlers",
-        "kind": "module"
-      }
-    ],
-    "namespace": "sdpHandlers"
-  },
-  {
-    "description": {
-      "type": "root",
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
               "value": "The configuration object. This object defines what different configuration\nvalues you can use when instantiating the SDK.",
               "position": {
                 "start": {
@@ -46759,7 +46428,7 @@
           "column": 35
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/index.common.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/index.common.js"
     },
     "augments": [],
     "examples": [],
@@ -47015,7 +46684,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/logs/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/index.js"
           },
           "augments": [],
           "examples": [],
@@ -48009,7 +47678,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/uc/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/uc/index.js"
           },
           "augments": [],
           "examples": [],
@@ -48942,7 +48611,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/link/index.js"
           },
           "augments": [],
           "examples": [],
@@ -49549,7 +49218,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/index.js"
           },
           "augments": [],
           "examples": [],
@@ -50712,7 +50381,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/link/index.js"
           },
           "augments": [],
           "examples": [],
@@ -51342,6 +51011,337 @@
           "children": [
             {
               "type": "text",
+              "value": "A set of handlers for manipulating SDP information.\nThese handlers are used to customize low-level call behaviour for very specific\nenvironments and/or scenarios. They can be provided during SDK instantiation\nto be used for all calls.",
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 4,
+                  "column": 26,
+                  "offset": 234
+                },
+                "indent": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 26,
+              "offset": 234
+            },
+            "indent": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 26,
+          "offset": 234
+        }
+      }
+    },
+    "tags": [
+      {
+        "title": "public",
+        "description": null,
+        "lineNumber": 5,
+        "type": null
+      },
+      {
+        "title": "module",
+        "description": null,
+        "lineNumber": 6,
+        "type": null,
+        "name": "sdpHandlers"
+      }
+    ],
+    "loc": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 62,
+          "column": 0
+        },
+        "end": {
+          "line": 62,
+          "column": 35
+        }
+      },
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/index.common.js"
+    },
+    "augments": [],
+    "examples": [],
+    "params": [],
+    "properties": [],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "access": "public",
+    "kind": "module",
+    "name": "sdpHandlers",
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [],
+      "events": [],
+      "static": [
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 264,
+                        "offset": 263
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 264,
+                    "offset": 263
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 265
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 108,
+                        "offset": 372
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1,
+                    "offset": 265
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 108,
+                    "offset": 372
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 374
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 167,
+                        "offset": 540
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 374
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 167,
+                    "offset": 540
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 167,
+                "offset": 540
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 7,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "sdpHandlers",
+              "lineNumber": 8
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 9,
+              "name": "createCodecRemover"
+            },
+            {
+              "title": "example",
+              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})",
+              "lineNumber": 10
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 38,
+              "column": 0
+            },
+            "end": {
+              "line": 57,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 62,
+                "column": 0
+              },
+              "end": {
+                "line": 62,
+                "column": 35
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/index.common.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})"
+            }
+          ],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "sdpHandlers",
+          "kind": "function",
+          "name": "createCodecRemover",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "sdpHandlers",
+              "kind": "module"
+            },
+            {
+              "name": "createCodecRemover",
+              "kind": "function"
+            }
+          ],
+          "namespace": "sdpHandlerscreateCodecRemover"
+        }
+      ]
+    },
+    "path": [
+      {
+        "name": "sdpHandlers",
+        "kind": "module"
+      }
+    ],
+    "namespace": "sdpHandlers"
+  },
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
               "value": "The internal logger used to provide information about the SDK's behaviour.\nThe logger can provide two types of logs: basic logs and action logs. Basic\nlogs are simple lines of information about what the SDK is doing during operations.\nAction logs are complete information about a specific action that occurred\nwithin the SDK, prodiving debug information describing it.\nThe amount of information logged can be configured as part of the SDK\n(see ",
               "position": {
                 "start": {
@@ -51476,7 +51476,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/logs/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -51632,7 +51632,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/logs/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -52074,7 +52074,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/config/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/config/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -52201,7 +52201,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/config/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/config/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -52403,7 +52403,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/config/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/config/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -52517,7 +52517,7 @@
           "children": [
             {
               "type": "text",
-              "value": "A Track is a stream of audio or video media from a single source.\nTracks can be retrieved using the Media module's ",
+              "value": "The state representation of a Media object.\nMedia is a collection of Track objects.",
               "position": {
                 "start": {
                   "line": 1,
@@ -52526,46 +52526,12 @@
                 },
                 "end": {
                   "line": 2,
-                  "column": 50,
-                  "offset": 115
+                  "column": 40,
+                  "offset": 83
                 },
                 "indent": [
                   1
                 ]
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "getTrackById",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 50,
-                  "offset": 115
-                },
-                "end": {
-                  "line": 2,
-                  "column": 64,
-                  "offset": 129
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " API and manipulated with other functions of the Media module.",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 64,
-                  "offset": 129
-                },
-                "end": {
-                  "line": 2,
-                  "column": 126,
-                  "offset": 191
-                },
-                "indent": []
               }
             }
           ],
@@ -52577,8 +52543,8 @@
             },
             "end": {
               "line": 2,
-              "column": 126,
-              "offset": 191
+              "column": 40,
+              "offset": 83
             },
             "indent": [
               1
@@ -52594,8 +52560,8 @@
         },
         "end": {
           "line": 2,
-          "column": 126,
-          "offset": 191
+          "column": 40,
+          "offset": 83
         }
       }
     },
@@ -52611,12 +52577,32 @@
         "description": null,
         "lineNumber": 5,
         "type": null,
-        "name": "TrackObject"
+        "name": "MediaObject"
       },
       {
         "title": "property",
-        "description": "The list of CSS selectors that were used to render this Track.",
+        "description": "The ID of the Media object.",
         "lineNumber": 6,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "id"
+      },
+      {
+        "title": "property",
+        "description": "Indicator on whether this media is local or remote.",
+        "lineNumber": 7,
+        "type": {
+          "type": "NameExpression",
+          "name": "boolean"
+        },
+        "name": "local"
+      },
+      {
+        "title": "property",
+        "description": "A list of Track objects that are contained in this Media object.",
+        "lineNumber": 8,
         "type": {
           "type": "TypeApplication",
           "expression": {
@@ -52626,90 +52612,20 @@
           "applications": [
             {
               "type": "NameExpression",
-              "name": "string"
+              "name": "TrackObject"
             }
           ]
         },
-        "name": "containers"
-      },
-      {
-        "title": "property",
-        "description": "Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.",
-        "lineNumber": 7,
-        "type": {
-          "type": "NameExpression",
-          "name": "boolean"
-        },
-        "name": "disabled"
-      },
-      {
-        "title": "property",
-        "description": "The ID of the Track.",
-        "lineNumber": 8,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "id"
-      },
-      {
-        "title": "property",
-        "description": "The kind of Track this is (audio, video).",
-        "lineNumber": 9,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "kind"
-      },
-      {
-        "title": "property",
-        "description": "The label of the device this Track uses.",
-        "lineNumber": 10,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "label"
-      },
-      {
-        "title": "property",
-        "description": "Indicator on whether this Track is muted or not.",
-        "lineNumber": 11,
-        "type": {
-          "type": "NameExpression",
-          "name": "boolean"
-        },
-        "name": "muted"
-      },
-      {
-        "title": "property",
-        "description": "The state of this Track. Can be 'live' or 'ended'.",
-        "lineNumber": 12,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "state"
-      },
-      {
-        "title": "property",
-        "description": "The ID of the Media Stream that includes this Track.",
-        "lineNumber": 13,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "streamId"
+        "name": "tracks"
       }
     ],
     "loc": {
       "start": {
-        "line": 87,
+        "line": 76,
         "column": 0
       },
       "end": {
-        "line": 101,
+        "line": 85,
         "column": 3
       }
     },
@@ -52724,7 +52640,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
     },
     "augments": [],
     "examples": [],
@@ -52732,7 +52648,7 @@
     "properties": [
       {
         "title": "property",
-        "name": "containers",
+        "name": "id",
         "lineNumber": 6,
         "description": {
           "type": "root",
@@ -52742,7 +52658,7 @@
               "children": [
                 {
                   "type": "text",
-                  "value": "The list of CSS selectors that were used to render this Track.",
+                  "value": "The ID of the Media object.",
                   "position": {
                     "start": {
                       "line": 1,
@@ -52751,8 +52667,8 @@
                     },
                     "end": {
                       "line": 1,
-                      "column": 63,
-                      "offset": 62
+                      "column": 28,
+                      "offset": 27
                     },
                     "indent": []
                   }
@@ -52766,8 +52682,8 @@
                 },
                 "end": {
                   "line": 1,
-                  "column": 63,
-                  "offset": 62
+                  "column": 28,
+                  "offset": 27
                 },
                 "indent": []
               }
@@ -52781,8 +52697,130 @@
             },
             "end": {
               "line": 1,
-              "column": 63,
-              "offset": 62
+              "column": 28,
+              "offset": 27
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      },
+      {
+        "title": "property",
+        "name": "local",
+        "lineNumber": 7,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Indicator on whether this media is local or remote.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 52,
+                      "offset": 51
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 52,
+                  "offset": 51
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 52,
+              "offset": 51
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "boolean"
+        }
+      },
+      {
+        "title": "property",
+        "name": "tracks",
+        "lineNumber": 8,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A list of Track objects that are contained in this Media object.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 65,
+                      "offset": 64
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 65,
+                  "offset": 64
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 65,
+              "offset": 64
             }
           }
         },
@@ -52795,436 +52833,9 @@
           "applications": [
             {
               "type": "NameExpression",
-              "name": "string"
+              "name": "TrackObject"
             }
           ]
-        }
-      },
-      {
-        "title": "property",
-        "name": "disabled",
-        "lineNumber": 7,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 90,
-                      "offset": 89
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 90,
-                  "offset": 89
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 90,
-              "offset": 89
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "boolean"
-        }
-      },
-      {
-        "title": "property",
-        "name": "id",
-        "lineNumber": 8,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The ID of the Track.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 21,
-                      "offset": 20
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 21,
-                  "offset": 20
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 21,
-              "offset": 20
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        }
-      },
-      {
-        "title": "property",
-        "name": "kind",
-        "lineNumber": 9,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The kind of Track this is (audio, video).",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 42,
-                      "offset": 41
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 42,
-                  "offset": 41
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 42,
-              "offset": 41
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        }
-      },
-      {
-        "title": "property",
-        "name": "label",
-        "lineNumber": 10,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The label of the device this Track uses.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 41,
-                      "offset": 40
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 41,
-                  "offset": 40
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 41,
-              "offset": 40
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        }
-      },
-      {
-        "title": "property",
-        "name": "muted",
-        "lineNumber": 11,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "Indicator on whether this Track is muted or not.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 49,
-                      "offset": 48
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 49,
-                  "offset": 48
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 49,
-              "offset": 48
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "boolean"
-        }
-      },
-      {
-        "title": "property",
-        "name": "state",
-        "lineNumber": 12,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The state of this Track. Can be 'live' or 'ended'.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 51,
-                      "offset": 50
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 51,
-                  "offset": 50
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 51,
-              "offset": 50
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        }
-      },
-      {
-        "title": "property",
-        "name": "streamId",
-        "lineNumber": 13,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The ID of the Media Stream that includes this Track.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 53,
-                      "offset": 52
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 53,
-                  "offset": 52
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 53,
-              "offset": 52
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
         }
       }
     ],
@@ -53234,7 +52845,7 @@
     "todos": [],
     "access": "public",
     "kind": "module",
-    "name": "TrackObject",
+    "name": "MediaObject",
     "members": {
       "global": [],
       "inner": [],
@@ -53244,11 +52855,561 @@
     },
     "path": [
       {
-        "name": "TrackObject",
+        "name": "MediaObject",
         "kind": "module"
       }
     ],
-    "namespace": "TrackObject"
+    "namespace": "MediaObject"
+  },
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "The MediaConstraint type defines the format for configuring media options.\nEither the ",
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 2,
+                  "column": 12,
+                  "offset": 86
+                },
+                "indent": [
+                  1
+                ]
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "exact",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 12,
+                  "offset": 86
+                },
+                "end": {
+                  "line": 2,
+                  "column": 19,
+                  "offset": 93
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " or ",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 19,
+                  "offset": 93
+                },
+                "end": {
+                  "line": 2,
+                  "column": 23,
+                  "offset": 97
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "ideal",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 23,
+                  "offset": 97
+                },
+                "end": {
+                  "line": 2,
+                  "column": 30,
+                  "offset": 104
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " property should be provided. If both are present, the\n   ",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 30,
+                  "offset": 104
+                },
+                "end": {
+                  "line": 3,
+                  "column": 4,
+                  "offset": 162
+                },
+                "indent": [
+                  1
+                ]
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "exact",
+              "position": {
+                "start": {
+                  "line": 3,
+                  "column": 4,
+                  "offset": 162
+                },
+                "end": {
+                  "line": 3,
+                  "column": 11,
+                  "offset": 169
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " value will be used.",
+              "position": {
+                "start": {
+                  "line": 3,
+                  "column": 11,
+                  "offset": 169
+                },
+                "end": {
+                  "line": 3,
+                  "column": 31,
+                  "offset": 189
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 31,
+              "offset": 189
+            },
+            "indent": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "When the ",
+              "position": {
+                "start": {
+                  "line": 5,
+                  "column": 1,
+                  "offset": 191
+                },
+                "end": {
+                  "line": 5,
+                  "column": 10,
+                  "offset": 200
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "exact",
+              "position": {
+                "start": {
+                  "line": 5,
+                  "column": 10,
+                  "offset": 200
+                },
+                "end": {
+                  "line": 5,
+                  "column": 17,
+                  "offset": 207
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " value is provided, it will be the only value considered for the option.\n   If it cannot be used, the constraint will be considered an error.",
+              "position": {
+                "start": {
+                  "line": 5,
+                  "column": 17,
+                  "offset": 207
+                },
+                "end": {
+                  "line": 6,
+                  "column": 69,
+                  "offset": 348
+                },
+                "indent": [
+                  1
+                ]
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 5,
+              "column": 1,
+              "offset": 191
+            },
+            "end": {
+              "line": 6,
+              "column": 69,
+              "offset": 348
+            },
+            "indent": [
+              1
+            ]
+          }
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "When the ",
+              "position": {
+                "start": {
+                  "line": 8,
+                  "column": 1,
+                  "offset": 350
+                },
+                "end": {
+                  "line": 8,
+                  "column": 10,
+                  "offset": 359
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "ideal",
+              "position": {
+                "start": {
+                  "line": 8,
+                  "column": 10,
+                  "offset": 359
+                },
+                "end": {
+                  "line": 8,
+                  "column": 17,
+                  "offset": 366
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " value is provided, it will be considered as the optimal value for the option.\n   If it cannot be used, the closest acceptable value will be used instead.",
+              "position": {
+                "start": {
+                  "line": 8,
+                  "column": 17,
+                  "offset": 366
+                },
+                "end": {
+                  "line": 9,
+                  "column": 76,
+                  "offset": 520
+                },
+                "indent": [
+                  1
+                ]
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 8,
+              "column": 1,
+              "offset": 350
+            },
+            "end": {
+              "line": 9,
+              "column": 76,
+              "offset": 520
+            },
+            "indent": [
+              1
+            ]
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 76,
+          "offset": 520
+        }
+      }
+    },
+    "tags": [
+      {
+        "title": "public",
+        "description": null,
+        "lineNumber": 11,
+        "type": null
+      },
+      {
+        "title": "module",
+        "description": null,
+        "lineNumber": 12,
+        "type": null,
+        "name": "MediaConstraint"
+      },
+      {
+        "title": "typedef",
+        "description": null,
+        "lineNumber": 13,
+        "type": {
+          "type": "NameExpression",
+          "name": "Object"
+        },
+        "name": "MediaConstraint"
+      },
+      {
+        "title": "property",
+        "description": "The required value for the constraint. Other values will not be accepted.",
+        "lineNumber": 14,
+        "type": {
+          "type": "OptionalType",
+          "expression": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        },
+        "name": "exact"
+      },
+      {
+        "title": "property",
+        "description": "The ideal value for the constraint. Other values will be considered if necessary.",
+        "lineNumber": 15,
+        "type": {
+          "type": "OptionalType",
+          "expression": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        },
+        "name": "ideal"
+      },
+      {
+        "title": "example",
+        "description": "// Specify video resolution when making a call.\nclient.call.make(destination, {\n   audio: true,\n   video: true,\n   videoOptions: {\n     // Set height and width constraints to ideally be 1280x720.\n     height: { ideal: 720 },\n     width: { ideal: 1280 }\n   }\n})",
+        "lineNumber": 16
+      }
+    ],
+    "loc": {
+      "start": {
+        "line": 47,
+        "column": 0
+      },
+      "end": {
+        "line": 74,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 133,
+          "column": 0
+        },
+        "end": {
+          "line": 137,
+          "column": 1
+        }
+      },
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
+    },
+    "augments": [],
+    "examples": [
+      {
+        "description": "// Specify video resolution when making a call.\nclient.call.make(destination, {\n   audio: true,\n   video: true,\n   videoOptions: {\n     // Set height and width constraints to ideally be 1280x720.\n     height: { ideal: 720 },\n     width: { ideal: 1280 }\n   }\n})"
+      }
+    ],
+    "params": [],
+    "properties": [
+      {
+        "title": "property",
+        "name": "exact",
+        "lineNumber": 14,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The required value for the constraint. Other values will not be accepted.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 74,
+                      "offset": 73
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 74,
+                  "offset": 73
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 74,
+              "offset": 73
+            }
+          }
+        },
+        "type": {
+          "type": "OptionalType",
+          "expression": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        }
+      },
+      {
+        "title": "property",
+        "name": "ideal",
+        "lineNumber": 15,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The ideal value for the constraint. Other values will be considered if necessary.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 82,
+                      "offset": 81
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 82,
+                  "offset": 81
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 82,
+              "offset": 81
+            }
+          }
+        },
+        "type": {
+          "type": "OptionalType",
+          "expression": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        }
+      }
+    ],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "access": "public",
+    "kind": "typedef",
+    "name": "MediaConstraint",
+    "type": {
+      "type": "NameExpression",
+      "name": "Object"
+    },
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [],
+      "events": [],
+      "static": []
+    },
+    "path": [
+      {
+        "name": "MediaConstraint",
+        "kind": "typedef"
+      }
+    ],
+    "namespace": "MediaConstraint"
   },
   {
     "description": {
@@ -53572,7 +53733,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
     },
     "augments": [],
     "examples": [],
@@ -54520,7 +54681,7 @@
           "children": [
             {
               "type": "text",
-              "value": "The MediaConstraint type defines the format for configuring media options.\nEither the ",
+              "value": "A Track is a stream of audio or video media from a single source.\nTracks can be retrieved using the Media module's ",
               "position": {
                 "start": {
                   "line": 1,
@@ -54529,8 +54690,8 @@
                 },
                 "end": {
                   "line": 2,
-                  "column": 12,
-                  "offset": 86
+                  "column": 50,
+                  "offset": 115
                 },
                 "indent": [
                   1
@@ -54539,552 +54700,36 @@
             },
             {
               "type": "inlineCode",
-              "value": "exact",
+              "value": "getTrackById",
               "position": {
                 "start": {
                   "line": 2,
-                  "column": 12,
-                  "offset": 86
+                  "column": 50,
+                  "offset": 115
                 },
                 "end": {
                   "line": 2,
-                  "column": 19,
-                  "offset": 93
+                  "column": 64,
+                  "offset": 129
                 },
                 "indent": []
               }
             },
             {
               "type": "text",
-              "value": " or ",
+              "value": " API and manipulated with other functions of the Media module.",
               "position": {
                 "start": {
                   "line": 2,
-                  "column": 19,
-                  "offset": 93
+                  "column": 64,
+                  "offset": 129
                 },
                 "end": {
                   "line": 2,
-                  "column": 23,
-                  "offset": 97
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "ideal",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 23,
-                  "offset": 97
-                },
-                "end": {
-                  "line": 2,
-                  "column": 30,
-                  "offset": 104
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " property should be provided. If both are present, the\n   ",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 30,
-                  "offset": 104
-                },
-                "end": {
-                  "line": 3,
-                  "column": 4,
-                  "offset": 162
-                },
-                "indent": [
-                  1
-                ]
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "exact",
-              "position": {
-                "start": {
-                  "line": 3,
-                  "column": 4,
-                  "offset": 162
-                },
-                "end": {
-                  "line": 3,
-                  "column": 11,
-                  "offset": 169
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " value will be used.",
-              "position": {
-                "start": {
-                  "line": 3,
-                  "column": 11,
-                  "offset": 169
-                },
-                "end": {
-                  "line": 3,
-                  "column": 31,
-                  "offset": 189
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 3,
-              "column": 31,
-              "offset": 189
-            },
-            "indent": [
-              1,
-              1
-            ]
-          }
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "value": "When the ",
-              "position": {
-                "start": {
-                  "line": 5,
-                  "column": 1,
+                  "column": 126,
                   "offset": 191
                 },
-                "end": {
-                  "line": 5,
-                  "column": 10,
-                  "offset": 200
-                },
                 "indent": []
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "exact",
-              "position": {
-                "start": {
-                  "line": 5,
-                  "column": 10,
-                  "offset": 200
-                },
-                "end": {
-                  "line": 5,
-                  "column": 17,
-                  "offset": 207
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " value is provided, it will be the only value considered for the option.\n   If it cannot be used, the constraint will be considered an error.",
-              "position": {
-                "start": {
-                  "line": 5,
-                  "column": 17,
-                  "offset": 207
-                },
-                "end": {
-                  "line": 6,
-                  "column": 69,
-                  "offset": 348
-                },
-                "indent": [
-                  1
-                ]
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 5,
-              "column": 1,
-              "offset": 191
-            },
-            "end": {
-              "line": 6,
-              "column": 69,
-              "offset": 348
-            },
-            "indent": [
-              1
-            ]
-          }
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "value": "When the ",
-              "position": {
-                "start": {
-                  "line": 8,
-                  "column": 1,
-                  "offset": 350
-                },
-                "end": {
-                  "line": 8,
-                  "column": 10,
-                  "offset": 359
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "ideal",
-              "position": {
-                "start": {
-                  "line": 8,
-                  "column": 10,
-                  "offset": 359
-                },
-                "end": {
-                  "line": 8,
-                  "column": 17,
-                  "offset": 366
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " value is provided, it will be considered as the optimal value for the option.\n   If it cannot be used, the closest acceptable value will be used instead.",
-              "position": {
-                "start": {
-                  "line": 8,
-                  "column": 17,
-                  "offset": 366
-                },
-                "end": {
-                  "line": 9,
-                  "column": 76,
-                  "offset": 520
-                },
-                "indent": [
-                  1
-                ]
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 8,
-              "column": 1,
-              "offset": 350
-            },
-            "end": {
-              "line": 9,
-              "column": 76,
-              "offset": 520
-            },
-            "indent": [
-              1
-            ]
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
-        },
-        "end": {
-          "line": 9,
-          "column": 76,
-          "offset": 520
-        }
-      }
-    },
-    "tags": [
-      {
-        "title": "public",
-        "description": null,
-        "lineNumber": 11,
-        "type": null
-      },
-      {
-        "title": "module",
-        "description": null,
-        "lineNumber": 12,
-        "type": null,
-        "name": "MediaConstraint"
-      },
-      {
-        "title": "typedef",
-        "description": null,
-        "lineNumber": 13,
-        "type": {
-          "type": "NameExpression",
-          "name": "Object"
-        },
-        "name": "MediaConstraint"
-      },
-      {
-        "title": "property",
-        "description": "The required value for the constraint. Other values will not be accepted.",
-        "lineNumber": 14,
-        "type": {
-          "type": "OptionalType",
-          "expression": {
-            "type": "NameExpression",
-            "name": "string"
-          }
-        },
-        "name": "exact"
-      },
-      {
-        "title": "property",
-        "description": "The ideal value for the constraint. Other values will be considered if necessary.",
-        "lineNumber": 15,
-        "type": {
-          "type": "OptionalType",
-          "expression": {
-            "type": "NameExpression",
-            "name": "string"
-          }
-        },
-        "name": "ideal"
-      },
-      {
-        "title": "example",
-        "description": "// Specify video resolution when making a call.\nclient.call.make(destination, {\n   audio: true,\n   video: true,\n   videoOptions: {\n     // Set height and width constraints to ideally be 1280x720.\n     height: { ideal: 720 },\n     width: { ideal: 1280 }\n   }\n})",
-        "lineNumber": 16
-      }
-    ],
-    "loc": {
-      "start": {
-        "line": 47,
-        "column": 0
-      },
-      "end": {
-        "line": 74,
-        "column": 3
-      }
-    },
-    "context": {
-      "loc": {
-        "start": {
-          "line": 133,
-          "column": 0
-        },
-        "end": {
-          "line": 137,
-          "column": 1
-        }
-      },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/index.js"
-    },
-    "augments": [],
-    "examples": [
-      {
-        "description": "// Specify video resolution when making a call.\nclient.call.make(destination, {\n   audio: true,\n   video: true,\n   videoOptions: {\n     // Set height and width constraints to ideally be 1280x720.\n     height: { ideal: 720 },\n     width: { ideal: 1280 }\n   }\n})"
-      }
-    ],
-    "params": [],
-    "properties": [
-      {
-        "title": "property",
-        "name": "exact",
-        "lineNumber": 14,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The required value for the constraint. Other values will not be accepted.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 74,
-                      "offset": 73
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 74,
-                  "offset": 73
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 74,
-              "offset": 73
-            }
-          }
-        },
-        "type": {
-          "type": "OptionalType",
-          "expression": {
-            "type": "NameExpression",
-            "name": "string"
-          }
-        }
-      },
-      {
-        "title": "property",
-        "name": "ideal",
-        "lineNumber": 15,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The ideal value for the constraint. Other values will be considered if necessary.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 82,
-                      "offset": 81
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 82,
-                  "offset": 81
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 82,
-              "offset": 81
-            }
-          }
-        },
-        "type": {
-          "type": "OptionalType",
-          "expression": {
-            "type": "NameExpression",
-            "name": "string"
-          }
-        }
-      }
-    ],
-    "returns": [],
-    "sees": [],
-    "throws": [],
-    "todos": [],
-    "access": "public",
-    "kind": "typedef",
-    "name": "MediaConstraint",
-    "type": {
-      "type": "NameExpression",
-      "name": "Object"
-    },
-    "members": {
-      "global": [],
-      "inner": [],
-      "instance": [],
-      "events": [],
-      "static": []
-    },
-    "path": [
-      {
-        "name": "MediaConstraint",
-        "kind": "typedef"
-      }
-    ],
-    "namespace": "MediaConstraint"
-  },
-  {
-    "description": {
-      "type": "root",
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "value": "The state representation of a Media object.\nMedia is a collection of Track objects.",
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 2,
-                  "column": 40,
-                  "offset": 83
-                },
-                "indent": [
-                  1
-                ]
               }
             }
           ],
@@ -55096,8 +54741,8 @@
             },
             "end": {
               "line": 2,
-              "column": 40,
-              "offset": 83
+              "column": 126,
+              "offset": 191
             },
             "indent": [
               1
@@ -55113,8 +54758,8 @@
         },
         "end": {
           "line": 2,
-          "column": 40,
-          "offset": 83
+          "column": 126,
+          "offset": 191
         }
       }
     },
@@ -55130,32 +54775,12 @@
         "description": null,
         "lineNumber": 5,
         "type": null,
-        "name": "MediaObject"
+        "name": "TrackObject"
       },
       {
         "title": "property",
-        "description": "The ID of the Media object.",
+        "description": "The list of CSS selectors that were used to render this Track.",
         "lineNumber": 6,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "id"
-      },
-      {
-        "title": "property",
-        "description": "Indicator on whether this media is local or remote.",
-        "lineNumber": 7,
-        "type": {
-          "type": "NameExpression",
-          "name": "boolean"
-        },
-        "name": "local"
-      },
-      {
-        "title": "property",
-        "description": "A list of Track objects that are contained in this Media object.",
-        "lineNumber": 8,
         "type": {
           "type": "TypeApplication",
           "expression": {
@@ -55165,20 +54790,90 @@
           "applications": [
             {
               "type": "NameExpression",
-              "name": "TrackObject"
+              "name": "string"
             }
           ]
         },
-        "name": "tracks"
+        "name": "containers"
+      },
+      {
+        "title": "property",
+        "description": "Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.",
+        "lineNumber": 7,
+        "type": {
+          "type": "NameExpression",
+          "name": "boolean"
+        },
+        "name": "disabled"
+      },
+      {
+        "title": "property",
+        "description": "The ID of the Track.",
+        "lineNumber": 8,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "id"
+      },
+      {
+        "title": "property",
+        "description": "The kind of Track this is (audio, video).",
+        "lineNumber": 9,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "kind"
+      },
+      {
+        "title": "property",
+        "description": "The label of the device this Track uses.",
+        "lineNumber": 10,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "label"
+      },
+      {
+        "title": "property",
+        "description": "Indicator on whether this Track is muted or not.",
+        "lineNumber": 11,
+        "type": {
+          "type": "NameExpression",
+          "name": "boolean"
+        },
+        "name": "muted"
+      },
+      {
+        "title": "property",
+        "description": "The state of this Track. Can be 'live' or 'ended'.",
+        "lineNumber": 12,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "state"
+      },
+      {
+        "title": "property",
+        "description": "The ID of the Media Stream that includes this Track.",
+        "lineNumber": 13,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "streamId"
       }
     ],
     "loc": {
       "start": {
-        "line": 76,
+        "line": 87,
         "column": 0
       },
       "end": {
-        "line": 85,
+        "line": 101,
         "column": 3
       }
     },
@@ -55193,7 +54888,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
     },
     "augments": [],
     "examples": [],
@@ -55201,7 +54896,7 @@
     "properties": [
       {
         "title": "property",
-        "name": "id",
+        "name": "containers",
         "lineNumber": 6,
         "description": {
           "type": "root",
@@ -55211,7 +54906,7 @@
               "children": [
                 {
                   "type": "text",
-                  "value": "The ID of the Media object.",
+                  "value": "The list of CSS selectors that were used to render this Track.",
                   "position": {
                     "start": {
                       "line": 1,
@@ -55220,8 +54915,8 @@
                     },
                     "end": {
                       "line": 1,
-                      "column": 28,
-                      "offset": 27
+                      "column": 63,
+                      "offset": 62
                     },
                     "indent": []
                   }
@@ -55235,8 +54930,8 @@
                 },
                 "end": {
                   "line": 1,
-                  "column": 28,
-                  "offset": 27
+                  "column": 63,
+                  "offset": 62
                 },
                 "indent": []
               }
@@ -55250,130 +54945,8 @@
             },
             "end": {
               "line": 1,
-              "column": 28,
-              "offset": 27
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        }
-      },
-      {
-        "title": "property",
-        "name": "local",
-        "lineNumber": 7,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "Indicator on whether this media is local or remote.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 52,
-                      "offset": 51
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 52,
-                  "offset": 51
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 52,
-              "offset": 51
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "boolean"
-        }
-      },
-      {
-        "title": "property",
-        "name": "tracks",
-        "lineNumber": 8,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "A list of Track objects that are contained in this Media object.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 65,
-                      "offset": 64
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 65,
-                  "offset": 64
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 65,
-              "offset": 64
+              "column": 63,
+              "offset": 62
             }
           }
         },
@@ -55386,9 +54959,436 @@
           "applications": [
             {
               "type": "NameExpression",
-              "name": "TrackObject"
+              "name": "string"
             }
           ]
+        }
+      },
+      {
+        "title": "property",
+        "name": "disabled",
+        "lineNumber": 7,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 90,
+                      "offset": 89
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 90,
+                  "offset": 89
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 90,
+              "offset": 89
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "boolean"
+        }
+      },
+      {
+        "title": "property",
+        "name": "id",
+        "lineNumber": 8,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The ID of the Track.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 21,
+                      "offset": 20
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 21,
+                  "offset": 20
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 21,
+              "offset": 20
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      },
+      {
+        "title": "property",
+        "name": "kind",
+        "lineNumber": 9,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The kind of Track this is (audio, video).",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 42,
+                      "offset": 41
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 42,
+                  "offset": 41
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 42,
+              "offset": 41
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      },
+      {
+        "title": "property",
+        "name": "label",
+        "lineNumber": 10,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The label of the device this Track uses.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 41,
+                      "offset": 40
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 41,
+                  "offset": 40
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 41,
+              "offset": 40
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      },
+      {
+        "title": "property",
+        "name": "muted",
+        "lineNumber": 11,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Indicator on whether this Track is muted or not.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 49,
+                      "offset": 48
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 49,
+                  "offset": 48
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 49,
+              "offset": 48
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "boolean"
+        }
+      },
+      {
+        "title": "property",
+        "name": "state",
+        "lineNumber": 12,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The state of this Track. Can be 'live' or 'ended'.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 51,
+                      "offset": 50
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 51,
+                  "offset": 50
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 51,
+              "offset": 50
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      },
+      {
+        "title": "property",
+        "name": "streamId",
+        "lineNumber": 13,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The ID of the Media Stream that includes this Track.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 53,
+                      "offset": 52
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 53,
+                  "offset": 52
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 53,
+              "offset": 52
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
         }
       }
     ],
@@ -55398,7 +55398,7 @@
     "todos": [],
     "access": "public",
     "kind": "module",
-    "name": "MediaObject",
+    "name": "TrackObject",
     "members": {
       "global": [],
       "inner": [],
@@ -55408,11 +55408,11 @@
     },
     "path": [
       {
-        "name": "MediaObject",
+        "name": "TrackObject",
         "kind": "module"
       }
     ],
-    "namespace": "MediaObject"
+    "namespace": "TrackObject"
   },
   {
     "description": {
@@ -55560,7 +55560,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
     },
     "augments": [],
     "examples": [],
@@ -55928,7 +55928,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interfaceNew/api/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
     },
     "augments": [],
     "examples": [],
@@ -56343,7 +56343,7 @@
           "column": 5
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/webrtc/interface/api/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/webrtc/interface/api/index.js"
     },
     "augments": [],
     "examples": [
@@ -56598,7 +56598,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -56734,7 +56734,7 @@
                 "column": 56
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -56968,7 +56968,7 @@
                 "column": 54
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -57259,7 +57259,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -57583,7 +57583,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -57795,7 +57795,7 @@
           "column": 16
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/errors/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/errors/index.js"
     },
     "augments": [],
     "examples": [],
