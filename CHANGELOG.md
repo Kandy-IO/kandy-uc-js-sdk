@@ -7,6 +7,9 @@ Kandy.js change log.
 
 ## 4.5.0 - beta
 
+### Fixed
+- Fixed an issue where files were not being received when sending them through a rich message `KAA-1782`
+
 ## 4.4.0 - 2019-05-24
 
 ### Compatibility Warning

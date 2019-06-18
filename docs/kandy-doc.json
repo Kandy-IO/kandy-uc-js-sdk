@@ -2562,7 +2562,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing an OAuth token.",
+                    "value": "Connect by providing a refresh token.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -2571,8 +2571,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 37,
-                        "offset": 36
+                        "column": 38,
+                        "offset": 37
                       },
                       "indent": []
                     }
@@ -2586,8 +2586,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 37,
-                    "offset": 36
+                    "column": 38,
+                    "offset": 37
                   },
                   "indent": []
                 }
@@ -2601,8 +2601,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 37,
-                "offset": 36
+                "column": 38,
+                "offset": 37
               }
             }
           },
@@ -2622,7 +2622,7 @@
               "title": "requires",
               "description": null,
               "lineNumber": 5,
-              "name": "oauthToken"
+              "name": "accessTokenAuth"
             },
             {
               "title": "method",
@@ -2652,27 +2652,40 @@
             },
             {
               "title": "param",
-              "description": "An OAuth token provided by an outside service.",
+              "description": "A refresh token for the same user.",
               "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "credentials.oauthToken"
+              "name": "credentials.refreshToken"
+            },
+            {
+              "title": "param",
+              "description": "The time in seconds until the access token will expire.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "number"
+                }
+              },
+              "name": "credentials.expires"
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
-              "lineNumber": 10
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
+              "lineNumber": 11
             }
           ],
           "loc": {
             "start": {
-              "line": 112,
+              "line": 94,
               "column": 4
             },
             "end": {
-              "line": 127,
+              "line": 111,
               "column": 7
             }
           },
@@ -2692,7 +2705,7 @@
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
             }
           ],
           "params": [
@@ -2820,7 +2833,7 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.oauthToken",
+                  "name": "credentials.refreshToken",
                   "lineNumber": 9,
                   "description": {
                     "type": "root",
@@ -2830,7 +2843,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "An OAuth token provided by an outside service.",
+                            "value": "A refresh token for the same user.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -2839,8 +2852,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 47,
-                                "offset": 46
+                                "column": 35,
+                                "offset": 34
                               },
                               "indent": []
                             }
@@ -2854,8 +2867,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 47,
-                            "offset": 46
+                            "column": 35,
+                            "offset": 34
                           },
                           "indent": []
                         }
@@ -2869,14 +2882,78 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 47,
-                        "offset": 46
+                        "column": 35,
+                        "offset": 34
                       }
                     }
                   },
                   "type": {
                     "type": "NameExpression",
                     "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.expires",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The time in seconds until the access token will expire.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 56,
+                                "offset": 55
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 56,
+                            "offset": 55
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 56,
+                        "offset": 55
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "number"
+                    }
                   }
                 }
               ]
@@ -3864,7 +3941,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect by providing a refresh token.",
+                    "value": "Connect by providing an OAuth token.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -3873,8 +3950,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 38,
-                        "offset": 37
+                        "column": 37,
+                        "offset": 36
                       },
                       "indent": []
                     }
@@ -3888,8 +3965,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 38,
-                    "offset": 37
+                    "column": 37,
+                    "offset": 36
                   },
                   "indent": []
                 }
@@ -3903,8 +3980,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 38,
-                "offset": 37
+                "column": 37,
+                "offset": 36
               }
             }
           },
@@ -3924,7 +4001,7 @@
               "title": "requires",
               "description": null,
               "lineNumber": 5,
-              "name": "accessTokenAuth"
+              "name": "oauthToken"
             },
             {
               "title": "method",
@@ -3954,40 +4031,27 @@
             },
             {
               "title": "param",
-              "description": "A refresh token for the same user.",
+              "description": "An OAuth token provided by an outside service.",
               "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "credentials.refreshToken"
-            },
-            {
-              "title": "param",
-              "description": "The time in seconds until the access token will expire.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "number"
-                }
-              },
-              "name": "credentials.expires"
+              "name": "credentials.oauthToken"
             },
             {
               "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});",
-              "lineNumber": 11
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
+              "lineNumber": 10
             }
           ],
           "loc": {
             "start": {
-              "line": 94,
+              "line": 112,
               "column": 4
             },
             "end": {
-              "line": 111,
+              "line": 127,
               "column": 7
             }
           },
@@ -4007,7 +4071,7 @@
           "augments": [],
           "examples": [
             {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n  expires: 3600\n});"
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
             }
           ],
           "params": [
@@ -4135,7 +4199,7 @@
                 },
                 {
                   "title": "param",
-                  "name": "credentials.refreshToken",
+                  "name": "credentials.oauthToken",
                   "lineNumber": 9,
                   "description": {
                     "type": "root",
@@ -4145,7 +4209,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "A refresh token for the same user.",
+                            "value": "An OAuth token provided by an outside service.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -4154,8 +4218,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 35,
-                                "offset": 34
+                                "column": 47,
+                                "offset": 46
                               },
                               "indent": []
                             }
@@ -4169,8 +4233,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 35,
-                            "offset": 34
+                            "column": 47,
+                            "offset": 46
                           },
                           "indent": []
                         }
@@ -4184,78 +4248,14 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 35,
-                        "offset": 34
+                        "column": 47,
+                        "offset": 46
                       }
                     }
                   },
                   "type": {
                     "type": "NameExpression",
                     "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.expires",
-                  "lineNumber": 10,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The time in seconds until the access token will expire.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 56,
-                                "offset": 55
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 56,
-                            "offset": 55
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 56,
-                        "offset": 55
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "number"
-                    }
                   }
                 }
               ]
@@ -52517,909 +52517,6 @@
           "children": [
             {
               "type": "text",
-              "value": "The state representation of a Media object.\nMedia is a collection of Track objects.",
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 2,
-                  "column": 40,
-                  "offset": 83
-                },
-                "indent": [
-                  1
-                ]
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 2,
-              "column": 40,
-              "offset": 83
-            },
-            "indent": [
-              1
-            ]
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
-        },
-        "end": {
-          "line": 2,
-          "column": 40,
-          "offset": 83
-        }
-      }
-    },
-    "tags": [
-      {
-        "title": "public",
-        "description": null,
-        "lineNumber": 4,
-        "type": null
-      },
-      {
-        "title": "module",
-        "description": null,
-        "lineNumber": 5,
-        "type": null,
-        "name": "MediaObject"
-      },
-      {
-        "title": "property",
-        "description": "The ID of the Media object.",
-        "lineNumber": 6,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "id"
-      },
-      {
-        "title": "property",
-        "description": "Indicator on whether this media is local or remote.",
-        "lineNumber": 7,
-        "type": {
-          "type": "NameExpression",
-          "name": "boolean"
-        },
-        "name": "local"
-      },
-      {
-        "title": "property",
-        "description": "A list of Track objects that are contained in this Media object.",
-        "lineNumber": 8,
-        "type": {
-          "type": "TypeApplication",
-          "expression": {
-            "type": "NameExpression",
-            "name": "Array"
-          },
-          "applications": [
-            {
-              "type": "NameExpression",
-              "name": "TrackObject"
-            }
-          ]
-        },
-        "name": "tracks"
-      }
-    ],
-    "loc": {
-      "start": {
-        "line": 76,
-        "column": 0
-      },
-      "end": {
-        "line": 85,
-        "column": 3
-      }
-    },
-    "context": {
-      "loc": {
-        "start": {
-          "line": 133,
-          "column": 0
-        },
-        "end": {
-          "line": 137,
-          "column": 1
-        }
-      },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
-    },
-    "augments": [],
-    "examples": [],
-    "params": [],
-    "properties": [
-      {
-        "title": "property",
-        "name": "id",
-        "lineNumber": 6,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The ID of the Media object.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 28,
-                      "offset": 27
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 28,
-                  "offset": 27
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 28,
-              "offset": 27
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        }
-      },
-      {
-        "title": "property",
-        "name": "local",
-        "lineNumber": 7,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "Indicator on whether this media is local or remote.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 52,
-                      "offset": 51
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 52,
-                  "offset": 51
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 52,
-              "offset": 51
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "boolean"
-        }
-      },
-      {
-        "title": "property",
-        "name": "tracks",
-        "lineNumber": 8,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "A list of Track objects that are contained in this Media object.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 65,
-                      "offset": 64
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 65,
-                  "offset": 64
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 65,
-              "offset": 64
-            }
-          }
-        },
-        "type": {
-          "type": "TypeApplication",
-          "expression": {
-            "type": "NameExpression",
-            "name": "Array"
-          },
-          "applications": [
-            {
-              "type": "NameExpression",
-              "name": "TrackObject"
-            }
-          ]
-        }
-      }
-    ],
-    "returns": [],
-    "sees": [],
-    "throws": [],
-    "todos": [],
-    "access": "public",
-    "kind": "module",
-    "name": "MediaObject",
-    "members": {
-      "global": [],
-      "inner": [],
-      "instance": [],
-      "events": [],
-      "static": []
-    },
-    "path": [
-      {
-        "name": "MediaObject",
-        "kind": "module"
-      }
-    ],
-    "namespace": "MediaObject"
-  },
-  {
-    "description": {
-      "type": "root",
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "value": "The MediaConstraint type defines the format for configuring media options.\nEither the ",
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 2,
-                  "column": 12,
-                  "offset": 86
-                },
-                "indent": [
-                  1
-                ]
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "exact",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 12,
-                  "offset": 86
-                },
-                "end": {
-                  "line": 2,
-                  "column": 19,
-                  "offset": 93
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " or ",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 19,
-                  "offset": 93
-                },
-                "end": {
-                  "line": 2,
-                  "column": 23,
-                  "offset": 97
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "ideal",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 23,
-                  "offset": 97
-                },
-                "end": {
-                  "line": 2,
-                  "column": 30,
-                  "offset": 104
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " property should be provided. If both are present, the\n   ",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 30,
-                  "offset": 104
-                },
-                "end": {
-                  "line": 3,
-                  "column": 4,
-                  "offset": 162
-                },
-                "indent": [
-                  1
-                ]
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "exact",
-              "position": {
-                "start": {
-                  "line": 3,
-                  "column": 4,
-                  "offset": 162
-                },
-                "end": {
-                  "line": 3,
-                  "column": 11,
-                  "offset": 169
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " value will be used.",
-              "position": {
-                "start": {
-                  "line": 3,
-                  "column": 11,
-                  "offset": 169
-                },
-                "end": {
-                  "line": 3,
-                  "column": 31,
-                  "offset": 189
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 3,
-              "column": 31,
-              "offset": 189
-            },
-            "indent": [
-              1,
-              1
-            ]
-          }
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "value": "When the ",
-              "position": {
-                "start": {
-                  "line": 5,
-                  "column": 1,
-                  "offset": 191
-                },
-                "end": {
-                  "line": 5,
-                  "column": 10,
-                  "offset": 200
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "exact",
-              "position": {
-                "start": {
-                  "line": 5,
-                  "column": 10,
-                  "offset": 200
-                },
-                "end": {
-                  "line": 5,
-                  "column": 17,
-                  "offset": 207
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " value is provided, it will be the only value considered for the option.\n   If it cannot be used, the constraint will be considered an error.",
-              "position": {
-                "start": {
-                  "line": 5,
-                  "column": 17,
-                  "offset": 207
-                },
-                "end": {
-                  "line": 6,
-                  "column": 69,
-                  "offset": 348
-                },
-                "indent": [
-                  1
-                ]
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 5,
-              "column": 1,
-              "offset": 191
-            },
-            "end": {
-              "line": 6,
-              "column": 69,
-              "offset": 348
-            },
-            "indent": [
-              1
-            ]
-          }
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "value": "When the ",
-              "position": {
-                "start": {
-                  "line": 8,
-                  "column": 1,
-                  "offset": 350
-                },
-                "end": {
-                  "line": 8,
-                  "column": 10,
-                  "offset": 359
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "inlineCode",
-              "value": "ideal",
-              "position": {
-                "start": {
-                  "line": 8,
-                  "column": 10,
-                  "offset": 359
-                },
-                "end": {
-                  "line": 8,
-                  "column": 17,
-                  "offset": 366
-                },
-                "indent": []
-              }
-            },
-            {
-              "type": "text",
-              "value": " value is provided, it will be considered as the optimal value for the option.\n   If it cannot be used, the closest acceptable value will be used instead.",
-              "position": {
-                "start": {
-                  "line": 8,
-                  "column": 17,
-                  "offset": 366
-                },
-                "end": {
-                  "line": 9,
-                  "column": 76,
-                  "offset": 520
-                },
-                "indent": [
-                  1
-                ]
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 8,
-              "column": 1,
-              "offset": 350
-            },
-            "end": {
-              "line": 9,
-              "column": 76,
-              "offset": 520
-            },
-            "indent": [
-              1
-            ]
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
-        },
-        "end": {
-          "line": 9,
-          "column": 76,
-          "offset": 520
-        }
-      }
-    },
-    "tags": [
-      {
-        "title": "public",
-        "description": null,
-        "lineNumber": 11,
-        "type": null
-      },
-      {
-        "title": "module",
-        "description": null,
-        "lineNumber": 12,
-        "type": null,
-        "name": "MediaConstraint"
-      },
-      {
-        "title": "typedef",
-        "description": null,
-        "lineNumber": 13,
-        "type": {
-          "type": "NameExpression",
-          "name": "Object"
-        },
-        "name": "MediaConstraint"
-      },
-      {
-        "title": "property",
-        "description": "The required value for the constraint. Other values will not be accepted.",
-        "lineNumber": 14,
-        "type": {
-          "type": "OptionalType",
-          "expression": {
-            "type": "NameExpression",
-            "name": "string"
-          }
-        },
-        "name": "exact"
-      },
-      {
-        "title": "property",
-        "description": "The ideal value for the constraint. Other values will be considered if necessary.",
-        "lineNumber": 15,
-        "type": {
-          "type": "OptionalType",
-          "expression": {
-            "type": "NameExpression",
-            "name": "string"
-          }
-        },
-        "name": "ideal"
-      },
-      {
-        "title": "example",
-        "description": "// Specify video resolution when making a call.\nclient.call.make(destination, {\n   audio: true,\n   video: true,\n   videoOptions: {\n     // Set height and width constraints to ideally be 1280x720.\n     height: { ideal: 720 },\n     width: { ideal: 1280 }\n   }\n})",
-        "lineNumber": 16
-      }
-    ],
-    "loc": {
-      "start": {
-        "line": 47,
-        "column": 0
-      },
-      "end": {
-        "line": 74,
-        "column": 3
-      }
-    },
-    "context": {
-      "loc": {
-        "start": {
-          "line": 133,
-          "column": 0
-        },
-        "end": {
-          "line": 137,
-          "column": 1
-        }
-      },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
-    },
-    "augments": [],
-    "examples": [
-      {
-        "description": "// Specify video resolution when making a call.\nclient.call.make(destination, {\n   audio: true,\n   video: true,\n   videoOptions: {\n     // Set height and width constraints to ideally be 1280x720.\n     height: { ideal: 720 },\n     width: { ideal: 1280 }\n   }\n})"
-      }
-    ],
-    "params": [],
-    "properties": [
-      {
-        "title": "property",
-        "name": "exact",
-        "lineNumber": 14,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The required value for the constraint. Other values will not be accepted.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 74,
-                      "offset": 73
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 74,
-                  "offset": 73
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 74,
-              "offset": 73
-            }
-          }
-        },
-        "type": {
-          "type": "OptionalType",
-          "expression": {
-            "type": "NameExpression",
-            "name": "string"
-          }
-        }
-      },
-      {
-        "title": "property",
-        "name": "ideal",
-        "lineNumber": 15,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The ideal value for the constraint. Other values will be considered if necessary.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 82,
-                      "offset": 81
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 82,
-                  "offset": 81
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 82,
-              "offset": 81
-            }
-          }
-        },
-        "type": {
-          "type": "OptionalType",
-          "expression": {
-            "type": "NameExpression",
-            "name": "string"
-          }
-        }
-      }
-    ],
-    "returns": [],
-    "sees": [],
-    "throws": [],
-    "todos": [],
-    "access": "public",
-    "kind": "typedef",
-    "name": "MediaConstraint",
-    "type": {
-      "type": "NameExpression",
-      "name": "Object"
-    },
-    "members": {
-      "global": [],
-      "inner": [],
-      "instance": [],
-      "events": [],
-      "static": []
-    },
-    "path": [
-      {
-        "name": "MediaConstraint",
-        "kind": "typedef"
-      }
-    ],
-    "namespace": "MediaConstraint"
-  },
-  {
-    "description": {
-      "type": "root",
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
               "value": "The state representation of a Call.\nCan be retrieved using the Call feature's ",
               "position": {
                 "start": {
@@ -54681,6 +53778,827 @@
           "children": [
             {
               "type": "text",
+              "value": "Contains information about a device.",
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 37,
+                  "offset": 36
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 37,
+              "offset": 36
+            },
+            "indent": []
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 37,
+          "offset": 36
+        }
+      }
+    },
+    "tags": [
+      {
+        "title": "public",
+        "description": null,
+        "lineNumber": 3,
+        "type": null
+      },
+      {
+        "title": "module",
+        "description": null,
+        "lineNumber": 4,
+        "type": null,
+        "name": "DeviceInfo"
+      },
+      {
+        "title": "property",
+        "description": "The ID of the device.",
+        "lineNumber": 5,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "deviceId"
+      },
+      {
+        "title": "property",
+        "description": "The group ID of the device. Devices that share a `groupId` belong to the same physical device.",
+        "lineNumber": 6,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "groupId"
+      },
+      {
+        "title": "property",
+        "description": "The type of the device (audioinput, audiooutput, videoinput).",
+        "lineNumber": 7,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "kind"
+      },
+      {
+        "title": "property",
+        "description": "The name of the device.",
+        "lineNumber": 8,
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        },
+        "name": "label"
+      }
+    ],
+    "loc": {
+      "start": {
+        "line": 113,
+        "column": 0
+      },
+      "end": {
+        "line": 122,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 133,
+          "column": 0
+        },
+        "end": {
+          "line": 137,
+          "column": 1
+        }
+      },
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
+    },
+    "augments": [],
+    "examples": [],
+    "params": [],
+    "properties": [
+      {
+        "title": "property",
+        "name": "deviceId",
+        "lineNumber": 5,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The ID of the device.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 22,
+                      "offset": 21
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 22,
+                  "offset": 21
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 22,
+              "offset": 21
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      },
+      {
+        "title": "property",
+        "name": "groupId",
+        "lineNumber": 6,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The group ID of the device. Devices that share a ",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 50,
+                      "offset": 49
+                    },
+                    "indent": []
+                  }
+                },
+                {
+                  "type": "inlineCode",
+                  "value": "groupId",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 50,
+                      "offset": 49
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 59,
+                      "offset": 58
+                    },
+                    "indent": []
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": " belong to the same physical device.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 59,
+                      "offset": 58
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 95,
+                      "offset": 94
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 95,
+                  "offset": 94
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 95,
+              "offset": 94
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      },
+      {
+        "title": "property",
+        "name": "kind",
+        "lineNumber": 7,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The type of the device (audioinput, audiooutput, videoinput).",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 62,
+                      "offset": 61
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 62,
+                  "offset": 61
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 62,
+              "offset": 61
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      },
+      {
+        "title": "property",
+        "name": "label",
+        "lineNumber": 8,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The name of the device.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 24,
+                      "offset": 23
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 24,
+                  "offset": 23
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 24,
+              "offset": 23
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "string"
+        }
+      }
+    ],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "access": "public",
+    "kind": "module",
+    "name": "DeviceInfo",
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [],
+      "events": [],
+      "static": []
+    },
+    "path": [
+      {
+        "name": "DeviceInfo",
+        "kind": "module"
+      }
+    ],
+    "namespace": "DeviceInfo"
+  },
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "A collection of devices and their information.",
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 47,
+                  "offset": 46
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 47,
+              "offset": 46
+            },
+            "indent": []
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 47,
+          "offset": 46
+        }
+      }
+    },
+    "tags": [
+      {
+        "title": "public",
+        "description": null,
+        "lineNumber": 3,
+        "type": null
+      },
+      {
+        "title": "module",
+        "description": null,
+        "lineNumber": 4,
+        "type": null,
+        "name": "DevicesObject"
+      },
+      {
+        "title": "property",
+        "description": "A list of camera device information.",
+        "lineNumber": 5,
+        "type": {
+          "type": "TypeApplication",
+          "expression": {
+            "type": "NameExpression",
+            "name": "Array"
+          },
+          "applications": [
+            {
+              "type": "NameExpression",
+              "name": "DeviceInfo"
+            }
+          ]
+        },
+        "name": "camera"
+      },
+      {
+        "title": "property",
+        "description": "A list of microphone device information.",
+        "lineNumber": 6,
+        "type": {
+          "type": "TypeApplication",
+          "expression": {
+            "type": "NameExpression",
+            "name": "Array"
+          },
+          "applications": [
+            {
+              "type": "NameExpression",
+              "name": "DeviceInfo"
+            }
+          ]
+        },
+        "name": "microphone"
+      },
+      {
+        "title": "property",
+        "description": "A list of speaker device information.",
+        "lineNumber": 7,
+        "type": {
+          "type": "TypeApplication",
+          "expression": {
+            "type": "NameExpression",
+            "name": "Array"
+          },
+          "applications": [
+            {
+              "type": "NameExpression",
+              "name": "DeviceInfo"
+            }
+          ]
+        },
+        "name": "speaker"
+      }
+    ],
+    "loc": {
+      "start": {
+        "line": 103,
+        "column": 0
+      },
+      "end": {
+        "line": 111,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 133,
+          "column": 0
+        },
+        "end": {
+          "line": 137,
+          "column": 1
+        }
+      },
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
+    },
+    "augments": [],
+    "examples": [],
+    "params": [],
+    "properties": [
+      {
+        "title": "property",
+        "name": "camera",
+        "lineNumber": 5,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A list of camera device information.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 37,
+                      "offset": 36
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 37,
+                  "offset": 36
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 37,
+              "offset": 36
+            }
+          }
+        },
+        "type": {
+          "type": "TypeApplication",
+          "expression": {
+            "type": "NameExpression",
+            "name": "Array"
+          },
+          "applications": [
+            {
+              "type": "NameExpression",
+              "name": "DeviceInfo"
+            }
+          ]
+        }
+      },
+      {
+        "title": "property",
+        "name": "microphone",
+        "lineNumber": 6,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A list of microphone device information.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 41,
+                      "offset": 40
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 41,
+                  "offset": 40
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 41,
+              "offset": 40
+            }
+          }
+        },
+        "type": {
+          "type": "TypeApplication",
+          "expression": {
+            "type": "NameExpression",
+            "name": "Array"
+          },
+          "applications": [
+            {
+              "type": "NameExpression",
+              "name": "DeviceInfo"
+            }
+          ]
+        }
+      },
+      {
+        "title": "property",
+        "name": "speaker",
+        "lineNumber": 7,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A list of speaker device information.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 38,
+                      "offset": 37
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 38,
+                  "offset": 37
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 38,
+              "offset": 37
+            }
+          }
+        },
+        "type": {
+          "type": "TypeApplication",
+          "expression": {
+            "type": "NameExpression",
+            "name": "Array"
+          },
+          "applications": [
+            {
+              "type": "NameExpression",
+              "name": "DeviceInfo"
+            }
+          ]
+        }
+      }
+    ],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "access": "public",
+    "kind": "module",
+    "name": "DevicesObject",
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [],
+      "events": [],
+      "static": []
+    },
+    "path": [
+      {
+        "name": "DevicesObject",
+        "kind": "module"
+      }
+    ],
+    "namespace": "DevicesObject"
+  },
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
               "value": "A Track is a stream of audio or video media from a single source.\nTracks can be retrieved using the Media module's ",
               "position": {
                 "start": {
@@ -55423,7 +55341,7 @@
           "children": [
             {
               "type": "text",
-              "value": "A collection of devices and their information.",
+              "value": "The state representation of a Media object.\nMedia is a collection of Track objects.",
               "position": {
                 "start": {
                   "line": 1,
@@ -55431,11 +55349,13 @@
                   "offset": 0
                 },
                 "end": {
-                  "line": 1,
-                  "column": 47,
-                  "offset": 46
+                  "line": 2,
+                  "column": 40,
+                  "offset": 83
                 },
-                "indent": []
+                "indent": [
+                  1
+                ]
               }
             }
           ],
@@ -55446,11 +55366,13 @@
               "offset": 0
             },
             "end": {
-              "line": 1,
-              "column": 47,
-              "offset": 46
+              "line": 2,
+              "column": 40,
+              "offset": 83
             },
-            "indent": []
+            "indent": [
+              1
+            ]
           }
         }
       ],
@@ -55461,9 +55383,9 @@
           "offset": 0
         },
         "end": {
-          "line": 1,
-          "column": 47,
-          "offset": 46
+          "line": 2,
+          "column": 40,
+          "offset": 83
         }
       }
     },
@@ -55471,58 +55393,40 @@
       {
         "title": "public",
         "description": null,
-        "lineNumber": 3,
+        "lineNumber": 4,
         "type": null
       },
       {
         "title": "module",
         "description": null,
-        "lineNumber": 4,
-        "type": null,
-        "name": "DevicesObject"
-      },
-      {
-        "title": "property",
-        "description": "A list of camera device information.",
         "lineNumber": 5,
-        "type": {
-          "type": "TypeApplication",
-          "expression": {
-            "type": "NameExpression",
-            "name": "Array"
-          },
-          "applications": [
-            {
-              "type": "NameExpression",
-              "name": "DeviceInfo"
-            }
-          ]
-        },
-        "name": "camera"
+        "type": null,
+        "name": "MediaObject"
       },
       {
         "title": "property",
-        "description": "A list of microphone device information.",
+        "description": "The ID of the Media object.",
         "lineNumber": 6,
         "type": {
-          "type": "TypeApplication",
-          "expression": {
-            "type": "NameExpression",
-            "name": "Array"
-          },
-          "applications": [
-            {
-              "type": "NameExpression",
-              "name": "DeviceInfo"
-            }
-          ]
+          "type": "NameExpression",
+          "name": "string"
         },
-        "name": "microphone"
+        "name": "id"
       },
       {
         "title": "property",
-        "description": "A list of speaker device information.",
+        "description": "Indicator on whether this media is local or remote.",
         "lineNumber": 7,
+        "type": {
+          "type": "NameExpression",
+          "name": "boolean"
+        },
+        "name": "local"
+      },
+      {
+        "title": "property",
+        "description": "A list of Track objects that are contained in this Media object.",
+        "lineNumber": 8,
         "type": {
           "type": "TypeApplication",
           "expression": {
@@ -55532,20 +55436,20 @@
           "applications": [
             {
               "type": "NameExpression",
-              "name": "DeviceInfo"
+              "name": "TrackObject"
             }
           ]
         },
-        "name": "speaker"
+        "name": "tracks"
       }
     ],
     "loc": {
       "start": {
-        "line": 103,
+        "line": 76,
         "column": 0
       },
       "end": {
-        "line": 111,
+        "line": 85,
         "column": 3
       }
     },
@@ -55568,77 +55472,7 @@
     "properties": [
       {
         "title": "property",
-        "name": "camera",
-        "lineNumber": 5,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "A list of camera device information.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 37,
-                      "offset": 36
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 37,
-                  "offset": 36
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 37,
-              "offset": 36
-            }
-          }
-        },
-        "type": {
-          "type": "TypeApplication",
-          "expression": {
-            "type": "NameExpression",
-            "name": "Array"
-          },
-          "applications": [
-            {
-              "type": "NameExpression",
-              "name": "DeviceInfo"
-            }
-          ]
-        }
-      },
-      {
-        "title": "property",
-        "name": "microphone",
+        "name": "id",
         "lineNumber": 6,
         "description": {
           "type": "root",
@@ -55648,7 +55482,7 @@
               "children": [
                 {
                   "type": "text",
-                  "value": "A list of microphone device information.",
+                  "value": "The ID of the Media object.",
                   "position": {
                     "start": {
                       "line": 1,
@@ -55657,8 +55491,8 @@
                     },
                     "end": {
                       "line": 1,
-                      "column": 41,
-                      "offset": 40
+                      "column": 28,
+                      "offset": 27
                     },
                     "indent": []
                   }
@@ -55672,8 +55506,8 @@
                 },
                 "end": {
                   "line": 1,
-                  "column": 41,
-                  "offset": 40
+                  "column": 28,
+                  "offset": 27
                 },
                 "indent": []
               }
@@ -55687,28 +55521,19 @@
             },
             "end": {
               "line": 1,
-              "column": 41,
-              "offset": 40
+              "column": 28,
+              "offset": 27
             }
           }
         },
         "type": {
-          "type": "TypeApplication",
-          "expression": {
-            "type": "NameExpression",
-            "name": "Array"
-          },
-          "applications": [
-            {
-              "type": "NameExpression",
-              "name": "DeviceInfo"
-            }
-          ]
+          "type": "NameExpression",
+          "name": "string"
         }
       },
       {
         "title": "property",
-        "name": "speaker",
+        "name": "local",
         "lineNumber": 7,
         "description": {
           "type": "root",
@@ -55718,7 +55543,7 @@
               "children": [
                 {
                   "type": "text",
-                  "value": "A list of speaker device information.",
+                  "value": "Indicator on whether this media is local or remote.",
                   "position": {
                     "start": {
                       "line": 1,
@@ -55727,8 +55552,8 @@
                     },
                     "end": {
                       "line": 1,
-                      "column": 38,
-                      "offset": 37
+                      "column": 52,
+                      "offset": 51
                     },
                     "indent": []
                   }
@@ -55742,8 +55567,8 @@
                 },
                 "end": {
                   "line": 1,
-                  "column": 38,
-                  "offset": 37
+                  "column": 52,
+                  "offset": 51
                 },
                 "indent": []
               }
@@ -55757,8 +55582,69 @@
             },
             "end": {
               "line": 1,
-              "column": 38,
-              "offset": 37
+              "column": 52,
+              "offset": 51
+            }
+          }
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "boolean"
+        }
+      },
+      {
+        "title": "property",
+        "name": "tracks",
+        "lineNumber": 8,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A list of Track objects that are contained in this Media object.",
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 65,
+                      "offset": 64
+                    },
+                    "indent": []
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 65,
+                  "offset": 64
+                },
+                "indent": []
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 65,
+              "offset": 64
             }
           }
         },
@@ -55771,7 +55657,7 @@
           "applications": [
             {
               "type": "NameExpression",
-              "name": "DeviceInfo"
+              "name": "TrackObject"
             }
           ]
         }
@@ -55783,7 +55669,7 @@
     "todos": [],
     "access": "public",
     "kind": "module",
-    "name": "DevicesObject",
+    "name": "MediaObject",
     "members": {
       "global": [],
       "inner": [],
@@ -55793,11 +55679,11 @@
     },
     "path": [
       {
-        "name": "DevicesObject",
+        "name": "MediaObject",
         "kind": "module"
       }
     ],
-    "namespace": "DevicesObject"
+    "namespace": "MediaObject"
   },
   {
     "description": {
@@ -55808,7 +55694,7 @@
           "children": [
             {
               "type": "text",
-              "value": "Contains information about a device.",
+              "value": "The MediaConstraint type defines the format for configuring media options.\nEither the ",
               "position": {
                 "start": {
                   "line": 1,
@@ -55816,9 +55702,115 @@
                   "offset": 0
                 },
                 "end": {
-                  "line": 1,
-                  "column": 37,
-                  "offset": 36
+                  "line": 2,
+                  "column": 12,
+                  "offset": 86
+                },
+                "indent": [
+                  1
+                ]
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "exact",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 12,
+                  "offset": 86
+                },
+                "end": {
+                  "line": 2,
+                  "column": 19,
+                  "offset": 93
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " or ",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 19,
+                  "offset": 93
+                },
+                "end": {
+                  "line": 2,
+                  "column": 23,
+                  "offset": 97
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "ideal",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 23,
+                  "offset": 97
+                },
+                "end": {
+                  "line": 2,
+                  "column": 30,
+                  "offset": 104
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " property should be provided. If both are present, the\n   ",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 30,
+                  "offset": 104
+                },
+                "end": {
+                  "line": 3,
+                  "column": 4,
+                  "offset": 162
+                },
+                "indent": [
+                  1
+                ]
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "exact",
+              "position": {
+                "start": {
+                  "line": 3,
+                  "column": 4,
+                  "offset": 162
+                },
+                "end": {
+                  "line": 3,
+                  "column": 11,
+                  "offset": 169
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " value will be used.",
+              "position": {
+                "start": {
+                  "line": 3,
+                  "column": 11,
+                  "offset": 169
+                },
+                "end": {
+                  "line": 3,
+                  "column": 31,
+                  "offset": 189
                 },
                 "indent": []
               }
@@ -55831,11 +55823,160 @@
               "offset": 0
             },
             "end": {
-              "line": 1,
-              "column": 37,
-              "offset": 36
+              "line": 3,
+              "column": 31,
+              "offset": 189
             },
-            "indent": []
+            "indent": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "When the ",
+              "position": {
+                "start": {
+                  "line": 5,
+                  "column": 1,
+                  "offset": 191
+                },
+                "end": {
+                  "line": 5,
+                  "column": 10,
+                  "offset": 200
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "exact",
+              "position": {
+                "start": {
+                  "line": 5,
+                  "column": 10,
+                  "offset": 200
+                },
+                "end": {
+                  "line": 5,
+                  "column": 17,
+                  "offset": 207
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " value is provided, it will be the only value considered for the option.\n   If it cannot be used, the constraint will be considered an error.",
+              "position": {
+                "start": {
+                  "line": 5,
+                  "column": 17,
+                  "offset": 207
+                },
+                "end": {
+                  "line": 6,
+                  "column": 69,
+                  "offset": 348
+                },
+                "indent": [
+                  1
+                ]
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 5,
+              "column": 1,
+              "offset": 191
+            },
+            "end": {
+              "line": 6,
+              "column": 69,
+              "offset": 348
+            },
+            "indent": [
+              1
+            ]
+          }
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "When the ",
+              "position": {
+                "start": {
+                  "line": 8,
+                  "column": 1,
+                  "offset": 350
+                },
+                "end": {
+                  "line": 8,
+                  "column": 10,
+                  "offset": 359
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "inlineCode",
+              "value": "ideal",
+              "position": {
+                "start": {
+                  "line": 8,
+                  "column": 10,
+                  "offset": 359
+                },
+                "end": {
+                  "line": 8,
+                  "column": 17,
+                  "offset": 366
+                },
+                "indent": []
+              }
+            },
+            {
+              "type": "text",
+              "value": " value is provided, it will be considered as the optimal value for the option.\n   If it cannot be used, the closest acceptable value will be used instead.",
+              "position": {
+                "start": {
+                  "line": 8,
+                  "column": 17,
+                  "offset": 366
+                },
+                "end": {
+                  "line": 9,
+                  "column": 76,
+                  "offset": 520
+                },
+                "indent": [
+                  1
+                ]
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 8,
+              "column": 1,
+              "offset": 350
+            },
+            "end": {
+              "line": 9,
+              "column": 76,
+              "offset": 520
+            },
+            "indent": [
+              1
+            ]
           }
         }
       ],
@@ -55846,9 +55987,9 @@
           "offset": 0
         },
         "end": {
-          "line": 1,
-          "column": 37,
-          "offset": 36
+          "line": 9,
+          "column": 76,
+          "offset": 520
         }
       }
     },
@@ -55856,64 +55997,65 @@
       {
         "title": "public",
         "description": null,
-        "lineNumber": 3,
+        "lineNumber": 11,
         "type": null
       },
       {
         "title": "module",
         "description": null,
-        "lineNumber": 4,
+        "lineNumber": 12,
         "type": null,
-        "name": "DeviceInfo"
+        "name": "MediaConstraint"
+      },
+      {
+        "title": "typedef",
+        "description": null,
+        "lineNumber": 13,
+        "type": {
+          "type": "NameExpression",
+          "name": "Object"
+        },
+        "name": "MediaConstraint"
       },
       {
         "title": "property",
-        "description": "The ID of the device.",
-        "lineNumber": 5,
+        "description": "The required value for the constraint. Other values will not be accepted.",
+        "lineNumber": 14,
         "type": {
-          "type": "NameExpression",
-          "name": "string"
+          "type": "OptionalType",
+          "expression": {
+            "type": "NameExpression",
+            "name": "string"
+          }
         },
-        "name": "deviceId"
+        "name": "exact"
       },
       {
         "title": "property",
-        "description": "The group ID of the device. Devices that share a `groupId` belong to the same physical device.",
-        "lineNumber": 6,
+        "description": "The ideal value for the constraint. Other values will be considered if necessary.",
+        "lineNumber": 15,
         "type": {
-          "type": "NameExpression",
-          "name": "string"
+          "type": "OptionalType",
+          "expression": {
+            "type": "NameExpression",
+            "name": "string"
+          }
         },
-        "name": "groupId"
+        "name": "ideal"
       },
       {
-        "title": "property",
-        "description": "The type of the device (audioinput, audiooutput, videoinput).",
-        "lineNumber": 7,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "kind"
-      },
-      {
-        "title": "property",
-        "description": "The name of the device.",
-        "lineNumber": 8,
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        },
-        "name": "label"
+        "title": "example",
+        "description": "// Specify video resolution when making a call.\nclient.call.make(destination, {\n   audio: true,\n   video: true,\n   videoOptions: {\n     // Set height and width constraints to ideally be 1280x720.\n     height: { ideal: 720 },\n     width: { ideal: 1280 }\n   }\n})",
+        "lineNumber": 16
       }
     ],
     "loc": {
       "start": {
-        "line": 113,
+        "line": 47,
         "column": 0
       },
       "end": {
-        "line": 122,
+        "line": 74,
         "column": 3
       }
     },
@@ -55931,13 +56073,17 @@
       "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
     },
     "augments": [],
-    "examples": [],
+    "examples": [
+      {
+        "description": "// Specify video resolution when making a call.\nclient.call.make(destination, {\n   audio: true,\n   video: true,\n   videoOptions: {\n     // Set height and width constraints to ideally be 1280x720.\n     height: { ideal: 720 },\n     width: { ideal: 1280 }\n   }\n})"
+      }
+    ],
     "params": [],
     "properties": [
       {
         "title": "property",
-        "name": "deviceId",
-        "lineNumber": 5,
+        "name": "exact",
+        "lineNumber": 14,
         "description": {
           "type": "root",
           "children": [
@@ -55946,7 +56092,7 @@
               "children": [
                 {
                   "type": "text",
-                  "value": "The ID of the device.",
+                  "value": "The required value for the constraint. Other values will not be accepted.",
                   "position": {
                     "start": {
                       "line": 1,
@@ -55955,8 +56101,8 @@
                     },
                     "end": {
                       "line": 1,
-                      "column": 22,
-                      "offset": 21
+                      "column": 74,
+                      "offset": 73
                     },
                     "indent": []
                   }
@@ -55970,8 +56116,8 @@
                 },
                 "end": {
                   "line": 1,
-                  "column": 22,
-                  "offset": 21
+                  "column": 74,
+                  "offset": 73
                 },
                 "indent": []
               }
@@ -55985,20 +56131,23 @@
             },
             "end": {
               "line": 1,
-              "column": 22,
-              "offset": 21
+              "column": 74,
+              "offset": 73
             }
           }
         },
         "type": {
-          "type": "NameExpression",
-          "name": "string"
+          "type": "OptionalType",
+          "expression": {
+            "type": "NameExpression",
+            "name": "string"
+          }
         }
       },
       {
         "title": "property",
-        "name": "groupId",
-        "lineNumber": 6,
+        "name": "ideal",
+        "lineNumber": 15,
         "description": {
           "type": "root",
           "children": [
@@ -56007,7 +56156,7 @@
               "children": [
                 {
                   "type": "text",
-                  "value": "The group ID of the device. Devices that share a ",
+                  "value": "The ideal value for the constraint. Other values will be considered if necessary.",
                   "position": {
                     "start": {
                       "line": 1,
@@ -56016,42 +56165,8 @@
                     },
                     "end": {
                       "line": 1,
-                      "column": 50,
-                      "offset": 49
-                    },
-                    "indent": []
-                  }
-                },
-                {
-                  "type": "inlineCode",
-                  "value": "groupId",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 50,
-                      "offset": 49
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 59,
-                      "offset": 58
-                    },
-                    "indent": []
-                  }
-                },
-                {
-                  "type": "text",
-                  "value": " belong to the same physical device.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 59,
-                      "offset": 58
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 95,
-                      "offset": 94
+                      "column": 82,
+                      "offset": 81
                     },
                     "indent": []
                   }
@@ -56065,8 +56180,8 @@
                 },
                 "end": {
                   "line": 1,
-                  "column": 95,
-                  "offset": 94
+                  "column": 82,
+                  "offset": 81
                 },
                 "indent": []
               }
@@ -56080,136 +56195,17 @@
             },
             "end": {
               "line": 1,
-              "column": 95,
-              "offset": 94
+              "column": 82,
+              "offset": 81
             }
           }
         },
         "type": {
-          "type": "NameExpression",
-          "name": "string"
-        }
-      },
-      {
-        "title": "property",
-        "name": "kind",
-        "lineNumber": 7,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The type of the device (audioinput, audiooutput, videoinput).",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 62,
-                      "offset": 61
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 62,
-                  "offset": 61
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 62,
-              "offset": 61
-            }
+          "type": "OptionalType",
+          "expression": {
+            "type": "NameExpression",
+            "name": "string"
           }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
-        }
-      },
-      {
-        "title": "property",
-        "name": "label",
-        "lineNumber": 8,
-        "description": {
-          "type": "root",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "The name of the device.",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 24,
-                      "offset": 23
-                    },
-                    "indent": []
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 1,
-                  "column": 24,
-                  "offset": 23
-                },
-                "indent": []
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 24,
-              "offset": 23
-            }
-          }
-        },
-        "type": {
-          "type": "NameExpression",
-          "name": "string"
         }
       }
     ],
@@ -56218,8 +56214,12 @@
     "throws": [],
     "todos": [],
     "access": "public",
-    "kind": "module",
-    "name": "DeviceInfo",
+    "kind": "typedef",
+    "name": "MediaConstraint",
+    "type": {
+      "type": "NameExpression",
+      "name": "Object"
+    },
     "members": {
       "global": [],
       "inner": [],
@@ -56229,11 +56229,11 @@
     },
     "path": [
       {
-        "name": "DeviceInfo",
-        "kind": "module"
+        "name": "MediaConstraint",
+        "kind": "typedef"
       }
     ],
-    "namespace": "DeviceInfo"
+    "namespace": "MediaConstraint"
   },
   {
     "description": {
