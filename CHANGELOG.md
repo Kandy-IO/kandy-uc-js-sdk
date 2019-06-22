@@ -7,6 +7,9 @@ Kandy.js change log.
 
 ## 4.5.0 - beta
 
+### Changed
+- Removed the first parameter (contactId) from kandy.contacts.update() API, thus deprecating it. The user should now use the update(contact) API and ensure that contactId is now being supplied as part of the contact object which is passed to this API. `KAA-1783` `KAA-1600`
+
 ### Fixed
 - Fixed an issue where files were not being received when sending them through a rich message `KAA-1782`
 
