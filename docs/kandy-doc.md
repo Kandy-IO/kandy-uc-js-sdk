@@ -91,22 +91,41 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
-Connect with user credentials.
+Connect by providing an OAuth token.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username including the application's domain.
-    -   `credentials.password` **[string][2]** The user's password.
-    -   `credentials.authname` **[string][2]?** The user's authorization name.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+});
+```
+
+### connect
+
+Connect by providing a refresh token.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.refreshToken` **[string][2]** A refresh token for the same user.
+    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  expires: 3600
 });
 ```
 
@@ -135,41 +154,22 @@ client.connect({
 
 ### connect
 
-Connect by providing a refresh token.
+Connect with user credentials.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][2]** A refresh token for the same user.
-    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+    -   `credentials.username` **[string][2]** The username including the application's domain.
+    -   `credentials.password` **[string][2]** The user's password.
+    -   `credentials.authname` **[string][2]?** The user's authorization name.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-  expires: 3600
-});
-```
-
-### connect
-
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  password: '********'
+  authname: '********'
 });
 ```
 
@@ -1295,23 +1295,6 @@ const client = create({
 The configuration object. This object defines what different configuration
 values you can use when instantiating the SDK.
 
-### config.logs
-
-Configuration options for the Logs feature.
-
-**Parameters**
-
--   `logs` **[Object][5]** Logs configs.
-    -   `logs.logLevel` **[string][2]** Log level to be set. See `logger.levels`. (optional, default `debug`)
-    -   `logs.flatten` **[boolean][7]** Whether all logs should be output in a string-only format. (optional, default `false`)
-    -   `logs.logActions` **[Object][5]?** Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
-        -   `logs.logActions.actionOnly` **[boolean][7]** Only output information about the action itself. Omits the SDK context for when it occurred. (optional, default `true`)
-        -   `logs.logActions.collapsed` **[boolean][7]** Whether logs should be minimized when initially output. The full log is still output and can be inspected on the console. (optional, default `false`)
-        -   `logs.logActions.diff` **[boolean][7]** Include a diff of what SDK context was changed by the action. (optional, default `false`)
-        -   `logs.logActions.exposePayloads` **[boolean][7]** Allow action payloads to be exposed in the logs, potentially displaying sensitive information (optional, default `false`)
-    -   `logs.enableFcsLogs` **[boolean][7]** Enable the detailed call logger. (optional, default `true`)
-    -   `logs.enableGrouping` **[boolean][7]** Whether to group information about an action log together in the console. (optional, default `true`)
-
 ### config.authentication
 
 Configuration options for the Authentication feature.
@@ -1382,27 +1365,22 @@ Configuration options for the notification feature.
     -   `notifications.realm` **[string][2]?** The realm used for push notifications
     -   `notifications.bundleId` **[string][2]?** The bundle id used for push notifications
 
-## Logger
+### config.logs
 
-The internal logger used to provide information about the SDK's behaviour.
-The logger can provide two types of logs: basic logs and action logs. Basic
-logs are simple lines of information about what the SDK is doing during operations.
-Action logs are complete information about a specific action that occurred
-within the SDK, prodiving debug information describing it.
-The amount of information logged can be configured as part of the SDK
-(see `configs.logs`) configuration.
+Configuration options for the Logs feature.
 
-### levels
+**Parameters**
 
-Possible levels for the SDK logger.
-
-**Properties**
-
--   `SILENT` **[string][2]** Logs nothing.
--   `ERROR` **[string][2]** Only log unhandled errors.
--   `WARN` **[string][2]** Log issues that may cause problems or unexpected behaviour.
--   `INFO` **[string][2]** Log useful information and messages to indicate the SDK's internal operations.
--   `DEBUG` **[string][2]** Log information to help diagnose problematic behaviour.
+-   `logs` **[Object][5]** Logs configs.
+    -   `logs.logLevel` **[string][2]** Log level to be set. See `logger.levels`. (optional, default `debug`)
+    -   `logs.flatten` **[boolean][7]** Whether all logs should be output in a string-only format. (optional, default `false`)
+    -   `logs.logActions` **[Object][5]?** Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
+        -   `logs.logActions.actionOnly` **[boolean][7]** Only output information about the action itself. Omits the SDK context for when it occurred. (optional, default `true`)
+        -   `logs.logActions.collapsed` **[boolean][7]** Whether logs should be minimized when initially output. The full log is still output and can be inspected on the console. (optional, default `false`)
+        -   `logs.logActions.diff` **[boolean][7]** Include a diff of what SDK context was changed by the action. (optional, default `false`)
+        -   `logs.logActions.exposePayloads` **[boolean][7]** Allow action payloads to be exposed in the logs, potentially displaying sensitive information (optional, default `false`)
+    -   `logs.enableFcsLogs` **[boolean][7]** Enable the detailed call logger. (optional, default `true`)
+    -   `logs.enableGrouping` **[boolean][7]** Whether to group information about an action log together in the console. (optional, default `true`)
 
 ## Config
 
@@ -1448,16 +1426,16 @@ Tracks can be retrieved using the Media module's `getTrackById` API and manipula
 -   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
 -   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
 
-## MediaObject
+## DeviceInfo
 
-The state representation of a Media object.
-Media is a collection of Track objects.
+Contains information about a device.
 
 **Properties**
 
--   `id` **[string][2]** The ID of the Media object.
--   `local` **[boolean][7]** Indicator on whether this media is local or remote.
--   `tracks` **[Array][8]&lt;[TrackObject][15]>** A list of Track objects that are contained in this Media object.
+-   `deviceId` **[string][2]** The ID of the device.
+-   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][2]** The name of the device.
 
 ## MediaConstraint
 
@@ -1516,16 +1494,16 @@ A Call can be manipulated by using the Call feature's APIs.
 -   `startTime` **[number][6]** The start time of the call in milliseconds since the epoch.
 -   `state` **[string][2]** The current state of the call. See `Call.states` for possible states.
 
-## DeviceInfo
+## MediaObject
 
-Contains information about a device.
+The state representation of a Media object.
+Media is a collection of Track objects.
 
 **Properties**
 
--   `deviceId` **[string][2]** The ID of the device.
--   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][2]** The name of the device.
+-   `id` **[string][2]** The ID of the Media object.
+-   `local` **[boolean][7]** Indicator on whether this media is local or remote.
+-   `tracks` **[Array][8]&lt;[TrackObject][15]>** A list of Track objects that are contained in this Media object.
 
 ## getBrowserDetails
 
@@ -1572,6 +1550,28 @@ The Basic error object. Provides information about an error that occurred in the
 
 -   `code` **[string][2]** The code of the error. If no code is known, this will be a string 'NO_CODE'.
 -   `message` **[string][2]** A human-readable message to describe the error. If no message is known, this will be a string 'An error occured'.
+
+## Logger
+
+The internal logger used to provide information about the SDK's behaviour.
+The logger can provide two types of logs: basic logs and action logs. Basic
+logs are simple lines of information about what the SDK is doing during operations.
+Action logs are complete information about a specific action that occurred
+within the SDK, prodiving debug information describing it.
+The amount of information logged can be configured as part of the SDK
+(see `configs.logs`) configuration.
+
+### levels
+
+Possible levels for the SDK logger.
+
+**Properties**
+
+-   `SILENT` **[string][2]** Logs nothing.
+-   `ERROR` **[string][2]** Only log unhandled errors.
+-   `WARN` **[string][2]** Log issues that may cause problems or unexpected behaviour.
+-   `INFO` **[string][2]** Log useful information and messages to indicate the SDK's internal operations.
+-   `DEBUG` **[string][2]** Log information to help diagnose problematic behaviour.
 
 [1]: #config
 
