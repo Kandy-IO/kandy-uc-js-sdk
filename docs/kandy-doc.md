@@ -91,41 +91,22 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
-Connect by providing an OAuth token.
+Connect by providing a refresh token.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
     -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
+    -   `credentials.refreshToken` **[string][2]** A refresh token for the same user.
+    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
-Connect with user credentials.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username including the application's domain.
-    -   `credentials.password` **[string][2]** The user's password.
-    -   `credentials.authname` **[string][2]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  expires: 3600
 });
 ```
 
@@ -154,22 +135,41 @@ client.connect({
 
 ### connect
 
-Connect by providing a refresh token.
+Connect with user credentials.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][2]** A refresh token for the same user.
-    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+    -   `credentials.username` **[string][2]** The username including the application's domain.
+    -   `credentials.password` **[string][2]** The user's password.
+    -   `credentials.authname` **[string][2]?** The user's authorization name.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-  expires: 3600
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
+Connect by providing an OAuth token.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -284,7 +284,14 @@ The SDK requires access to the machine's media devices (eg. microphone)
     'sip:sipuser@sip.domain.example.com' for SIP calls or 'tel:18881239876' for PSTN calls.
 -   `media` **[Object][5]?** The media options the call should be initialized with.
     -   `media.audio` **[Boolean][7]** Whether the call should have audio on start. Currently, audio-less calls are not supported. (optional, default `true`)
+    -   `media.audioOptions` **[Object][5]?** Options for configuring the call's audio.
+        -   `media.audioOptions.deviceId` **[MediaConstraint][9]?** ID of the microphone to receive audio from.
     -   `media.video` **[Boolean][7]** Whether the call should have video on start. (optional, default `false`)
+    -   `media.videoOptions` **[Object][5]?** Options for configuring the call's video.
+        -   `media.videoOptions.deviceId` **[MediaConstraint][9]?** ID of the camera to receive video from.
+        -   `media.videoOptions.height` **[MediaConstraint][9]?** The height of the video.
+        -   `media.videoOptions.width` **[MediaConstraint][9]?** The width of the video.
+        -   `media.videoOptions.frameRate` **[MediaConstraint][9]?** The frame rate of the video.
 
 **Examples**
 
@@ -343,7 +350,14 @@ The SDK requires access to the machine's media devices (eg. microphone)
 -   `callId` **[string][2]** The ID of the call to answer.
 -   `media` **[Object][5]?** The media options the call should be initialized with.
     -   `media.audio` **[Boolean][7]** Whether the call should have audio on start. Currently, audio-less calls are not supported. (optional, default `true`)
+    -   `media.audioOptions` **[Object][5]?** Options for configuring the call's audio.
+        -   `media.audioOptions.deviceId` **[MediaConstraint][9]?** ID of the microphone to receive audio from.
     -   `media.video` **[Boolean][7]** Whether the call should have video on start. (optional, default `false`)
+    -   `media.videoOptions` **[Object][5]?** Options for configuring the call's video.
+        -   `media.videoOptions.deviceId` **[MediaConstraint][9]?** ID of the camera to receive video from.
+        -   `media.videoOptions.height` **[MediaConstraint][9]?** The height of the video.
+        -   `media.videoOptions.width` **[MediaConstraint][9]?** The width of the video.
+        -   `media.videoOptions.frameRate` **[MediaConstraint][9]?** The frame rate of the video.
 
 ### ignore
 
@@ -409,7 +423,7 @@ let currentCalls = calls.filter(call => {
 });
 ```
 
-Returns **[Array][8]&lt;[CallObject][9]>** Call objects.
+Returns **[Array][8]&lt;[CallObject][10]>** Call objects.
 
 ### getById
 
@@ -419,7 +433,7 @@ Retrieves a single call from state with a specific call ID.
 
 -   `callId` **[string][2]** The ID of the call to retrieve.
 
-Returns **[CallObject][9]** A call object.
+Returns **[CallObject][10]** A call object.
 
 ### end
 
@@ -448,7 +462,14 @@ Will trigger a `call:newMedia` event.
 -   `callId` **[string][2]** The ID of the call to add media to.
 -   `media` **[Object][5]** The media options to add to the call. (optional, default `{}`)
     -   `media.audio` **[Boolean][7]** Whether to add audio to the call. (optional, default `false`)
+    -   `media.audioOptions` **[Object][5]?** Options for configuring the call's audio.
+        -   `media.audioOptions.deviceId` **[MediaConstraint][9]?** ID of the microphone to receive audio from.
     -   `media.video` **[Boolean][7]** Whether to add video to the call. (optional, default `false`)
+    -   `media.videoOptions` **[Object][5]?** Options for configuring the call's video.
+        -   `media.videoOptions.deviceId` **[MediaConstraint][9]?** ID of the camera to receive video from.
+        -   `media.videoOptions.height` **[MediaConstraint][9]?** The height of the video.
+        -   `media.videoOptions.width` **[MediaConstraint][9]?** The width of the video.
+        -   `media.videoOptions.frameRate` **[MediaConstraint][9]?** The frame rate of the video.
 
 ### removeMedia
 
@@ -488,6 +509,57 @@ Forward an incoming call to another user.
 
 -   `callId` **[string][2]** ID of the call being acted on.
 -   `destination` **[string][2]** The user to forward the call to.
+
+### consultativeTransfer
+
+Performs a "consultative" transfer between two on-going calls (also known
+   as an announced or warm transfer). This allows the current user to
+   transfer the remote participant of a call to another user, after
+   having spoken to both users.
+
+Both calls used for the transfer must be locally held. Both remote
+   participants will see their call be unheld, and will be connected to
+   one another after the operation. Both calls for the current user will
+   be ended.
+
+**Parameters**
+
+-   `callId` **[string][2]** ID of the call being acted on.
+-   `otherCallId` **[string][2]** ID of the other call being acted on.
+
+### directTransfer
+
+Performs a "direct" transfer on a call (also known as an unannounced or
+   blind transfer). This allows the current user to transfer the remote
+   participant of a call to another user, similar to a "forward"
+   operation.
+
+The specified call must be locally held. The "destination" user will
+   receive an incoming call, and when answered, they will be connected
+   with the remote participant of the specified call. The current user's
+   call will be ended after the operation.
+
+**Parameters**
+
+-   `callId` **[string][2]** ID of the call being acted on.
+-   `destination` **[string][2]** The user to transfer the call to.
+
+### join
+
+Performs a "join" on two ongoing calls.
+This allows the current user to have a call with audio from the other two users.
+
+Both specified calls must be locally held. The "joined" call will be
+   audio-only, even if either previous call had video. Video cannot be
+   added to the "joined" call. Both remote participants will see their
+   call be unheld, and will receive additional audio from other
+   participants after the operation. Both calls for the current user will
+   be ended.
+
+**Parameters**
+
+-   `callId` **[string][2]** ID of the call being acted on.
+-   `otherCallId` **[string][2]** ID of the other call being acted on.
 
 ### states
 
@@ -537,7 +609,7 @@ Retrieve a media object from state with a specific media ID.
 
 -   `mediaId` **[string][2]** The ID of the media to retrieve.
 
-Returns **[MediaObject][10]** A media object.
+Returns **[MediaObject][11]** A media object.
 
 ### getTrackById
 
@@ -702,7 +774,7 @@ Multi-user conversations have a destination comprised of multiple user IDs.
     If this object is not passed, the function will query for "im" conversations associated with those destinations.
     -   `options.type` **[string][2]?** The type of conversation to retrieve. Can be one of "im", "sms" or "other".
 
-Returns **[Conversation][11]** A Conversation object.
+Returns **[Conversation][12]** A Conversation object.
 
 ### create
 
@@ -746,7 +818,7 @@ Create and return a message object. You must specify the part. If this is a simp
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[Message][12]** The newly created Message object.
+Returns **[Message][13]** The newly created Message object.
 
 ### clearMessages
 
@@ -1166,7 +1238,6 @@ Will trigger the `contacts:change` event.
 
 **Parameters**
 
--   `contactId` **[string][2]** The unique contact ID.
 -   `contact` **[Object][5]** The contact object.
     -   `contact.primaryContact` **[string][2]** The primary userId for the contact
     -   `contact.contactId` **[string][2]** The contact's unique contact ID
@@ -1351,6 +1422,40 @@ Update values in the global Config section of the store.
 
 -   `newConfigValues` **[Object][5]** Key Value pairs that will be placed into the store.
 
+## MediaConstraint
+
+The MediaConstraint type defines the format for configuring media options.
+Either the `exact` or `ideal` property should be provided. If both are present, the
+   `exact` value will be used.
+
+When the `exact` value is provided, it will be the only value considered for the option.
+   If it cannot be used, the constraint will be considered an error.
+
+When the `ideal` value is provided, it will be considered as the optimal value for the option.
+   If it cannot be used, the closest acceptable value will be used instead.
+
+Type: [Object][5]
+
+**Properties**
+
+-   `exact` **[string][2]?** The required value for the constraint. Other values will not be accepted.
+-   `ideal` **[string][2]?** The ideal value for the constraint. Other values will be considered if necessary.
+
+**Examples**
+
+```javascript
+// Specify video resolution when making a call.
+client.call.make(destination, {
+   audio: true,
+   video: true,
+   videoOptions: {
+     // Set height and width constraints to ideally be 1280x720.
+     height: { ideal: 720 },
+     width: { ideal: 1280 }
+   }
+})
+```
+
 ## DeviceInfo
 
 Contains information about a device.
@@ -1362,16 +1467,15 @@ Contains information about a device.
 -   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
 -   `label` **[string][2]** The name of the device.
 
-## MediaObject
+## DevicesObject
 
-The state representation of a Media object.
-Media is a collection of Track objects.
+A collection of devices and their information.
 
 **Properties**
 
--   `id` **[string][2]** The ID of the Media object.
--   `local` **[boolean][7]** Indicator on whether this media is local or remote.
--   `tracks` **[Array][8]&lt;[TrackObject][13]>** A list of Track objects that are contained in this Media object.
+-   `camera` **[Array][8]&lt;[DeviceInfo][14]>** A list of camera device information.
+-   `microphone` **[Array][8]&lt;[DeviceInfo][14]>** A list of microphone device information.
+-   `speaker` **[Array][8]&lt;[DeviceInfo][14]>** A list of speaker device information.
 
 ## TrackObject
 
@@ -1389,15 +1493,16 @@ Tracks can be retrieved using the Media module's `getTrackById` API and manipula
 -   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
 -   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
 
-## DevicesObject
+## MediaObject
 
-A collection of devices and their information.
+The state representation of a Media object.
+Media is a collection of Track objects.
 
 **Properties**
 
--   `camera` **[Array][8]&lt;[DeviceInfo][14]>** A list of camera device information.
--   `microphone` **[Array][8]&lt;[DeviceInfo][14]>** A list of microphone device information.
--   `speaker` **[Array][8]&lt;[DeviceInfo][14]>** A list of speaker device information.
+-   `id` **[string][2]** The ID of the Media object.
+-   `local` **[boolean][7]** Indicator on whether this media is local or remote.
+-   `tracks` **[Array][8]&lt;[TrackObject][15]>** A list of Track objects that are contained in this Media object.
 
 ## CallObject
 
@@ -1484,14 +1589,16 @@ The Basic error object. Provides information about an error that occurred in the
 
 [8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[9]: #callobject
+[9]: #mediaconstraint
 
-[10]: #mediaobject
+[10]: #callobject
 
-[11]: #conversation
+[11]: #mediaobject
 
-[12]: #message
+[12]: #conversation
 
-[13]: #trackobject
+[13]: #message
 
 [14]: #deviceinfo
+
+[15]: #trackobject
