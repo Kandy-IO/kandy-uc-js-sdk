@@ -7,6 +7,9 @@ Kandy.js change log.
 
 ## 4.6.0 - beta
 
+- Added in-band DTMF tone support for calls that do not support out-of-band DTMF tones. `KAA-1505`
+  - See the `call.sendDTMF` API for more information.
+
 ## 4.5.0 - 2019-06-28
 
 ### Added
@@ -17,9 +20,11 @@ Kandy.js change log.
 - Added functionality that emits `call:stateChange` event when complex operation failure notification is received.
 
 ### Changed
+
 - Removed the first parameter (contactId) from kandy.contacts.update() API, thus deprecating it. The user should now use the update(contact) API and ensure that contactId is now being supplied as part of the contact object which is passed to this API. `KAA-1783` `KAA-1600`
 
 ### Fixed
+
 - Fixed an issue where the `fetchMessages` function was not available on `Conversations` returned by `kandy.conversation.getAll()`. `KAA-1795`
 - Fixed an issue where files were not being received when sending them through a rich message `KAA-1782`
 
@@ -29,6 +34,10 @@ Kandy.js change log.
 
 Version 4.4.0 has many breaking changes for call APIs. Please see the API reference documentation to see the new Call API.
 
+### Fixed
+
+- User now automatically disconnects gracefully when internet connection is lost for too long. `KAA-1591`
+
 ### Changed
 
 - Refactored all of the WebRTC-related code.
@@ -36,6 +45,7 @@ Version 4.4.0 has many breaking changes for call APIs. Please see the API refere
 ## 3.4.1 - 2019-04-26
 
 ### Fixed
+
 - Made a hotfix release just to update the version because something went wrong with NPM and it requires a new version.
 
 ## 3.4.0 - 2019-04-26
@@ -47,6 +57,7 @@ Version 4.4.0 has many breaking changes for call APIs. Please see the API refere
 - Added a DEBUG log at the start of every public API invocation, which will better help with future investigations `KAA-1353`
 
 ### Changed
+
 - The `subscription:change` event is no longer emmitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
 - No longer stores call stats in localstorage by default. Use the `recordCallStats` configuration to turn this back on. `KAA-1552`
 
