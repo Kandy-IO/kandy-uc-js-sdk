@@ -135,6 +135,25 @@ client.connect({
 
 ### connect
 
+Connect by providing an OAuth token.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+});
+```
+
+### connect
+
 Connect with user credentials.
 
 **Parameters**
@@ -151,25 +170,6 @@ client.connect({
   username: 'alfred@example.com',
   password: '********'
   authname: '********'
-});
-```
-
-### connect
-
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -1496,55 +1496,16 @@ Update values in the global Config section of the store.
 
 -   `newConfigValues` **[Object][5]** Key Value pairs that will be placed into the store.
 
-## MediaConstraint
+## DeviceInfo
 
-The MediaConstraint type defines the format for configuring media options.
-Either the `exact` or `ideal` property should be provided. If both are present, the
-   `exact` value will be used.
-
-When the `exact` value is provided, it will be the only value considered for the option.
-   If it cannot be used, the constraint will be considered an error.
-
-When the `ideal` value is provided, it will be considered as the optimal value for the option.
-   If it cannot be used, the closest acceptable value will be used instead.
-
-Type: [Object][5]
+Contains information about a device.
 
 **Properties**
 
--   `exact` **[string][2]?** The required value for the constraint. Other values will not be accepted.
--   `ideal` **[string][2]?** The ideal value for the constraint. Other values will be considered if necessary.
-
-**Examples**
-
-```javascript
-// Specify video resolution when making a call.
-client.call.make(destination, {
-   audio: true,
-   video: true,
-   videoOptions: {
-     // Set height and width constraints to ideally be 1280x720.
-     height: { ideal: 720 },
-     width: { ideal: 1280 }
-   }
-})
-```
-
-## TrackObject
-
-A Track is a stream of audio or video media from a single source.
-Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
-
-**Properties**
-
--   `containers` **[Array][8]&lt;[string][2]>** The list of CSS selectors that were used to render this Track.
--   `disabled` **[boolean][7]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
--   `id` **[string][2]** The ID of the Track.
--   `kind` **[string][2]** The kind of Track this is (audio, video).
--   `label` **[string][2]** The label of the device this Track uses.
--   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
--   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
--   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
+-   `deviceId` **[string][2]** The ID of the device.
+-   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][2]** The name of the device.
 
 ## MediaObject
 
@@ -1582,26 +1543,39 @@ client.call.make(destination, mediaConstraints,
 )
 ```
 
-## DevicesObject
+## MediaConstraint
 
-A collection of devices and their information.
+The MediaConstraint type defines the format for configuring media options.
+Either the `exact` or `ideal` property should be provided. If both are present, the
+   `exact` value will be used.
+
+When the `exact` value is provided, it will be the only value considered for the option.
+   If it cannot be used, the constraint will be considered an error.
+
+When the `ideal` value is provided, it will be considered as the optimal value for the option.
+   If it cannot be used, the closest acceptable value will be used instead.
+
+Type: [Object][5]
 
 **Properties**
 
--   `camera` **[Array][8]&lt;[DeviceInfo][16]>** A list of camera device information.
--   `microphone` **[Array][8]&lt;[DeviceInfo][16]>** A list of microphone device information.
--   `speaker` **[Array][8]&lt;[DeviceInfo][16]>** A list of speaker device information.
+-   `exact` **[string][2]?** The required value for the constraint. Other values will not be accepted.
+-   `ideal` **[string][2]?** The ideal value for the constraint. Other values will be considered if necessary.
 
-## DeviceInfo
+**Examples**
 
-Contains information about a device.
-
-**Properties**
-
--   `deviceId` **[string][2]** The ID of the device.
--   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][2]** The name of the device.
+```javascript
+// Specify video resolution when making a call.
+client.call.make(destination, {
+   audio: true,
+   video: true,
+   videoOptions: {
+     // Set height and width constraints to ideally be 1280x720.
+     height: { ideal: 720 },
+     width: { ideal: 1280 }
+   }
+})
+```
 
 ## CallObject
 
@@ -1625,6 +1599,32 @@ A Call can be manipulated by using the Call feature's APIs.
     -   `remoteParticipant.displayName` **[string][2]** The display name of the callee
 -   `startTime` **[number][6]** The start time of the call in milliseconds since the epoch.
 -   `state` **[string][2]** The current state of the call. See `Call.states` for possible states.
+
+## TrackObject
+
+A Track is a stream of audio or video media from a single source.
+Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
+
+**Properties**
+
+-   `containers` **[Array][8]&lt;[string][2]>** The list of CSS selectors that were used to render this Track.
+-   `disabled` **[boolean][7]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
+-   `id` **[string][2]** The ID of the Track.
+-   `kind` **[string][2]** The kind of Track this is (audio, video).
+-   `label` **[string][2]** The label of the device this Track uses.
+-   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
+-   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
+-   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
+
+## DevicesObject
+
+A collection of devices and their information.
+
+**Properties**
+
+-   `camera` **[Array][8]&lt;[DeviceInfo][16]>** A list of camera device information.
+-   `microphone` **[Array][8]&lt;[DeviceInfo][16]>** A list of microphone device information.
+-   `speaker` **[Array][8]&lt;[DeviceInfo][16]>** A list of speaker device information.
 
 ## getBrowserDetails
 
