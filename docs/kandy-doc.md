@@ -91,6 +91,27 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect with user credentials.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username including the application's domain.
+    -   `credentials.password` **[string][2]** The user's password.
+    -   `credentials.authname` **[string][2]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
 Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
 **Parameters**
@@ -152,30 +173,21 @@ client.connect({
 });
 ```
 
-### connect
+### disconnect
 
-Connect with user credentials.
+Disconnects from the backend. This will close the websocket and you will stop receiving events.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username including the application's domain.
-    -   `credentials.password` **[string][2]** The user's password.
-    -   `credentials.authname` **[string][2]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-});
-```
-
-### disconnect
-
-Disconnects from the backend. This will close the websocket and you will stop receiving events.
+    -   `credentials.accessToken` **[string][2]** The new access token.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][5]** The credentials object.
 
 ### updateToken
 
@@ -195,18 +207,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.accessToken` **[string][2]** The new access token.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
--   `credentials` **[Object][5]** The credentials object.
 
 ### getUserInfo
 
@@ -1497,17 +1497,6 @@ Update values in the global Config section of the store.
 
 -   `newConfigValues` **[Object][5]** Key Value pairs that will be placed into the store.
 
-## MediaObject
-
-The state representation of a Media object.
-Media is a collection of Track objects.
-
-**Properties**
-
--   `id` **[string][2]** The ID of the Media object.
--   `local` **[boolean][7]** Indicator on whether this media is local or remote.
--   `tracks` **[Array][8]&lt;[TrackObject][26]>** A list of Track objects that are contained in this Media object.
-
 ## DeviceInfo
 
 Contains information about a device.
@@ -1521,13 +1510,13 @@ Contains information about a device.
 
 ## DevicesObject
 
-A collection of devices and their information.
+A collection of media devices and their information.
 
 **Properties**
 
--   `camera` **[Array][8]&lt;[DeviceInfo][27]>** A list of camera device information.
--   `microphone` **[Array][8]&lt;[DeviceInfo][27]>** A list of microphone device information.
--   `speaker` **[Array][8]&lt;[DeviceInfo][27]>** A list of speaker device information.
+-   `camera` **[Array][8]&lt;[DeviceInfo][26]>** A list of camera device information.
+-   `microphone` **[Array][8]&lt;[DeviceInfo][26]>** A list of microphone device information.
+-   `speaker` **[Array][8]&lt;[DeviceInfo][26]>** A list of speaker device information.
 
 ## TrackObject
 
@@ -1544,6 +1533,17 @@ Tracks can be retrieved using the Media module's `getTrackById` API and manipula
 -   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
 -   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
 -   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
+
+## MediaObject
+
+The state representation of a Media object.
+Media is a collection of Track objects.
+
+**Properties**
+
+-   `id` **[string][2]** The ID of the Media object.
+-   `local` **[boolean][7]** Indicator on whether this media is local or remote.
+-   `tracks` **[Array][8]&lt;[TrackObject][27]>** A list of Track objects that are contained in this Media object.
 
 ## BandwidthControls
 
@@ -1723,6 +1723,6 @@ The Basic error object. Provides information about an error that occurred in the
 
 [25]: #configconfiglogs
 
-[26]: #trackobject
+[26]: #deviceinfo
 
-[27]: #deviceinfo
+[27]: #trackobject
