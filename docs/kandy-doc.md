@@ -1626,17 +1626,6 @@ Update values in the global Config section of the store.
 
 -   `newConfigValues` **[Object][5]** Key-value pairs that will be placed into the store. See [config][55] for details on what key-value pairs are available for use.
 
-## DeviceInfo
-
-Contains information about a device.
-
-**Properties**
-
--   `deviceId` **[string][2]** The ID of the device.
--   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][2]** The name of the device.
-
 ## DevicesObject
 
 A collection of media devices and their information.
@@ -1669,19 +1658,6 @@ Can be retrieved using the [call.getAll][24] or
 -   `bandwidth` **[BandwidthControls][15]** The bandwidth limitations set for the call.
 -   `startTime` **[number][6]** The start time of the call in milliseconds since the epoch.
 -   `endTime` **[number][6]?** The end time of the call in milliseconds since the epoch.
-
-## MediaObject
-
-The state representation of a Media object.
-Media is a collection of Track objects.
-
-Type: [Object][5]
-
-**Properties**
-
--   `id` **[string][2]** The ID of the Media object.
--   `local` **[boolean][7]** Indicator on whether this media is local or remote.
--   `tracks` **[Array][8]&lt;[TrackObject][29]>** A list of Track objects that are contained in this Media object.
 
 ## MediaConstraint
 
@@ -1773,6 +1749,30 @@ Type: [Function][3]
 -   `originalSdp` **[Object][5]** The SDP in its initial state.
 
 Returns **[Object][5]** The resulting modified SDP based on the changes made by this function.
+
+## DeviceInfo
+
+Contains information about a device.
+
+**Properties**
+
+-   `deviceId` **[string][2]** The ID of the device.
+-   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][2]** The name of the device.
+
+## MediaObject
+
+The state representation of a Media object.
+Media is a collection of Track objects.
+
+Type: [Object][5]
+
+**Properties**
+
+-   `id` **[string][2]** The ID of the Media object.
+-   `local` **[boolean][7]** Indicator on whether this media is local or remote.
+-   `tracks` **[Array][8]&lt;[TrackObject][29]>** A list of Track objects that are contained in this Media object.
 
 ## TrackObject
 
