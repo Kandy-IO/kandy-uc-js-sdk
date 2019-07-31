@@ -91,6 +91,29 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+    -   `credentials.refreshToken` **[string][2]?** A refresh token for the same user.
+    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  expires: 3600
+});
+```
+
+### connect
+
 Connect by providing a refresh token.
 
 **Parameters**
@@ -107,25 +130,6 @@ client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
-});
-```
-
-### connect
-
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -152,30 +156,38 @@ client.connect({
 
 ### connect
 
-Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+Connect by providing an OAuth token.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
     -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
-    -   `credentials.refreshToken` **[string][2]?** A refresh token for the same user.
-    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
-  expires: 3600
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
 ### disconnect
 
 Disconnects from the backend. This will close the websocket and you will stop receiving events.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.accessToken` **[string][2]** The new access token.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][5]** The credentials object.
 
 ### updateToken
 
@@ -195,18 +207,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.accessToken` **[string][2]** The new access token.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
--   `credentials` **[Object][5]** The credentials object.
 
 ### getUserInfo
 
@@ -1751,6 +1751,19 @@ Can be retrieved using the [call.getAll][24] or
 -   `startTime` **[number][6]** The start time of the call in milliseconds since the epoch.
 -   `endTime` **[number][6]?** The end time of the call in milliseconds since the epoch.
 
+## MediaObject
+
+The state representation of a Media object.
+Media is a collection of Track objects.
+
+Type: [Object][5]
+
+**Properties**
+
+-   `id` **[string][2]** The ID of the Media object.
+-   `local` **[boolean][7]** Indicator on whether this media is local or remote.
+-   `tracks` **[Array][8]&lt;[TrackObject][29]>** A list of Track objects that are contained in this Media object.
+
 ## TrackObject
 
 A Track is a stream of audio or video media from a single source.
@@ -1776,19 +1789,6 @@ A collection of media devices and their information.
 -   `camera` **[Array][8]&lt;[DeviceInfo][58]>** A list of camera device information.
 -   `microphone` **[Array][8]&lt;[DeviceInfo][58]>** A list of microphone device information.
 -   `speaker` **[Array][8]&lt;[DeviceInfo][58]>** A list of speaker device information.
-
-## MediaObject
-
-The state representation of a Media object.
-Media is a collection of Track objects.
-
-Type: [Object][5]
-
-**Properties**
-
--   `id` **[string][2]** The ID of the Media object.
--   `local` **[boolean][7]** Indicator on whether this media is local or remote.
--   `tracks` **[Array][8]&lt;[TrackObject][29]>** A list of Track objects that are contained in this Media object.
 
 ## getBrowserDetails
 
