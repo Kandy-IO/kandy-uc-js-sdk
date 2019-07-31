@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.6.0-beta.99
+ * Version: 4.6.0-beta.108
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -34856,9 +34856,11 @@ function* sendDtmf(deps, action) {
 
   // Get the webrtc Session for the call.
   const session = yield (0, _effects.call)([webRTC.sessionManager, 'get'], targetCall.webrtcSessionId);
+  // Get the remote description for the Session.
+  const remoteDesc = yield (0, _effects.call)([session, 'getRemoteDescription']);
 
   // TODO: Is this the correct SDP to use?
-  let canSendOutBand = yield (0, _effects.call)(hasTelephoneEvent, session.peer.remoteDescription.sdp);
+  let canSendOutBand = yield (0, _effects.call)(hasTelephoneEvent, remoteDesc.sdp);
 
   let result;
   if (canSendOutBand) {
@@ -41733,7 +41735,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.6.0-beta.99';
+  let version = '4.6.0-beta.108';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -56453,6 +56455,10 @@ function Session(id, managers, config = {}) {
     return peer;
   }
 
+  function getRemoteDescription() {
+    return peer.remoteDescription;
+  }
+
   /**
    * The exposed API.
    */
@@ -56479,6 +56485,7 @@ function Session(id, managers, config = {}) {
     createOffer,
     createAnswer,
     setLocalDescription,
+    getRemoteDescription,
     generateOffer,
     processOffer,
     generateAnswer,
