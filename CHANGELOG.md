@@ -7,7 +7,6 @@ Kandy.js change log.
 
 ## 4.7.0 - beta
 
-
 ### Fixed
 
 - Fixed an issue where the `kandy.call.history.clear()` is not clearing history data and returning an empty array. `KAA-1873`
@@ -15,9 +14,10 @@ Kandy.js change log.
 - Fixed an issue causing some BasicError objects to have a misleading message rather than a message about the operation that failed. `KAA-1947`
 - Fixed an issue where call audits weren't being sent.`KAA-1944`
 
-## 4.6.0 - 2018-08-01
+## 4.6.0 - 2019-08-01
 
 ### Added
+
 - Added in-band DTMF tone support for calls that do not support out-of-band DTMF tones. `KAA-1505`
   - See the `call.sendDTMF` API for more information.
 
@@ -28,6 +28,7 @@ Kandy.js change log.
 ## 4.5.0 - 2019-06-28
 
 ### Added
+
 - Added "join" functionality for calls. See the `kandy.call.join` API. `KAA-1508`
 - Added "consultative transfer" functionality for calls. See the `kandy.call.consultativeTransfer` API. `KAA-1510`
 - Added "direct transfer" functionality for calls. See the `kandy.call.directTransfer` API. `KAA-1509`
