@@ -112,6 +112,29 @@ client.connect({
 
 ### connect
 
+Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+    -   `credentials.refreshToken` **[string][2]?** A refresh token for the same user.
+    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  expires: 3600
+});
+```
+
+### connect
+
 Connect by providing an OAuth token.
 
 **Parameters**
@@ -147,29 +170,6 @@ client.connect({
   username: 'alfred@example.com',
   password: '********'
   authname: '********'
-});
-```
-
-### connect
-
-Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
-    -   `credentials.refreshToken` **[string][2]?** A refresh token for the same user.
-    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
-  expires: 3600
 });
 ```
 
@@ -1297,7 +1297,8 @@ Information about an available User can be retrieved using the
 
 ### fetchSelfInfo
 
-Fetches information about the current User.
+Fetches information about the current User from directory.
+Compared to [user.fetch][46] API, this API retrieves additional user related information.
 
 The SDK will emit a [directory:change][44]
    event after the operation completes. The User's information will then
@@ -1626,30 +1627,18 @@ Update values in the global Config section of the store.
 
 -   `newConfigValues` **[Object][5]** Key-value pairs that will be placed into the store. See [config][55] for details on what key-value pairs are available for use.
 
-## DeviceInfo
+## MediaObject
 
-Contains information about a device.
+The state representation of a Media object.
+Media is a collection of Track objects.
+
+Type: [Object][5]
 
 **Properties**
 
--   `deviceId` **[string][2]** The ID of the device.
--   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][2]** The name of the device.
-
-## SdpHandlerFunction
-
-The form of an SDP handler function and the expected arguments that it receives.
-
-Type: [Function][3]
-
-**Parameters**
-
--   `newSdp` **[Object][5]** The SDP so far (could have been modified by previous handlers).
--   `info` **[SdpHandlerInfo][56]** Additional information that might be useful when making SDP modifications.
--   `originalSdp` **[Object][5]** The SDP in its initial state.
-
-Returns **[Object][5]** The resulting modified SDP based on the changes made by this function.
+-   `id` **[string][2]** The ID of the Media object.
+-   `local` **[boolean][7]** Indicator on whether this media is local or remote.
+-   `tracks` **[Array][8]&lt;[TrackObject][29]>** A list of Track objects that are contained in this Media object.
 
 ## SdpHandlerInfo
 
@@ -1666,33 +1655,8 @@ Type: [Object][5]
 
 **Properties**
 
--   `url` **[string][2]** The URL of the ICE server.
+-   `urls` **([Array][8]&lt;[string][2]> | [string][2])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
 -   `credential` **[string][2]?** The credential needed by the ICE server.
-
-## BandwidthControls
-
-The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
-BandwidthControls only affect received remote tracks of the specified type.
-
-Type: [Object][5]
-
-**Properties**
-
--   `audio` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
--   `video` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote video.
-
-**Examples**
-
-```javascript
-// Specify received remote video bandwidth limits when making a call.
-client.call.make(destination, mediaConstraints,
- {
-   bandwidth: {
-     video: 5
-   }
- }
-)
-```
 
 ## MediaConstraint
 
@@ -1728,6 +1692,68 @@ client.call.make(destination, {
 })
 ```
 
+## BandwidthControls
+
+The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
+BandwidthControls only affect received remote tracks of the specified type.
+
+Type: [Object][5]
+
+**Properties**
+
+-   `audio` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
+-   `video` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote video.
+
+**Examples**
+
+```javascript
+// Specify received remote video bandwidth limits when making a call.
+client.call.make(destination, mediaConstraints,
+ {
+   bandwidth: {
+     video: 5
+   }
+ }
+)
+```
+
+## DevicesObject
+
+A collection of media devices and their information.
+
+**Properties**
+
+-   `camera` **[Array][8]&lt;[DeviceInfo][56]>** A list of camera device information.
+-   `microphone` **[Array][8]&lt;[DeviceInfo][56]>** A list of microphone device information.
+-   `speaker` **[Array][8]&lt;[DeviceInfo][56]>** A list of speaker device information.
+
+## TrackObject
+
+A Track is a stream of audio or video media from a single source.
+Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
+
+**Properties**
+
+-   `containers` **[Array][8]&lt;[string][2]>** The list of CSS selectors that were used to render this Track.
+-   `disabled` **[boolean][7]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
+-   `id` **[string][2]** The ID of the Track.
+-   `kind` **[string][2]** The kind of Track this is (audio, video).
+-   `label` **[string][2]** The label of the device this Track uses.
+-   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
+-   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
+-   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
+
+## DeviceInfo
+
+Contains information about a device.
+
+**Properties**
+
+-   `deviceId` **[string][2]** The ID of the device.
+-   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][2]** The name of the device.
+
 ## CallObject
 
 Information about a Call.
@@ -1751,44 +1777,19 @@ Can be retrieved using the [call.getAll][24] or
 -   `startTime` **[number][6]** The start time of the call in milliseconds since the epoch.
 -   `endTime` **[number][6]?** The end time of the call in milliseconds since the epoch.
 
-## TrackObject
+## SdpHandlerFunction
 
-A Track is a stream of audio or video media from a single source.
-Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
+The form of an SDP handler function and the expected arguments that it receives.
 
-**Properties**
+Type: [Function][3]
 
--   `containers` **[Array][8]&lt;[string][2]>** The list of CSS selectors that were used to render this Track.
--   `disabled` **[boolean][7]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
--   `id` **[string][2]** The ID of the Track.
--   `kind` **[string][2]** The kind of Track this is (audio, video).
--   `label` **[string][2]** The label of the device this Track uses.
--   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
--   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
--   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
+**Parameters**
 
-## MediaObject
+-   `newSdp` **[Object][5]** The SDP so far (could have been modified by previous handlers).
+-   `info` **[SdpHandlerInfo][58]** Additional information that might be useful when making SDP modifications.
+-   `originalSdp` **[Object][5]** The SDP in its initial state.
 
-The state representation of a Media object.
-Media is a collection of Track objects.
-
-Type: [Object][5]
-
-**Properties**
-
--   `id` **[string][2]** The ID of the Media object.
--   `local` **[boolean][7]** Indicator on whether this media is local or remote.
--   `tracks` **[Array][8]&lt;[TrackObject][29]>** A list of Track objects that are contained in this Media object.
-
-## DevicesObject
-
-A collection of media devices and their information.
-
-**Properties**
-
--   `camera` **[Array][8]&lt;[DeviceInfo][58]>** A list of camera device information.
--   `microphone` **[Array][8]&lt;[DeviceInfo][58]>** A list of microphone device information.
--   `speaker` **[Array][8]&lt;[DeviceInfo][58]>** A list of speaker device information.
+Returns **[Object][5]** The resulting modified SDP based on the changes made by this function.
 
 ## getBrowserDetails
 
@@ -1960,8 +1961,8 @@ The User data object.
 
 [55]: #config
 
-[56]: #sdphandlerinfo
+[56]: #deviceinfo
 
 [57]: #callsstates
 
-[58]: #deviceinfo
+[58]: #sdphandlerinfo

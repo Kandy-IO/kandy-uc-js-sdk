@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.6.0
+ * Version: 4.7.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -27171,6 +27171,7 @@ exports.getAuthConfig = getAuthConfig;
 exports.getSubscriptionInfo = getSubscriptionInfo;
 exports.getConnectionInfo = getConnectionInfo;
 exports.getDomain = getDomain;
+exports.getIdentity = getIdentity;
 exports.getUserInfo = getUserInfo;
 exports.getAuthScenario = getAuthScenario;
 exports.getServices = getServices;
@@ -27257,9 +27258,20 @@ function getDomain(state) {
 }
 
 /**
+ * Retrieves the identity of the currently logged-in user.
+ * The identity is of the form: <userName>@<domain>
+ * @method getIdentity
+ * @return {string}
+ */
+function getIdentity(state) {
+  const userInfo = getUserInfo(state);
+  return userInfo.identity || userInfo.username || '';
+}
+
+/**
  * Retrieves the user information.
  * @method getUserInfo
- * @return {Object}
+ * @return {Object} An object whose properties are: accessToken, identity & username. Identity is user's primary contact address.
  */
 function getUserInfo(state) {
   return (0, _fp.cloneDeep)(state.authentication.userInfo) || {};
@@ -27467,7 +27479,21 @@ function* subscribe(connection, credentials, extras = {}) {
 
   if (response.error) {
     if (response.payload.body) {
-      let { statusCode } = response.payload.body.subscribeResponse;
+      const body = response.payload.body;
+
+      let statusCode;
+      /*
+       * In some cases, the response is not wrapped in a `subscribeResponse`
+       *    property. This seems to be when using a pre-provisioned user (stored
+       *    as part of KL?) rather than a dynamically created user (retrieved
+       *    from AS?).
+       * Reference: ABE-23981 (and KAA-1937)
+       */
+      if (body.statusCode && body.reason) {
+        statusCode = body.statusCode;
+      } else {
+        statusCode = body.subscribeResponse.statusCode;
+      }
       log.debug(`Failed user subscription with status code ${statusCode}.`);
 
       // Handle errors from the server.
@@ -29215,6 +29241,7 @@ const callPrefix = '@@KANDY/CALL/';
  * Basic call operation actions.
  */
 const MAKE_CALL = exports.MAKE_CALL = callPrefix + 'MAKE';
+const PENDING_MAKE_CALL = exports.PENDING_MAKE_CALL = callPrefix + 'PENDING_MAKE';
 const MAKE_CALL_FINISH = exports.MAKE_CALL_FINISH = callPrefix + 'MAKE_FINISH';
 
 const MAKE_ANONYMOUS_CALL = exports.MAKE_ANONYMOUS_CALL = callPrefix + 'MAKE_ANONYMOUS_CALL';
@@ -29242,6 +29269,8 @@ const END_CALL_FINISH = exports.END_CALL_FINISH = callPrefix + 'END_FINISH';
 
 const FORWARD_CALL = exports.FORWARD_CALL = callPrefix + 'FORWARD_CALL';
 const FORWARD_CALL_FINISH = exports.FORWARD_CALL_FINISH = callPrefix + 'FORWARD_CALL_FINISH';
+
+const PENDING_OPERATION = exports.PENDING_OPERATION = callPrefix + 'PENDING_OPERATION';
 
 /**
  * Mid-call operation actions.
@@ -29274,12 +29303,14 @@ const GET_STATS = exports.GET_STATS = callPrefix + 'GET_STATS';
 const GET_STATS_FINISH = exports.GET_STATS_FINISH = callPrefix + 'GET_STATS_FINISH';
 
 const CONSULTATIVE_TRANSFER = exports.CONSULTATIVE_TRANSFER = callPrefix + 'CONSULTATIVE_TRANSFER';
+const PENDING_CONSULTATIVE_TRANSFER = exports.PENDING_CONSULTATIVE_TRANSFER = callPrefix + 'PENDING_CONSULTATIVE_TRANSFER';
 const CONSULTATIVE_TRANSFER_FINISH = exports.CONSULTATIVE_TRANSFER_FINISH = callPrefix + 'CONSULTATIVE_TRANSFER_FINISH';
 
 const DIRECT_TRANSFER = exports.DIRECT_TRANSFER = callPrefix + 'DIRECT_TRANSFER';
 const DIRECT_TRANSFER_FINISH = exports.DIRECT_TRANSFER_FINISH = callPrefix + 'DIRECT_TRANSFER_FINISH';
 
 const JOIN = exports.JOIN = callPrefix + 'JOIN';
+const PENDING_JOIN = exports.PENDING_JOIN = callPrefix + 'PENDING_JOIN';
 const JOIN_FINISH = exports.JOIN_FINISH = callPrefix + 'JOIN_FINISH';
 
 const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
@@ -29317,6 +29348,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 var _extends3 = _interopRequireDefault(_extends2);
 
 exports.makeCall = makeCall;
+exports.pendingMakeCall = pendingMakeCall;
 exports.makeCallFinish = makeCallFinish;
 exports.makeAnonymousCall = makeAnonymousCall;
 exports.callIncoming = callIncoming;
@@ -29351,13 +29383,16 @@ exports.getStatsFinish = getStatsFinish;
 exports.forwardCall = forwardCall;
 exports.forwardCallFinish = forwardCallFinish;
 exports.consultativeTransfer = consultativeTransfer;
+exports.pendingConsultativeTransfer = pendingConsultativeTransfer;
 exports.consultativeTransferFinish = consultativeTransferFinish;
 exports.directTransfer = directTransfer;
 exports.directTransferFinish = directTransferFinish;
 exports.join = join;
+exports.pendingJoin = pendingJoin;
 exports.joinFinish = joinFinish;
 exports.replaceTrack = replaceTrack;
 exports.replaceTrackFinish = replaceTrackFinish;
+exports.pendingOperation = pendingOperation;
 
 var _actionTypes = __webpack_require__("../kandy/src/call/interfaceNew/actionTypes.js");
 
@@ -29415,6 +29450,10 @@ function callActionHelper(type, id, payload = {}, meta = {}) {
 // Libraries.
 function makeCall(id, options) {
   return callActionHelper(actionTypes.MAKE_CALL, id, options);
+}
+
+function pendingMakeCall(id, options) {
+  return callActionHelper(actionTypes.PENDING_MAKE_CALL, id, options);
 }
 
 function makeCallFinish(id, params) {
@@ -29553,6 +29592,10 @@ function consultativeTransfer(id, params) {
   return callActionHelper(actionTypes.CONSULTATIVE_TRANSFER, id, params);
 }
 
+function pendingConsultativeTransfer(id, params) {
+  return callActionHelper(actionTypes.PENDING_CONSULTATIVE_TRANSFER, id, params);
+}
+
 function consultativeTransferFinish(id, params) {
   return callActionHelper(actionTypes.CONSULTATIVE_TRANSFER_FINISH, id, params);
 }
@@ -29569,6 +29612,10 @@ function join(id, params) {
   return callActionHelper(actionTypes.JOIN, id, params);
 }
 
+function pendingJoin(id, params) {
+  return callActionHelper(actionTypes.PENDING_JOIN, id, params);
+}
+
 function joinFinish(id, params) {
   return callActionHelper(actionTypes.JOIN_FINISH, id, params);
 }
@@ -29579,6 +29626,10 @@ function replaceTrack(id, params) {
 
 function replaceTrackFinish(id, params) {
   return callActionHelper(actionTypes.REPLACE_TRACK_FINISH, id, params);
+}
+
+function pendingOperation(id, params) {
+  return callActionHelper(actionTypes.PENDING_OPERATION, id, params);
 }
 
 /***/ }),
@@ -30504,7 +30555,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @public
  * @module IceServer
  * @typedef {Object} IceServer
- * @property {string} url The URL of the ICE server.
+ * @property {Array<string>|string} urls Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
  * @property {string} [credential] The credential needed by the ICE server.
  */
 
@@ -30593,6 +30644,70 @@ function api(context) {
 
 /***/ }),
 
+/***/ "../kandy/src/call/interfaceNew/constants.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Blocking operations that can be performed on a call.
+ * ie. no two of thes operations, either local or remote,
+ *    can be performed at the same time.
+ * TODO: Should all operations just be listed here? Probably.
+ */
+const OPERATIONS = exports.OPERATIONS = {
+  // Establishment.
+  MAKE: 'MAKE',
+  ANSWER: 'ANSWER',
+  REJECT: 'REJECT',
+  IGNORE: 'IGNORE',
+  END: 'END',
+  // TODO: Make sure these constants and actionTypes are in-sync with each
+  //    other. Use one to build the other.
+  FORWARD_CALL: 'FORWARD_CALL',
+  // Midcall.
+  HOLD: 'HOLD',
+  UNHOLD: 'UNHOLD',
+  ADD_MEDIA: 'ADD_MEDIA',
+  REMOVE_MEDIA: 'REMOVE_MEDIA',
+  SEND_DTMF: 'SEND_DTMF',
+  CONSULTATIVE_TRANSFER: 'CONSULTATIVE_TRANSFER',
+  DIRECT_TRANSFER: 'DIRECT_TRANSFER',
+  JOIN: 'JOIN',
+  REPLACE_TRACK: 'REPLACE_TRACK'
+
+  /*
+   * Endpoints that can perform operations.
+   */
+};const ENDPOINTS = exports.ENDPOINTS = {
+  LOCAL: 'LOCAL',
+  REMOTE: 'REMOTE'
+  // SERVER: 'SERVER' ?
+
+
+  /*
+   * Statuses of an operation.
+   */
+};const OP_STATUS = exports.OP_STATUS = {
+  ONGOING: 'ONGOING', // The operation is ongoing locally.
+  PENDING: 'PENDING' // The operation is pending remotely.
+
+
+  /*
+   * Transitions of an operation.
+   */
+};const OP_TRANSITIONS = exports.OP_TRANSITIONS = {
+  START: 'START', // The operation is starting.
+  UPDATE: 'UPDATE', // The operation is ongoing.
+  FINISH: 'FINISH' // The operation has finished.
+};
+
+/***/ }),
+
 /***/ "../kandy/src/call/interfaceNew/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30616,6 +30731,21 @@ Object.defineProperty(exports, "__esModule", {
  * @param {BasicError} [params.error] An error object, if the operation was not successful.
  */
 const CALL_STARTED = exports.CALL_STARTED = 'call:start';
+
+/**
+ * A new joined call has been started.
+ *
+ * Information about the Call can be retrieved using the
+ *    {@link Calls.getById call.getById} API.
+ *
+ * @public
+ * @memberof Calls
+ * @event call:join
+ * @param {Object} params
+ * @param {string} params.callId The ID of the call.
+ * @param {BasicError} [params.error] An error object, if the operation was not successful.
+ */
+const CALL_JOIN = exports.CALL_JOIN = 'call:join';
 
 /**
  * A new incoming call has been received.
@@ -30868,10 +30998,14 @@ function stateChangeHandler(action, params) {
 
 const callEvents = exports.callEvents = {};
 
-callEvents[actionTypes.MAKE_CALL_FINISH] = action => {
+callEvents[actionTypes.PENDING_MAKE_CALL] = action => {
   return callEventHandler(eventTypes.CALL_STARTED, action, {
     error: action.payload.error
   });
+};
+
+callEvents[actionTypes.PENDING_JOIN] = action => {
+  return callEventHandler(eventTypes.CALL_JOIN, action);
 };
 
 callEvents[actionTypes.CALL_INCOMING] = action => {
@@ -30895,8 +31029,11 @@ callEvents[actionTypes.ANSWER_CALL_FINISH] = (action, params) => {
 };
 
 callEvents[actionTypes.CALL_ACCEPTED] = stateChangeHandler;
+callEvents[actionTypes.MAKE_CALL_FINISH] = stateChangeHandler;
 callEvents[actionTypes.IGNORE_CALL_FINISH] = stateChangeHandler;
 callEvents[actionTypes.END_CALL_FINISH] = stateChangeHandler;
+callEvents[actionTypes.DIRECT_TRANSFER_FINISH] = stateChangeHandler;
+callEvents[actionTypes.CONSULTATIVE_TRANSFER_FINISH] = stateChangeHandler;
 callEvents[actionTypes.REJECT_CALL_FINISH] = stateChangeHandler;
 callEvents[actionTypes.CALL_HOLD_FINISH] = stateChangeHandler;
 callEvents[actionTypes.CALL_UNHOLD_FINISH] = stateChangeHandler;
@@ -31029,6 +31166,8 @@ var actionTypes = _interopRequireWildcard(_actionTypes);
 
 var _constants = __webpack_require__("../kandy/src/call/constants.js");
 
+var _utils = __webpack_require__("../kandy/src/call/interfaceNew/utils.js");
+
 var _reduxActions = __webpack_require__("../../node_modules/redux-actions/es/index.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
@@ -31037,11 +31176,38 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Top-tier reducers: Handles the whole call state.
+/**
+ * A no-op reducer.
+ * Some reducers don't need to change state, but need to exist so their actions
+ *    can be handled the same way as other actions (eg. wrapped to update local
+ *    operation).
+ * @method noop
+ */
 
 
 // Libraries.
+const noop = (state, action) => state;
+
+/**
+ * The reducer logic used for finish operations that end a call.
+ * @method callEnder
+ */
 // Call plugin.
+const callEnder = (state, action) => {
+  const now = Date.now();
+  return (0, _extends3.default)({}, state, {
+    state: _constants.CALL_STATES.ENDED,
+    // If there isn't a start time, then the call was never completed.
+    //    Meaning it's duration was 0, so set the start time appropriately.
+    startTime: state.startTime || now,
+    endTime: now,
+    remoteParticipant: (0, _extends3.default)({}, state.remoteParticipant, action.payload.remoteParticipant),
+    // TODO: Remove this later.
+    isPending: undefined
+  });
+};
+
+// Top-tier reducers: Handles the whole call state.
 const reducers = {};
 // Call-tier reducers: Handles only a specific call's state.
 const callReducers = {};
@@ -31055,7 +31221,7 @@ const callReducers = {};
 reducers[actionTypes.MAKE_CALL] = {
   next(state, action) {
     // TODO: Call model? (with defaults for call state)
-    const newCall = {
+    let newCall = {
       id: action.payload.id,
       remoteParticipant: {
         displayNumber: action.payload.participantAddress,
@@ -31076,7 +31242,9 @@ reducers[actionTypes.MAKE_CALL] = {
       isAnonymous: action.payload.isAnonymous,
       // The account token used to make the anonymous call
       account: action.payload.account
-    };
+
+      // Set the call's operation substate.
+    };newCall = (0, _utils.setOperationState)(newCall, action);
 
     return (0, _fp.concat)(state, newCall);
   }
@@ -31109,6 +31277,27 @@ callReducers[actionTypes.CALL_RINGING] = {
  * Call-tier reducers.
  * Receive a single call's state as state.
  */
+
+/*
+ * Some reducers don't need to change state directly, but need to exist.
+ * Call-specific reducers are wrapped to keep information about on-going
+ *    operations up-to-date.
+ */
+callReducers[actionTypes.PENDING_OPERATION] = noop;
+callReducers[actionTypes.ANSWER_CALL] = noop;
+callReducers[actionTypes.CALL_HOLD] = noop;
+callReducers[actionTypes.CALL_UNHOLD] = noop;
+callReducers[actionTypes.END_CALL] = noop;
+callReducers[actionTypes.ADD_MEDIA] = noop;
+callReducers[actionTypes.REMOVE_MEDIA] = noop;
+callReducers[actionTypes.FORWARD_CALL] = noop;
+callReducers[actionTypes.REJECT_CALL] = noop;
+callReducers[actionTypes.SEND_DTMF] = noop;
+callReducers[actionTypes.SEND_DTMF_FINISH] = noop;
+callReducers[actionTypes.IGNORE_CALL] = noop;
+callReducers[actionTypes.DIRECT_TRANSFER] = noop;
+callReducers[actionTypes.REPLACE_TRACK] = noop;
+callReducers[actionTypes.REPLACE_TRACK_FINISH] = noop;
 
 callReducers[actionTypes.CALL_CANCELLED] = {
   next(state, action) {
@@ -31148,15 +31337,22 @@ callReducers[actionTypes.REJECT_CALL_FINISH] = {
   }
 };
 
-// Update the new call state based on the outcome.
-callReducers[actionTypes.MAKE_CALL_FINISH] = {
+callReducers[actionTypes.PENDING_MAKE_CALL] = {
   next(state, action) {
     return (0, _extends3.default)({}, state, {
       state: action.payload.state,
       wrtcsSessionId: action.payload.wrtcsSessionId,
       webrtcSessionId: action.payload.webrtcSessionId,
-      bandwidth: action.payload.bandwidth
+      bandwidth: action.payload.bandwidth,
+      displayName: action.payload.displayName
     });
+  }
+};
+
+// Update the new call state based on the outcome.
+callReducers[actionTypes.MAKE_CALL_FINISH] = {
+  next(state, action) {
+    return (0, _extends3.default)({}, state, action.payload);
   },
   throw(state, action) {
     return (0, _extends3.default)({}, state, action.payload);
@@ -31200,19 +31396,7 @@ callReducers[actionTypes.CALL_ACCEPTED] = {
 // Handles both success and failure actions the same way.
 // Instead of an object with `next` & `throw` properties, pass in a function.
 // https://redux-actions.js.org/api/handleaction#handleactiontype-reducer-defaultstate
-callReducers[actionTypes.END_CALL_FINISH] = (state, action) => {
-  const now = Date.now();
-
-  return (0, _extends3.default)({}, state, {
-    state: _constants.CALL_STATES.ENDED,
-    // If there isn't a start time, then the call was never completed.
-    //    Meaning it's duration was 0, so set the start time appropriately.
-    startTime: state.startTime || now,
-    endTime: now,
-    remoteParticipant: (0, _extends3.default)({}, state.remoteParticipant, action.payload.remoteParticipant),
-    isPending: undefined
-  });
-};
+callReducers[actionTypes.END_CALL_FINISH] = callEnder;
 
 callReducers[actionTypes.UPDATE_CALL] = {
   next(state, action) {
@@ -31280,20 +31464,18 @@ callReducers[actionTypes.FORWARD_CALL_FINISH] = {
 };
 
 callReducers[actionTypes.DIRECT_TRANSFER_FINISH] = {
-  next(state, action) {
-    return (0, _extends3.default)({}, state, {
-      isPending: _constants.COMPLEX_OPERATIONS.DIRECT_TRANSFER
-    });
-  }
+  next: callEnder
 };
 
-reducers[actionTypes.CONSULTATIVE_TRANSFER_FINISH] = {
+reducers[actionTypes.CONSULTATIVE_TRANSFER] = {
   next(state, action) {
+    const callIds = [action.payload.id, action.payload.otherCallId];
+
+    // Iterate through the calls looking for the two being acted on.
+    //    Update them to set the operation substate.
     return state.map(call => {
-      if (call.id === action.payload.id || call.id === action.payload.otherId) {
-        return (0, _extends3.default)({}, call, {
-          isPending: _constants.COMPLEX_OPERATIONS.CONSULTATIVE_TRANSFER
-        });
+      if (callIds.includes(call.id)) {
+        return (0, _utils.setOperationState)(call, action);
       } else {
         return call;
       }
@@ -31301,7 +31483,57 @@ reducers[actionTypes.CONSULTATIVE_TRANSFER_FINISH] = {
   }
 };
 
-reducers[actionTypes.JOIN_FINISH] = {
+reducers[actionTypes.PENDING_CONSULTATIVE_TRANSFER] = {
+  next(state, action) {
+    return state.map(call => {
+      if (call.id === action.payload.id || call.id === action.payload.otherCallId) {
+        // Update the local operation in the call's state.
+        return (0, _utils.setOperationState)(call, action);
+      } else {
+        return call;
+      }
+    });
+  }
+};
+
+reducers[actionTypes.CONSULTATIVE_TRANSFER_FINISH] = {
+  next: (state, action) => {
+    return state.map(call => {
+      if (call.id === action.payload.id || call.id === action.payload.otherCallId) {
+        const endedCall = callEnder(call, action);
+        return (0, _utils.setOperationState)(endedCall, action);
+      } else {
+        return call;
+      }
+    });
+  },
+  throw: (state, action) => {
+    return state.map(call => {
+      if (call.id === action.payload.id || call.id === action.payload.otherCallId) {
+        return (0, _utils.setOperationState)(call, action);
+      } else {
+        return call;
+      }
+    });
+  }
+};
+
+reducers[actionTypes.JOIN] = {
+  next(state, action) {
+    // Update operation substate state for both calls used in the operation.
+    const callIds = [action.payload.id, action.payload.otherCallId];
+
+    return state.map(call => {
+      if (callIds.includes(call.id)) {
+        return (0, _utils.setOperationState)(call, action);
+      } else {
+        return call;
+      }
+    });
+  }
+};
+
+reducers[actionTypes.PENDING_JOIN] = {
   next(state, action) {
     const newCall = {
       id: action.payload.id,
@@ -31326,13 +31558,34 @@ reducers[actionTypes.JOIN_FINISH] = {
 
     return (0, _fp.concat)(state.map(call => {
       if (action.payload.usedCallIds.includes(call.id)) {
-        return (0, _extends3.default)({}, call, {
-          isPending: _constants.COMPLEX_OPERATIONS.JOIN
-        });
+        // Update the call's operation substate.
+        return (0, _utils.setOperationState)(call, action);
       } else {
         return call;
       }
     }), newCall);
+  }
+};
+
+reducers[actionTypes.JOIN_FINISH] = {
+  next: (state, action) => {
+    return state.map(call => {
+      if (call.id === action.payload.id || action.payload.usedCallIds && action.payload.usedCallIds.includes(call.id)) {
+        const endedCall = callEnder(call, action);
+        return (0, _utils.setOperationState)(endedCall, action);
+      } else {
+        return call;
+      }
+    });
+  },
+  throw: (state, action) => {
+    return state.map(call => {
+      if (call.id === action.payload.id || action.payload.usedCallIds && action.payload.usedCallIds.includes(call.id)) {
+        return (0, _utils.setOperationState)(call, action);
+      } else {
+        return call;
+      }
+    });
   }
 };
 
@@ -31359,7 +31612,7 @@ callReducers[actionTypes.REMOVE_MEDIA_FINISH] = {
 const callReducer = (0, _reduxActions.handleActions)(callReducers, {});
 
 // Actions routed to call-tier reducers.
-const specificCallActions = (0, _reduxActions.combineActions)(actionTypes.MAKE_CALL_FINISH, actionTypes.ANSWER_CALL_FINISH, actionTypes.REJECT_CALL_FINISH, actionTypes.CALL_ACCEPTED, actionTypes.CALL_RINGING, actionTypes.CALL_CANCELLED, actionTypes.IGNORE_CALL_FINISH, actionTypes.END_CALL_FINISH, actionTypes.CALL_HOLD_FINISH, actionTypes.CALL_UNHOLD_FINISH, actionTypes.CALL_REMOTE_HOLD_FINISH, actionTypes.CALL_REMOTE_UNHOLD_FINISH, actionTypes.ADD_MEDIA_FINISH, actionTypes.REMOVE_MEDIA_FINISH, actionTypes.UPDATE_CALL, actionTypes.MUSIC_ON_HOLD, actionTypes.FORWARD_CALL_FINISH, actionTypes.DIRECT_TRANSFER_FINISH);
+const specificCallActions = (0, _reduxActions.combineActions)(actionTypes.PENDING_OPERATION, actionTypes.PENDING_MAKE_CALL, actionTypes.MAKE_CALL_FINISH, actionTypes.ANSWER_CALL, actionTypes.ANSWER_CALL_FINISH, actionTypes.REJECT_CALL, actionTypes.REJECT_CALL_FINISH, actionTypes.CALL_ACCEPTED, actionTypes.CALL_RINGING, actionTypes.CALL_CANCELLED, actionTypes.IGNORE_CALL, actionTypes.IGNORE_CALL_FINISH, actionTypes.END_CALL, actionTypes.END_CALL_FINISH, actionTypes.CALL_HOLD, actionTypes.CALL_HOLD_FINISH, actionTypes.CALL_UNHOLD, actionTypes.CALL_UNHOLD_FINISH, actionTypes.CALL_REMOTE_HOLD_FINISH, actionTypes.CALL_REMOTE_UNHOLD_FINISH, actionTypes.ADD_MEDIA, actionTypes.ADD_MEDIA_FINISH, actionTypes.REMOVE_MEDIA, actionTypes.REMOVE_MEDIA_FINISH, actionTypes.UPDATE_CALL, actionTypes.MUSIC_ON_HOLD, actionTypes.FORWARD_CALL, actionTypes.FORWARD_CALL_FINISH, actionTypes.DIRECT_TRANSFER, actionTypes.DIRECT_TRANSFER_FINISH, actionTypes.SEND_DTMF, actionTypes.SEND_DTMF_FINISH, actionTypes.JOIN, actionTypes.REPLACE_TRACK, actionTypes.REPLACE_TRACK_FINISH);
 
 /*
  * Reducer to handle specific call actions.
@@ -31369,7 +31622,13 @@ reducers[specificCallActions] = (state, action) => {
   return state.map(function (call) {
     // Only update the call related to the action.
     if (call.id === action.payload.id) {
-      return callReducer(call, action);
+      // Update call state as per the reducer.
+      let updatedCall = callReducer(call, action);
+
+      // Update the operation portion of the call state. This handles both
+      //    successful and failure actions.
+      updatedCall = (0, _utils.setOperationState)(updatedCall, action);
+      return updatedCall;
     } else {
       return call;
     }
@@ -31596,6 +31855,182 @@ function getTurnInfo(state) {
 
 /***/ }),
 
+/***/ "../kandy/src/call/interfaceNew/utils.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.getOperationMeta = getOperationMeta;
+exports.setOperationState = setOperationState;
+
+var _constants = __webpack_require__("../kandy/src/call/interfaceNew/constants.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * Utility function to parse the operation and operation status from an action.
+ * @method getOperationMeta
+ * @param  {Object}  actionType A call action.
+ * @return {Object}  opMeta             Information about the operation.
+ * @return {string}  [opMeta.operation] The call operation the action is about.
+ * @return {string}  opMeta.transition  The change in operation the action is for.
+ * @return {boolean} opMeta.isLocal     Whether the operation was started locally or not.
+ * @throws {Error}   Input must be a standard call action type.
+ */
+function getOperationMeta(actionType) {
+  // Make sure the input is a call action type.
+  if (typeof actionType !== 'string' || !actionType.includes('/CALL/')) {
+    throw new Error('Invalid input parameter. Must be a Call action.');
+  }
+
+  // Grab the unique part of the action type, after /CALL/
+  const opType = actionType.match(/\/CALL\/(.*)/)[1];
+
+  /**
+   * The operation name can be `OPERATION` or `OPER_ATION` (or even multiple _).
+   * It may have the prefix `REMOTE` if it is a remote operation.
+   * It may have the prefix `PENDING` if the operation is now waiting on remote.
+   * It may have the suffix `FINISH` if the operation has ended.
+   * Prefixes / suffixes are separated by a `_`.
+   *
+   * Parse the operation type to split apart the possible sections. Use those
+   *    sections to infer informaton about the operation.
+   */
+  const opMeta = {};
+  const parts = opType.split('_');
+
+  /**
+   * Check the parts for prefixes and update opMeta based on whichever are found.
+   */
+  const validPrefixes = ['REMOTE', 'PENDING'];
+  const prefixes = [];
+
+  // Check the first parts for prefixes.
+  while (validPrefixes.includes(parts[0])) {
+    // Take the prefix from `parts` and add it to `prefixes`.
+    prefixes.push(parts.shift());
+  }
+
+  // Handle the 'REMOTE' prefix.
+  //    The lack of this prefix means the operation was started locally.
+  opMeta.isLocal = !prefixes.includes('REMOTE');
+
+  // Handle the 'PENDING' prefix.
+  //    The lack of this prefix means the operation is either starting or ending.
+  if (prefixes.includes('PENDING')) {
+    opMeta.transition = _constants.OP_TRANSITIONS.UPDATE;
+    /**
+     * The `PENDING` prefix is a special-case because it means an operation was
+     *    `ongoing` and is changing to `pending`. We know there won't be a
+     *    suffix, and the operation is already in state, so we don't need to
+     *    find it here (also, it isn't included here).
+     */
+    return opMeta;
+  }
+
+  /**
+   * Check the parts for suffixes and update opMeta based on whichever are found.
+   */
+  const validSuffixes = ['FINISH'];
+  const suffixes = [];
+
+  // Check the last parts for suffixes.
+  while (validSuffixes.includes(parts[parts.length - 1])) {
+    // Take the suffix out of `parts` and add it to `suffixes`.
+    suffixes.push(parts.pop());
+  }
+
+  // Handle the 'FINISH' suffix.
+  //    The lack of this suffix means the operation is just starting (since we
+  //    already checked for the `pending` change before this).
+  opMeta.transition = suffixes.includes('FINISH') ? _constants.OP_TRANSITIONS.FINISH : _constants.OP_TRANSITIONS.START;
+
+  /**
+   * Recombine the remaining parts as the operation.
+   */
+  opMeta.operation = _constants.OPERATIONS[parts.join('_')];
+  return opMeta;
+}
+
+/**
+ * Reducer utility: Wraps a call reducer to update a call's operation subsate.
+ *    Only affects either `call.localOp` or `call.remoteOp` portion of state.
+ * @method setOperationState
+ * @param  {Object} state  Redux state of a [single] call.
+ * @param  {Object} action A call action.
+ */
+// Call plugin.
+function setOperationState(state, action) {
+  let meta;
+  try {
+    meta = getOperationMeta(action.type);
+  } catch (err) {
+    // Action type is not a call operation, don't change operation state.
+    return state;
+  }
+
+  // The operation has to be defined for start/finish transitions.
+  //    Don't update state if it isn't.
+  if (!meta.operation && meta.transition !== _constants.OP_TRANSITIONS.UPDATE) {
+    return state;
+  }
+
+  // Determine which operation substate we should be acting on.
+  const stateProp = meta.isLocal ? 'localOp' : 'remoteOp';
+  const current = state[stateProp];
+
+  if (meta.transition === _constants.OP_TRANSITIONS.START) {
+    // A new operation is starting...
+
+    if (current) {
+      // ...but there is still an on-going op.
+      // The new operation should be rejected, so state should not change.
+      return state;
+    } else {
+      // ...and there is no current operation on-going.
+      // Set the new operation in state.
+      return (0, _extends3.default)({}, state, {
+        [stateProp]: {
+          operation: meta.operation,
+          status: _constants.OP_STATUS.ONGOING
+        }
+      });
+    }
+  } else if (meta.transition === _constants.OP_TRANSITIONS.UPDATE) {
+    return (0, _extends3.default)({}, state, {
+      [stateProp]: (0, _extends3.default)({}, state[stateProp], {
+        status: _constants.OP_STATUS.PENDING,
+        operationData: action.payload.operationData
+      })
+    });
+  } else {
+    // An on-going operation is finishing...
+
+    if (current && current.operation === meta.operation) {
+      // The operation matches the current on-going operation.
+      // Unset it in state.
+      return (0, _extends3.default)({}, state, {
+        [stateProp]: undefined
+      });
+    } else {
+      // ...but it wasn't tracked in state?
+      // Should be considered an error scenario.
+      return state;
+    }
+  }
+}
+
+/***/ }),
+
 /***/ "../kandy/src/call/link/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31672,10 +32107,10 @@ function callsLink(options = {}) {
     // TODO: Remove this default once the UC server configuration feature is implemented. These
     // servers should be sent to us by UC. This default is just here fo ease of use in production.
     iceServers: [{
-      url: 'turns:turn-ucc-1.genband.com:443?transport=tcp',
+      urls: 'turns:turn-ucc-1.genband.com:443?transport=tcp',
       credential: ''
     }, {
-      url: 'turns:turn-ucc-2.genband.com:443?transport=tcp',
+      urls: 'turns:turn-ucc-2.genband.com:443?transport=tcp',
       credential: ''
     }],
     // TODO: Remove this once all the browsers use unified-plan
@@ -32892,7 +33327,7 @@ function* unholdCall(deps) {
  * @param {Array}  deps.sdpHandlers SDP handlers.
  */
 function* callAudit(deps) {
-  const actionTypesToDoAuditOn = [actionTypes.ANSWER_CALL, actionTypes.CALL_ACCEPTED];
+  const actionTypesToDoAuditOn = [actionTypes.ANSWER_CALL, actionTypes.CALL_ACCEPTED, actionTypes.MAKE_CALL_FINISH];
 
   function callStartAuditPattern(action) {
     return actionTypesToDoAuditOn.indexOf(action.type) !== -1 && !action.error;
@@ -34410,20 +34845,28 @@ function* storeCallLogs(action) {
     recordId: action.payload.id,
     startTime: '' + call.startTime,
     duration: '' + (call.endTime - call.startTime),
-    direction: call.direction,
     callerDisplayNumber: call.isCaller ? userInfo.username : call.remoteParticipant.displayNumber,
     calleeDisplayNumber: call.isCaller ? call.remoteParticipant.displayNumber : userInfo.username,
     calleeName: call.isCaller ? call.remoteParticipant.displayName || call.remoteParticipant.displayNumber : userInfo.username,
-    callerName: call.isCaller ? userInfo.username : call.remoteParticipant.displayName || call.remoteParticipant.displayNumber,
+    callerName: call.isCaller ? call.displayName ? call.displayName : userInfo.username : call.remoteParticipant.displayName || call.remoteParticipant.displayNumber,
     remoteParticipant: call.remoteParticipant,
     originalRemoteParticipant: null,
     resourceLocation: ''
+  };
 
-    // TODO: We can't yet check for all scenarios that the old saga checks for.
-    //  1. Need to be able to determine if the call was missed.
-    //  2. Need to support the caller providing their own contact name.
+  if (call.direction === 'incoming') {
+    // If the previous state was ringing, and the change was not because the call was
+    //      answered by another device (ie. code 9904), then it is a missed call.
+    if (action.payload.transition.prevState === _constants.CALL_STATES['RINGING'] && action.payload.transition.code !== '9904') {
+      logEntry.direction = 'missed';
+    } else {
+      logEntry.direction = 'incoming';
+    }
+  } else {
+    logEntry.direction = 'outgoing';
+  }
 
-  };log.debug('Adding call event to the local call history:', logEntry);
+  log.debug('Adding call event to the local call history:', logEntry);
   yield (0, _effects.put)((0, _actions.addCallLogEntry)(logEntry));
 }
 
@@ -34709,7 +35152,8 @@ function* removeCallLogs(action) {
 
   let response = yield (0, _effects2.default)({
     url,
-    method: 'DELETE'
+    method: 'DELETE',
+    responseType: 'text'
   }, requestInfo.requestOptions);
 
   if (response.error) {
@@ -34737,7 +35181,7 @@ function* removeCallLogs(action) {
     yield (0, _effects3.put)(actions.removeCallLogsFinish({ error }));
   } else {
     log.info('Successfully removed log(s) from call history.');
-    yield (0, _effects3.put)(actions.removeCallLogsFinish({ recordId: action.payload.body }));
+    yield (0, _effects3.put)(actions.removeCallLogsFinish({ recordId: action.payload }));
   }
 }
 
@@ -35289,7 +35733,7 @@ function* makeCall(deps, action) {
   log.debug('Received session response:', response);
 
   if (!response.error) {
-    yield (0, _effects.put)(_actions.callActions.makeCallFinish(action.payload.id, {
+    yield (0, _effects.put)(_actions.callActions.pendingMakeCall(action.payload.id, {
       state: _constants.CALL_STATES.INITIATED,
       // The ID that the backend uses to track this webRTC session.
       wrtcsSessionId: response.wrtcsSessionId,
@@ -35298,7 +35742,9 @@ function* makeCall(deps, action) {
       // The local Media object associated with this call.
       mediaId: mediaId,
       // The bandwidth of the call.
-      bandwidth
+      bandwidth,
+      // The custom display name to use. Not supported on all environments.
+      displayName: action.payload.displayName
     }));
   } else {
     // The call failed, so stop the Media object created for the call.
@@ -35802,8 +36248,8 @@ function* offerInactiveMedia(deps, action) {
     }));
   } else {
     log.debug('Successfully sent hold offer.');
-    yield (0, _effects.put)(_actions.callActions.holdCallFinish(action.payload.id, {
-      local: true
+    yield (0, _effects.put)(_actions.callActions.pendingOperation(action.payload.id, {
+      operation: targetCall.localOp.operation
     }));
   }
 }
@@ -35884,8 +36330,8 @@ function* offerFullMedia(deps, action) {
     }));
   } else {
     log.debug('Successfully sent unhold offer.');
-    yield (0, _effects.put)(_actions.callActions.unholdCallFinish(action.payload.id, {
-      local: true
+    yield (0, _effects.put)(_actions.callActions.pendingOperation(action.payload.id, {
+      operation: targetCall.localOp.operation
     }));
   }
 }
@@ -35986,7 +36432,7 @@ function* addMedia(deps, action) {
   }
 
   // Get some call data.
-  const { webrtcSessionId, wrtcsSessionId, bandwidth: callBandwidth, isAnonymous, account } = yield (0, _effects.select)(_selectors.getCallById, action.payload.id);
+  const { webrtcSessionId, wrtcsSessionId, bandwidth: callBandwidth, isAnonymous, account, localOp } = yield (0, _effects.select)(_selectors.getCallById, action.payload.id);
 
   const finalBandwidth = {
     audio: bandwidth && bandwidth.audio ? bandwidth.audio : callBandwidth.audio,
@@ -36022,11 +36468,14 @@ function* addMedia(deps, action) {
     }));
   } else {
     log.debug('Successfully sent add media offer.');
-    yield (0, _effects.put)(_actions.callActions.addMediaFinish(action.payload.id, {
-      local: true,
-      mediaId: media.id,
-      tracks: media.tracks.map(track => track.id),
-      bandwidth: finalBandwidth
+    yield (0, _effects.put)(_actions.callActions.pendingOperation(action.payload.id, {
+      operation: localOp.operation,
+      operationData: {
+        local: true,
+        mediaId: media.id,
+        tracks: media.tracks.map(track => track.id),
+        bandwidth: finalBandwidth
+      }
     }));
   }
 }
@@ -36078,7 +36527,7 @@ function* removeMedia(deps, action) {
     return;
   }
   // Get some call data.
-  const { webrtcSessionId, wrtcsSessionId, bandwidth: callBandwidth, isAnonymous, account } = yield (0, _effects.select)(_selectors.getCallById, action.payload.id);
+  const { webrtcSessionId, wrtcsSessionId, bandwidth: callBandwidth, isAnonymous, account, localOp } = yield (0, _effects.select)(_selectors.getCallById, action.payload.id);
 
   const finalBandwidth = {
     audio: bandwidth && bandwidth.audio ? bandwidth.audio : callBandwidth.audio,
@@ -36115,10 +36564,13 @@ function* removeMedia(deps, action) {
     }));
   } else {
     log.debug('Successfully sent remove media offer.');
-    yield (0, _effects.put)(_actions.callActions.removeMediaFinish(id, {
-      local: true,
-      tracks: tracks,
-      bandwidth: finalBandwidth
+    yield (0, _effects.put)(_actions.callActions.pendingOperation(action.payload.id, {
+      operation: localOp.operation,
+      operationData: {
+        local: true,
+        tracks: tracks,
+        bandwidth: finalBandwidth
+      }
     }));
   }
 }
@@ -36170,7 +36622,7 @@ function* directTransfer(deps, action) {
     return;
   }
 
-  yield (0, _effects.put)(_actions.callActions.directTransferFinish(action.payload.id));
+  yield (0, _effects.put)(_actions.callActions.pendingOperation(action.payload.id));
 }
 
 /**
@@ -36208,14 +36660,20 @@ function* consultativeTransfer(deps, action) {
   if (currentStateError) {
     log.debug(`Cannot transfer call ${action.payload.id}: ${currentStateError.message}`);
     // Report the operation failure.
-    yield (0, _effects.put)(_actions.callActions.consultativeTransferFinish(action.payload.id, { error: currentStateError }));
+    yield (0, _effects.put)(_actions.callActions.consultativeTransferFinish(action.payload.id, {
+      error: currentStateError,
+      otherCallId: action.payload.otherCallId
+    }));
     return;
   }
 
   if (otherStateError) {
     log.debug(`Cannot transfer call ${action.payload.otherCallId}: ${otherStateError.message}`);
     // Report the operation failure.
-    yield (0, _effects.put)(_actions.callActions.consultativeTransferFinish(action.payload.id, { error: otherStateError }));
+    yield (0, _effects.put)(_actions.callActions.consultativeTransferFinish(action.payload.id, {
+      error: otherStateError,
+      otherCallId: action.payload.otherCallId
+    }));
     return;
   }
 
@@ -36229,12 +36687,13 @@ function* consultativeTransfer(deps, action) {
 
   if (response.error) {
     yield (0, _effects.put)(_actions.callActions.consultativeTransferFinish(action.payload.id, {
-      error: response.error
+      error: response.error,
+      otherCallId: action.payload.otherCallId
     }));
     return;
   }
 
-  yield (0, _effects.put)(_actions.callActions.consultativeTransferFinish(currentCall.id, { otherId: otherCall.id }));
+  yield (0, _effects.put)(_actions.callActions.pendingConsultativeTransfer(currentCall.id, { otherCallId: otherCall.id }));
 }
 
 /**
@@ -36272,14 +36731,20 @@ function* join(deps, action) {
   if (currentStateError) {
     log.debug(`Cannot join call ${action.payload.id}: ${currentStateError.message}`);
     // Report the operation failure.
-    yield (0, _effects.put)(_actions.callActions.joinFinish(action.payload.id, { error: currentStateError }));
+    yield (0, _effects.put)(_actions.callActions.joinFinish(action.payload.id, {
+      error: currentStateError,
+      usedCallIds: [action.payload.id, action.payload.otherCallId]
+    }));
     return;
   }
 
   if (otherStateError) {
     log.debug(`Cannot join call ${action.payload.otherCallId}: ${otherStateError.message}`);
     // Report the operation failure.
-    yield (0, _effects.put)(_actions.callActions.joinFinish(action.payload.id, { error: otherStateError }));
+    yield (0, _effects.put)(_actions.callActions.joinFinish(action.payload.id, {
+      error: otherStateError,
+      usedCallIds: [action.payload.id, action.payload.otherCallId]
+    }));
     return;
   }
 
@@ -36307,7 +36772,8 @@ function* join(deps, action) {
 
   if (response.error) {
     yield (0, _effects.put)(_actions.callActions.joinFinish(action.payload.id, {
-      error: response.error
+      error: response.error,
+      usedCallIds: [action.payload.id, action.payload.otherCallId]
     }));
     return;
   }
@@ -36332,7 +36798,7 @@ function* join(deps, action) {
   // Dispatch an action to do the following:
   //  - create a new "joined" call in state
   //  - update calls used in the join to have isPending property
-  yield (0, _effects.put)(_actions.callActions.joinFinish(action.payload.newCallId, {
+  yield (0, _effects.put)(_actions.callActions.pendingJoin(action.payload.newCallId, {
     // The ID that the backend uses to track this webRTC session.
     wrtcsSessionId: response.newWrtcsSessionId,
     // The ID that the webRTC stack uses to track this webRTC session.
@@ -36423,6 +36889,8 @@ var _state = __webpack_require__("../kandy/src/call/utils/state.js");
 
 var _operations = __webpack_require__("../kandy/src/call/utils/operations.js");
 
+var _constants2 = __webpack_require__("../kandy/src/call/interfaceNew/constants.js");
+
 var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _midcall = __webpack_require__("../kandy/src/callstack/webrtc/midcall.js");
@@ -36432,9 +36900,7 @@ var _negotiation = __webpack_require__("../kandy/src/callstack/webrtc/negotiatio
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
 // Other plugins.
-
-
-// Call plugin helpers.
+// Call plugin.
 const log = (0, _logs.getLogManager)().getLogger('CALL');
 
 /**
@@ -36473,7 +36939,9 @@ const log = (0, _logs.getLogManager)().getLogger('CALL');
 
 
 // Libraries.
-// Call plugin.
+
+
+// Call plugin helpers.
 function* handleUpdateRequest(deps, targetCall, params) {
   const { webRTC, requests } = deps;
   let { sdp } = params;
@@ -36734,6 +37202,7 @@ function* handleUpdateResponse(deps, targetCall, params) {
     return;
   }
 
+  const localOp = targetCall.localOp;
   // Update call state depending on what the current call state is.
   if (targetCall.state === _constants.CALL_STATES.RINGING || targetCall.state === _constants.CALL_STATES.INITIATED) {
     log.info(`Handling state change as remote answer operation.`);
@@ -36742,25 +37211,61 @@ function* handleUpdateResponse(deps, targetCall, params) {
     // It's possible that the call never entered Ringing state (from Initiated).
     //    Handle Initiated the same as Ringing.
     // Transition to Connected state.
-    yield (0, _effects.put)(_actions.callActions.callAccepted(targetCall.id, {
-      // TODO: Determine when we're actually "in call".
-      state: _constants.CALL_STATES.CONNECTED,
-      // TODO: Make sure this is the correct units
-      startTime: Date.now(),
-      // Remote participant's information.
-      remoteParticipant: {
-        displayNumber: params.remoteNumber,
-        displayName: params.remoteName
-      }
-    }));
+    if (localOp && localOp.status === _constants2.OP_STATUS.PENDING && localOp.operation === _constants2.OPERATIONS.MAKE) {
+      yield (0, _effects.put)(_actions.callActions.makeCallFinish(targetCall.id, {
+        state: _constants.CALL_STATES.CONNECTED,
+        // TODO: Make sure this is the correct units
+        startTime: Date.now(),
+        // Remote participant's information.
+        remoteParticipant: {
+          displayNumber: params.remoteNumber,
+          displayName: params.remoteName
+        }
+      }));
+    } else {
+      // TODO: Still need this for complex Direct Transfer & Join (remote side). Figure out a better way.
+      yield (0, _effects.put)(_actions.callActions.callAccepted(targetCall.id, {
+        // TODO: Determine when we're actually "in call".
+        state: _constants.CALL_STATES.CONNECTED,
+        // TODO: Make sure this is the correct units
+        startTime: Date.now(),
+        // Remote participant's information.
+        remoteParticipant: {
+          displayNumber: params.remoteNumber,
+          displayName: params.remoteName
+        }
+      }));
+    }
   } else if (targetCall.state === _constants.CALL_STATES.CONNECTED || targetCall.state === _constants.CALL_STATES.ON_HOLD) {
     // Scenario: The call was previously established, so this response is "call
     //    update" notification. The call is still established.
     // Transition to next state depending on what the operation was and the
     //    updated media.
+    if (localOp && localOp.status === _constants2.OP_STATUS.PENDING) {
+      let finishAction;
+      switch (localOp.operation) {
+        case _constants2.OPERATIONS.HOLD:
+          finishAction = _actions.callActions.holdCallFinish;
+          break;
+        case _constants2.OPERATIONS.UNHOLD:
+          finishAction = _actions.callActions.unholdCallFinish;
+          break;
+        case _constants2.OPERATIONS.ADD_MEDIA:
+          finishAction = _actions.callActions.addMediaFinish;
+          break;
+        case _constants2.OPERATIONS.REMOVE_MEDIA:
+          finishAction = _actions.callActions.removeMediaFinish;
+          break;
+      }
+      if (finishAction) {
+        yield (0, _effects.put)(finishAction(targetCall.id, localOp.operationData));
+        return;
+      }
+    }
 
+    // TODO: Leave this here for now to not break other operations. Need to update this as we convert the other operations.
     // Determine whether the SDP has active media.
-    const mediaFlowing = yield (0, _effects.call)(_sdp.hasMediaFlowing, sdp);
+    const mediaFlowing = yield (0, _effects.call)(_sdp.hasMediaFlowing, params.sdp);
 
     log.info(`Handling state change as local midcall operation ${mediaFlowing ? 'with' : 'without'} media flowing.`);
     yield (0, _effects.put)(_actions.callActions.updateCall(targetCall.id, {
@@ -36916,6 +37421,8 @@ var _selectors = __webpack_require__("../kandy/src/call/interfaceNew/selectors.j
 
 var _constants = __webpack_require__("../kandy/src/call/constants.js");
 
+var _constants2 = __webpack_require__("../kandy/src/call/interfaceNew/constants.js");
+
 var _negotiation = __webpack_require__("../kandy/src/callstack/call/negotiation.js");
 
 var negotiation = _interopRequireWildcard(_negotiation);
@@ -36927,6 +37434,10 @@ var _establish = __webpack_require__("../kandy/src/callstack/webrtc/establish.js
 var _midcall = __webpack_require__("../kandy/src/callstack/webrtc/midcall.js");
 
 var _selectors2 = __webpack_require__("../kandy/src/auth/interface/selectors.js");
+
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
+
+var _errors2 = _interopRequireDefault(_errors);
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -36940,7 +37451,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-// Callstack plugin.
+// Other plugins
 const log = (0, _logs.getLogManager)().getLogger('CALL');
 
 /**
@@ -36977,7 +37488,7 @@ const log = (0, _logs.getLogManager)().getLogger('CALL');
 // Libraries.
 
 
-// Other plugins
+// Callstack plugin.
 /**
  * "Notification sagas" handle received notifications.
  * Each saga handles a single websocket notification that may be received from
@@ -37241,8 +37752,17 @@ function* callStatusUpdateEnded(deps, params) {
     remoteParticipant: {
       displayNumber: params.remoteNumber,
       displayName: params.remoteName
+    },
+    transition: {
+      prevState: currentCall.state
     }
   };
+  if (statusCode) {
+    endParams.transition.statusCode = statusCode;
+  }
+  if (reasonText) {
+    endParams.transition.reasonText = reasonText;
+  }
 
   if (reasonText) {
     let customStatusCode = statusCode;
@@ -37256,26 +37776,42 @@ function* callStatusUpdateEnded(deps, params) {
       }
     }
     endParams.transition = { reasonText, statusCode: customStatusCode };
-  } else if (currentCall.isPending) {
-    let customReasonText;
-    let customStatusCode;
-    if (currentCall.isPending === _constants.COMPLEX_OPERATIONS.DIRECT_TRANSFER) {
-      customReasonText = _constants.COMPLEX_OPERATION_MESSAGES.DIRECT_TRANSFER_SUCCESS;
-      customStatusCode = _constants.STATUS_CODES.DIRECT_TRANSFER_SUCCESS;
-    } else if (currentCall.isPending === _constants.COMPLEX_OPERATIONS.CONSULTATIVE_TRANSFER) {
-      customReasonText = _constants.COMPLEX_OPERATION_MESSAGES.CONSULTATIVE_TRANSFER_SUCCESS;
-      customStatusCode = _constants.STATUS_CODES.CONSULTATIVE_TRANSFER_SUCCESS;
-    } else if (currentCall.isPending === _constants.COMPLEX_OPERATIONS.JOIN) {
-      customReasonText = _constants.COMPLEX_OPERATION_MESSAGES.JOIN_SUCCESS;
-      customStatusCode = _constants.STATUS_CODES.JOIN_SUCCESS;
-    }
-    endParams.transition = {
-      reasonText: customReasonText,
-      statusCode: customStatusCode
-    };
   }
 
   yield (0, _effects.call)(_midcall.closeCall, deps.webRTC, currentCall.webrtcSessionId);
+
+  const localOp = currentCall.localOp;
+  if (localOp && localOp.operation && localOp.status === _constants2.OP_STATUS.PENDING) {
+    let transition;
+    let finishAction;
+    switch (localOp.operation) {
+      case _constants2.OPERATIONS.DIRECT_TRANSFER:
+        finishAction = _actions.callActions.directTransferFinish;
+        transition = {
+          reasonText: _constants.COMPLEX_OPERATION_MESSAGES.DIRECT_TRANSFER_SUCCESS,
+          statusCode: _constants.STATUS_CODES.DIRECT_TRANSFER_SUCCESS
+        };
+        break;
+      case _constants2.OPERATIONS.CONSULTATIVE_TRANSFER:
+        finishAction = _actions.callActions.consultativeTransferFinish;
+        transition = {
+          reasonText: _constants.COMPLEX_OPERATION_MESSAGES.CONSULTATIVE_TRANSFER_SUCCESS,
+          statusCode: _constants.STATUS_CODES.CONSULTATIVE_TRANSFER_SUCCESS
+        };
+        break;
+      case _constants2.OPERATIONS.JOIN:
+        finishAction = _actions.callActions.joinFinish;
+        transition = {
+          reasonText: _constants.COMPLEX_OPERATION_MESSAGES.JOIN_SUCCESS,
+          statusCode: _constants.STATUS_CODES.JOIN_SUCCESS
+        };
+        break;
+    }
+    if (finishAction) {
+      yield (0, _effects.put)(finishAction(currentCall.id, { transition }));
+      return;
+    }
+  }
 
   // TODO: Don't expose these directly. Create our own convention so that transition data
   //       can be consistent across different operations.
@@ -37334,8 +37870,7 @@ function* callStatusUpdateRinging(deps, params) {
  *    containing proper statusCode and reasonText and removing the current pending operation.
  * Responsibilities:
  *    1. Generate transition object containing proper statusCode and reasonText depending on pending operation.
- *    2. Update call state's `isPending` to undefined (via redux action).
- * @method callStatusUpdateRinging
+ * @method callStatusUpdateFailed
  * @param {Object}   deps          Dependencies that the saga uses.
  * @param {Object}   deps.webRTC   The WebRTC stack.
  * @param {Object}   params        Parameters describing the incoming call.
@@ -37353,28 +37888,47 @@ function* callStatusUpdateFailed(deps, params) {
     return;
   }
 
-  const updateParams = {
-    isPending: undefined
-  };
-  if (currentCall.isPending) {
-    let customReasonText;
-    let customStatusCode;
-    if (currentCall.isPending === _constants.COMPLEX_OPERATIONS.DIRECT_TRANSFER) {
-      customReasonText = _constants.COMPLEX_OPERATION_MESSAGES.DIRECT_TRANSFER_FAILURE;
-      customStatusCode = _constants.STATUS_CODES.DIRECT_TRANSFER_FAILURE;
-    } else if (currentCall.isPending === _constants.COMPLEX_OPERATIONS.CONSULTATIVE_TRANSFER) {
-      customReasonText = _constants.COMPLEX_OPERATION_MESSAGES.CONSULTATIVE_TRANSFER_FAILURE;
-      customStatusCode = _constants.STATUS_CODES.CONSULTATIVE_TRANSFER_FAILURE;
-    } else if (currentCall.isPending === _constants.COMPLEX_OPERATIONS.JOIN) {
-      customReasonText = _constants.COMPLEX_OPERATION_MESSAGES.JOIN_FAILURE;
-      customStatusCode = _constants.STATUS_CODES.JOIN_FAILURE;
+  const localOp = currentCall.localOp;
+  if (localOp && localOp.operation && localOp.status === _constants2.OP_STATUS.PENDING) {
+    let transition;
+    let finishAction;
+    switch (localOp.operation) {
+      case _constants2.OPERATIONS.DIRECT_TRANSFER:
+        finishAction = _actions.callActions.directTransferFinish;
+        // TODO: May or may not need this when generic operation event is setup.
+        transition = {
+          reasonText: _constants.COMPLEX_OPERATION_MESSAGES.DIRECT_TRANSFER_FAILURE,
+          statusCode: _constants.STATUS_CODES.DIRECT_TRANSFER_FAILURE
+        };
+        break;
+      case _constants2.OPERATIONS.CONSULTATIVE_TRANSFER:
+        finishAction = _actions.callActions.consultativeTransferFinish;
+        transition = {
+          reasonText: _constants.COMPLEX_OPERATION_MESSAGES.CONSULTATIVE_TRANSFER_FAILURE,
+          statusCode: _constants.STATUS_CODES.CONSULTATIVE_TRANSFER_FAILURE
+        };
+        break;
+      case _constants2.OPERATIONS.JOIN:
+        finishAction = _actions.callActions.joinFinish;
+        transition = {
+          reasonText: _constants.COMPLEX_OPERATION_MESSAGES.JOIN_FAILURE,
+          statusCode: _constants.STATUS_CODES.JOIN_FAILURE
+        };
+        break;
     }
-    updateParams.transition = {
-      reasonText: customReasonText,
-      statusCode: customStatusCode
-    };
+    if (finishAction) {
+      yield (0, _effects.put)(finishAction(currentCall.id, {
+        error: new _errors2.default({
+          message: `Operation ${localOp.operation} failed.`,
+          code: _errors.callCodes.GENERIC_ERROR
+        }),
+        transition
+      }));
+      return;
+    }
   }
-  yield (0, _effects.put)(_actions.callActions.updateCall(currentCall.id, updateParams));
+
+  yield (0, _effects.put)(_actions.callActions.updateCall(currentCall.id));
 }
 
 /***/ }),
@@ -41735,7 +42289,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.6.0';
+  let version = '4.7.0';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -44881,7 +45435,12 @@ function* receiveMessage() {
       const queryParams = {
         type: cimType,
         id: messageId
-      };
+
+        // Remove the default Content-Type header of 'app/json', which would
+        //    cause CORS issues for this request.
+      };if ((0, _fp.has)('requestOptions.headers.Content-Type', config)) {
+        delete config.requestOptions.headers['Content-Type'];
+      }
 
       const response = yield (0, _effects2.default)({ url, queryParams }, config.requestOptions);
 
@@ -48237,6 +48796,10 @@ const responseTypes = (0, _freeze2.default)({
   text: 'text'
 });
 
+const contentTypes = (0, _freeze2.default)({
+  jsonType: 'application/json'
+});
+
 /*
  * HTTP request plugin.
  */
@@ -48300,6 +48863,7 @@ async function makeRequest(options, requestId) {
     };
   }
   let response;
+  let contentType;
   try {
     response = await fetch(url + (0, _utils.toQueryString)(queryParams), fetchOptions);
   } catch (err) {
@@ -48315,6 +48879,12 @@ async function makeRequest(options, requestId) {
     };
   }
   try {
+    contentType = response.headers.get('content-type');
+  } catch (err) {
+    log.debug(`Failed to get content-type:${err.message}.`);
+  }
+
+  try {
     let result = {
       ok: response.ok,
       code: response.status,
@@ -48324,9 +48894,26 @@ async function makeRequest(options, requestId) {
     let error = !response.ok;
 
     if (error) {
-      // If the response indicates an error, resolve the body as JSON and return a `REQUEST` error
       log.debug(`Response indicates that request ${requestId} failed`);
-      responseBody = await response.json();
+      /*
+       * Handle a special-case error where the response body is a HTML page...
+       * Throw away the body and so it is simply reported as 'Forbidden'.
+       * TODO: Handle responses based on their type rather than checking for
+       *    individual special cases...
+       */
+      if (response.status === 403 && contentType.includes('html')) {
+        return {
+          body: false,
+          error: 'REQUEST',
+          result
+        };
+      }
+
+      /*
+       * If the response indicates an error and has a body, resolve the body as JSON
+       * but no body return an empty object then return a `REQUEST` error
+       */
+      responseBody = contentTypes.jsonType === contentType ? await response.json() : {};
       return {
         body: responseBody,
         error: 'REQUEST',
@@ -48344,13 +48931,15 @@ async function makeRequest(options, requestId) {
         result
       };
     } else {
-      if (responseType === responseTypes.json) {
+      responseBody = {};
+      if (contentTypes.jsonType === contentType && responseType === responseTypes.json) {
         responseBody = await response.json();
       } else if (responseType === responseTypes.blob) {
         responseBody = await response.blob();
       } else if (responseType === responseTypes.text) {
         responseBody = await response.text();
       }
+
       return {
         body: responseBody,
         error: false,
@@ -50134,7 +50723,8 @@ function usersAPI({ dispatch, getState, primitives }) {
     },
 
     /**
-     * Fetches information about the current User.
+     * Fetches information about the current User from directory.
+     * Compared to {@link Users.fetch user.fetch} API, this API retrieves additional user related information.
      *
      * The SDK will emit a {@link Users.event:directory:change directory:change}
      *    event after the operation completes. The User's information will then
@@ -50147,6 +50737,24 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @static
      * @memberof Users
      * @method fetchSelfInfo
+     * @requires selfInfoAsUserProfile
+     */
+    /**
+     * Fetches information about the current User from directory.
+     * This API is simply a shortcut for the {@link Users.fetch user.fetch(getUserInfo().identity)} API.
+     *
+     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     *    event after the operation completes. The User's information will then
+     *    be available.
+     *
+     * Information about an available User can be retrieved using the
+     *    {@link Users.get user.get} API.
+     *
+     * @public
+     * @static
+     * @memberof Users
+     * @method fetchSelfInfo
+     * @requires selfInfoAsUserSearch
      */
     fetchSelfInfo() {
       log.debug(_logs.API_LOG_TAG + 'user.fetchSelfInfo');
@@ -50693,12 +51301,19 @@ exports.default = reducers;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _values = __webpack_require__("../../node_modules/babel-runtime/core-js/object/values.js");
+
+var _values2 = _interopRequireDefault(_values);
+
 exports.getContacts = getContacts;
 exports.getContact = getContact;
 exports.getUsers = getUsers;
 exports.getUser = getUser;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * Redux-saga selector functions.
@@ -50727,10 +51342,11 @@ function getContact(state, id) {
 /**
  * Gets the users from state.
  * @method getUsers
- * @return {Object}
+ * @return {Array<User>} An array of all the User objects.
  */
 function getUsers(state) {
-  return (0, _fp.cloneDeep)(state.users.users);
+  let allUsers = (0, _fp.cloneDeep)(state.users.users);
+  return (0, _values2.default)(allUsers);
 }
 
 /**
@@ -50826,7 +51442,7 @@ const log = (0, _logs.getLogManager)().getLogger('USERS');
 
 const { api, name, reducer } = _interface2.default;
 
-const capabilities = ['addContactAsFriend'];
+const capabilities = ['addContactAsFriend', 'selfInfoAsUserProfile'];
 
 function usersLink() {
   function* init() {
@@ -51170,6 +51786,8 @@ function* getDirectory(conn, params = {}) {
 
 /**
  * Fetch userProfileData from SPiDR with the provided connection info.
+ * Compared to {@link Users.fetch user.fetch} API, this API retrieves additional user related information.
+ *
  * @param  {Object}     connection Connection information for the platform in use.
  * @return {Object}            Fetch request's response, parsed.
  */
