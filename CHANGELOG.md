@@ -5,7 +5,7 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 4.7.0 - beta
+## 4.7.0 - 2019-08-30
 
 ### Fixed
 
@@ -13,6 +13,7 @@ Kandy.js change log.
 - Fixed implementation of public API 'getAll' (for 'users' plugin) to return an array of all users instead of an object of all users, so that it aligns with current API documentation. `KAA-1923`
 - Fixed an issue causing some BasicError objects to have a misleading message rather than a message about the operation that failed. `KAA-1947`
 - Fixed an issue where call audits weren't being sent.`KAA-1944`
+- Fixed a Messaging issue preventing users from receiving JSON messages. `KAA-1870`
 
 ## 4.6.0 - 2019-08-01
 
@@ -20,10 +21,6 @@ Kandy.js change log.
 
 - Added in-band DTMF tone support for calls that do not support out-of-band DTMF tones. `KAA-1505`
   - See the `call.sendDTMF` API for more information.
-
-### Fixed
-
-- Fixed a Messaging issue preventing users from receiving JSON messages. `KAA-1870`
 
 ## 4.5.0 - 2019-06-28
 
