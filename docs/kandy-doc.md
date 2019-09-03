@@ -135,25 +135,6 @@ client.connect({
 
 ### connect
 
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
 Connect with user credentials.
 
 **Parameters**
@@ -170,6 +151,25 @@ client.connect({
   username: 'alfred@example.com',
   password: '********'
   authname: '********'
+});
+```
+
+### connect
+
+Connect by providing an OAuth token.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][2]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -1446,102 +1446,9 @@ Will trigger the `contacts:change` event.
 
 -   `contactId` **[string][2]** The unique contact ID of the contact.
 
-## config
-
-The configuration object. This object defines what different configuration
-values you can use when instantiating the SDK.
-
-### config.logs
-
-Configuration options for the Logs feature.
-
-**Parameters**
-
--   `logs` **[Object][5]** Logs configs.
-    -   `logs.logLevel` **[string][2]** Log level to be set. See [levels][50]. (optional, default `'debug'`)
-    -   `logs.flatten` **[boolean][7]** Whether all logs should be output in a string-only format. (optional, default `false`)
-    -   `logs.logActions` **[Object][5]?** Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
-        -   `logs.logActions.actionOnly` **[boolean][7]** Only output information about the action itself. Omits the SDK context for when it occurred. (optional, default `true`)
-        -   `logs.logActions.collapsed` **[boolean][7]** Whether logs should be minimized when initially output. The full log is still output and can be inspected on the console. (optional, default `false`)
-        -   `logs.logActions.diff` **[boolean][7]** Include a diff of what SDK context was changed by the action. (optional, default `false`)
-        -   `logs.logActions.exposePayloads` **[boolean][7]** Allow action payloads to be exposed in the logs, potentially displaying sensitive information (optional, default `false`)
-    -   `logs.enableFcsLogs` **[boolean][7]** Enable the detailed call logger. (optional, default `true`)
-    -   `logs.enableGrouping` **[boolean][7]** Whether to group information about an action log together in the console. (optional, default `true`)
-
-### config.authentication
-
-Configuration options for the Authentication feature.
-
-**Parameters**
-
--   `authentication` **[Object][5]** Authentication configs.
-    -   `authentication.subscription` **[Object][5]** 
-        -   `authentication.subscription.server` **[string][2]** Hostname of the server to be used for subscription requests.
-        -   `authentication.subscription.protocol` **[string][2]** Protocol to be used for subscription requests. (optional, default `https`)
-        -   `authentication.subscription.port` **[Number][6]** Port to be used for subscription requests. (optional, default `443`)
-        -   `authentication.subscription.version` **[string][2]** Version of the REST API to be used. (optional, default `1`)
-        -   `authentication.subscription.expires` **[Number][6]** Time duration, in seconds, until a subscription should expire. (optional, default `3600`)
-        -   `authentication.subscription.service` **[Array][8]?** Services to subscribe to for notifications. Default value is ['call', 'IM', 'presence'].
-        -   `authentication.subscription.localization` **[string][2]**  (optional, default `English_US`)
-        -   `authentication.subscription.useTurn` **[Boolean][7]**  (optional, default `true`)
-        -   `authentication.subscription.notificationType` **[string][2]**  (optional, default `Websocket`)
-    -   `authentication.websocket` **[Object][5]** 
-        -   `authentication.websocket.server` **[string][2]** Hostname of the server to be used for websocket notifications.
-        -   `authentication.websocket.protocol` **[string][2]** Protocol to be used for websocket notifications. (optional, default `wss`)
-        -   `authentication.websocket.port` **[Number][6]** Port to be used for websocket notifications. (optional, default `443`)
-    -   `authentication.earlyRefreshMargin` **[Number][6]**  (optional, default `300`)
-
-### config.call
-
-Configuration options for the call feature.
-
-**Parameters**
-
--   `call` **[Object][5]** The call configuration object.
-    -   `call.sdpSemantics` **[string][2]** The sdpSemantics to use (`'unified-plan'` or `'plan-b'`). (optional, default `'unified-plan'`)
-    -   `call.iceServers` **[Array][8]&lt;[IceServer][51]>?** The list of ICE servers to be used for calls.
-    -   `call.serverTurnCredentials` **[boolean][7]** Whether server-provided TURN credentials should be used. (optional, default `true`)
-    -   `call.sdpHandlers` **[Array][8]&lt;[SdpHandlerFunction][52]>?** List of SDP handler functions to modify SDP. Advanced usage.
-    -   `call.removeH264Codecs` **[boolean][7]** Whether to remove "H264" codec lines from incoming and outgoing SDP messages. (optional, default `true`)
-
-### config.connectivity
-
-Configuration options for the Connectivity feature.
-
-**Parameters**
-
--   `connectivity` **[Object][5]** Connectivity configs.
-    -   `connectivity.method` **[Object][5]** Configuration for how connectivity checks should be made.
-        -   `connectivity.method.type` **[String][2]** The method of connectivity checking to use: `keepAlive` or `pingPong`. (optional, default `'keepAlive'`)
-        -   `connectivity.method.responsibleParty` **[String][2]** Configures who is responsible for initiating the connectivity check: `client` or `server`. (optional, default `'client'`)
-    -   `connectivity.pingInterval` **[Number][6]** Time in between websocket ping attempts (milliseconds). Only used for when the client is responsible for ping/connCheck. (optional, default `30000`)
-    -   `connectivity.reconnectLimit` **[Number][6]** Number of failed reconnect attempts before reporting an error. Can be set to 0 to not limit reconnection attempts. (optional, default `5`)
-    -   `connectivity.reconnectDelay` **[Number][6]** Base time between websocket reconnect attempts (milliseconds). (optional, default `5000`)
-    -   `connectivity.reconnectTimeMultiplier` **[Number][6]** Reconnect delay multiplier for subsequent attempts. The reconnect delay time will be multiplied by this factor after each failed reconnect attempt to increase the delay between attempts. (optional, default `1`)
-    -   `connectivity.reconnectTimeLimit` **[Number][6]** Maximum time delay between reconnect attempts (milliseconds). Used in conjunction with `reconnectTimeMultiplier` to prevent overly long delays between reconnection attempts. (optional, default `640000`)
-    -   `connectivity.autoReconnect` **[Boolean][7]** Flag to determine whether reconnection will be attempted automatically after connectivity disruptions. (optional, default `true`)
-    -   `connectivity.maxMissedPings` **[Number][6]** Maximum pings sent (without receiving a response) before reporting an error. (optional, default `3`)
-    -   `connectivity.checkConnectivity` **[Boolean][7]** Flag to determine whether to enable connectivity checking or not. (optional, default `false`)
-
-### config.notifications
-
-Configuration options for the notification feature.
-
-**Parameters**
-
--   `notifications` **[Object][5]** The notifications configuration object.
-    -   `notifications.idCacheLength` **[number][6]** Default amount of event ids to remember for de-duplication purposes. (optional, default `100`)
-    -   `notifications.pushRegistration` **[Object][5]?** Object describing the server to use for push services.
-        -   `notifications.pushRegistration.server` **[string][2]?** Hostname for the push registration server.
-        -   `notifications.pushRegistration.port` **[string][2]?** Port for the push registration server.
-        -   `notifications.pushRegistration.protocol` **[string][2]?** Protocol for the push registration server.
-        -   `notifications.pushRegistration.version` **[string][2]?** Version for the push registration server.
-    -   `notifications.realm` **[string][2]?** The realm used for push notifications
-    -   `notifications.bundleId` **[string][2]?** The bundle id used for push notifications
-
 ## sdpHandlers
 
-A set of [SdpHandlerFunction][53]s for manipulating SDP information.
+A set of [SdpHandlerFunction][50]s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
 environments and/or scenarios. They can be provided during SDK instantiation
 to be used for all calls.
@@ -1583,7 +1490,100 @@ const client = create({
 })
 ```
 
-Returns **[SdpHandlerFunction][52]** The resulting SDP handler that will remove the codec.
+Returns **[SdpHandlerFunction][51]** The resulting SDP handler that will remove the codec.
+
+## config
+
+The configuration object. This object defines what different configuration
+values you can use when instantiating the SDK.
+
+### config.logs
+
+Configuration options for the Logs feature.
+
+**Parameters**
+
+-   `logs` **[Object][5]** Logs configs.
+    -   `logs.logLevel` **[string][2]** Log level to be set. See [levels][52]. (optional, default `'debug'`)
+    -   `logs.flatten` **[boolean][7]** Whether all logs should be output in a string-only format. (optional, default `false`)
+    -   `logs.logActions` **[Object][5]?** Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
+        -   `logs.logActions.actionOnly` **[boolean][7]** Only output information about the action itself. Omits the SDK context for when it occurred. (optional, default `true`)
+        -   `logs.logActions.collapsed` **[boolean][7]** Whether logs should be minimized when initially output. The full log is still output and can be inspected on the console. (optional, default `false`)
+        -   `logs.logActions.diff` **[boolean][7]** Include a diff of what SDK context was changed by the action. (optional, default `false`)
+        -   `logs.logActions.exposePayloads` **[boolean][7]** Allow action payloads to be exposed in the logs, potentially displaying sensitive information (optional, default `false`)
+    -   `logs.enableFcsLogs` **[boolean][7]** Enable the detailed call logger. (optional, default `true`)
+    -   `logs.enableGrouping` **[boolean][7]** Whether to group information about an action log together in the console. (optional, default `true`)
+
+### config.authentication
+
+Configuration options for the Authentication feature.
+
+**Parameters**
+
+-   `authentication` **[Object][5]** Authentication configs.
+    -   `authentication.subscription` **[Object][5]** 
+        -   `authentication.subscription.server` **[string][2]** Hostname of the server to be used for subscription requests.
+        -   `authentication.subscription.protocol` **[string][2]** Protocol to be used for subscription requests. (optional, default `https`)
+        -   `authentication.subscription.port` **[Number][6]** Port to be used for subscription requests. (optional, default `443`)
+        -   `authentication.subscription.version` **[string][2]** Version of the REST API to be used. (optional, default `1`)
+        -   `authentication.subscription.expires` **[Number][6]** Time duration, in seconds, until a subscription should expire. (optional, default `3600`)
+        -   `authentication.subscription.service` **[Array][8]?** Services to subscribe to for notifications. Default value is ['call', 'IM', 'presence'].
+        -   `authentication.subscription.localization` **[string][2]**  (optional, default `English_US`)
+        -   `authentication.subscription.useTurn` **[Boolean][7]**  (optional, default `true`)
+        -   `authentication.subscription.notificationType` **[string][2]**  (optional, default `Websocket`)
+    -   `authentication.websocket` **[Object][5]** 
+        -   `authentication.websocket.server` **[string][2]** Hostname of the server to be used for websocket notifications.
+        -   `authentication.websocket.protocol` **[string][2]** Protocol to be used for websocket notifications. (optional, default `wss`)
+        -   `authentication.websocket.port` **[Number][6]** Port to be used for websocket notifications. (optional, default `443`)
+    -   `authentication.earlyRefreshMargin` **[Number][6]**  (optional, default `300`)
+
+### config.call
+
+Configuration options for the call feature.
+
+**Parameters**
+
+-   `call` **[Object][5]** The call configuration object.
+    -   `call.sdpSemantics` **[string][2]** The sdpSemantics to use (`'unified-plan'` or `'plan-b'`). (optional, default `'unified-plan'`)
+    -   `call.iceServers` **[Array][8]&lt;[IceServer][53]>?** The list of ICE servers to be used for calls.
+    -   `call.serverTurnCredentials` **[boolean][7]** Whether server-provided TURN credentials should be used. (optional, default `true`)
+    -   `call.sdpHandlers` **[Array][8]&lt;[SdpHandlerFunction][51]>?** List of SDP handler functions to modify SDP. Advanced usage.
+    -   `call.removeH264Codecs` **[boolean][7]** Whether to remove "H264" codec lines from incoming and outgoing SDP messages. (optional, default `true`)
+
+### config.connectivity
+
+Configuration options for the Connectivity feature.
+
+**Parameters**
+
+-   `connectivity` **[Object][5]** Connectivity configs.
+    -   `connectivity.method` **[Object][5]** Configuration for how connectivity checks should be made.
+        -   `connectivity.method.type` **[String][2]** The method of connectivity checking to use: `keepAlive` or `pingPong`. (optional, default `'keepAlive'`)
+        -   `connectivity.method.responsibleParty` **[String][2]** Configures who is responsible for initiating the connectivity check: `client` or `server`. (optional, default `'client'`)
+    -   `connectivity.pingInterval` **[Number][6]** Time in between websocket ping attempts (milliseconds). Only used for when the client is responsible for ping/connCheck. (optional, default `30000`)
+    -   `connectivity.reconnectLimit` **[Number][6]** Number of failed reconnect attempts before reporting an error. Can be set to 0 to not limit reconnection attempts. (optional, default `5`)
+    -   `connectivity.reconnectDelay` **[Number][6]** Base time between websocket reconnect attempts (milliseconds). (optional, default `5000`)
+    -   `connectivity.reconnectTimeMultiplier` **[Number][6]** Reconnect delay multiplier for subsequent attempts. The reconnect delay time will be multiplied by this factor after each failed reconnect attempt to increase the delay between attempts. (optional, default `1`)
+    -   `connectivity.reconnectTimeLimit` **[Number][6]** Maximum time delay between reconnect attempts (milliseconds). Used in conjunction with `reconnectTimeMultiplier` to prevent overly long delays between reconnection attempts. (optional, default `640000`)
+    -   `connectivity.autoReconnect` **[Boolean][7]** Flag to determine whether reconnection will be attempted automatically after connectivity disruptions. (optional, default `true`)
+    -   `connectivity.maxMissedPings` **[Number][6]** Maximum pings sent (without receiving a response) before reporting an error. (optional, default `3`)
+    -   `connectivity.checkConnectivity` **[Boolean][7]** Flag to determine whether to enable connectivity checking or not. (optional, default `false`)
+
+### config.notifications
+
+Configuration options for the notification feature.
+
+**Parameters**
+
+-   `notifications` **[Object][5]** The notifications configuration object.
+    -   `notifications.idCacheLength` **[number][6]** Default amount of event ids to remember for de-duplication purposes. (optional, default `100`)
+    -   `notifications.pushRegistration` **[Object][5]?** Object describing the server to use for push services.
+        -   `notifications.pushRegistration.server` **[string][2]?** Hostname for the push registration server.
+        -   `notifications.pushRegistration.port` **[string][2]?** Port for the push registration server.
+        -   `notifications.pushRegistration.protocol` **[string][2]?** Protocol for the push registration server.
+        -   `notifications.pushRegistration.version` **[string][2]?** Version for the push registration server.
+    -   `notifications.realm` **[string][2]?** The realm used for push notifications
+    -   `notifications.bundleId` **[string][2]?** The bundle id used for push notifications
 
 ## Logger
 
@@ -1627,6 +1627,57 @@ Update values in the global Config section of the store.
 
 -   `newConfigValues` **[Object][5]** Key-value pairs that will be placed into the store. See [config][55] for details on what key-value pairs are available for use.
 
+## SdpHandlerFunction
+
+The form of an SDP handler function and the expected arguments that it receives.
+
+Type: [Function][3]
+
+**Parameters**
+
+-   `newSdp` **[Object][5]** The SDP so far (could have been modified by previous handlers).
+-   `info` **[SdpHandlerInfo][56]** Additional information that might be useful when making SDP modifications.
+-   `originalSdp` **[Object][5]** The SDP in its initial state.
+
+Returns **[Object][5]** The resulting modified SDP based on the changes made by this function.
+
+## DeviceInfo
+
+Contains information about a device.
+
+**Properties**
+
+-   `deviceId` **[string][2]** The ID of the device.
+-   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][2]** The name of the device.
+
+## DevicesObject
+
+A collection of media devices and their information.
+
+**Properties**
+
+-   `camera` **[Array][8]&lt;[DeviceInfo][57]>** A list of camera device information.
+-   `microphone` **[Array][8]&lt;[DeviceInfo][57]>** A list of microphone device information.
+-   `speaker` **[Array][8]&lt;[DeviceInfo][57]>** A list of speaker device information.
+
+## TrackObject
+
+A Track is a stream of audio or video media from a single source.
+Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
+
+**Properties**
+
+-   `containers` **[Array][8]&lt;[string][2]>** The list of CSS selectors that were used to render this Track.
+-   `disabled` **[boolean][7]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
+-   `id` **[string][2]** The ID of the Track.
+-   `kind` **[string][2]** The kind of Track this is (audio, video).
+-   `label` **[string][2]** The label of the device this Track uses.
+-   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
+-   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
+-   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
+
 ## MediaObject
 
 The state representation of a Media object.
@@ -1657,6 +1708,31 @@ Type: [Object][5]
 
 -   `urls` **([Array][8]&lt;[string][2]> | [string][2])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
 -   `credential` **[string][2]?** The credential needed by the ICE server.
+
+## BandwidthControls
+
+The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
+BandwidthControls only affect received remote tracks of the specified type.
+
+Type: [Object][5]
+
+**Properties**
+
+-   `audio` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
+-   `video` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote video.
+
+**Examples**
+
+```javascript
+// Specify received remote video bandwidth limits when making a call.
+client.call.make(destination, mediaConstraints,
+ {
+   bandwidth: {
+     video: 5
+   }
+ }
+)
+```
 
 ## MediaConstraint
 
@@ -1692,68 +1768,6 @@ client.call.make(destination, {
 })
 ```
 
-## BandwidthControls
-
-The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
-BandwidthControls only affect received remote tracks of the specified type.
-
-Type: [Object][5]
-
-**Properties**
-
--   `audio` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
--   `video` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote video.
-
-**Examples**
-
-```javascript
-// Specify received remote video bandwidth limits when making a call.
-client.call.make(destination, mediaConstraints,
- {
-   bandwidth: {
-     video: 5
-   }
- }
-)
-```
-
-## DevicesObject
-
-A collection of media devices and their information.
-
-**Properties**
-
--   `camera` **[Array][8]&lt;[DeviceInfo][56]>** A list of camera device information.
--   `microphone` **[Array][8]&lt;[DeviceInfo][56]>** A list of microphone device information.
--   `speaker` **[Array][8]&lt;[DeviceInfo][56]>** A list of speaker device information.
-
-## TrackObject
-
-A Track is a stream of audio or video media from a single source.
-Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
-
-**Properties**
-
--   `containers` **[Array][8]&lt;[string][2]>** The list of CSS selectors that were used to render this Track.
--   `disabled` **[boolean][7]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
--   `id` **[string][2]** The ID of the Track.
--   `kind` **[string][2]** The kind of Track this is (audio, video).
--   `label` **[string][2]** The label of the device this Track uses.
--   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
--   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
--   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
-
-## DeviceInfo
-
-Contains information about a device.
-
-**Properties**
-
--   `deviceId` **[string][2]** The ID of the device.
--   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][2]** The name of the device.
-
 ## CallObject
 
 Information about a Call.
@@ -1765,7 +1779,7 @@ Can be retrieved using the [call.getAll][24] or
 
 -   `id` **[string][2]** The ID of the call.
 -   `direction` **[string][2]** The direction in which the call was created. Can be 'outgoing' or 'incoming'.
--   `state` **[string][2]** The current state of the call. See [call.states][57] for possible states.
+-   `state` **[string][2]** The current state of the call. See [call.states][58] for possible states.
 -   `localHold` **[boolean][7]** Indicates whether this call is currently being held locally.
 -   `remoteHold` **[boolean][7]** Indicates whether this call is currently being held remotely.
 -   `localTracks` **[Array][8]&lt;[string][2]>** A list of Track IDs that the call is sending to the remote participant.
@@ -1776,20 +1790,6 @@ Can be retrieved using the [call.getAll][24] or
 -   `bandwidth` **[BandwidthControls][15]** The bandwidth limitations set for the call.
 -   `startTime` **[number][6]** The start time of the call in milliseconds since the epoch.
 -   `endTime` **[number][6]?** The end time of the call in milliseconds since the epoch.
-
-## SdpHandlerFunction
-
-The form of an SDP handler function and the expected arguments that it receives.
-
-Type: [Function][3]
-
-**Parameters**
-
--   `newSdp` **[Object][5]** The SDP so far (could have been modified by previous handlers).
--   `info` **[SdpHandlerInfo][58]** Additional information that might be useful when making SDP modifications.
--   `originalSdp` **[Object][5]** The SDP in its initial state.
-
-Returns **[Object][5]** The resulting modified SDP based on the changes made by this function.
 
 ## getBrowserDetails
 
@@ -1949,20 +1949,20 @@ The User data object.
 
 [49]: Users.getAll
 
-[50]: #loggerlevels
+[50]: #sdphandlerfunction
 
-[51]: #iceserver
+[51]: #sdphandlerfunction
 
-[52]: #sdphandlerfunction
+[52]: #loggerlevels
 
-[53]: #sdphandlerfunction
+[53]: #iceserver
 
 [54]: #configconfiglogs
 
 [55]: #config
 
-[56]: #deviceinfo
+[56]: #sdphandlerinfo
 
-[57]: #callsstates
+[57]: #deviceinfo
 
-[58]: #sdphandlerinfo
+[58]: #callsstates
