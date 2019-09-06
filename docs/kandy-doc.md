@@ -91,6 +91,27 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
+Connect with user credentials.
+
+**Parameters**
+
+-   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.username` **[string][2]** The username including the application's domain.
+    -   `credentials.password` **[string][2]** The user's password.
+    -   `credentials.authname` **[string][2]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
+### connect
+
 Connect by providing an OAuth token.
 
 **Parameters**
@@ -110,22 +131,22 @@ client.connect({
 
 ### connect
 
-Connect with user credentials.
+Connect by providing a refresh token.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.username` **[string][2]** The username including the application's domain.
-    -   `credentials.password` **[string][2]** The user's password.
-    -   `credentials.authname` **[string][2]?** The user's authorization name.
+    -   `credentials.username` **[string][2]** The username without the application's domain.
+    -   `credentials.refreshToken` **[string][2]** A refresh token for the same user.
+    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
 
 **Examples**
 
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  expires: 3600
 });
 ```
 
@@ -152,30 +173,21 @@ client.connect({
 });
 ```
 
-### connect
+### disconnect
 
-Connect by providing a refresh token.
+Disconnects from the backend. This will close the websocket and you will stop receiving events.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
 
 **Parameters**
 
 -   `credentials` **[Object][5]** The credentials object.
+    -   `credentials.accessToken` **[string][2]** The new access token.
     -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][2]** A refresh token for the same user.
-    -   `credentials.expires` **[number][6]?** The time in seconds until the access token will expire.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-  expires: 3600
-});
-```
-
-### disconnect
-
-Disconnects from the backend. This will close the websocket and you will stop receiving events.
+    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][5]** The credentials object.
 
 ### updateToken
 
@@ -195,18 +207,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][5]** The credentials object.
-    -   `credentials.accessToken` **[string][2]** The new access token.
-    -   `credentials.username` **[string][2]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][2]** An access token for the user with the provided user Id.
--   `credentials` **[Object][5]** The credentials object.
 
 ### getUserInfo
 
@@ -1628,28 +1628,21 @@ Update values in the global Config section of the store.
 
 -   `newConfigValues` **[Object][5]** Key-value pairs that will be placed into the store. See [config][55] for details on what key-value pairs are available for use.
 
-## CallObject
+## TrackObject
 
-Information about a Call.
-
-Can be retrieved using the [call.getAll][24] or
-   [call.getById][17] APIs.
+A Track is a stream of audio or video media from a single source.
+Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
 
 **Properties**
 
--   `id` **[string][2]** The ID of the call.
--   `direction` **[string][2]** The direction in which the call was created. Can be 'outgoing' or 'incoming'.
--   `state` **[string][2]** The current state of the call. See [call.states][56] for possible states.
--   `localHold` **[boolean][7]** Indicates whether this call is currently being held locally.
--   `remoteHold` **[boolean][7]** Indicates whether this call is currently being held remotely.
--   `localTracks` **[Array][8]&lt;[string][2]>** A list of Track IDs that the call is sending to the remote participant.
--   `remoteTracks` **[Array][8]&lt;[string][2]>** A list of Track IDs that the call is receiving from the remote participant.
--   `remoteParticipant` **[Object][5]** Information about the other call participant.
-    -   `remoteParticipant.displayNumber` **[string][2]?** The User ID of the remote participant in the form "username@domain".
-    -   `remoteParticipant.displayName` **[string][2]?** The display name of the remote participant.
--   `bandwidth` **[BandwidthControls][15]** The bandwidth limitations set for the call.
--   `startTime` **[number][6]** The start time of the call in milliseconds since the epoch.
--   `endTime` **[number][6]?** The end time of the call in milliseconds since the epoch.
+-   `containers` **[Array][8]&lt;[string][2]>** The list of CSS selectors that were used to render this Track.
+-   `disabled` **[boolean][7]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
+-   `id` **[string][2]** The ID of the Track.
+-   `kind` **[string][2]** The kind of Track this is (audio, video).
+-   `label` **[string][2]** The label of the device this Track uses.
+-   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
+-   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
+-   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
 
 ## MediaObject
 
@@ -1664,6 +1657,17 @@ Type: [Object][5]
 -   `local` **[boolean][7]** Indicator on whether this media is local or remote.
 -   `tracks` **[Array][8]&lt;[TrackObject][29]>** A list of Track objects that are contained in this Media object.
 
+## DeviceInfo
+
+Contains information about a device.
+
+**Properties**
+
+-   `deviceId` **[string][2]** The ID of the device.
+-   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][2]** The name of the device.
+
 ## SdpHandlerFunction
 
 The form of an SDP handler function and the expected arguments that it receives.
@@ -1673,7 +1677,7 @@ Type: [Function][3]
 **Parameters**
 
 -   `newSdp` **[Object][5]** The SDP so far (could have been modified by previous handlers).
--   `info` **[SdpHandlerInfo][57]** Additional information that might be useful when making SDP modifications.
+-   `info` **[SdpHandlerInfo][56]** Additional information that might be useful when making SDP modifications.
 -   `originalSdp` **[Object][5]** The SDP in its initial state.
 
 Returns **[Object][5]** The resulting modified SDP based on the changes made by this function.
@@ -1687,6 +1691,29 @@ Type: [Object][5]
 -   `type` **RTCSdpType** The session description's type.
 -   `endpoint` **[string][2]** Which end of the connection created the SDP.
 
+## CallObject
+
+Information about a Call.
+
+Can be retrieved using the [call.getAll][24] or
+   [call.getById][17] APIs.
+
+**Properties**
+
+-   `id` **[string][2]** The ID of the call.
+-   `direction` **[string][2]** The direction in which the call was created. Can be 'outgoing' or 'incoming'.
+-   `state` **[string][2]** The current state of the call. See [call.states][57] for possible states.
+-   `localHold` **[boolean][7]** Indicates whether this call is currently being held locally.
+-   `remoteHold` **[boolean][7]** Indicates whether this call is currently being held remotely.
+-   `localTracks` **[Array][8]&lt;[string][2]>** A list of Track IDs that the call is sending to the remote participant.
+-   `remoteTracks` **[Array][8]&lt;[string][2]>** A list of Track IDs that the call is receiving from the remote participant.
+-   `remoteParticipant` **[Object][5]** Information about the other call participant.
+    -   `remoteParticipant.displayNumber` **[string][2]?** The User ID of the remote participant in the form "username@domain".
+    -   `remoteParticipant.displayName` **[string][2]?** The display name of the remote participant.
+-   `bandwidth` **[BandwidthControls][15]** The bandwidth limitations set for the call.
+-   `startTime` **[number][6]** The start time of the call in milliseconds since the epoch.
+-   `endTime` **[number][6]?** The end time of the call in milliseconds since the epoch.
+
 ## IceServer
 
 Type: [Object][5]
@@ -1695,31 +1722,6 @@ Type: [Object][5]
 
 -   `urls` **([Array][8]&lt;[string][2]> | [string][2])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
 -   `credential` **[string][2]?** The credential needed by the ICE server.
-
-## BandwidthControls
-
-The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
-BandwidthControls only affect received remote tracks of the specified type.
-
-Type: [Object][5]
-
-**Properties**
-
--   `audio` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
--   `video` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote video.
-
-**Examples**
-
-```javascript
-// Specify received remote video bandwidth limits when making a call.
-client.call.make(destination, mediaConstraints,
- {
-   bandwidth: {
-     video: 5
-   }
- }
-)
-```
 
 ## MediaConstraint
 
@@ -1755,32 +1757,30 @@ client.call.make(destination, {
 })
 ```
 
-## TrackObject
+## BandwidthControls
 
-A Track is a stream of audio or video media from a single source.
-Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
+The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
+BandwidthControls only affect received remote tracks of the specified type.
 
-**Properties**
-
--   `containers` **[Array][8]&lt;[string][2]>** The list of CSS selectors that were used to render this Track.
--   `disabled` **[boolean][7]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
--   `id` **[string][2]** The ID of the Track.
--   `kind` **[string][2]** The kind of Track this is (audio, video).
--   `label` **[string][2]** The label of the device this Track uses.
--   `muted` **[boolean][7]** Indicator on whether this Track is muted or not.
--   `state` **[string][2]** The state of this Track. Can be 'live' or 'ended'.
--   `streamId` **[string][2]** The ID of the Media Stream that includes this Track.
-
-## DeviceInfo
-
-Contains information about a device.
+Type: [Object][5]
 
 **Properties**
 
--   `deviceId` **[string][2]** The ID of the device.
--   `groupId` **[string][2]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][2]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][2]** The name of the device.
+-   `audio` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
+-   `video` **[number][6]?** The desired bandwidth bitrate in kilobits per second for received remote video.
+
+**Examples**
+
+```javascript
+// Specify received remote video bandwidth limits when making a call.
+client.call.make(destination, mediaConstraints,
+ {
+   bandwidth: {
+     video: 5
+   }
+ }
+)
+```
 
 ## DevicesObject
 
@@ -1962,8 +1962,8 @@ The User data object.
 
 [55]: #config
 
-[56]: #callsstates
+[56]: #sdphandlerinfo
 
-[57]: #sdphandlerinfo
+[57]: #callsstates
 
 [58]: #deviceinfo
