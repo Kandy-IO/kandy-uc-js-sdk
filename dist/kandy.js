@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.8.0-beta.140
+ * Version: 4.8.0-beta.141
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -30515,7 +30515,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Call functions are all part of the 'call' namespace.
  *
  * @public
- * @module Calls
+ * @namespace Calls
  */
 
 /**
@@ -30527,6 +30527,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @public
  * @static
  * @module CallObject
+ * @typedef {Object} CallObject
+ * @memberof Calls
  * @property {string} id The ID of the call.
  * @property {string} direction The direction in which the call was created. Can be 'outgoing' or 'incoming'.
  * @property {string} state The current state of the call. See {@link Calls.states call.states} for possible states.
@@ -30577,6 +30579,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @public
  * @module MediaConstraint
  * @typedef {Object} MediaConstraint
+ * @memberof Calls
  * @property {string} [exact] The required value for the constraint. Other values will not be accepted.
  * @property {string} [ideal] The ideal value for the constraint. Other values will be considered if necessary.
  * @example
@@ -30599,6 +30602,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @public
  * @module BandwidthControls
  * @typedef {Object} BandwidthControls
+ * @memberof Calls
  * @property {number} [audio] The desired bandwidth bitrate in kilobits per second for received remote audio.
  * @property {number} [video] The desired bandwidth bitrate in kilobits per second for received remote video.
  * @example
@@ -30616,6 +30620,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @public
  * @module IceServer
  * @typedef {Object} IceServer
+ * @memberof Calls
  * @property {Array<string>|string} urls Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
  * @property {string} [credential] The credential needed by the ICE server.
  */
@@ -30624,6 +30629,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @public
  * @module SdpHandlerInfo
  * @typedef {Object} SdpHandlerInfo
+ * @memberof Calls
  * @property {RTCSdpType} type The session description's type.
  * @property {string} endpoint Which end of the connection created the SDP.
  */
@@ -30633,6 +30639,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @public
  * @module SdpHandlerFunction
  * @typedef {Function} SdpHandlerFunction
+ * @memberof Calls
  * @param {Object} newSdp The SDP so far (could have been modified by previous handlers).
  * @param {SdpHandlerInfo} info Additional information that might be useful when making SDP modifications.
  * @param {Object} originalSdp The SDP in its initial state.
@@ -30646,6 +30653,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @public
  * @module MediaObject
  * @typedef {Object} MediaObject
+ * @memberof Calls
  * @property {string} id The ID of the Media object.
  * @property {boolean} local Indicator on whether this media is local or remote.
  * @property {Array<TrackObject>} tracks A list of Track objects that are contained in this Media object.
@@ -30657,6 +30665,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @public
  * @module TrackObject
+ * @typedef {Object} TrackObject
+ * @memberof Calls
  * @property {Array<string>} containers The list of CSS selectors that were used to render this Track.
  * @property {boolean} disabled Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
  * @property {string} id The ID of the Track.
@@ -30672,6 +30682,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @public
  * @module DevicesObject
+ * @typedef {Object} DevicesObject
+ * @memberof Calls
  * @property {Array<DeviceInfo>} camera A list of camera device information.
  * @property {Array<DeviceInfo>} microphone A list of microphone device information.
  * @property {Array<DeviceInfo>} speaker A list of speaker device information.
@@ -30682,6 +30694,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @public
  * @module DeviceInfo
+ * @typedef {Object} DeviceInfo
+ * @memberof Calls
  * @property {string} deviceId The ID of the device.
  * @property {string} groupId The group ID of the device. Devices that share a `groupId` belong to the same physical device.
  * @property {string} kind The type of the device (audioinput, audiooutput, videoinput).
@@ -40778,10 +40792,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const log = (0, _logs.getLogManager)().getLogger('CONFIG'); /**
                                                              * An interface for getting and updating the configuration Object.
                                                              *
-                                                             * Config functions are available directly on the SDK Object
+                                                             * Configuration functions are available directly on the SDK Object
                                                              *
                                                              * @public
-                                                             * @module Config
+                                                             * @module Configuration
                                                              * @requires config
                                                              */
 function api(context) {
@@ -40790,7 +40804,7 @@ function api(context) {
      * Gets the current configuration Object
      *
      * @public
-     * @memberof Config
+     * @memberof Configuration
      * @requires config
      * @method getConfig
      * @returns {Object} A configuration Object.
@@ -40805,7 +40819,7 @@ function api(context) {
      *
      * @public
      * @static
-     * @memberof Config
+     * @memberof Configuration
      * @requires config
      * @method updateConfig
      * @param {Object} newConfigValues Key-value pairs that will be placed into the store. See {@link config} for details on what key-value pairs are available for use.
@@ -41170,7 +41184,7 @@ const log = (0, _logs.getLogManager)().getLogger('CONNECTIVITY');
  * Connectivity functions are all part of the 'connection' namespace.
  *
  * @public
- * @module Connectivity
+ * @namespace Connectivity
  */
 
 function api({ dispatch, getState }) {
@@ -43183,7 +43197,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.8.0-beta.140';
+  let version = '4.8.0-beta.141';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -43434,7 +43448,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
 /**
  * The configuration object. This object defines what different configuration
- * values you can use when instantiating the SDK.
+ * values you can use when instantiating the SDK using the {@link #create create} function.
  * @public
  * @module config
  */
@@ -43448,7 +43462,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
  * to be used for all calls.
  *
  * @public
- * @module sdpHandlers
+ * @namespace sdpHandlers
  * @example
  * import { create, sdpHandlers } from 'kandy';
  * const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
@@ -44776,7 +44790,7 @@ const log = (0, _logs.getLogManager)().getLogger('MESSAGING'); /**
                                                                 * Messaging functions are all part of the 'conversation' namespace. Ex: client.conversation.get('id').
                                                                 *
                                                                 * @public
-                                                                * @module Messaging
+                                                                * @namespace Messaging
                                                                 */
 
 function api(context) {
@@ -45229,10 +45243,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * createMessage() function.
  * @public
  * @module Conversation
+ * @typedef {Object} Conversation
+ * @memberof Messaging
  * @requires richMessagingWithoutLocation
  * @property {string} destination The Id of the remote user with which the current user is having a conversation.
  * @property {number} lastReceived The timestamp (milliseconds since epoch) of when a message was last received in this conversation.
- * @type {Object}
  */
 // `features` and `lastPull` are not documented because they're intended to be internal
 // `type` is not documented because as of now there are no types other than 'im'
@@ -45243,9 +45258,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * createMessage() function.
  * @public
  * @module Conversation
+ * @typedef {Object} Conversation
+ * @memberof Messaging
  * @requires simpleMessagingOnly
  * @property {string} destination The id of the remote user with which the current user is having a conversation.
- * @type {Object}
  */
 
 /**
@@ -45255,13 +45271,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * function.
  * @public
  * @module Message
- * @type {Object}
+ * @typedef {Object} Message
+ * @memberof Messaging
  */
 
 const log = (0, _logs.getLogManager)().getLogger('MESSAGING');
 
 /**
  * Base conversation stamp
+ *
  * @param {Array} destination The Destination for messages being sent through
  * this conversation in this instance of the SDK. This should be an Array with any number of user IDs
  * @param {string} type='im' The type of the message.
@@ -45310,7 +45328,8 @@ const conversationBase = {
      * Create and return a message object. You must specify the part. If this is a simple text message, provide a `text` part as demonstrated in the example.
      *
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @requires richMessaging
      * @constructs Message
      * @param {Object} part The part to add to the message.
@@ -45330,7 +45349,8 @@ const conversationBase = {
      * Create and return a message object. You must specify the part. If this is a simple text message, provide a `text` part as demonstrated in the example.
      *
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @requires richMessagingWithoutLocation
      * @constructs Message
      * @param {Object} part The part to add to the message.
@@ -45347,7 +45367,8 @@ const conversationBase = {
      * Create and return a message object. You must provide a `text` part as demonstrated in the example.
      *
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @requires simpleMessagingOnly
      * @param {Object} part The part to add to the message.
      * @param {string} part.type The type of part. Must be "text".
@@ -45375,7 +45396,8 @@ const conversationBase = {
     /**
      * Clears all messages in this conversation from local state.
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @method clearMessages
      */
     clearMessages() {
@@ -45386,7 +45408,8 @@ const conversationBase = {
      * Get the messages associated with this conversation.
      *
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @returns {Object[]} messages An array containing the conversation's messages.
      * @returns {Function} messages.markRead Marks the message as read.
      * @returns {Function} messages.forward Forward the message to another user.
@@ -45419,8 +45442,9 @@ const conversationBase = {
     /**
      * Get a specific message from this conversation.
      * @public
+     * @static
      * @method getMessage
-     * @memberof Conversation
+     * @memberof Messaging.Conversation
      * @param {string} messageId ID of the message to retrieve.
      * @return {Object} A message object.
      */
@@ -45451,7 +45475,8 @@ const conversationBase = {
     /**
      * Delete messages from this conversation. Provide an array of message IDs representing the messages for which the DELETE_MESSAGE action will be dispatched. If no message IDs are provided, all of the messages will be deleted.
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @requires richMessaging
      * @method deleteMessages
      * @param {Array} messageIds An array of message IDs
@@ -45470,7 +45495,8 @@ const conversationBase = {
      * Delete this conversation on the server
      *
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @requires richMessaging
      * @method delete
      */
@@ -45482,7 +45508,8 @@ const conversationBase = {
      * Subscribe to this conversations messages array.
      *
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @param {Function} subscriber A subscriber function to be triggered when the messages array of this conversation is updated.
      * @param {string} subscriber.conversationId The conversation participant.
      * @param {string} subscriber.messageId The ID of the message that caused the event.
@@ -45527,7 +45554,8 @@ const conversationBase = {
      * Messages can then be retrieved using getMessages.
      *
      * @public
-     * @memberof Conversation
+     * @static
+     * @memberof Messaging.Conversation
      * @method fetchMessages
      * @param {number} [amount=50] An amount of messages to fetch.
      */
@@ -45562,8 +45590,9 @@ const conversationBase = {
      * Sends the message.
      *
      * @public
+     * @static
      * @method send
-     * @memberof Message
+     * @memberof Messaging.Message
      */
     send() {
       log.debug('Send message', this);
@@ -45590,7 +45619,8 @@ const conversationBase = {
      * Add an additional part to a message.
      *
      * @public
-     * @memberof Message
+     * @static
+     * @memberof Messaging.Message
      * @requires richMessaging
      * @memberof withParts
      * @param {Object} part The part to add to the message.
@@ -45606,7 +45636,8 @@ const conversationBase = {
      * Add an additional part to a message.
      *
      * @public
-     * @memberof Message
+     * @static
+     * @memberof Messaging.Message
      * @requires richMessagingWithoutLocation
      * @param {Object} part The part to add to the message.
      * @param {string} part.type The type of part. Can be "text", "json", "file", or "location".
@@ -51581,7 +51612,7 @@ function usersAPI({ dispatch, getState, primitives }) {
    *
    * The functions in this module are namespaced under 'user'.
    * @public
-   * @module Users
+   * @namespace Users
    */
 
   /**
@@ -51589,6 +51620,8 @@ function usersAPI({ dispatch, getState, primitives }) {
    *
    * @public
    * @module User
+   * @typedef {Object} User
+   * @memberof Users
    * @property {string} userId The User ID of the user.
    * @property {string} emailAddress The email address of the user.
    * @property {string} firstName The first name of the user.
