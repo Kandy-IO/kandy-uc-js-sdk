@@ -161,13 +161,14 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
-Connect by providing a refresh token.
+Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
 **Parameters**
 
 -   `credentials` **[Object][3]** The credentials object.
     -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][4]** A refresh token for the same user.
+    -   `credentials.accessToken` **[string][4]** An access token for the user with the provided user Id.
+    -   `credentials.refreshToken` **[string][4]?** A refresh token for the same user.
     -   `credentials.expires` **[number][7]?** The time in seconds until the access token will expire.
 
 **Examples**
@@ -175,27 +176,9 @@ Connect by providing a refresh token.
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
   expires: 3600
-});
-```
-
-### connect
-
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][4]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -222,14 +205,32 @@ client.connect({
 
 ### connect
 
-Connect by providing an access token. You can optionally provide a refresh token and the SDK will automatically get new access tokens.
+Connect by providing an OAuth token.
 
 **Parameters**
 
 -   `credentials` **[Object][3]** The credentials object.
     -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][4]** An access token for the user with the provided user Id.
-    -   `credentials.refreshToken` **[string][4]?** A refresh token for the same user.
+    -   `credentials.oauthToken` **[string][4]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+});
+```
+
+### connect
+
+Connect by providing a refresh token.
+
+**Parameters**
+
+-   `credentials` **[Object][3]** The credentials object.
+    -   `credentials.username` **[string][4]** The username without the application's domain.
+    -   `credentials.refreshToken` **[string][4]** A refresh token for the same user.
     -   `credentials.expires` **[number][7]?** The time in seconds until the access token will expire.
 
 **Examples**
@@ -237,8 +238,7 @@ Connect by providing an access token. You can optionally provide a refresh token
 ```javascript
 client.connect({
   username: 'alfred@example.com',
-  accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
 });
 ```
@@ -407,53 +407,6 @@ SIP users and PSTN phones.
 
 Call functions are all part of the 'call' namespace.
 
-### DeviceInfo
-
-Contains information about a device.
-
-Type: [Object][3]
-
-**Properties**
-
--   `deviceId` **[string][4]** The ID of the device.
--   `groupId` **[string][4]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][4]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][4]** The name of the device.
-
-### MediaConstraint
-
-The MediaConstraint type defines the format for configuring media options.
-Either the `exact` or `ideal` property should be provided. If both are present, the
-   `exact` value will be used.
-
-When the `exact` value is provided, it will be the only value considered for the option.
-   If it cannot be used, the constraint will be considered an error.
-
-When the `ideal` value is provided, it will be considered as the optimal value for the option.
-   If it cannot be used, the closest acceptable value will be used instead.
-
-Type: [Object][3]
-
-**Properties**
-
--   `exact` **[string][4]?** The required value for the constraint. Other values will not be accepted.
--   `ideal` **[string][4]?** The ideal value for the constraint. Other values will be considered if necessary.
-
-**Examples**
-
-```javascript
-// Specify video resolution when making a call.
-client.call.make(destination, {
-   audio: true,
-   video: true,
-   videoOptions: {
-     // Set height and width constraints to ideally be 1280x720.
-     height: { ideal: 720 },
-     width: { ideal: 1280 }
-   }
-})
-```
-
 ### BandwidthControls
 
 The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
@@ -542,6 +495,31 @@ Type: [Object][3]
 -   `state` **[string][4]** The state of this Track. Can be 'live' or 'ended'.
 -   `streamId` **[string][4]** The ID of the Media Stream that includes this Track.
 
+### DevicesObject
+
+A collection of media devices and their information.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `camera` **[Array][8]&lt;DeviceInfo>** A list of camera device information.
+-   `microphone` **[Array][8]&lt;DeviceInfo>** A list of microphone device information.
+-   `speaker` **[Array][8]&lt;DeviceInfo>** A list of speaker device information.
+
+### DeviceInfo
+
+Contains information about a device.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `deviceId` **[string][4]** The ID of the device.
+-   `groupId` **[string][4]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][4]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][4]** The name of the device.
+
 ### CallObject
 
 Information about a Call.
@@ -567,17 +545,39 @@ Type: [Object][3]
 -   `startTime` **[number][7]** The start time of the call in milliseconds since the epoch.
 -   `endTime` **[number][7]?** The end time of the call in milliseconds since the epoch.
 
-### DevicesObject
+### MediaConstraint
 
-A collection of media devices and their information.
+The MediaConstraint type defines the format for configuring media options.
+Either the `exact` or `ideal` property should be provided. If both are present, the
+   `exact` value will be used.
+
+When the `exact` value is provided, it will be the only value considered for the option.
+   If it cannot be used, the constraint will be considered an error.
+
+When the `ideal` value is provided, it will be considered as the optimal value for the option.
+   If it cannot be used, the closest acceptable value will be used instead.
 
 Type: [Object][3]
 
 **Properties**
 
--   `camera` **[Array][8]&lt;DeviceInfo>** A list of camera device information.
--   `microphone` **[Array][8]&lt;DeviceInfo>** A list of microphone device information.
--   `speaker` **[Array][8]&lt;DeviceInfo>** A list of speaker device information.
+-   `exact` **[string][4]?** The required value for the constraint. Other values will not be accepted.
+-   `ideal` **[string][4]?** The ideal value for the constraint. Other values will be considered if necessary.
+
+**Examples**
+
+```javascript
+// Specify video resolution when making a call.
+client.call.make(destination, {
+   audio: true,
+   video: true,
+   videoOptions: {
+     // Set height and width constraints to ideally be 1280x720.
+     height: { ideal: 720 },
+     width: { ideal: 1280 }
+   }
+})
+```
 
 ### make
 
