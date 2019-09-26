@@ -11,6 +11,7 @@ Kandy.js change log.
 
 - Fixed the ordering and nesting of types & namespaces in public documentation. `KAA-1880`
 - Fixed an issue where local call logs were reporting a duration of 0 for all incoming calls. `KAA-1794`
+- Fixed an issue where ending an incoming call would not add the call to the call history logs. `KAA-2009`
 
 ## 4.7.0 - 2019-08-30
 
