@@ -161,27 +161,6 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
-Connect by providing a refresh token.
-
-**Parameters**
-
--   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][4]** A refresh token for the same user.
-    -   `credentials.expires` **[number][7]?** The time in seconds until the access token will expire.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-  expires: 3600
-});
-```
-
-### connect
-
 Connect by providing an OAuth token.
 
 **Parameters**
@@ -239,6 +218,27 @@ client.connect({
   username: 'alfred@example.com',
   accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
+  expires: 3600
+});
+```
+
+### connect
+
+Connect by providing a refresh token.
+
+**Parameters**
+
+-   `credentials` **[Object][3]** The credentials object.
+    -   `credentials.username` **[string][4]** The username without the application's domain.
+    -   `credentials.refreshToken` **[string][4]** A refresh token for the same user.
+    -   `credentials.expires` **[number][7]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
 });
 ```
@@ -407,64 +407,6 @@ SIP users and PSTN phones.
 
 Call functions are all part of the 'call' namespace.
 
-### DeviceInfo
-
-Contains information about a device.
-
-Type: [Object][3]
-
-**Properties**
-
--   `deviceId` **[string][4]** The ID of the device.
--   `groupId` **[string][4]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][4]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][4]** The name of the device.
-
-### MediaObject
-
-The state representation of a Media object.
-Media is a collection of Track objects.
-
-Type: [Object][3]
-
-**Properties**
-
--   `id` **[string][4]** The ID of the Media object.
--   `local` **[boolean][6]** Indicator on whether this media is local or remote.
--   `tracks` **[Array][8]&lt;TrackObject>** A list of Track objects that are contained in this Media object.
-
-### SdpHandlerFunction
-
-The form of an SDP handler function and the expected arguments that it receives.
-
-Type: [Function][10]
-
-**Parameters**
-
--   `newSdp` **[Object][3]** The SDP so far (could have been modified by previous handlers).
--   `info` **SdpHandlerInfo** Additional information that might be useful when making SDP modifications.
--   `originalSdp` **[Object][3]** The SDP in its initial state.
-
-Returns **[Object][3]** The resulting modified SDP based on the changes made by this function.
-
-### SdpHandlerInfo
-
-Type: [Object][3]
-
-**Properties**
-
--   `type` **RTCSdpType** The session description's type.
--   `endpoint` **[string][4]** Which end of the connection created the SDP.
-
-### IceServer
-
-Type: [Object][3]
-
-**Properties**
-
--   `urls` **([Array][8]&lt;[string][4]> | [string][4])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
--   `credential` **[string][4]?** The credential needed by the ICE server.
-
 ### DevicesObject
 
 A collection of media devices and their information.
@@ -476,49 +418,6 @@ Type: [Object][3]
 -   `camera` **[Array][8]&lt;DeviceInfo>** A list of camera device information.
 -   `microphone` **[Array][8]&lt;DeviceInfo>** A list of microphone device information.
 -   `speaker` **[Array][8]&lt;DeviceInfo>** A list of speaker device information.
-
-### TrackObject
-
-A Track is a stream of audio or video media from a single source.
-Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
-
-Type: [Object][3]
-
-**Properties**
-
--   `containers` **[Array][8]&lt;[string][4]>** The list of CSS selectors that were used to render this Track.
--   `disabled` **[boolean][6]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
--   `id` **[string][4]** The ID of the Track.
--   `kind` **[string][4]** The kind of Track this is (audio, video).
--   `label` **[string][4]** The label of the device this Track uses.
--   `muted` **[boolean][6]** Indicator on whether this Track is muted or not.
--   `state` **[string][4]** The state of this Track. Can be 'live' or 'ended'.
--   `streamId` **[string][4]** The ID of the Media Stream that includes this Track.
-
-### CallObject
-
-Information about a Call.
-
-Can be retrieved using the [call.getAll][11] or
-   [call.getById][12] APIs.
-
-Type: [Object][3]
-
-**Properties**
-
--   `id` **[string][4]** The ID of the call.
--   `direction` **[string][4]** The direction in which the call was created. Can be 'outgoing' or 'incoming'.
--   `state` **[string][4]** The current state of the call. See [call.states][13] for possible states.
--   `localHold` **[boolean][6]** Indicates whether this call is currently being held locally.
--   `remoteHold` **[boolean][6]** Indicates whether this call is currently being held remotely.
--   `localTracks` **[Array][8]&lt;[string][4]>** A list of Track IDs that the call is sending to the remote participant.
--   `remoteTracks` **[Array][8]&lt;[string][4]>** A list of Track IDs that the call is receiving from the remote participant.
--   `remoteParticipant` **[Object][3]** Information about the other call participant.
-    -   `remoteParticipant.displayNumber` **[string][4]?** The User ID of the remote participant in the form "username@domain".
-    -   `remoteParticipant.displayName` **[string][4]?** The display name of the remote participant.
--   `bandwidth` **BandwidthControls** The bandwidth limitations set for the call.
--   `startTime` **[number][7]** The start time of the call in milliseconds since the epoch.
--   `endTime` **[number][7]?** The end time of the call in milliseconds since the epoch.
 
 ### MediaConstraint
 
@@ -578,6 +477,107 @@ client.call.make(destination, mediaConstraints,
  }
 )
 ```
+
+### IceServer
+
+Type: [Object][3]
+
+**Properties**
+
+-   `urls` **([Array][8]&lt;[string][4]> | [string][4])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
+-   `credential` **[string][4]?** The credential needed by the ICE server.
+
+### SdpHandlerInfo
+
+Type: [Object][3]
+
+**Properties**
+
+-   `type` **RTCSdpType** The session description's type.
+-   `endpoint` **[string][4]** Which end of the connection created the SDP.
+
+### SdpHandlerFunction
+
+The form of an SDP handler function and the expected arguments that it receives.
+
+Type: [Function][10]
+
+**Parameters**
+
+-   `newSdp` **[Object][3]** The SDP so far (could have been modified by previous handlers).
+-   `info` **SdpHandlerInfo** Additional information that might be useful when making SDP modifications.
+-   `originalSdp` **[Object][3]** The SDP in its initial state.
+
+Returns **[Object][3]** The resulting modified SDP based on the changes made by this function.
+
+### TrackObject
+
+A Track is a stream of audio or video media from a single source.
+Tracks can be retrieved using the Media module's `getTrackById` API and manipulated with other functions of the Media module.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `containers` **[Array][8]&lt;[string][4]>** The list of CSS selectors that were used to render this Track.
+-   `disabled` **[boolean][6]** Indicator of whether this Track is disabled or not. If disabled, it cannot be re-enabled.
+-   `id` **[string][4]** The ID of the Track.
+-   `kind` **[string][4]** The kind of Track this is (audio, video).
+-   `label` **[string][4]** The label of the device this Track uses.
+-   `muted` **[boolean][6]** Indicator on whether this Track is muted or not.
+-   `state` **[string][4]** The state of this Track. Can be 'live' or 'ended'.
+-   `streamId` **[string][4]** The ID of the Media Stream that includes this Track.
+
+### MediaObject
+
+The state representation of a Media object.
+Media is a collection of Track objects.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `id` **[string][4]** The ID of the Media object.
+-   `local` **[boolean][6]** Indicator on whether this media is local or remote.
+-   `tracks` **[Array][8]&lt;TrackObject>** A list of Track objects that are contained in this Media object.
+
+### DeviceInfo
+
+Contains information about a device.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `deviceId` **[string][4]** The ID of the device.
+-   `groupId` **[string][4]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][4]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][4]** The name of the device.
+
+### CallObject
+
+Information about a Call.
+
+Can be retrieved using the [call.getAll][11] or
+   [call.getById][12] APIs.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `id` **[string][4]** The ID of the call.
+-   `direction` **[string][4]** The direction in which the call was created. Can be 'outgoing' or 'incoming'.
+-   `state` **[string][4]** The current state of the call. See [call.states][13] for possible states.
+-   `localHold` **[boolean][6]** Indicates whether this call is currently being held locally.
+-   `remoteHold` **[boolean][6]** Indicates whether this call is currently being held remotely.
+-   `localTracks` **[Array][8]&lt;[string][4]>** A list of Track IDs that the call is sending to the remote participant.
+-   `remoteTracks` **[Array][8]&lt;[string][4]>** A list of Track IDs that the call is receiving from the remote participant.
+-   `remoteParticipant` **[Object][3]** Information about the other call participant.
+    -   `remoteParticipant.displayNumber` **[string][4]?** The User ID of the remote participant in the form "username@domain".
+    -   `remoteParticipant.displayName` **[string][4]?** The display name of the remote participant.
+-   `bandwidth` **BandwidthControls** The bandwidth limitations set for the call.
+-   `startTime` **[number][7]** The start time of the call in milliseconds since the epoch.
+-   `endTime` **[number][7]?** The end time of the call in milliseconds since the epoch.
 
 ### make
 
