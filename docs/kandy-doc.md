@@ -161,25 +161,6 @@ interact with the server without worrying about authenticating.
 
 ### connect
 
-Connect by providing an OAuth token.
-
-**Parameters**
-
--   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.oauthToken` **[string][4]** An OAuth token provided by an outside service.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
-});
-```
-
-### connect
-
 Connect by providing a refresh token.
 
 **Parameters**
@@ -196,6 +177,25 @@ client.connect({
   username: 'alfred@example.com',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
+});
+```
+
+### connect
+
+Connect by providing an OAuth token.
+
+**Parameters**
+
+-   `credentials` **[Object][3]** The credentials object.
+    -   `credentials.username` **[string][4]** The username without the application's domain.
+    -   `credentials.oauthToken` **[string][4]** An OAuth token provided by an outside service.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
 
@@ -254,6 +254,18 @@ If you're authenticating with tokens that expire and have not provided a refresh
 **Parameters**
 
 -   `credentials` **[Object][3]** The credentials object.
+    -   `credentials.accessToken` **[string][4]** The new access token.
+    -   `credentials.username` **[string][4]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][4]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][3]** The credentials object.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
+
+**Parameters**
+
+-   `credentials` **[Object][3]** The credentials object.
     -   `credentials.username` **[string][4]** The username without the application's domain.
     -   `credentials.oauthToken` **[string][4]** An OAuth token provided by an outside service.
 
@@ -265,18 +277,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][3]** The credentials object.
-    -   `credentials.accessToken` **[string][4]** The new access token.
-    -   `credentials.username` **[string][4]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][4]** An access token for the user with the provided user Id.
--   `credentials` **[Object][3]** The credentials object.
 
 ### getUserInfo
 
@@ -407,18 +407,14 @@ SIP users and PSTN phones.
 
 Call functions are all part of the 'call' namespace.
 
-### MediaObject
-
-The state representation of a Media object.
-Media is a collection of Track objects.
+### IceServer
 
 Type: [Object][3]
 
 **Properties**
 
--   `id` **[string][4]** The ID of the Media object.
--   `local` **[boolean][6]** Indicator on whether this media is local or remote.
--   `tracks` **[Array][8]&lt;TrackObject>** A list of Track objects that are contained in this Media object.
+-   `urls` **([Array][8]&lt;[string][4]> | [string][4])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
+-   `credential` **[string][4]?** The credential needed by the ICE server.
 
 ### CallObject
 
@@ -444,6 +440,71 @@ Type: [Object][3]
 -   `bandwidth` **BandwidthControls** The bandwidth limitations set for the call.
 -   `startTime` **[number][7]** The start time of the call in milliseconds since the epoch.
 -   `endTime` **[number][7]?** The end time of the call in milliseconds since the epoch.
+
+### SdpHandlerFunction
+
+The form of an SDP handler function and the expected arguments that it receives.
+
+Type: [Function][13]
+
+**Parameters**
+
+-   `newSdp` **[Object][3]** The SDP so far (could have been modified by previous handlers).
+-   `info` **SdpHandlerInfo** Additional information that might be useful when making SDP modifications.
+-   `originalSdp` **[Object][3]** The SDP in its initial state.
+
+Returns **[Object][3]** The resulting modified SDP based on the changes made by this function.
+
+### MediaObject
+
+The state representation of a Media object.
+Media is a collection of Track objects.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `id` **[string][4]** The ID of the Media object.
+-   `local` **[boolean][6]** Indicator on whether this media is local or remote.
+-   `tracks` **[Array][8]&lt;TrackObject>** A list of Track objects that are contained in this Media object.
+
+### DeviceInfo
+
+Contains information about a device.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `deviceId` **[string][4]** The ID of the device.
+-   `groupId` **[string][4]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][4]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][4]** The name of the device.
+
+### BandwidthControls
+
+The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
+BandwidthControls only affect received remote tracks of the specified type.
+
+Type: [Object][3]
+
+**Properties**
+
+-   `audio` **[number][7]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
+-   `video` **[number][7]?** The desired bandwidth bitrate in kilobits per second for received remote video.
+
+**Examples**
+
+```javascript
+// Specify received remote video bandwidth limits when making a call.
+client.call.make(destination, mediaConstraints,
+ {
+   bandwidth: {
+     video: 5
+   }
+ }
+)
+```
 
 ### MediaConstraint
 
@@ -479,63 +540,6 @@ client.call.make(destination, {
 })
 ```
 
-### BandwidthControls
-
-The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
-BandwidthControls only affect received remote tracks of the specified type.
-
-Type: [Object][3]
-
-**Properties**
-
--   `audio` **[number][7]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
--   `video` **[number][7]?** The desired bandwidth bitrate in kilobits per second for received remote video.
-
-**Examples**
-
-```javascript
-// Specify received remote video bandwidth limits when making a call.
-client.call.make(destination, mediaConstraints,
- {
-   bandwidth: {
-     video: 5
-   }
- }
-)
-```
-
-### IceServer
-
-Type: [Object][3]
-
-**Properties**
-
--   `urls` **([Array][8]&lt;[string][4]> | [string][4])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
--   `credential` **[string][4]?** The credential needed by the ICE server.
-
-### SdpHandlerInfo
-
-Type: [Object][3]
-
-**Properties**
-
--   `type` **RTCSdpType** The session description's type.
--   `endpoint` **[string][4]** Which end of the connection created the SDP.
-
-### SdpHandlerFunction
-
-The form of an SDP handler function and the expected arguments that it receives.
-
-Type: [Function][13]
-
-**Parameters**
-
--   `newSdp` **[Object][3]** The SDP so far (could have been modified by previous handlers).
--   `info` **SdpHandlerInfo** Additional information that might be useful when making SDP modifications.
--   `originalSdp` **[Object][3]** The SDP in its initial state.
-
-Returns **[Object][3]** The resulting modified SDP based on the changes made by this function.
-
 ### TrackObject
 
 A Track is a stream of audio or video media from a single source.
@@ -554,19 +558,6 @@ Type: [Object][3]
 -   `state` **[string][4]** The state of this Track. Can be 'live' or 'ended'.
 -   `streamId` **[string][4]** The ID of the Media Stream that includes this Track.
 
-### DeviceInfo
-
-Contains information about a device.
-
-Type: [Object][3]
-
-**Properties**
-
--   `deviceId` **[string][4]** The ID of the device.
--   `groupId` **[string][4]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][4]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][4]** The name of the device.
-
 ### DevicesObject
 
 A collection of media devices and their information.
@@ -578,6 +569,15 @@ Type: [Object][3]
 -   `camera` **[Array][8]&lt;DeviceInfo>** A list of camera device information.
 -   `microphone` **[Array][8]&lt;DeviceInfo>** A list of microphone device information.
 -   `speaker` **[Array][8]&lt;DeviceInfo>** A list of speaker device information.
+
+### SdpHandlerInfo
+
+Type: [Object][3]
+
+**Properties**
+
+-   `type` **RTCSdpType** The session description's type.
+-   `endpoint` **[string][4]** Which end of the connection created the SDP.
 
 ### make
 
