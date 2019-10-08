@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.9.0-beta.154
+ * Version: 4.9.0-beta.155
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -33482,7 +33482,9 @@ function* incomingCallNotification(deps) {
       wrtcsSessionId: message.sessionParams.sessionData,
       // Remote participant information.
       remoteName: message.callNotificationParams.callerName,
-      remoteNumber: message.callNotificationParams.callerDisplayNumber
+      remoteNumber: message.callNotificationParams.callerDisplayNumber,
+      // Where the call was sent
+      calleeNumber: message.callNotificationParams.calleeDisplayNumber
 
       // Pass the incoming call parameters to the Callstack for handling.
     };yield (0, _effects.call)(_notifications2.incomingCall, (0, _extends3.default)({}, deps, { requests }), params);
@@ -37917,8 +37919,6 @@ var _establish = __webpack_require__("../kandy/src/callstack/webrtc/establish.js
 
 var _midcall = __webpack_require__("../kandy/src/callstack/webrtc/midcall.js");
 
-var _selectors2 = __webpack_require__("../kandy/src/auth/interface/selectors.js");
-
 var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
@@ -37935,23 +37935,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-// Other plugins
-
-
-// Callstack plugin.
-/**
- * "Notification sagas" handle received notifications.
- * Each saga handles a single websocket notification that may be received from
- *    the backend.
- *
- * There may not be an established webRTC session for these sagas. This may be
- *    because (1) the notification is a new incoming call, or (2) there is a
- *    de-sync between SDK state and server state. This may or may not be
- *    considered as an error scenario (eg. a "call ended" notification for a
- *    call the SDK doesn't know about may be safely ignored).
- */
-
-// Call plugin.
 const log = (0, _logs.getLogManager)().getLogger('CALL');
 
 /**
@@ -37978,6 +37961,7 @@ const log = (0, _logs.getLogManager)().getLogger('CALL');
  * @param {string}   params.wrtcsSessionId ID that the server uses to identify the session.
  * @param {string}   params.remoteNumber   Number of the remote participant.
  * @param {string}   params.remoteName     Display name of the remote participant.
+ * @param {string}   params.calleeNumber  Number of the intended call recipient
  */
 
 
@@ -37986,9 +37970,28 @@ const log = (0, _logs.getLogManager)().getLogger('CALL');
 
 
 // Libraries.
+
+
+// Other plugins
+
+
+// Callstack plugin.
+/**
+ * "Notification sagas" handle received notifications.
+ * Each saga handles a single websocket notification that may be received from
+ *    the backend.
+ *
+ * There may not be an established webRTC session for these sagas. This may be
+ *    because (1) the notification is a new incoming call, or (2) there is a
+ *    de-sync between SDK state and server state. This may or may not be
+ *    considered as an error scenario (eg. a "call ended" notification for a
+ *    call the SDK doesn't know about may be safely ignored).
+ */
+
+// Call plugin.
 function* incomingCall(deps, params) {
   const requests = deps.requests;
-  const { sdp, wrtcsSessionId, remoteNumber, remoteName } = params;
+  const { sdp, wrtcsSessionId, remoteNumber, remoteName, calleeNumber } = params;
 
   let sessionId, isSlowStart;
   /**
@@ -38033,7 +38036,6 @@ function* incomingCall(deps, params) {
     log.error(`Error: Update session status error - ${updateStatusResponse.error.code}: ${updateStatusResponse.error.message}.`);
   }
 
-  const { username: to } = yield (0, _effects.select)(_selectors2.getUserInfo);
   const callId = yield (0, _effects.call)(_v2.default);
   yield (0, _effects.put)(_actions.callActions.callIncoming(callId, {
     // TODO: Proper constants.
@@ -38043,7 +38045,7 @@ function* incomingCall(deps, params) {
       displayName: remoteName,
       displayNumber: remoteNumber
     },
-    to,
+    to: calleeNumber,
     // Number of the remote participant when the call was established.
     from: remoteNumber,
     // The ID that the backend uses to track this webRTC session.
@@ -43706,7 +43708,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.9.0-beta.154';
+  let version = '4.9.0-beta.155';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
