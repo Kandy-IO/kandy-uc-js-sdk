@@ -14,16 +14,17 @@ Kandy.js change log.
   - When enabled via configuration (see `config.call.earlyMedia`), an outgoing Call may enter the "Early Media" state if the remote end responds with a provisional answer. This allows the Call to receive media before it has been answered.
 - Added a `call:operation` event which is fired by call operations to keep track of operation progress. `KAA-1949`
 
-### Changed 
+### Changed
 
 - Improved Call screenshare functionality. `KAA-2000`
   - Added explicit screenshare options for APIs, separate from video options. See the `call.make`, `call.answer`, and `call.addMedia` APIs.
   - A browser extension is no longer required for screensharing on Google Chrome.
   - A Call can now be started and/or answered with screenshare.
-  
+
 ### Fixed
 
 - Fixed an issue where the "to" information of the call wasn't being set to where the call was actually sent. `KAA-2014`
+- Fixed the inconsistent order of media events for both incoming & outgoing calls. `KAA-1757`
 
 ## 4.8.0 - 2019-09-27
 
