@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.9.0-beta.162
+ * Version: 4.9.0-beta.163
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -43772,7 +43772,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.9.0-beta.162';
+  let version = '4.9.0-beta.163';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
