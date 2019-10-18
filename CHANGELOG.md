@@ -27,6 +27,7 @@ Kandy.js change log.
 - Fixed the inconsistent order of media events for both incoming & outgoing calls. `KAA-1757`
 - Fixed an issue where the SIP number normalization was unnecessarily removing an '@' symbol. `KAA-1793`
 - Fixed the issue where an active call did not hang up when the call audit failed. `KAA-2003`
+- Fixed an issue where sending a message would show up as still pending. `KAA-2049`
 
 ## 4.8.0 - 2019-09-27
 
