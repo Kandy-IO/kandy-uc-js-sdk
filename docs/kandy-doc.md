@@ -424,31 +424,6 @@ SIP users and PSTN phones.
 
 Call functions are all part of the 'call' namespace.
 
-### CallObject
-
-Information about a Call.
-
-Can be retrieved using the [call.getAll][14] or
-   [call.getById][10] APIs.
-
-Type: [Object][4]
-
-**Properties**
-
--   `id` **[string][5]** The ID of the call.
--   `direction` **[string][5]** The direction in which the call was created. Can be 'outgoing' or 'incoming'.
--   `state` **[string][5]** The current state of the call. See [call.states][15] for possible states.
--   `localHold` **[boolean][7]** Indicates whether this call is currently being held locally.
--   `remoteHold` **[boolean][7]** Indicates whether this call is currently being held remotely.
--   `localTracks` **[Array][9]&lt;[string][5]>** A list of Track IDs that the call is sending to the remote participant.
--   `remoteTracks` **[Array][9]&lt;[string][5]>** A list of Track IDs that the call is receiving from the remote participant.
--   `remoteParticipant` **[Object][4]** Information about the other call participant.
-    -   `remoteParticipant.displayNumber` **[string][5]?** The User ID of the remote participant in the form "username@domain".
-    -   `remoteParticipant.displayName` **[string][5]?** The display name of the remote participant.
--   `bandwidth` **BandwidthControls** The bandwidth limitations set for the call.
--   `startTime` **[number][8]** The start time of the call in milliseconds since the epoch.
--   `endTime` **[number][8]?** The end time of the call in milliseconds since the epoch.
-
 ### DeviceInfo
 
 Contains information about a device.
@@ -561,6 +536,31 @@ client.call.make(destination, mediaConstraints,
  }
 )
 ```
+
+### CallObject
+
+Information about a Call.
+
+Can be retrieved using the [call.getAll][14] or
+   [call.getById][10] APIs.
+
+Type: [Object][4]
+
+**Properties**
+
+-   `id` **[string][5]** The ID of the call.
+-   `direction` **[string][5]** The direction in which the call was created. Can be 'outgoing' or 'incoming'.
+-   `state` **[string][5]** The current state of the call. See [call.states][15] for possible states.
+-   `localHold` **[boolean][7]** Indicates whether this call is currently being held locally.
+-   `remoteHold` **[boolean][7]** Indicates whether this call is currently being held remotely.
+-   `localTracks` **[Array][9]&lt;[string][5]>** A list of Track IDs that the call is sending to the remote participant.
+-   `remoteTracks` **[Array][9]&lt;[string][5]>** A list of Track IDs that the call is receiving from the remote participant.
+-   `remoteParticipant` **[Object][4]** Information about the other call participant.
+    -   `remoteParticipant.displayNumber` **[string][5]?** The User ID of the remote participant in the form "username@domain".
+    -   `remoteParticipant.displayName` **[string][5]?** The display name of the remote participant.
+-   `bandwidth` **BandwidthControls** The bandwidth limitations set for the call.
+-   `startTime` **[number][8]** The start time of the call in milliseconds since the epoch.
+-   `endTime` **[number][8]?** The end time of the call in milliseconds since the epoch.
 
 ### MediaConstraint
 
