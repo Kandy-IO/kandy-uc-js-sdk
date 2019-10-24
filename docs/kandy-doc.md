@@ -231,6 +231,27 @@ client.connect({
 
 ### connect
 
+Connect by providing a refresh token, to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][4]** The credentials object.
+    -   `credentials.username` **[string][5]** The username without the application's domain.
+    -   `credentials.refreshToken` **[string][5]** A refresh token for the same user.
+    -   `credentials.expires` **[number][8]?** The time in seconds until the access token will expire.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
+  expires: 3600
+});
+```
+
+### connect
+
 Connect by providing an access token to any backend services that the SDK instance deals with.
 You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
@@ -249,27 +270,6 @@ client.connect({
   username: 'alfred@example.com',
   accessToken: 'AT0V1fswAiJadokx1iJMQdG04pRf',
   refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT',
-  expires: 3600
-});
-```
-
-### connect
-
-Connect by providing a refresh token, to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.username` **[string][5]** The username without the application's domain.
-    -   `credentials.refreshToken` **[string][5]** A refresh token for the same user.
-    -   `credentials.expires` **[number][8]?** The time in seconds until the access token will expire.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  refreshToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
   expires: 3600
 });
 ```
@@ -396,30 +396,23 @@ SIP users and PSTN phones.
 
 Call functions are all part of the 'call' namespace.
 
-### BandwidthControls
-
-The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
-BandwidthControls only affect received remote tracks of the specified type.
+### IceServer
 
 Type: [Object][4]
 
 **Properties**
 
--   `audio` **[number][8]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
--   `video` **[number][8]?** The desired bandwidth bitrate in kilobits per second for received remote video.
+-   `urls` **([Array][9]&lt;[string][5]> | [string][5])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
+-   `credential` **[string][5]?** The credential needed by the ICE server.
 
-**Examples**
+### SdpHandlerInfo
 
-```javascript
-// Specify received remote video bandwidth limits when making a call.
-client.call.make(destination, mediaConstraints,
- {
-   bandwidth: {
-     video: 5
-   }
- }
-)
-```
+Type: [Object][4]
+
+**Properties**
+
+-   `type` **RTCSdpType** The session description's type.
+-   `endpoint` **[string][5]** Which end of the connection created the SDP.
 
 ### SdpHandlerFunction
 
@@ -434,40 +427,6 @@ Type: [Function][11]
 -   `originalSdp` **[Object][4]** The SDP in its initial state.
 
 Returns **[Object][4]** The resulting modified SDP based on the changes made by this function.
-
-### MediaConstraint
-
-The MediaConstraint type defines the format for configuring media options.
-Either the `exact` or `ideal` property should be provided. If both are present, the
-   `exact` value will be used.
-
-When the `exact` value is provided, it will be the only value considered for the option.
-   If it cannot be used, the constraint will be considered an error.
-
-When the `ideal` value is provided, it will be considered as the optimal value for the option.
-   If it cannot be used, the closest acceptable value will be used instead.
-
-Type: [Object][4]
-
-**Properties**
-
--   `exact` **[string][5]?** The required value for the constraint. Other values will not be accepted.
--   `ideal` **[string][5]?** The ideal value for the constraint. Other values will be considered if necessary.
-
-**Examples**
-
-```javascript
-// Specify video resolution when making a call.
-client.call.make(destination, {
-   audio: true,
-   video: true,
-   videoOptions: {
-     // Set height and width constraints to ideally be 1280x720.
-     height: { ideal: 720 },
-     width: { ideal: 1280 }
-   }
-})
-```
 
 ### MediaObject
 
@@ -512,14 +471,52 @@ Type: [Object][4]
 -   `microphone` **[Array][9]&lt;DeviceInfo>** A list of microphone device information.
 -   `speaker` **[Array][9]&lt;DeviceInfo>** A list of speaker device information.
 
-### SdpHandlerInfo
+### DeviceInfo
+
+Contains information about a device.
 
 Type: [Object][4]
 
 **Properties**
 
--   `type` **RTCSdpType** The session description's type.
--   `endpoint` **[string][5]** Which end of the connection created the SDP.
+-   `deviceId` **[string][5]** The ID of the device.
+-   `groupId` **[string][5]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
+-   `kind` **[string][5]** The type of the device (audioinput, audiooutput, videoinput).
+-   `label` **[string][5]** The name of the device.
+
+### MediaConstraint
+
+The MediaConstraint type defines the format for configuring media options.
+Either the `exact` or `ideal` property should be provided. If both are present, the
+   `exact` value will be used.
+
+When the `exact` value is provided, it will be the only value considered for the option.
+   If it cannot be used, the constraint will be considered an error.
+
+When the `ideal` value is provided, it will be considered as the optimal value for the option.
+   If it cannot be used, the closest acceptable value will be used instead.
+
+Type: [Object][4]
+
+**Properties**
+
+-   `exact` **[string][5]?** The required value for the constraint. Other values will not be accepted.
+-   `ideal` **[string][5]?** The ideal value for the constraint. Other values will be considered if necessary.
+
+**Examples**
+
+```javascript
+// Specify video resolution when making a call.
+client.call.make(destination, {
+   audio: true,
+   video: true,
+   videoOptions: {
+     // Set height and width constraints to ideally be 1280x720.
+     height: { ideal: 720 },
+     width: { ideal: 1280 }
+   }
+})
+```
 
 ### CallObject
 
@@ -545,27 +542,30 @@ Type: [Object][4]
 -   `startTime` **[number][8]** The start time of the call in milliseconds since the epoch.
 -   `endTime` **[number][8]?** The end time of the call in milliseconds since the epoch.
 
-### DeviceInfo
+### BandwidthControls
 
-Contains information about a device.
-
-Type: [Object][4]
-
-**Properties**
-
--   `deviceId` **[string][5]** The ID of the device.
--   `groupId` **[string][5]** The group ID of the device. Devices that share a `groupId` belong to the same physical device.
--   `kind` **[string][5]** The type of the device (audioinput, audiooutput, videoinput).
--   `label` **[string][5]** The name of the device.
-
-### IceServer
+The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
+BandwidthControls only affect received remote tracks of the specified type.
 
 Type: [Object][4]
 
 **Properties**
 
--   `urls` **([Array][9]&lt;[string][5]> | [string][5])** Either an array of URLs for reaching out several ICE servers or a single URL for reaching one ICE server.
--   `credential` **[string][5]?** The credential needed by the ICE server.
+-   `audio` **[number][8]?** The desired bandwidth bitrate in kilobits per second for received remote audio.
+-   `video` **[number][8]?** The desired bandwidth bitrate in kilobits per second for received remote video.
+
+**Examples**
+
+```javascript
+// Specify received remote video bandwidth limits when making a call.
+client.call.make(destination, mediaConstraints,
+ {
+   bandwidth: {
+     video: 5
+   }
+ }
+)
+```
 
 ### make
 
@@ -857,109 +857,6 @@ The SDK will emit a [call:trackEnded][24]
 -   `options` **[Object][4]?**  (optional, default `{}`)
     -   `options.bandwidth` **BandwidthControls?** Options for configuring media's bandwidth.
 
-### startVideo
-
-Adds local video to an ongoing Call, to start sending to the remote
-   participant.
-
-The latest SDK release (v4.X+) has not yet implemented this API in the
-   same way that it was available in previous releases (v3.X). In place
-   of this API, the SDK has a more general API that can be used for this
-   same behaviour.
-
-The [call.addMedia][25] API can be used to perform the same behaviour
-   as `startVideo`. [call.addMedia][25] is a general-purpose API for
-   adding media to a call, which covers the same functionality as
-   `startVideo`. Selecting only video options when using
-   [call.addMedia][25] will perform the same behaviour as using
-   `startVideo`.
-
-**Examples**
-
-```javascript
-// Select media options for adding only video.
-const media = {
-   audio: false,
-   video: true,
-   videoOptions: { ... },
-   screen: false
-}
-
-// Add the selected media to the call.
-client.call.addMedia(callId, media)
-```
-
-### stopVideo
-
-Removes local video from an ongoing Call, stopping it from being sent
-   to the remote participant.
-
-The latest SDK release (v4.X+) has not yet implemented this API in the
-   same way that it was available in previous releases (v3.X). In place
-   of this API, the SDK has a more general API that can be used for this
-   same behaviour.
-
-The [call.removeMedia][26] API can be used to perform the same
-   behaviour as `stopVideo`. [call.removeMedia][26] is a
-   general-purpose API for removing media from a call, which covers the
-   same functionality as `stopVideo`. Specifying only the video track(s)
-   when using [call.removeMedia][26] will perform the same behaviour
-   as using `stopVideo`.
-
-**Examples**
-
-```javascript
-const call = client.call.getById(callId)
-// Get the ID of the Call's video track.
-const videoTrack = call.localTracks.find(trackId => {
-   const track = call.media.getTrackById(trackId)
-   return track.kind === 'video'
-})
-
-// Remove video from the call.
-client.call.removeMedia(callId, [ videoTrack ])
-```
-
-### stopScreenshare
-
-Removes local screenshare from an ongoing Call, stopping it from being
-   sent to the remote participant.
-
-The latest SDK release (v4.X+) has not yet implemented this API in the
-   same way that it was available in previous releases (v3.X). In place
-   of this API, the SDK has a more general API that can be used for this
-   same behaviour.
-
-The [call.removeMedia][26] API can be used to perform the same
-   behaviour as `stopScreenshare`. [call.removeMedia][26] is a
-   general-purpose API for removing media from a call, which covers the
-   same functionality as `stopScreenshare`. Specifying only the screen
-   track when using [call.removeMedia][26] will perform the same
-   behaviour as using `stopScreenshare`.
-
-There is a caveat that if a Call has multiple video tracks (for example,
-   both a video and a screen track), the SDK itself cannot yet
-   differentiate one from the other. The application will need to know
-   which track was the screen track in this scenario.
-
-**Examples**
-
-```javascript
-const call = client.call.getById(callId)
-// Get the ID of any/all video tracks on the call.
-const videoTracks = call.localTracks.filter(trackId => {
-   const track = call.media.getTrackById(trackId)
-   // Both video and screen tracks have kind of 'video'.
-   return track.kind === 'video'
-})
-
-// Pick out the screen track.
-const screenTrack = videoTracks[0]
-
-// Remove screen from the call.
-client.call.removeMedia(callId, [ screenTrack ])
-```
-
 ### sendDTMF
 
 Send DTMF tones to a call's audio.
@@ -1014,6 +911,109 @@ const media = {
 
 // Add the selected media to the call.
 client.call.addMedia(callId, media)
+```
+
+### startVideo
+
+Adds local video to an ongoing Call, to start sending to the remote
+   participant.
+
+The latest SDK release (v4.X+) has not yet implemented this API in the
+   same way that it was available in previous releases (v3.X). In place
+   of this API, the SDK has a more general API that can be used for this
+   same behaviour.
+
+The [call.addMedia][25] API can be used to perform the same behaviour
+   as `startVideo`. [call.addMedia][25] is a general-purpose API for
+   adding media to a call, which covers the same functionality as
+   `startVideo`. Selecting only video options when using
+   [call.addMedia][25] will perform the same behaviour as using
+   `startVideo`.
+
+**Examples**
+
+```javascript
+// Select media options for adding only video.
+const media = {
+   audio: false,
+   video: true,
+   videoOptions: { ... },
+   screen: false
+}
+
+// Add the selected media to the call.
+client.call.addMedia(callId, media)
+```
+
+### stopScreenshare
+
+Removes local screenshare from an ongoing Call, stopping it from being
+   sent to the remote participant.
+
+The latest SDK release (v4.X+) has not yet implemented this API in the
+   same way that it was available in previous releases (v3.X). In place
+   of this API, the SDK has a more general API that can be used for this
+   same behaviour.
+
+The [call.removeMedia][26] API can be used to perform the same
+   behaviour as `stopScreenshare`. [call.removeMedia][26] is a
+   general-purpose API for removing media from a call, which covers the
+   same functionality as `stopScreenshare`. Specifying only the screen
+   track when using [call.removeMedia][26] will perform the same
+   behaviour as using `stopScreenshare`.
+
+There is a caveat that if a Call has multiple video tracks (for example,
+   both a video and a screen track), the SDK itself cannot yet
+   differentiate one from the other. The application will need to know
+   which track was the screen track in this scenario.
+
+**Examples**
+
+```javascript
+const call = client.call.getById(callId)
+// Get the ID of any/all video tracks on the call.
+const videoTracks = call.localTracks.filter(trackId => {
+   const track = call.media.getTrackById(trackId)
+   // Both video and screen tracks have kind of 'video'.
+   return track.kind === 'video'
+})
+
+// Pick out the screen track.
+const screenTrack = videoTracks[0]
+
+// Remove screen from the call.
+client.call.removeMedia(callId, [ screenTrack ])
+```
+
+### stopVideo
+
+Removes local video from an ongoing Call, stopping it from being sent
+   to the remote participant.
+
+The latest SDK release (v4.X+) has not yet implemented this API in the
+   same way that it was available in previous releases (v3.X). In place
+   of this API, the SDK has a more general API that can be used for this
+   same behaviour.
+
+The [call.removeMedia][26] API can be used to perform the same
+   behaviour as `stopVideo`. [call.removeMedia][26] is a
+   general-purpose API for removing media from a call, which covers the
+   same functionality as `stopVideo`. Specifying only the video track(s)
+   when using [call.removeMedia][26] will perform the same behaviour
+   as using `stopVideo`.
+
+**Examples**
+
+```javascript
+const call = client.call.getById(callId)
+// Get the ID of the Call's video track.
+const videoTrack = call.localTracks.find(trackId => {
+   const track = call.media.getTrackById(trackId)
+   return track.kind === 'video'
+})
+
+// Remove video from the call.
+client.call.removeMedia(callId, [ videoTrack ])
 ```
 
 ### getStats
@@ -1182,6 +1182,92 @@ client.call.replaceTrack(callId, videoTrack.id, {
 })
 ```
 
+### changeSpeaker
+
+Changes the speaker used for a Call's audio output. Supported on
+   browser's that support HTMLMediaElement.setSinkId().
+
+The latest SDK release (v4.X+) has not yet implemented this API in the
+   same way that it was available in previous releases (v3.X). In place
+   of this API, the SDK has a more general API that can be used for this
+   same behaviour.
+
+The same behaviour as the `changeSpeaker` API can be implemented by
+   re-rendering the Call's audio track.  A speaker can be selected when
+   rendering an audio track, so changing a speaker can be simulated
+   by unrendering the track with [media.removeTracks][29], then
+   re-rendering it with a new speaker with [media.renderTracks][30].
+
+**Examples**
+
+```javascript
+const call = client.call.getById(callId)
+// Get the ID of the Call's audio track.
+const audioTrack = call.localTracks.find(trackId => {
+   const track = client.media.getTrackById(trackId)
+   return track.kind === 'audio'
+})
+
+// Where the audio track was previously rendered.
+const audioContainer = ...
+
+// Unrender the audio track we want to change speaker for.
+client.media.removeTrack([ audioTrack ], audioContainer)
+// Re-render the audio track with a new speaker.
+client.media.renderTrack([ audioTrack ], audioContainer, {
+   speakerId: 'speakerId'
+})
+```
+
+### changeInputDevices
+
+Changes the camera and/or microphone used for a Call's media input.
+
+The latest SDK release (v4.X+) has not yet implemented this API in the
+   same way that it was available in previous releases (v3.X). In place
+   of this API, the SDK has a more general API that can be used for this
+   same behaviour.
+
+The same behaviour as the `changeInputDevices` API can be implemented
+   using the general-purpose [call.replaceTrack][31] API. This API can
+   be used to replace an existing media track with a new track of the
+   same type, allowing an application to change certain aspects of the
+   media, such as input device.
+
+**Examples**
+
+```javascript
+const call = client.call.getById(callId)
+// Get the ID of the Call's video track.
+const videoTrack = call.localTracks.find(trackId => {
+   const track = client.media.getTrackById(trackId)
+   return track.kind === 'video'
+})
+
+// Select the new video options.
+const media = {
+   video: true,
+   videoOptions: {
+       deviceId: 'cameraId'
+   }
+}
+
+// Change the call's camera by replacing the video track.
+client.call.replaceTrack(callId, videoTrack, media)
+```
+
+### setDefaultDevices
+
+The `setDefaultDevices` API from previous SDK releases (3.X) has been
+   deprecated in the latest releases (4.X+). The SDK no longer keeps
+   track of "default devices" on behalf of the application.
+
+The devices used for a call can be selected as part of the APIs for
+   starting the call. Microphone and/or camera can be chosen in the
+   [call.make][32] and [call.answer][33] APIs, and speaker can be
+   chosen when the audio track is rendered with the
+   [media.renderTracks][30] API.
+
 ### states
 
 Possible states that a Call can be in.
@@ -1193,7 +1279,7 @@ A Call's state describes the current status of the Call. An application
    only be performed while in specific states, and tells an application
    whether the Call currently has media flowing between users.
 
-The Call's state is a property of the [CallObject][29],
+The Call's state is a property of the [CallObject][34],
    which can be retrieved using the [call.getById][14] or
    [call.getAll][13] APIs.
 
@@ -1224,92 +1310,6 @@ client.on('call:stateChange', function (params) {
    if (call.state === client.call.states.CONNECTED) {
      // The call is now active, and can perform midcall operations.
    }
-})
-```
-
-### setDefaultDevices
-
-The `setDefaultDevices` API from previous SDK releases (3.X) has been
-   deprecated in the latest releases (4.X+). The SDK no longer keeps
-   track of "default devices" on behalf of the application.
-
-The devices used for a call can be selected as part of the APIs for
-   starting the call. Microphone and/or camera can be chosen in the
-   [call.make][30] and [call.answer][31] APIs, and speaker can be
-   chosen when the audio track is rendered with the
-   [media.renderTracks][32] API.
-
-### changeInputDevices
-
-Changes the camera and/or microphone used for a Call's media input.
-
-The latest SDK release (v4.X+) has not yet implemented this API in the
-   same way that it was available in previous releases (v3.X). In place
-   of this API, the SDK has a more general API that can be used for this
-   same behaviour.
-
-The same behaviour as the `changeInputDevices` API can be implemented
-   using the general-purpose [call.replaceTrack][33] API. This API can
-   be used to replace an existing media track with a new track of the
-   same type, allowing an application to change certain aspects of the
-   media, such as input device.
-
-**Examples**
-
-```javascript
-const call = client.call.getById(callId)
-// Get the ID of the Call's video track.
-const videoTrack = call.localTracks.find(trackId => {
-   const track = client.media.getTrackById(trackId)
-   return track.kind === 'video'
-})
-
-// Select the new video options.
-const media = {
-   video: true,
-   videoOptions: {
-       deviceId: 'cameraId'
-   }
-}
-
-// Change the call's camera by replacing the video track.
-client.call.replaceTrack(callId, videoTrack, media)
-```
-
-### changeSpeaker
-
-Changes the speaker used for a Call's audio output. Supported on
-   browser's that support HTMLMediaElement.setSinkId().
-
-The latest SDK release (v4.X+) has not yet implemented this API in the
-   same way that it was available in previous releases (v3.X). In place
-   of this API, the SDK has a more general API that can be used for this
-   same behaviour.
-
-The same behaviour as the `changeSpeaker` API can be implemented by
-   re-rendering the Call's audio track.  A speaker can be selected when
-   rendering an audio track, so changing a speaker can be simulated
-   by unrendering the track with [media.removeTracks][34], then
-   re-rendering it with a new speaker with [media.renderTracks][32].
-
-**Examples**
-
-```javascript
-const call = client.call.getById(callId)
-// Get the ID of the Call's audio track.
-const audioTrack = call.localTracks.find(trackId => {
-   const track = client.media.getTrackById(trackId)
-   return track.kind === 'audio'
-})
-
-// Where the audio track was previously rendered.
-const audioContainer = ...
-
-// Unrender the audio track we want to change speaker for.
-client.media.removeTrack([ audioTrack ], audioContainer)
-// Re-render the audio track with a new speaker.
-client.media.renderTrack([ audioTrack ], audioContainer, {
-   speakerId: 'speakerId'
 })
 ```
 
@@ -2250,17 +2250,17 @@ Returns voicemail data from the store.
 
 [28]: #calleventcalltrackreplaced
 
-[29]: #callcallobject
+[29]: #mediaremovetracks
 
-[30]: #callmake
+[30]: #mediarendertracks
 
-[31]: #callanswer
+[31]: #callreplacetrack
 
-[32]: #mediarendertracks
+[32]: #callmake
 
-[33]: #callreplacetrack
+[33]: #callanswer
 
-[34]: #mediaremovetracks
+[34]: #callcallobject
 
 [35]: #configconfiglogs
 
