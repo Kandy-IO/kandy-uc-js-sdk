@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.9.0-beta.175
+ * Version: 4.9.0-beta.176
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -30974,6 +30974,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * The form of an SDP handler function and the expected arguments that it receives.
  * @public
+ * @static
  * @module SdpHandlerFunction
  * @typedef {Function} SdpHandlerFunction
  * @memberof call
@@ -44101,7 +44102,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.9.0-beta.175';
+  let version = '4.9.0-beta.176';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -44363,7 +44364,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
 /**
  * The configuration object. This object defines what different configuration
- * values you can use when instantiating the SDK using the {@link #create create} function.
+ * values you can use when instantiating the SDK using the {@link create} function.
  * @public
  * @module config
  */
@@ -44371,7 +44372,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 // Disabling eslint for the next comment as we want to be able to use a disallowed word
 // eslint-disable-next-line no-warning-comments
 /**
- * A set of {@link #sdphandlerfunction SdpHandlerFunction}s for manipulating SDP information.
+ * A set of {@link call.SdpHandlerFunction SdpHandlerFunction}s for manipulating SDP information.
  * These handlers are used to customize low-level call behaviour for very specific
  * environments and/or scenarios. They can be provided during SDK instantiation
  * to be used for all calls.
@@ -44611,7 +44612,7 @@ const logMgr = getLogManager(defaultOptions);
  * @requires logs
  * @instance
  * @param {Object} logs Logs configs.
- * @param  {string} [logs.logLevel='debug'] Log level to be set. See {@link Logger.levels levels}.
+ * @param  {string} [logs.logLevel='debug'] Log level to be set. See {@link logger.levels}.
  * @param  {boolean} [logs.flatten=false] Whether all logs should be output in a string-only format.
  * @param  {Object} [logs.logActions] Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
  * @param  {boolean} [logs.logActions.actionOnly=true] Only output information about the action itself. Omits the SDK context for when it occurred.
@@ -49622,17 +49623,16 @@ exports.default = function (context) {
     /**
      * Updates the presence information for the current user.
      *
-     * See {@link Presence.statuses presence.statuses} and
-     *    {@link Presence.activities presence.activities} for valid values.
+     * See {@link presence.statuses} and {@link presence.activities} for valid
+     *    values.
      *
      * The SDK will emit a
-     *    {@link Presence.event:presence:selfChange presence:selfChange} event
+     *    {@link presence.event:presence:selfChange presence:selfChange} event
      *    when the operation completes. The updated presence information is
-     *    available and can be retrieved with
-     *    {@link Presence.getSelf presence.getSelf}.
+     *    available and can be retrieved with {@link presence.getSelf}.
      *
      * Other users subscribed for this user's presence will receive a
-     *    {@link Presence.event:presence:change presence:change} event.
+     *    {@link presence.event:presence:change presence:change} event.
      *
      * @public
      * @static
@@ -49691,8 +49691,7 @@ exports.default = function (context) {
     /**
      * Retrieves the presence information for the current user.
      *
-     * This information is set using the {@link Presence.update presnece.update}
-     *    API.
+     * This information is set using the {@link presence.update} API.
      *
      * @public
      * @static
@@ -49711,8 +49710,7 @@ exports.default = function (context) {
      *    available information with any new information from the server.
      *
      * Available presence information an be retrieved using the
-     *    {@link Presence.get presence.get} or
-     *    {@link Presence.getAll presence.getAll} APIs.
+     *    {@link presence.get} or {@link presence.getAll} APIs.
      *
      * @public
      * @static
@@ -49731,7 +49729,7 @@ exports.default = function (context) {
      * Subscribe to another User's presence updates.
      *
      * When the User updates their presence information, the SDK will emit a
-     *    {@link Presence.event:presence:change presence:change} event.
+     *    {@link presence.event:presence:change presence:change} event.
      *
      * @public
      * @static
@@ -49782,12 +49780,11 @@ const log = (0, _logs.getLogManager)().getLogger('PRESENCE'); /**
                                                                *
                                                                * Presence information is persisted by the server. When the SDK is initialized,
                                                                *    there will be no information available. Presence information will become
-                                                               *    available either by using {@link Presence.fetch presence.fetch} or
-                                                               *    by subscribing for updates about other Users, using
-                                                               *    {@link Presence.subscribe presence.subscribe}.
+                                                               *    available either by using {@link presence.fetch} or by subscribing for
+                                                               *    updates about other Users, using {@link presence.subscribe}.
                                                                *
-                                                               * Available presence information can be retrieved using
-                                                               *    {@link Presence.get presence.get} or {@link Presence.getAll presence.getAll}.
+                                                               * Available presence information can be retrieved using {@link presence.get} or
+                                                               *    {@link presence.getAll}.
                                                                *
                                                                * @public
                                                                * @requires presence
@@ -49823,8 +49820,8 @@ const RECEIVED = exports.RECEIVED = 'presence:change';
 /**
  * The current user's presence information has changed.
  *
- * The changed information can be retrieved using the
- *    {@link Presence.getSelf presence.getSelf} API.
+ * The changed information can be retrieved using the {@link presence.getSelf}
+ *    API.
  *
  * @public
  * @memberof presence
@@ -52596,12 +52593,12 @@ function usersAPI({ dispatch, getState, primitives }) {
     /**
      * Fetches information about a User.
      *
-     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     * The SDK will emit a {@link user.event:directory:change directory:change}
      *    event after the operation completes. The User's information will then
      *    be available.
      *
      * Information about an available User can be retrieved using the
-     *    {@link Users.get user.get} API.
+     *    {@link user.get} API.
      *
      * @public
      * @static
@@ -52616,14 +52613,14 @@ function usersAPI({ dispatch, getState, primitives }) {
 
     /**
      * Fetches information about the current User from directory.
-     * Compared to {@link Users.fetch user.fetch} API, this API retrieves additional user related information.
+     * Compared to {@link user.fetch} API, this API retrieves additional user related information.
      *
-     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     * The SDK will emit a {@link user.event:directory:change directory:change}
      *    event after the operation completes. The User's information will then
      *    be available.
      *
      * Information about an available User can be retrieved using the
-     *    {@link Users.get user.get} API.
+     *    {@link user.get} API.
      *
      * @public
      * @static
@@ -52633,14 +52630,14 @@ function usersAPI({ dispatch, getState, primitives }) {
      */
     /**
      * Fetches information about the current User from directory.
-     * This API is simply a shortcut for the {@link Users.fetch user.fetch(getUserInfo().identity)} API.
+     * This API is simply a shortcut for the {@link user.fetch user.fetch(getUserInfo().identity)} API.
      *
-     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     * The SDK will emit a {@link user.event:directory:change directory:change}
      *    event after the operation completes. The User's information will then
      *    be available.
      *
      * Information about an available User can be retrieved using the
-     *    {@link Users.get user.get} API.
+     *    {@link user.get} API.
      *
      * @public
      * @static
@@ -52656,9 +52653,8 @@ function usersAPI({ dispatch, getState, primitives }) {
     /**
      * Retrieves information about a User, if available.
      *
-     * See the {@link Users.fetch user.fetch} and
-     *    {@link Users.search user.search} APIs for details about making Users'
-     *    information available.
+     * See the {@link user.fetch} and {@link user.search} APIs for details about
+     *    making Users' information available.
      *
      * @public
      * @memberof user
@@ -52674,9 +52670,8 @@ function usersAPI({ dispatch, getState, primitives }) {
     /**
      * Retrieves information about all available Users.
      *
-     * See the {@link Users.fetch user.fetch} and
-     *    {@link Users.search user.search} APIs for details about making Users'
-     *    information available.
+     * See the {@link user.fetch} and {@link user.search} APIs for details about
+     *    making Users' information available.
      *
      * @public
      * @memberof user
@@ -52691,10 +52686,10 @@ function usersAPI({ dispatch, getState, primitives }) {
     /**
      * Searches the domain's directory for Users.
      *
-     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     * The SDK will emit a {@link user.event:directory:change directory:change}
      *    event after the operation completes. The search results will be
      *    provided as part of the event, and will also be available using the
-     *    {@link Users.get user.get} and {@link Users.getAll user.getAll} APIs.
+     *    {@link user.get} and {@link user.getAll} APIs.
      *
      * @public
      * @static
@@ -53678,7 +53673,7 @@ function* getDirectory(conn, params = {}) {
 
 /**
  * Fetch userProfileData from SPiDR with the provided connection info.
- * Compared to {@link Users.fetch user.fetch} API, this API retrieves additional user related information.
+ * Compared to {@link user.fetch} API, this API retrieves additional user related information.
  *
  * @param  {Object}     connection Connection information for the platform in use.
  * @return {Object}            Fetch request's response, parsed.
