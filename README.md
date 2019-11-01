@@ -1,21 +1,21 @@
-# @kandy-io/uc-sdk-preview
+# @kandy-io/uc-sdk
 
 ## Install
 
 ### Using npm :
 
-`$ npm install @kandy-io/uc-sdk-preview`
+`$ npm install @kandy-io/uc-sdk`
 
 #### Install a particular build :
 
 To install a particular build branch or beta branch with the Github URL, run:
 
-`$ npm install https://github.com/Kandy-IO/kandy-uc-js-sdk-preview#<build number or "beta"> --save`
+`$ npm install https://github.com/Kandy-IO/kandy-uc-js-sdk#<build number or "beta"> --save`
 
 ### In the browser :
 ```html
-<script src="https://unpkg.com/@kandy-io/uc-sdk-preview@4.8.0/dist/kandy.js"
-  integrity="sha384-jzHGltLSdcTpcF0i/J3bzmbdJlFrl+0x6D+Qu8uXdu320u3k3UfVxuJvDdZQ4z8a"
+<script src="https://unpkg.com/@kandy-io/uc-sdk@4.9.0/dist/kandy.js"
+  integrity="sha384-5WdIBrR5HMqfX7R/t7R39coOhIOgxMXJ/N5ZiRUFX9q6BGKIRM7vsPce3PR92PlF"
   crossorigin="anonymous">
 </script>
 ```
@@ -23,6 +23,6 @@ To install a particular build branch or beta branch with the Github URL, run:
 
 The information about tutorials and documents can be found in the links below
 
-* `Documents`: [docs](https://kandy-io.github.io/kandy-uc-js-sdk-preview/docs)
+* `Documents`: [docs](https://kandy-io.github.io/kandy-uc-js-sdk/docs)
 
 
