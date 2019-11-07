@@ -11,6 +11,11 @@ Kandy.js change log.
 
 - Added Call support for setting and sending custom parameters. `KAA-2063`
 
+### Fixed
+
+- Fixed an issue where searching the directory would fail even if a filter was provided. `KAA-1161`
+    - Updated public documentation to accurately reflect directory `search` API.
+
 ## 4.9.0 - 2019-11-01
 
 ### Added
