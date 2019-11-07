@@ -16,6 +16,7 @@ Kandy.js change log.
 - Fixed an issue where searching the directory would fail even if a filter was provided. `KAA-1161`
   - Updated public documentation to accurately reflect directory `search` API.
 - Fixed missing refresh token by responding to changing CIM api with a refresh query flag. `KAA-1836`
+- Fixed public documentation hyperlinks for custom type definitions. `KAA-2011`
 
 ## 4.9.0 - 2019-11-01
 
