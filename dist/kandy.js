@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.10.0-beta.187
+ * Version: 4.10.0-beta.188
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -27825,6 +27825,7 @@ function* createToken(action, config) {
   const response = yield (0, _effects2.default)({
     url: `${protocol}://${server}:${port}/${version}/auth/mk_token`,
     queryParams: {
+      refresh: 'y',
       expires: credentials.expires
     },
     headers: {
@@ -44465,7 +44466,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.10.0-beta.187';
+  let version = '4.10.0-beta.188';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
