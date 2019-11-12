@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.10.0-beta.193
+ * Version: 4.10.0-beta.194
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -32948,16 +32948,7 @@ const log = (0, _logs.getLogManager)().getLogger('CALL');
 function callsLink(options = {}) {
   const defaultOptions = {
     // The list of TURN/STUN servers to use.
-
-    // TODO: Remove this default once the UC server configuration feature is implemented. These
-    // servers should be sent to us by UC. This default is just here fo ease of use in production.
-    iceServers: [{
-      urls: 'turns:turn-ucc-1.genband.com:443?transport=tcp',
-      credential: ''
-    }, {
-      urls: 'turns:turn-ucc-2.genband.com:443?transport=tcp',
-      credential: ''
-    }],
+    iceServers: [],
     // TODO: Remove this once all the browsers use unified-plan
     sdpSemantics: 'plan-b',
     // Whether the SDK should fetch turn credentials.
@@ -44465,7 +44456,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.10.0-beta.193';
+  let version = '4.10.0-beta.194';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];

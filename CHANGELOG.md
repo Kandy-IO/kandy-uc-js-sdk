@@ -17,6 +17,7 @@ Kandy.js change log.
   - Updated public documentation to accurately reflect directory `search` API.
 - Fixed missing refresh token by responding to changing CIM api with a refresh query flag. `KAA-1836`
 - Fixed public documentation hyperlinks for custom type definitions. `KAA-2011`
+- Fixed a Call configuration issue where midcall operations may be slow when no ICE server configurations were provided.
 
 ## 4.9.0 - 2019-11-01
 
