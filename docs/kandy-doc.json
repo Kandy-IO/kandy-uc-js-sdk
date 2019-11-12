@@ -8016,6 +8016,440 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88,
+                        "offset": 87
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 88,
+                    "offset": 87
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 88,
+                "offset": 87
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "userCredentialsAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "connect"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username including the application's domain.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "The user's password.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.password"
+            },
+            {
+              "title": "param",
+              "description": "The user's authorization name.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "credentials.authname"
+            },
+            {
+              "title": "example",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
+              "lineNumber": 11
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 4
+            },
+            "end": {
+              "line": 35,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 137,
+                "column": 4
+              },
+              "end": {
+                "line": 142,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username including the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 49,
+                                "offset": 48
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49,
+                            "offset": 48
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49,
+                        "offset": 48
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.password",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's password.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 21,
+                                "offset": 20
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21,
+                            "offset": 20
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 21,
+                        "offset": 20
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.authname",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's authorization name.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 31,
+                                "offset": 30
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31,
+                            "offset": 30
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31,
+                        "offset": 30
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "api",
+          "kind": "function",
+          "name": "connect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "connect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apiconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "Connect by providing a refresh token, to any backend services that the SDK instance deals with.",
                     "position": {
                       "start": {
@@ -8807,440 +9241,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 88,
-                        "offset": 87
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 88,
-                    "offset": 87
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 88,
-                "offset": 87
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "api",
-              "lineNumber": 4
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "userCredentialsAuth"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 6,
-              "name": "connect"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username including the application's domain.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "The user's password.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.password"
-            },
-            {
-              "title": "param",
-              "description": "The user's authorization name.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "credentials.authname"
-            },
-            {
-              "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
-              "lineNumber": 11
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 18,
-              "column": 4
-            },
-            "end": {
-              "line": 35,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 137,
-                "column": 4
-              },
-              "end": {
-                "line": 142,
-                "column": 5
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 8,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username including the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 49,
-                                "offset": 48
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 49,
-                            "offset": 48
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 49,
-                        "offset": 48
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.password",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's password.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 21,
-                                "offset": 20
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 21,
-                            "offset": 20
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 21,
-                        "offset": 20
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.authname",
-                  "lineNumber": 10,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's authorization name.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 31,
-                                "offset": 30
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 31,
-                            "offset": 30
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 31,
-                        "offset": 30
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "api",
-          "kind": "function",
-          "name": "connect",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "api",
-              "kind": "module"
-            },
-            {
-              "name": "connect",
-              "kind": "function"
-            }
-          ],
-          "namespace": "apiconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Disconnects from the backend. This will close the websocket and you will stop receiving events.",
                     "position": {
                       "start": {
@@ -9375,431 +9375,6 @@
             }
           ],
           "namespace": "apidisconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "If you're authenticating with tokens that expire and have not provided a refresh token to the ",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 95,
-                        "offset": 94
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "connect",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 95,
-                        "offset": 94
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 104,
-                        "offset": 103
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " function, you can update your access token with ",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 104,
-                        "offset": 103
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 153,
-                        "offset": 152
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "updateToken",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 153,
-                        "offset": 152
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 166,
-                        "offset": 165
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " before it expires to stay connected.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 166,
-                        "offset": 165
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 203,
-                        "offset": 202
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 203,
-                    "offset": 202
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 203,
-                "offset": 202
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "api",
-              "lineNumber": 4
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "oauthToken"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 6,
-              "name": "updateToken"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username without the application's domain.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "An OAuth token provided by an outside service.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.oauthToken"
-            },
-            {
-              "title": "example",
-              "description": "client.updateToken({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
-              "lineNumber": 10
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 172,
-              "column": 4
-            },
-            "end": {
-              "line": 187,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 188,
-                "column": 4
-              },
-              "end": {
-                "line": 193,
-                "column": 5
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.updateToken({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 8,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username without the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 47,
-                                "offset": 46
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 47,
-                            "offset": 46
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 47,
-                        "offset": 46
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.oauthToken",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "An OAuth token provided by an outside service.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 47,
-                                "offset": 46
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 47,
-                            "offset": 46
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 47,
-                        "offset": 46
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "api",
-          "kind": "function",
-          "name": "updateToken",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "api",
-              "kind": "module"
-            },
-            {
-              "name": "updateToken",
-              "kind": "function"
-            }
-          ],
-          "namespace": "apiupdateToken"
         },
         {
           "description": {
@@ -10329,6 +9904,431 @@
                 "type": "NameExpression",
                 "name": "Object"
               }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "api",
+          "kind": "function",
+          "name": "updateToken",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "updateToken",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apiupdateToken"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "If you're authenticating with tokens that expire and have not provided a refresh token to the ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 95,
+                        "offset": 94
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "connect",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 95,
+                        "offset": 94
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 104,
+                        "offset": 103
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " function, you can update your access token with ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 104,
+                        "offset": 103
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 153,
+                        "offset": 152
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "updateToken",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 153,
+                        "offset": 152
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 166,
+                        "offset": 165
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " before it expires to stay connected.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 166,
+                        "offset": 165
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 203,
+                        "offset": 202
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 203,
+                    "offset": 202
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 203,
+                "offset": 202
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "oauthToken"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "updateToken"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username without the application's domain.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "An OAuth token provided by an outside service.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.oauthToken"
+            },
+            {
+              "title": "example",
+              "description": "client.updateToken({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});",
+              "lineNumber": 10
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 172,
+              "column": 4
+            },
+            "end": {
+              "line": 187,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 188,
+                "column": 4
+              },
+              "end": {
+                "line": 193,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.updateToken({\n  username: 'alfred@example.com',\n  oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username without the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 47,
+                                "offset": 46
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 47,
+                            "offset": 46
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47,
+                        "offset": 46
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.oauthToken",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "An OAuth token provided by an outside service.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 47,
+                                "offset": 46
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 47,
+                            "offset": 46
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47,
+                        "offset": 46
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                }
+              ]
             }
           ],
           "properties": [],
@@ -18596,415 +18596,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "A collection of media devices and their information.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 53,
-                        "offset": 52
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 53,
-                    "offset": 52
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 53,
-                "offset": 52
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "static",
-              "description": null,
-              "lineNumber": 4
-            },
-            {
-              "title": "typedef",
-              "description": null,
-              "lineNumber": 5,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "DevicesObject"
-            },
-            {
-              "title": "memberof",
-              "description": "call",
-              "lineNumber": 6
-            },
-            {
-              "title": "property",
-              "description": "A list of camera device information.",
-              "lineNumber": 7,
-              "type": {
-                "type": "TypeApplication",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Array"
-                },
-                "applications": [
-                  {
-                    "type": "NameExpression",
-                    "name": "call.DeviceInfo"
-                  }
-                ]
-              },
-              "name": "camera"
-            },
-            {
-              "title": "property",
-              "description": "A list of microphone device information.",
-              "lineNumber": 8,
-              "type": {
-                "type": "TypeApplication",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Array"
-                },
-                "applications": [
-                  {
-                    "type": "NameExpression",
-                    "name": "call.DeviceInfo"
-                  }
-                ]
-              },
-              "name": "microphone"
-            },
-            {
-              "title": "property",
-              "description": "A list of speaker device information.",
-              "lineNumber": 9,
-              "type": {
-                "type": "TypeApplication",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Array"
-                },
-                "applications": [
-                  {
-                    "type": "NameExpression",
-                    "name": "call.DeviceInfo"
-                  }
-                ]
-              },
-              "name": "speaker"
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 197,
-              "column": 0
-            },
-            "end": {
-              "line": 207,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 266,
-                "column": 0
-              },
-              "end": {
-                "line": 270,
-                "column": 1
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
-          },
-          "augments": [],
-          "examples": [],
-          "params": [],
-          "properties": [
-            {
-              "title": "property",
-              "name": "camera",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "A list of camera device information.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 37,
-                            "offset": 36
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 37,
-                        "offset": 36
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 37,
-                    "offset": 36
-                  }
-                }
-              },
-              "type": {
-                "type": "TypeApplication",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Array"
-                },
-                "applications": [
-                  {
-                    "type": "NameExpression",
-                    "name": "call.DeviceInfo"
-                  }
-                ]
-              }
-            },
-            {
-              "title": "property",
-              "name": "microphone",
-              "lineNumber": 8,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "A list of microphone device information.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 41,
-                            "offset": 40
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 41,
-                        "offset": 40
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 41,
-                    "offset": 40
-                  }
-                }
-              },
-              "type": {
-                "type": "TypeApplication",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Array"
-                },
-                "applications": [
-                  {
-                    "type": "NameExpression",
-                    "name": "call.DeviceInfo"
-                  }
-                ]
-              }
-            },
-            {
-              "title": "property",
-              "name": "speaker",
-              "lineNumber": 9,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "A list of speaker device information.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 38,
-                            "offset": 37
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 38,
-                        "offset": 37
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 38,
-                    "offset": 37
-                  }
-                }
-              },
-              "type": {
-                "type": "TypeApplication",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Array"
-                },
-                "applications": [
-                  {
-                    "type": "NameExpression",
-                    "name": "call.DeviceInfo"
-                  }
-                ]
-              }
-            }
-          ],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "scope": "static",
-          "kind": "typedef",
-          "name": "DevicesObject",
-          "type": {
-            "type": "NameExpression",
-            "name": "Object"
-          },
-          "memberof": "call",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "call",
-              "kind": "namespace"
-            },
-            {
-              "name": "DevicesObject",
-              "kind": "typedef",
-              "scope": "static"
-            }
-          ],
-          "namespace": "call.DevicesObject"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Information about a Call.",
                     "position": {
                       "start": {
@@ -23329,6 +22920,415 @@
             }
           ],
           "namespace": "call.TrackObject"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A collection of media devices and their information.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 53,
+                        "offset": 52
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 53,
+                    "offset": 52
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 53,
+                "offset": 52
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 4
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "DevicesObject"
+            },
+            {
+              "title": "memberof",
+              "description": "call",
+              "lineNumber": 6
+            },
+            {
+              "title": "property",
+              "description": "A list of camera device information.",
+              "lineNumber": 7,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "call.DeviceInfo"
+                  }
+                ]
+              },
+              "name": "camera"
+            },
+            {
+              "title": "property",
+              "description": "A list of microphone device information.",
+              "lineNumber": 8,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "call.DeviceInfo"
+                  }
+                ]
+              },
+              "name": "microphone"
+            },
+            {
+              "title": "property",
+              "description": "A list of speaker device information.",
+              "lineNumber": 9,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "call.DeviceInfo"
+                  }
+                ]
+              },
+              "name": "speaker"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 197,
+              "column": 0
+            },
+            "end": {
+              "line": 207,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 266,
+                "column": 0
+              },
+              "end": {
+                "line": 270,
+                "column": 1
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [
+            {
+              "title": "property",
+              "name": "camera",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "A list of camera device information.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 37,
+                            "offset": 36
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 37,
+                        "offset": 36
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 37,
+                    "offset": 36
+                  }
+                }
+              },
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "call.DeviceInfo"
+                  }
+                ]
+              }
+            },
+            {
+              "title": "property",
+              "name": "microphone",
+              "lineNumber": 8,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "A list of microphone device information.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 41,
+                            "offset": 40
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 41,
+                        "offset": 40
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 41,
+                    "offset": 40
+                  }
+                }
+              },
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "call.DeviceInfo"
+                  }
+                ]
+              }
+            },
+            {
+              "title": "property",
+              "name": "speaker",
+              "lineNumber": 9,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "A list of speaker device information.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 38,
+                            "offset": 37
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 38,
+                        "offset": 37
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 38,
+                    "offset": 37
+                  }
+                }
+              },
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "call.DeviceInfo"
+                  }
+                ]
+              }
+            }
+          ],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "typedef",
+          "name": "DevicesObject",
+          "type": {
+            "type": "NameExpression",
+            "name": "Object"
+          },
+          "memberof": "call",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "call",
+              "kind": "namespace"
+            },
+            {
+              "name": "DevicesObject",
+              "kind": "typedef",
+              "scope": "static"
+            }
+          ],
+          "namespace": "call.DevicesObject"
         },
         {
           "description": {
@@ -35841,485 +35841,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Adds local screenshare to an ongoing Call, to start sending to the remote\n   participant.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 16,
-                        "offset": 89
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 16,
-                    "offset": 89
-                  },
-                  "indent": [
-                    1
-                  ]
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "The latest SDK release (v4.X+) has not yet implemented this API in the\n   same way that it was available in previous releases (v3.X). In place\n   of this API, the SDK has a more general API that can be used for this\n   same behaviour.",
-                    "position": {
-                      "start": {
-                        "line": 4,
-                        "column": 1,
-                        "offset": 91
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 19,
-                        "offset": 325
-                      },
-                      "indent": [
-                        1,
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 4,
-                    "column": 1,
-                    "offset": 91
-                  },
-                  "end": {
-                    "line": 7,
-                    "column": 19,
-                    "offset": 325
-                  },
-                  "indent": [
-                    1,
-                    1,
-                    1
-                  ]
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "The ",
-                    "position": {
-                      "start": {
-                        "line": 9,
-                        "column": 1,
-                        "offset": 327
-                      },
-                      "end": {
-                        "line": 9,
-                        "column": 5,
-                        "offset": 331
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#calladdmedia",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "call.addMedia"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 9,
-                        "column": 5,
-                        "offset": 331
-                      },
-                      "end": {
-                        "line": 9,
-                        "column": 26,
-                        "offset": 352
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " API can be used to perform the same behaviour\n   as ",
-                    "position": {
-                      "start": {
-                        "line": 9,
-                        "column": 26,
-                        "offset": 352
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 7,
-                        "offset": 405
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "startScreenshare",
-                    "position": {
-                      "start": {
-                        "line": 10,
-                        "column": 7,
-                        "offset": 405
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 25,
-                        "offset": 423
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": ". ",
-                    "position": {
-                      "start": {
-                        "line": 10,
-                        "column": 25,
-                        "offset": 423
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 27,
-                        "offset": 425
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#calladdmedia",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "call.addMedia"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 10,
-                        "column": 27,
-                        "offset": 425
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 48,
-                        "offset": 446
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " is a general-purpose API\n   for adding media to a call, which covers the same functionality as\n   ",
-                    "position": {
-                      "start": {
-                        "line": 10,
-                        "column": 48,
-                        "offset": 446
-                      },
-                      "end": {
-                        "line": 12,
-                        "column": 4,
-                        "offset": 545
-                      },
-                      "indent": [
-                        1,
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "startScreenshare",
-                    "position": {
-                      "start": {
-                        "line": 12,
-                        "column": 4,
-                        "offset": 545
-                      },
-                      "end": {
-                        "line": 12,
-                        "column": 22,
-                        "offset": 563
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": ". Selecting only screen options when using\n   ",
-                    "position": {
-                      "start": {
-                        "line": 12,
-                        "column": 22,
-                        "offset": 563
-                      },
-                      "end": {
-                        "line": 13,
-                        "column": 4,
-                        "offset": 609
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#calladdmedia",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "call.addMedia"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 13,
-                        "column": 4,
-                        "offset": 609
-                      },
-                      "end": {
-                        "line": 13,
-                        "column": 25,
-                        "offset": 630
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " will perform the same behaviour as using\n   ",
-                    "position": {
-                      "start": {
-                        "line": 13,
-                        "column": 25,
-                        "offset": 630
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 4,
-                        "offset": 675
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "startScreenshare",
-                    "position": {
-                      "start": {
-                        "line": 14,
-                        "column": 4,
-                        "offset": 675
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 22,
-                        "offset": 693
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": ".",
-                    "position": {
-                      "start": {
-                        "line": 14,
-                        "column": 22,
-                        "offset": 693
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 23,
-                        "offset": 694
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 9,
-                    "column": 1,
-                    "offset": 327
-                  },
-                  "end": {
-                    "line": 14,
-                    "column": 23,
-                    "offset": 694
-                  },
-                  "indent": [
-                    1,
-                    1,
-                    1,
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 14,
-                "column": 23,
-                "offset": 694
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 16,
-              "type": null
-            },
-            {
-              "title": "static",
-              "description": null,
-              "lineNumber": 17
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 18,
-              "name": "startScreenshare"
-            },
-            {
-              "title": "memberof",
-              "description": "call",
-              "lineNumber": 19
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 20,
-              "name": "call"
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 21,
-              "name": "callMe"
-            },
-            {
-              "title": "example",
-              "description": "// Select media options for adding only screenshare.\nconst media = {\n   audio: false,\n   video: false,\n   screen: true,\n   screenOptions: { ... }\n}\n\n// Add the selected media to the call.\nclient.call.addMedia(callId, media)",
-              "lineNumber": 22
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 645,
-              "column": 4
-            },
-            "end": {
-              "line": 678,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 750,
-                "column": 4
-              },
-              "end": {
-                "line": 753,
-                "column": 5
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "// Select media options for adding only screenshare.\nconst media = {\n   audio: false,\n   video: false,\n   screen: true,\n   screenOptions: { ... }\n}\n\n// Add the selected media to the call.\nclient.call.addMedia(callId, media)"
-            }
-          ],
-          "params": [],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "scope": "static",
-          "kind": "function",
-          "name": "startScreenshare",
-          "memberof": "call",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "call",
-              "kind": "namespace"
-            },
-            {
-              "name": "startScreenshare",
-              "kind": "function",
-              "scope": "static"
-            }
-          ],
-          "namespace": "call.startScreenshare"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Removes local screenshare from an ongoing Call, stopping it from being\n   sent to the remote participant.",
                     "position": {
                       "start": {
@@ -36832,6 +36353,485 @@
             }
           ],
           "namespace": "call.stopScreenshare"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Adds local screenshare to an ongoing Call, to start sending to the remote\n   participant.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 16,
+                        "offset": 89
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 16,
+                    "offset": 89
+                  },
+                  "indent": [
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The latest SDK release (v4.X+) has not yet implemented this API in the\n   same way that it was available in previous releases (v3.X). In place\n   of this API, the SDK has a more general API that can be used for this\n   same behaviour.",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 1,
+                        "offset": 91
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 19,
+                        "offset": 325
+                      },
+                      "indent": [
+                        1,
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 4,
+                    "column": 1,
+                    "offset": 91
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 19,
+                    "offset": 325
+                  },
+                  "indent": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The ",
+                    "position": {
+                      "start": {
+                        "line": 9,
+                        "column": 1,
+                        "offset": 327
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 5,
+                        "offset": 331
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#calladdmedia",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "call.addMedia"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 9,
+                        "column": 5,
+                        "offset": 331
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 26,
+                        "offset": 352
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " API can be used to perform the same behaviour\n   as ",
+                    "position": {
+                      "start": {
+                        "line": 9,
+                        "column": 26,
+                        "offset": 352
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 7,
+                        "offset": 405
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "startScreenshare",
+                    "position": {
+                      "start": {
+                        "line": 10,
+                        "column": 7,
+                        "offset": 405
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 25,
+                        "offset": 423
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": ". ",
+                    "position": {
+                      "start": {
+                        "line": 10,
+                        "column": 25,
+                        "offset": 423
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 27,
+                        "offset": 425
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#calladdmedia",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "call.addMedia"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 10,
+                        "column": 27,
+                        "offset": 425
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 48,
+                        "offset": 446
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " is a general-purpose API\n   for adding media to a call, which covers the same functionality as\n   ",
+                    "position": {
+                      "start": {
+                        "line": 10,
+                        "column": 48,
+                        "offset": 446
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 4,
+                        "offset": 545
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "startScreenshare",
+                    "position": {
+                      "start": {
+                        "line": 12,
+                        "column": 4,
+                        "offset": 545
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 22,
+                        "offset": 563
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": ". Selecting only screen options when using\n   ",
+                    "position": {
+                      "start": {
+                        "line": 12,
+                        "column": 22,
+                        "offset": 563
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 4,
+                        "offset": 609
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#calladdmedia",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "call.addMedia"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 13,
+                        "column": 4,
+                        "offset": 609
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 25,
+                        "offset": 630
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " will perform the same behaviour as using\n   ",
+                    "position": {
+                      "start": {
+                        "line": 13,
+                        "column": 25,
+                        "offset": 630
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 4,
+                        "offset": 675
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "startScreenshare",
+                    "position": {
+                      "start": {
+                        "line": 14,
+                        "column": 4,
+                        "offset": 675
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 22,
+                        "offset": 693
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": ".",
+                    "position": {
+                      "start": {
+                        "line": 14,
+                        "column": 22,
+                        "offset": 693
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 23,
+                        "offset": 694
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 9,
+                    "column": 1,
+                    "offset": 327
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 23,
+                    "offset": 694
+                  },
+                  "indent": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 14,
+                "column": 23,
+                "offset": 694
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 16,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 17
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 18,
+              "name": "startScreenshare"
+            },
+            {
+              "title": "memberof",
+              "description": "call",
+              "lineNumber": 19
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 20,
+              "name": "call"
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 21,
+              "name": "callMe"
+            },
+            {
+              "title": "example",
+              "description": "// Select media options for adding only screenshare.\nconst media = {\n   audio: false,\n   video: false,\n   screen: true,\n   screenOptions: { ... }\n}\n\n// Add the selected media to the call.\nclient.call.addMedia(callId, media)",
+              "lineNumber": 22
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 645,
+              "column": 4
+            },
+            "end": {
+              "line": 678,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 750,
+                "column": 4
+              },
+              "end": {
+                "line": 753,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "// Select media options for adding only screenshare.\nconst media = {\n   audio: false,\n   video: false,\n   screen: true,\n   screenOptions: { ... }\n}\n\n// Add the selected media to the call.\nclient.call.addMedia(callId, media)"
+            }
+          ],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "function",
+          "name": "startScreenshare",
+          "memberof": "call",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "call",
+              "kind": "namespace"
+            },
+            {
+              "name": "startScreenshare",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "call.startScreenshare"
         },
         {
           "description": {
@@ -41372,7 +41372,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Changes the speaker used for a Call's audio output. Supported on\n   browser's that support HTMLMediaElement.setSinkId().",
+                    "value": "The ",
                     "position": {
                       "start": {
                         "line": 1,
@@ -41380,11 +41380,46 @@
                         "offset": 0
                       },
                       "end": {
-                        "line": 2,
-                        "column": 56,
-                        "offset": 120
+                        "line": 1,
+                        "column": 5,
+                        "offset": 4
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "setDefaultDevices",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 5,
+                        "offset": 4
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " API from previous SDK releases (3.X) has been\n   deprecated in the latest releases (4.X+). The SDK no longer keeps\n   track of \"default devices\" on behalf of the application.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 60,
+                        "offset": 198
                       },
                       "indent": [
+                        1,
                         1
                       ]
                     }
@@ -41397,11 +41432,12 @@
                     "offset": 0
                   },
                   "end": {
-                    "line": 2,
-                    "column": 56,
-                    "offset": 120
+                    "line": 3,
+                    "column": 60,
+                    "offset": 198
                   },
                   "indent": [
+                    1,
                     1
                   ]
                 }
@@ -41411,97 +41447,19 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "The latest SDK release (v4.X+) has not yet implemented this API in the\n   same way that it was available in previous releases (v3.X). In place\n   of this API, the SDK has a more general API that can be used for this\n   same behaviour.",
+                    "value": "The devices used for a call can be selected as part of the APIs for\n   starting the call. Microphone and/or camera can be chosen in the\n   ",
                     "position": {
                       "start": {
-                        "line": 4,
+                        "line": 5,
                         "column": 1,
-                        "offset": 122
+                        "offset": 200
                       },
                       "end": {
                         "line": 7,
-                        "column": 19,
-                        "offset": 356
+                        "column": 4,
+                        "offset": 339
                       },
                       "indent": [
-                        1,
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 4,
-                    "column": 1,
-                    "offset": 122
-                  },
-                  "end": {
-                    "line": 7,
-                    "column": 19,
-                    "offset": 356
-                  },
-                  "indent": [
-                    1,
-                    1,
-                    1
-                  ]
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "The same behaviour as the ",
-                    "position": {
-                      "start": {
-                        "line": 9,
-                        "column": 1,
-                        "offset": 358
-                      },
-                      "end": {
-                        "line": 9,
-                        "column": 27,
-                        "offset": 384
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "changeSpeaker",
-                    "position": {
-                      "start": {
-                        "line": 9,
-                        "column": 27,
-                        "offset": 384
-                      },
-                      "end": {
-                        "line": 9,
-                        "column": 42,
-                        "offset": 399
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " API can be implemented by\n   re-rendering the Call's audio track.  A speaker can be selected when\n   rendering an audio track, so changing a speaker can be simulated\n   by unrendering the track with ",
-                    "position": {
-                      "start": {
-                        "line": 9,
-                        "column": 42,
-                        "offset": 399
-                      },
-                      "end": {
-                        "line": 12,
-                        "column": 34,
-                        "offset": 599
-                      },
-                      "indent": [
-                        1,
                         1,
                         1
                       ]
@@ -41509,44 +41467,87 @@
                   },
                   {
                     "type": "link",
-                    "url": "#mediaremovetracks",
+                    "url": "#callmake",
                     "title": null,
                     "jsdoc": true,
                     "children": [
                       {
                         "type": "text",
-                        "value": "media.removeTracks"
+                        "value": "call.make"
                       }
                     ],
                     "position": {
                       "start": {
-                        "line": 12,
-                        "column": 34,
-                        "offset": 599
+                        "line": 7,
+                        "column": 4,
+                        "offset": 339
                       },
                       "end": {
-                        "line": 12,
-                        "column": 60,
-                        "offset": 625
+                        "line": 7,
+                        "column": 21,
+                        "offset": 356
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": ", then\n   re-rendering it with a new speaker with ",
+                    "value": " and ",
                     "position": {
                       "start": {
-                        "line": 12,
-                        "column": 60,
-                        "offset": 625
+                        "line": 7,
+                        "column": 21,
+                        "offset": 356
                       },
                       "end": {
-                        "line": 13,
-                        "column": 44,
-                        "offset": 675
+                        "line": 7,
+                        "column": 26,
+                        "offset": 361
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#callanswer",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "call.answer"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 7,
+                        "column": 26,
+                        "offset": 361
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 45,
+                        "offset": 380
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " APIs, and speaker can be\n   chosen when the audio track is rendered with the\n   ",
+                    "position": {
+                      "start": {
+                        "line": 7,
+                        "column": 45,
+                        "offset": 380
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 4,
+                        "offset": 461
                       },
                       "indent": [
+                        1,
                         1
                       ]
                     }
@@ -41564,31 +41565,31 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 13,
-                        "column": 44,
-                        "offset": 675
+                        "line": 9,
+                        "column": 4,
+                        "offset": 461
                       },
                       "end": {
-                        "line": 13,
-                        "column": 70,
-                        "offset": 701
+                        "line": 9,
+                        "column": 30,
+                        "offset": 487
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": ".",
+                    "value": " API.",
                     "position": {
                       "start": {
-                        "line": 13,
-                        "column": 70,
-                        "offset": 701
+                        "line": 9,
+                        "column": 30,
+                        "offset": 487
                       },
                       "end": {
-                        "line": 13,
-                        "column": 71,
-                        "offset": 702
+                        "line": 9,
+                        "column": 35,
+                        "offset": 492
                       },
                       "indent": []
                     }
@@ -41596,14 +41597,14 @@
                 ],
                 "position": {
                   "start": {
-                    "line": 9,
+                    "line": 5,
                     "column": 1,
-                    "offset": 358
+                    "offset": 200
                   },
                   "end": {
-                    "line": 13,
-                    "column": 71,
-                    "offset": 702
+                    "line": 9,
+                    "column": 35,
+                    "offset": 492
                   },
                   "indent": [
                     1,
@@ -41621,9 +41622,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 13,
-                "column": 71,
-                "offset": 702
+                "line": 9,
+                "column": 35,
+                "offset": 492
               }
             }
           },
@@ -41631,50 +41632,45 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 14,
+              "lineNumber": 10,
               "type": null
             },
             {
               "title": "static",
               "description": null,
-              "lineNumber": 15
+              "lineNumber": 11
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 16,
-              "name": "changeSpeaker"
+              "lineNumber": 12,
+              "name": "setDefaultDevices"
             },
             {
               "title": "memberof",
               "description": "call",
-              "lineNumber": 17
+              "lineNumber": 13
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 18,
+              "lineNumber": 14,
               "name": "call"
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 19,
+              "lineNumber": 15,
               "name": "callMe"
-            },
-            {
-              "title": "example",
-              "description": "const call = client.call.getById(callId)\n// Get the ID of the Call's audio track.\nconst audioTrack = call.localTracks.find(trackId => {\n   const track = client.media.getTrackById(trackId)\n   return track.kind === 'audio'\n})\n\n// Where the audio track was previously rendered.\nconst audioContainer = ...\n\n// Unrender the audio track we want to change speaker for.\nclient.media.removeTrack([ audioTrack ], audioContainer)\n// Re-render the audio track with a new speaker.\nclient.media.renderTrack([ audioTrack ], audioContainer, {\n   speakerId: 'speakerId'\n})",
-              "lineNumber": 20
             }
           ],
           "loc": {
             "start": {
-              "line": 1121,
+              "line": 1064,
               "column": 4
             },
             "end": {
-              "line": 1158,
+              "line": 1080,
               "column": 7
             }
           },
@@ -41692,11 +41688,7 @@
             "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
-          "examples": [
-            {
-              "description": "const call = client.call.getById(callId)\n// Get the ID of the Call's audio track.\nconst audioTrack = call.localTracks.find(trackId => {\n   const track = client.media.getTrackById(trackId)\n   return track.kind === 'audio'\n})\n\n// Where the audio track was previously rendered.\nconst audioContainer = ...\n\n// Unrender the audio track we want to change speaker for.\nclient.media.removeTrack([ audioTrack ], audioContainer)\n// Re-render the audio track with a new speaker.\nclient.media.renderTrack([ audioTrack ], audioContainer, {\n   speakerId: 'speakerId'\n})"
-            }
-          ],
+          "examples": [],
           "params": [],
           "properties": [],
           "returns": [],
@@ -41706,7 +41698,7 @@
           "access": "public",
           "scope": "static",
           "kind": "function",
-          "name": "changeSpeaker",
+          "name": "setDefaultDevices",
           "memberof": "call",
           "members": {
             "global": [],
@@ -41721,12 +41713,12 @@
               "kind": "namespace"
             },
             {
-              "name": "changeSpeaker",
+              "name": "setDefaultDevices",
               "kind": "function",
               "scope": "static"
             }
           ],
-          "namespace": "call.changeSpeaker"
+          "namespace": "call.setDefaultDevices"
         },
         {
           "description": {
@@ -42759,7 +42751,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "The ",
+                    "value": "Changes the speaker used for a Call's audio output. Supported on\n   browser's that support HTMLMediaElement.setSinkId().",
                     "position": {
                       "start": {
                         "line": 1,
@@ -42767,46 +42759,11 @@
                         "offset": 0
                       },
                       "end": {
-                        "line": 1,
-                        "column": 5,
-                        "offset": 4
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "setDefaultDevices",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 5,
-                        "offset": 4
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " API from previous SDK releases (3.X) has been\n   deprecated in the latest releases (4.X+). The SDK no longer keeps\n   track of \"default devices\" on behalf of the application.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 60,
-                        "offset": 198
+                        "line": 2,
+                        "column": 56,
+                        "offset": 120
                       },
                       "indent": [
-                        1,
                         1
                       ]
                     }
@@ -42819,11 +42776,53 @@
                     "offset": 0
                   },
                   "end": {
-                    "line": 3,
-                    "column": 60,
-                    "offset": 198
+                    "line": 2,
+                    "column": 56,
+                    "offset": 120
                   },
                   "indent": [
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The latest SDK release (v4.X+) has not yet implemented this API in the\n   same way that it was available in previous releases (v3.X). In place\n   of this API, the SDK has a more general API that can be used for this\n   same behaviour.",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 1,
+                        "offset": 122
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 19,
+                        "offset": 356
+                      },
+                      "indent": [
+                        1,
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 4,
+                    "column": 1,
+                    "offset": 122
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 19,
+                    "offset": 356
+                  },
+                  "indent": [
+                    1,
                     1,
                     1
                   ]
@@ -42834,19 +42833,54 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "The devices used for a call can be selected as part of the APIs for\n   starting the call. Microphone and/or camera can be chosen in the\n   ",
+                    "value": "The same behaviour as the ",
                     "position": {
                       "start": {
-                        "line": 5,
+                        "line": 9,
                         "column": 1,
-                        "offset": 200
+                        "offset": 358
                       },
                       "end": {
-                        "line": 7,
-                        "column": 4,
-                        "offset": 339
+                        "line": 9,
+                        "column": 27,
+                        "offset": 384
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "changeSpeaker",
+                    "position": {
+                      "start": {
+                        "line": 9,
+                        "column": 27,
+                        "offset": 384
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 42,
+                        "offset": 399
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " API can be implemented by\n   re-rendering the Call's audio track.  A speaker can be selected when\n   rendering an audio track, so changing a speaker can be simulated\n   by unrendering the track with ",
+                    "position": {
+                      "start": {
+                        "line": 9,
+                        "column": 42,
+                        "offset": 399
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 34,
+                        "offset": 599
                       },
                       "indent": [
+                        1,
                         1,
                         1
                       ]
@@ -42854,87 +42888,44 @@
                   },
                   {
                     "type": "link",
-                    "url": "#callmake",
+                    "url": "#mediaremovetracks",
                     "title": null,
                     "jsdoc": true,
                     "children": [
                       {
                         "type": "text",
-                        "value": "call.make"
+                        "value": "media.removeTracks"
                       }
                     ],
                     "position": {
                       "start": {
-                        "line": 7,
-                        "column": 4,
-                        "offset": 339
+                        "line": 12,
+                        "column": 34,
+                        "offset": 599
                       },
                       "end": {
-                        "line": 7,
-                        "column": 21,
-                        "offset": 356
+                        "line": 12,
+                        "column": 60,
+                        "offset": 625
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " and ",
+                    "value": ", then\n   re-rendering it with a new speaker with ",
                     "position": {
                       "start": {
-                        "line": 7,
-                        "column": 21,
-                        "offset": 356
+                        "line": 12,
+                        "column": 60,
+                        "offset": 625
                       },
                       "end": {
-                        "line": 7,
-                        "column": 26,
-                        "offset": 361
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#callanswer",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "call.answer"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 7,
-                        "column": 26,
-                        "offset": 361
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 45,
-                        "offset": 380
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " APIs, and speaker can be\n   chosen when the audio track is rendered with the\n   ",
-                    "position": {
-                      "start": {
-                        "line": 7,
-                        "column": 45,
-                        "offset": 380
-                      },
-                      "end": {
-                        "line": 9,
-                        "column": 4,
-                        "offset": 461
+                        "line": 13,
+                        "column": 44,
+                        "offset": 675
                       },
                       "indent": [
-                        1,
                         1
                       ]
                     }
@@ -42952,31 +42943,31 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 9,
-                        "column": 4,
-                        "offset": 461
+                        "line": 13,
+                        "column": 44,
+                        "offset": 675
                       },
                       "end": {
-                        "line": 9,
-                        "column": 30,
-                        "offset": 487
+                        "line": 13,
+                        "column": 70,
+                        "offset": 701
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " API.",
+                    "value": ".",
                     "position": {
                       "start": {
-                        "line": 9,
-                        "column": 30,
-                        "offset": 487
+                        "line": 13,
+                        "column": 70,
+                        "offset": 701
                       },
                       "end": {
-                        "line": 9,
-                        "column": 35,
-                        "offset": 492
+                        "line": 13,
+                        "column": 71,
+                        "offset": 702
                       },
                       "indent": []
                     }
@@ -42984,14 +42975,14 @@
                 ],
                 "position": {
                   "start": {
-                    "line": 5,
+                    "line": 9,
                     "column": 1,
-                    "offset": 200
+                    "offset": 358
                   },
                   "end": {
-                    "line": 9,
-                    "column": 35,
-                    "offset": 492
+                    "line": 13,
+                    "column": 71,
+                    "offset": 702
                   },
                   "indent": [
                     1,
@@ -43009,9 +43000,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 9,
-                "column": 35,
-                "offset": 492
+                "line": 13,
+                "column": 71,
+                "offset": 702
               }
             }
           },
@@ -43019,45 +43010,50 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 10,
+              "lineNumber": 14,
               "type": null
             },
             {
               "title": "static",
               "description": null,
-              "lineNumber": 11
+              "lineNumber": 15
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 12,
-              "name": "setDefaultDevices"
+              "lineNumber": 16,
+              "name": "changeSpeaker"
             },
             {
               "title": "memberof",
               "description": "call",
-              "lineNumber": 13
+              "lineNumber": 17
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 14,
+              "lineNumber": 18,
               "name": "call"
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 15,
+              "lineNumber": 19,
               "name": "callMe"
+            },
+            {
+              "title": "example",
+              "description": "const call = client.call.getById(callId)\n// Get the ID of the Call's audio track.\nconst audioTrack = call.localTracks.find(trackId => {\n   const track = client.media.getTrackById(trackId)\n   return track.kind === 'audio'\n})\n\n// Where the audio track was previously rendered.\nconst audioContainer = ...\n\n// Unrender the audio track we want to change speaker for.\nclient.media.removeTrack([ audioTrack ], audioContainer)\n// Re-render the audio track with a new speaker.\nclient.media.renderTrack([ audioTrack ], audioContainer, {\n   speakerId: 'speakerId'\n})",
+              "lineNumber": 20
             }
           ],
           "loc": {
             "start": {
-              "line": 1064,
+              "line": 1121,
               "column": 4
             },
             "end": {
-              "line": 1080,
+              "line": 1158,
               "column": 7
             }
           },
@@ -43075,7 +43071,11 @@
             "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/call.js"
           },
           "augments": [],
-          "examples": [],
+          "examples": [
+            {
+              "description": "const call = client.call.getById(callId)\n// Get the ID of the Call's audio track.\nconst audioTrack = call.localTracks.find(trackId => {\n   const track = client.media.getTrackById(trackId)\n   return track.kind === 'audio'\n})\n\n// Where the audio track was previously rendered.\nconst audioContainer = ...\n\n// Unrender the audio track we want to change speaker for.\nclient.media.removeTrack([ audioTrack ], audioContainer)\n// Re-render the audio track with a new speaker.\nclient.media.renderTrack([ audioTrack ], audioContainer, {\n   speakerId: 'speakerId'\n})"
+            }
+          ],
           "params": [],
           "properties": [],
           "returns": [],
@@ -43085,7 +43085,7 @@
           "access": "public",
           "scope": "static",
           "kind": "function",
-          "name": "setDefaultDevices",
+          "name": "changeSpeaker",
           "memberof": "call",
           "members": {
             "global": [],
@@ -43100,12 +43100,12 @@
               "kind": "namespace"
             },
             {
-              "name": "setDefaultDevices",
+              "name": "changeSpeaker",
               "kind": "function",
               "scope": "static"
             }
           ],
-          "namespace": "call.setDefaultDevices"
+          "namespace": "call.changeSpeaker"
         },
         {
           "description": {
