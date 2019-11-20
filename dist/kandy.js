@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.10.0-beta.200
+ * Version: 4.10.0-beta.201
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -43409,8 +43409,7 @@ const connCheckMethods = exports.connCheckMethods = {
 
 "use strict";
 /**
- * The User ID ie: joe@test.3s5j.att.com
- *
+ * The ID of a User (e.g. joe@test.3s5j.att.com)
  * @public
  * @static
  * @typedef {string} UserID
@@ -44429,7 +44428,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.10.0-beta.200';
+  let version = '4.10.0-beta.201';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -52919,7 +52918,7 @@ function usersAPI({ dispatch, getState, primitives }) {
    * @static
    * @typedef {Object} User
    * @memberof user
-   * @property {string} userId The User ID of the user.
+   * @property {user.UserID} userId The User ID of the user.
    * @property {string} emailAddress The email address of the user.
    * @property {string} firstName The first name of the user.
    * @property {string} lastName The last name of the user.
@@ -52931,7 +52930,7 @@ function usersAPI({ dispatch, getState, primitives }) {
     /**
      * Fetches information about a User.
      *
-     * The SDK will emit a {@link user.event:directory:change directory:change}
+     * The SDK will emit a {@link user.event:users:change users:change}
      *    event after the operation completes. The User's information will then
      *    be available.
      *
@@ -52953,7 +52952,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * Fetches information about the current User from directory.
      * Compared to {@link user.fetch} API, this API retrieves additional user related information.
      *
-     * The SDK will emit a {@link user.event:directory:change directory:change}
+     * The SDK will emit a {@link user.event:users:change users:change}
      *    event after the operation completes. The User's information will then
      *    be available.
      *
@@ -52970,7 +52969,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * Fetches information about the current User from directory.
      * This API is simply a shortcut for the {@link user.fetch user.fetch(getUserInfo().identity)} API.
      *
-     * The SDK will emit a {@link user.event:directory:change directory:change}
+     * The SDK will emit a {@link user.event:users:change users:change}
      *    event after the operation completes. The User's information will then
      *    be available.
      *
@@ -52995,9 +52994,10 @@ function usersAPI({ dispatch, getState, primitives }) {
      *    making Users' information available.
      *
      * @public
+     * @static
      * @memberof user
      * @method get
-     * @param {string} userId The User ID of the user.
+     * @param {user.UserID} userId The User ID of the user.
      * @returns {user.User} The User object for the specified user.
      */
     get(userId) {
@@ -53012,6 +53012,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      *    making Users' information available.
      *
      * @public
+     * @static
      * @memberof user
      * @method getAll
      * @returns {Array<user.User>} An array of all the User objects.
@@ -53038,7 +53039,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @method search
      * @requires limitedSearch
      * @param {Object} filters The filter options for the search.
-     * @param {string} [filters.userId] Matches the User ID of the user.
+     * @param {user.UserID} [filters.userId] Matches the User ID of the user.
      * @param {string} [filters.name] Matches the firstName or lastName.
      * @param {string} [filters.firstName] Matches the firstName.
      * @param {string} [filters.lastName] Matches the lastName.
@@ -53060,7 +53061,7 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @method search
      * @requires advancedSearch
      * @param {Object} filters The filter options for the search.
-     * @param {string} [filters.userId] Matches the User ID of the user.
+     * @param {user.UserID} [filters.userId] Matches the User ID of the user.
      * @param {string} [filters.name] Matches the firstName or lastName.
      * @param {string} [filters.firstName] Matches the firstName.
      * @param {string} [filters.lastName] Matches the lastName.
@@ -53206,6 +53207,29 @@ const DIRECTORY_CHANGE = exports.DIRECTORY_CHANGE = 'directory:change';
  */
 const DIRECTORY_ERROR = exports.DIRECTORY_ERROR = 'directory:error';
 
+/**
+ * A change has occurred in the users list
+ * @public
+ * @static
+ * @memberof user
+ * @event users:change
+ * @param {Object} params
+ * @param {Array<user.User>} params.results The Users' information returned by the
+ *    operation.
+ */
+const USERS_CHANGE = exports.USERS_CHANGE = 'users:change';
+
+/**
+ * An error occured while retrieving the user information
+ * @public
+ * @static
+ * @memberof user
+ * @event users:error
+ * @param {Object} params
+ * @param {Object} params.error params.error The Basic error object.
+ */
+const USERS_ERROR = exports.USERS_ERROR = 'users:error';
+
 /***/ }),
 
 /***/ "../../packages/kandy/src/users/interface/events/users.js":
@@ -53247,17 +53271,16 @@ eventsMap[actionTypes.SEARCH_DIRECTORY_FINISH] = function (action) {
 eventsMap[actionTypes.FETCH_USER_FINISH] = eventsMap[actionTypes.FETCH_SELF_INFO_FINISH] = function (action) {
   if (action.error) {
     return {
-      type: eventTypes.DIRECTORY_ERROR,
+      type: eventTypes.USERS_ERROR,
       args: { error: action.payload }
     };
   } else {
     return {
-      type: eventTypes.DIRECTORY_CHANGE,
+      type: eventTypes.USERS_CHANGE,
       args: { results: [action.payload] }
     };
   }
 };
-
 exports.default = eventsMap;
 
 /***/ }),
