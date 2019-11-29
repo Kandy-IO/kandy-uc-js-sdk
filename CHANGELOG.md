@@ -5,6 +5,25 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 4.10.0 - 2019-11-29
+
+### Added
+
+- Added Call support for setting and sending custom parameters. `KAA-2063`
+- Added new user event, `users:change`, to notify when we fetch information about a user. `KAA-1882`
+
+### Changed
+
+- Changed the event emitted when a user is fetched to `users:change`. `KAA-1882`
+
+### Fixed
+
+- Fixed an issue where searching the directory would fail even if a filter was provided. `KAA-1161`
+  - Updated public documentation to accurately reflect directory `search` API.
+- Fixed missing refresh token by responding to changing CIM api with a refresh query flag. `KAA-1836`
+- Fixed public documentation hyperlinks for custom type definitions. `KAA-2011`
+- Fixed a Call configuration issue where midcall operations may be slow when no ICE server configurations were provided.
+
 ## 4.9.0 - 2019-11-01
 
 ### Added
