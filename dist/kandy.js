@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.11.1-beta.243
+ * Version: 4.12.0-beta.244
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -29367,6 +29367,11 @@ const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
 const REPLACE_TRACK_FINISH = exports.REPLACE_TRACK_FINISH = callPrefix + 'REPLACE_TRACK_FINISH';
 
 /**
+ * Miscellaneous call actions
+ */
+const CUSTOM_PARAMETERS_RECEIVED = exports.CUSTOM_PARAMETERS_RECEIVED = callPrefix + 'CUSTOM_PARAMETERS_RECEIVED';
+
+/**
  * Remote operation actions.
  */
 const CALL_REMOTE_HOLD_FINISH = exports.CALL_REMOTE_HOLD_FINISH = callPrefix + 'REMOTE_HOLD_FINISH';
@@ -29435,6 +29440,7 @@ exports.unholdCallFinish = unholdCallFinish;
 exports.setCustomParameters = setCustomParameters;
 exports.sendCustomParameters = sendCustomParameters;
 exports.sendCustomParametersFinish = sendCustomParametersFinish;
+exports.customParametersReceived = customParametersReceived;
 exports.addMedia = addMedia;
 exports.addMediaFinish = addMediaFinish;
 exports.addBasicMedia = addBasicMedia;
@@ -29632,6 +29638,10 @@ function sendCustomParameters(id, options) {
 
 function sendCustomParametersFinish(id, params) {
   return callActionHelper(actionTypes.SEND_CUSTOM_PARAMETERS_FINISH, id, params);
+}
+
+function customParametersReceived(id, params) {
+  return callActionHelper(actionTypes.CUSTOM_PARAMETERS_RECEIVED, id, params);
 }
 
 function addMedia(id, params) {
@@ -30271,7 +30281,8 @@ function callAPI({ dispatch, getState }) {
     },
 
     /**
-     * Send the custom parameters on an ongoing call.
+     * Send the custom parameters on an ongoing call to the server. The server may either consume the headers or relay them
+     * to another endpoint, depending on how the server is configured.
      *
      * A Call's custom parameters are a property of the Call's {@link call.CallObject CallObject},
      *    which can be retrieved using the {@link call.getById} or
@@ -31257,6 +31268,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * These headers can be specified with the {@link call.make} and {@link call.answer} APIs.
  * They can also be set on a call using the {@link call.setCustomParameters}, and sent using the {@link call.sendCustomParameters} API.
  *
+ * Custom headers may be received anytime throughout the duration a call. A remote endpoint may send custom headers when starting a call,
+ *  answering a call, or during call updates such as hold/unhold and addition/removal of media in the call.
+ *  When these custom headers are received, the SDK will emit a {@link call.event:call:customParameters call:customParameters} event
+ *  which will contain the custom parameters that were received.
+ *
  * A Call's custom parameters are a property of the Call's {@link call.CallObject CallObject},
  *  which can be retrieved using the {@link call.getById} or
  *  {@link call.getAll} APIs.
@@ -31606,6 +31622,19 @@ const STATS_RECEIVED = exports.STATS_RECEIVED = 'call:statsReceived';
  */
 const CALL_TRACK_REPLACED = exports.CALL_TRACK_REPLACED = 'call:trackReplaced';
 
+/**
+ * Custom Parameters have been received for a Call.
+ *
+ * Please refer to {@link call.CustomParameter CustomParameter} for information on when this event may be emitted.
+ * @public
+ * @memberof call
+ * @event call:customParameters
+ * @param {Object} params
+ * @param {string} params.callId The ID of the Call in which custom parameters were received.
+ * @param {Array<call.CustomParameter>} params.customParameters The custom parameters received.
+ */
+const CUSTOM_PARAMETERS = exports.CUSTOM_PARAMETERS = 'call:customParameters';
+
 /***/ }),
 
 /***/ "../../packages/kandy/src/call/interfaceNew/events.js":
@@ -31925,6 +31954,12 @@ callEvents[actionTypes.SEND_CUSTOM_PARAMETERS_FINISH] = (action, params) => {
 };
 
 // other actions
+callEvents[actionTypes.CUSTOM_PARAMETERS_RECEIVED] = action => {
+  return callEventHandler(eventTypes.CUSTOM_PARAMETERS, action, {
+    customParameters: action.payload.customParameters
+  });
+};
+
 callEvents[actionTypes.CALL_INCOMING] = action => {
   return callEventHandler(eventTypes.CALL_INCOMING, action, {
     error: action.payload.error
@@ -33363,6 +33398,7 @@ function* updateCallRinging(callInfo) {
 }
 
 /**
+ * Sends the (new?) custom parameters of the call to the webRTC session on the server.
  * @method updateCustomParameters
  * @param {Object} callInfo
  * @param {string} callInfo.wrtcsSessionId    ID that the server uses to identify the session.
@@ -33853,7 +33889,8 @@ function* updateSessionResponse(callInfo) {
   options.body = (0, _stringify2.default)({
     [bodyType]: {
       type: 'respondCallUpdate',
-      sdp: callInfo.answer
+      sdp: callInfo.answer,
+      customParameters: callInfo.customParameters
     }
   });
 
@@ -34218,7 +34255,9 @@ function* incomingCallNotification(deps) {
       remoteName: message.callNotificationParams.callerName,
       remoteNumber: message.callNotificationParams.callerDisplayNumber,
       // Where the call was sent
-      calleeNumber: message.callNotificationParams.calleeDisplayNumber
+      calleeNumber: message.callNotificationParams.calleeDisplayNumber,
+      // Custom Parameters
+      customParameters: message.customParameters
 
       // Pass the incoming call parameters to the Callstack for handling.
     };yield (0, _effects.call)(_notifications.incomingCall, (0, _extends3.default)({}, deps, { requests }), params);
@@ -34256,7 +34295,8 @@ function* sessionProgressNotification(deps) {
       sdp: message.sessionParams.sdp,
       wrtcsSessionId: message.sessionParams.sessionData,
       remoteName: message.callNotificationParams.remoteName,
-      remoteNumber: message.callNotificationParams.remoteDisplayNumber
+      remoteNumber: message.callNotificationParams.remoteDisplayNumber,
+      customParameters: message.customParameters
     };
 
     yield (0, _effects.call)(_notifications.receiveEarlyMedia, deps, params);
@@ -34293,6 +34333,7 @@ function* callStatusNotification(deps) {
     if (eventType === 'callEnd' || eventType === 'sessionComplete') {
       yield (0, _effects.call)(_notifications.callStatusUpdateEnded, deps, params);
     } else if (eventType === 'ringing') {
+      params.customParameters = message.customParameters;
       yield (0, _effects.call)(_notifications.callStatusUpdateRinging, deps, params);
     } else if (eventType === 'sessionFail') {
       yield (0, _effects.call)(_notifications.callStatusUpdateFailed, deps, params);
@@ -34393,10 +34434,11 @@ function* receiveRemoteOffer(deps) {
     const params = (0, _extends3.default)({
       wrtcsSessionId: message.sessionParams.sessionData,
       sdp: message.sessionParams.sdp
-    }, remoteInfo);
+    }, remoteInfo, {
+      customParameters: message.customParameters
 
-    // Pass the call parameters to the Callstack for handling.
-    yield (0, _effects.call)(_notifications.parseCallRequest, (0, _extends3.default)({}, deps, { requests }), params);
+      // Pass the call parameters to the Callstack for handling.
+    });yield (0, _effects.call)(_notifications.parseCallRequest, (0, _extends3.default)({}, deps, { requests }), params);
   }
 
   // take() pattern for "update call w/ offer" notifications.
@@ -34436,10 +34478,12 @@ function* receiveRemoteAnswer(deps) {
       message: message.sessionParams.reasonText,
       code: message.statusCode
 
-    }, remoteInfo);
+    }, remoteInfo, {
 
-    // Pass the call parameters to the Callstack for handling.
-    yield (0, _effects.call)(_notifications.parseCallResponse, (0, _extends3.default)({}, deps, { requests }), params);
+      customParameters: message.customParameters
+
+      // Pass the call parameters to the Callstack for handling.
+    });yield (0, _effects.call)(_notifications.parseCallResponse, (0, _extends3.default)({}, deps, { requests }), params);
   }
 
   // take() pattern for "update call with answer" notifications.
@@ -38980,7 +39024,7 @@ const log = (0, _logs.getLogManager)().getLogger('CALL');
 // Call plugin.
 function* incomingCall(deps, params) {
   const requests = deps.requests;
-  const { sdp, wrtcsSessionId, remoteNumber, remoteName, calleeNumber } = params;
+  const { sdp, wrtcsSessionId, remoteNumber, remoteName, calleeNumber, customParameters } = params;
 
   const callId = yield (0, _effects.call)(_v2.default);
 
@@ -39002,6 +39046,13 @@ function* incomingCall(deps, params) {
     // Whether the call was received as a slow start call or not.
     isSlowStart: !sdp
   }));
+
+  // Dispatch a custom parameters received action/event if any custom parameters were received as part of the notification
+  if (customParameters) {
+    yield (0, _effects.put)(_actions.callActions.customParametersReceived(callId, {
+      customParameters
+    }));
+  }
 
   /**
    * An incoming call may or may not have an SDP offer associated with it.
@@ -39075,7 +39126,7 @@ function* incomingCall(deps, params) {
  * @param {string} params.remoteNumber Number of the remote participant.
  */
 function* parseCallRequest(deps, params) {
-  const { wrtcsSessionId, sdp, remoteName, remoteNumber } = params;
+  const { wrtcsSessionId, sdp, remoteName, remoteNumber, customParameters } = params;
   const targetCall = yield (0, _effects.select)(_selectors.getCallByWrtcsSessionId, wrtcsSessionId);
 
   if (!targetCall) {
@@ -39091,6 +39142,13 @@ function* parseCallRequest(deps, params) {
   // TODO: Make sure the call is able to receive a `respondCallRequest`
   //    notification (ie. has no pending operation).
   log.info(`Received update request ${sdp ? 'with' : 'without'} SDP for call: ${targetCall.id}. Processing.`);
+
+  // Dispatch a custom parameters received action/event if any custom parameters were received as part of the notification
+  if (customParameters) {
+    yield (0, _effects.put)(_actions.callActions.customParametersReceived(targetCall.id, {
+      customParameters
+    }));
+  }
 
   /**
    * How the request should be handled depends on whether it includes an SDP.
@@ -39130,7 +39188,7 @@ function* parseCallRequest(deps, params) {
  * @param {string} params.remoteNumber Number of the remote participant.
  */
 function* parseCallResponse(deps, params) {
-  const { wrtcsSessionId, sdp } = params;
+  const { wrtcsSessionId, sdp, customParameters } = params;
   const targetCall = yield (0, _effects.select)(_selectors.getCallByWrtcsSessionId, wrtcsSessionId);
 
   if (!targetCall) {
@@ -39148,6 +39206,13 @@ function* parseCallResponse(deps, params) {
   // TODO: Make sure the call is expecting a `respondCallUpdate` notification.
   //    ie. has a pending operation.
   log.info(`Received response for call: ${targetCall.id}. Processing.`);
+
+  // Dispatch a custom parameters received action/event if any custom parameters were received as part of the notification
+  if (customParameters) {
+    yield (0, _effects.put)(_actions.callActions.customParametersReceived(targetCall.id, {
+      customParameters
+    }));
+  }
 
   /**
    * Check that the notification was not an "error" notification.
@@ -39314,7 +39379,7 @@ function* callStatusUpdateEnded(deps, params) {
  * @param {string}   params.remoteNumber Number of the remote participant.
  */
 function* callStatusUpdateRinging(deps, params) {
-  const { wrtcsSessionId } = params;
+  const { wrtcsSessionId, customParameters } = params;
 
   const calls = yield (0, _effects.select)(_selectors.getCalls);
   // TODO: `find` --> IE11 support.
@@ -39330,6 +39395,13 @@ function* callStatusUpdateRinging(deps, params) {
   if (stateError) {
     log.debug(`Invalid call state: ${stateError.message}`);
     return;
+  }
+
+  // Dispatch a custom parameters received action/event if any custom parameters were received as part of the notification
+  if (customParameters) {
+    yield (0, _effects.put)(_actions.callActions.customParametersReceived(currentCall.id, {
+      customParameters
+    }));
   }
 
   yield (0, _effects.put)(_actions.callActions.callRinging(currentCall.id, {
@@ -39459,7 +39531,7 @@ function* callCancelled(deps, params) {
  * @param {Object} params       Parameters describing the notification.
  */
 function* receiveEarlyMedia(deps, params) {
-  const { wrtcsSessionId } = params;
+  const { wrtcsSessionId, customParameters } = params;
   const { webRTC, sdpHandlers } = deps;
 
   /**
@@ -39479,6 +39551,13 @@ function* receiveEarlyMedia(deps, params) {
     log.debug(`webRTC session ${currentCall.webrtcSessionId} not found.`);
     // TODO: Better error.
     return;
+  }
+
+  // Dispatch a custom parameters received action/event if any custom parameters were received as part of the notification
+  if (customParameters) {
+    yield (0, _effects.put)(_actions.callActions.customParametersReceived(currentCall.id, {
+      customParameters
+    }));
   }
 
   try {
@@ -44498,7 +44577,7 @@ function unsubscribe(listener) {
 
 /* Internal actions */
 
-/*
+/**
  * Emits an event of the specified type.
  *
  * @method emitEvent
@@ -44517,12 +44596,12 @@ function emitEvent(type, ...args) {
   };
 }
 
-/*
+/**
  * Define an alias for an event type.
  *
  * @method alias
- * @param {String} type The event type for which to add an alias.
- * @param {String} alias The alias name for the event type.
+ * @param {string} type The event type for which to add an alias.
+ * @param {string} alias The alias name for the event type.
  */
 function aliasEvent(type, alias) {
   if (type === undefined || alias === undefined) {
@@ -44789,7 +44868,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.11.1-beta.243';
+  let version = '4.12.0-beta.244';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
