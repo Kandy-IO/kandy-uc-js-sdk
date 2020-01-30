@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.12.0-beta.285
+ * Version: 4.12.0-beta.286
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -31998,7 +31998,7 @@ callEvents[webrtcActionTypes.SESSION_NEW_TRACK] = (action, context) => {
   return null;
 };
 
-callEvents[webrtcActionTypes.SESSION_TRACK_ENDED] = (action, context) => {
+callEvents[webrtcActionTypes.SESSION_TRACK_REMOVED] = (action, context) => {
   const state = context.state;
   const call = (0, _selectors.getCallByWebrtcSessionId)(state, action.payload.id);
 
@@ -45074,7 +45074,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '4.12.0-beta.285';
+  let version = '4.12.0-beta.286';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];

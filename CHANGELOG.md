@@ -20,6 +20,7 @@ Kandy.js change log.
 - Fixed an issue where PUSH notification channel was closed by default. `KAA-719`
 - Fixed a Call issue where remote hold and unhold operations would not be handled properly if the remote application is using a v3.X Kandy SDK. `KAA-2105`
 - Fixed an SDP Handler issue where `SdpHandlerInfo.type` was undefined the first time an SDP Handler is called on receiving a call.
+- Fixed a midcall issue where removal of a remote media track did not trigger an event notification to application level (when using unified-plan). `KAA-2150`
 
 ## 4.11.1 - 2020-01-02
 
