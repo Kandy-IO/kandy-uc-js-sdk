@@ -5,7 +5,7 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 4.12.0 - beta
+## 4.12.0 - 2020-01-31
 
 ### Added
 
@@ -21,6 +21,7 @@ Kandy.js change log.
 - Fixed a Call issue where remote hold and unhold operations would not be handled properly if the remote application is using a v3.X Kandy SDK. `KAA-2105`
 - Fixed an SDP Handler issue where `SdpHandlerInfo.type` was undefined the first time an SDP Handler is called on receiving a call.
 - Fixed a midcall issue where removal of a remote media track did not trigger an event notification to application level (when using unified-plan). `KAA-2150`
+- Fixed issue where fetching users call log with incorrect credentials throws an error. `KAA-1077`
 
 ## 4.11.1 - 2020-01-02
 
