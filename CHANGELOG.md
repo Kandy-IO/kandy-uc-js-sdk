@@ -20,6 +20,10 @@ Kandy.js change log.
   - The new call configuration `resyncOnConnect` is disabled my default.
   - The resync feature requires Kandy Link 4.7.1+.
 
+### Fixed
+
+- Fixed a Call issue where a slow-start, remote hold operation, when entering a "dual hold" state, was not being processed correctly. `KAA-2183`
+
 ## 4.12.0 - 2020-01-31
 
 ### Added
