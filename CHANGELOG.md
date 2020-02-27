@@ -23,6 +23,7 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed a Call issue where a slow-start, remote hold operation, when entering a "dual hold" state, was not being processed correctly. `KAA-2183`
+- Fixed an issue where the `conversation.subscribe` listener not being triggered. `KAA-2200`
 
 ## 4.12.0 - 2020-01-31
 
