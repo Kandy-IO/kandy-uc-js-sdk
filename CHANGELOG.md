@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 4.14.0 - beta
 
+### Fixed
+
+- Fixed an issue where the SDK would attempt to revoke an oAuth token upon disconnecting. `KAA-2213`
+
 ## 4.13.0 - 2020-02-28
 
 ### Changed
