@@ -30,6 +30,7 @@ Kandy.js change log.
 
 - Fixed a Call issue where a slow-start, remote hold operation, when entering a "dual hold" state, was not being processed correctly. `KAA-2183`
 - Fixed an issue where the `conversation.subscribe` listener not being triggered. `KAA-2200`
+- Fixed an issue where an existing local video track could not be replaced by a screen sharing track. `KAA-2144`
 
 ## 4.12.0 - 2020-01-31
 
