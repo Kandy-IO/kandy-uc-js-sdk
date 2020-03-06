@@ -251,6 +251,31 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username including the application's domain.
+    -   `credentials.password` **[string][7]** The user's password.
+    -   `credentials.authname` **[string][7]?** The user's authorization name.
+-   `options` **[Object][6]?** The options object for non-credential options.
+    -   `options.forceLogOut` **[boolean][10]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+}, {
+  forceLogOut: true
+});
+```
+
+### connect
+
 Connect by providing an access token to any backend services that the SDK instance deals with.
 You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
@@ -313,34 +338,21 @@ client.connect({
 });
 ```
 
-### connect
+### disconnect
 
-Connect with user credentials to any backend services that the SDK instance deals with.
+Disconnects from the backend. This will close the websocket and you will stop receiving events.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
 
 **Parameters**
 
 -   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username including the application's domain.
-    -   `credentials.password` **[string][7]** The user's password.
-    -   `credentials.authname` **[string][7]?** The user's authorization name.
--   `options` **[Object][6]?** The options object for non-credential options.
-    -   `options.forceLogOut` **[boolean][10]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-}, {
-  forceLogOut: true
-});
-```
-
-### disconnect
-
-Disconnects from the backend. This will close the websocket and you will stop receiving events.
+    -   `credentials.accessToken` **[string][7]** The new access token.
+    -   `credentials.username` **[string][7]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][7]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][6]** The credentials object.
 
 ### updateToken
 
@@ -360,18 +372,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.accessToken` **[string][7]** The new access token.
-    -   `credentials.username` **[string][7]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][7]** An access token for the user with the provided user Id.
--   `credentials` **[Object][6]** The credentials object.
 
 ### getUserInfo
 
@@ -1071,6 +1071,38 @@ The progress of the operation will be tracked via the
 -   `duration` **[number][11]** The amount of time, in milliseconds, that each DTMF tone should last. (optional, default `100`)
 -   `intertoneGap` **[number][11]** The length of time, in milliseconds, to wait between tones. (optional, default `70`)
 
+### startScreenshare
+
+Adds local screenshare to an ongoing Call, to start sending to the remote
+   participant.
+
+The latest SDK release (v4.X+) has not yet implemented this API in the
+   same way that it was available in previous releases (v3.X). In place
+   of this API, the SDK has a more general API that can be used for this
+   same behaviour.
+
+The [call.addMedia][46] API can be used to perform the same behaviour
+   as `startScreenshare`. [call.addMedia][46] is a general-purpose API
+   for adding media to a call, which covers the same functionality as
+   `startScreenshare`. Selecting only screen options when using
+   [call.addMedia][46] will perform the same behaviour as using
+   `startScreenshare`.
+
+**Examples**
+
+```javascript
+// Select media options for adding only screenshare.
+const media = {
+   audio: false,
+   video: false,
+   screen: true,
+   screenOptions: { ... }
+}
+
+// Add the selected media to the call.
+client.call.addMedia(callId, media)
+```
+
 ### stopScreenshare
 
 Removes local screenshare from an ongoing Call, stopping it from being
@@ -1109,38 +1141,6 @@ const screenTrack = videoTracks[0]
 
 // Remove screen from the call.
 client.call.removeMedia(callId, [ screenTrack ])
-```
-
-### startScreenshare
-
-Adds local screenshare to an ongoing Call, to start sending to the remote
-   participant.
-
-The latest SDK release (v4.X+) has not yet implemented this API in the
-   same way that it was available in previous releases (v3.X). In place
-   of this API, the SDK has a more general API that can be used for this
-   same behaviour.
-
-The [call.addMedia][46] API can be used to perform the same behaviour
-   as `startScreenshare`. [call.addMedia][46] is a general-purpose API
-   for adding media to a call, which covers the same functionality as
-   `startScreenshare`. Selecting only screen options when using
-   [call.addMedia][46] will perform the same behaviour as using
-   `startScreenshare`.
-
-**Examples**
-
-```javascript
-// Select media options for adding only screenshare.
-const media = {
-   audio: false,
-   video: false,
-   screen: true,
-   screenOptions: { ... }
-}
-
-// Add the selected media to the call.
-client.call.addMedia(callId, media)
 ```
 
 ### getStats
