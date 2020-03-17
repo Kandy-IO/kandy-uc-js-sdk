@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.14.0-beta.335
+ * Version: 4.14.0-beta.336
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -39952,6 +39952,10 @@ exports.updateCallState = updateCallState;
 
 var _actions = __webpack_require__("../../packages/kandy/src/call/interfaceNew/actions/index.js");
 
+var _actionTypes = __webpack_require__("../../packages/kandy/src/call/interfaceNew/actionTypes.js");
+
+var actionTypes = _interopRequireWildcard(_actionTypes);
+
 var _selectors = __webpack_require__("../../packages/kandy/src/call/interfaceNew/selectors.js");
 
 var _constants = __webpack_require__("../../packages/kandy/src/call/constants.js");
@@ -39962,8 +39966,9 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 // Other plugins.
-// Call plugin.
 const log = _logs.logManager.getLogger('CALL');
 
 /**
@@ -39996,6 +40001,7 @@ const log = _logs.logManager.getLogger('CALL');
 
 
 // Callstack plugin.
+// Call plugin.
 function* sendCallAudit(deps, action) {
   const { webRTC, requests } = deps;
 
@@ -40008,6 +40014,10 @@ function* sendCallAudit(deps, action) {
   // Some basic validation
   if (!currentCall) {
     log.error(`Error: call id ${id} not found.`);
+    return;
+  }
+  // CALL_ACCEPTED actions should only trigger an audit loop if it is a joined call
+  if (action.type === actionTypes.CALL_ACCEPTED && !currentCall.isJoinedCall) {
     return;
   }
 
@@ -42923,7 +42933,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.14.0-beta.335';
+  return '4.14.0-beta.336';
 }
 
 /***/ }),
