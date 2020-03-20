@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.14.0-beta.340
+ * Version: 4.14.0-beta.341
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -42950,7 +42950,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.14.0-beta.340';
+  return '4.14.0-beta.341';
 }
 
 /***/ }),
@@ -61411,6 +61411,10 @@ function MediaManager(managers) {
       }
     });
 
+    media.on('track:muted', ({ mediaId, trackId }) => {
+      // TBD: Add any extra behaviour (if needed) here
+    });
+
     return media;
   }
 
@@ -62088,6 +62092,36 @@ function Media(nativeStream, isLocal) {
     emitter.emit('track:new', {
       mediaId: id,
       trackId: track.id
+    });
+
+    /**
+     * When a track is muted, we generate our own internal event
+     */
+    track.on('muted', event => {
+      const wrappedTrack = getTrack(event.trackId);
+      if (wrappedTrack && wrappedTrack.track && wrappedTrack.track.muted) {
+        // Emit our internal event.
+        // Note that wrappedTrack.id is same as wrappedTrack.track & event.trackId
+        emitter.emit('track:muted', {
+          mediaId: id,
+          trackId: event.trackId
+        });
+      }
+    });
+
+    /**
+     * When a track is unmuted, we generate our own internal event
+     */
+    track.on('unmuted', event => {
+      const wrappedTrack = getTrack(event.trackId);
+      if (wrappedTrack && wrappedTrack.track && wrappedTrack.track.muted === false) {
+        // Emit our internal event.
+        // Note that wrappedTrack.id is same as wrappedTrack.track & event.trackId
+        emitter.emit('track:unmuted', {
+          mediaId: id,
+          trackId: event.trackId
+        });
+      }
     });
   }
 
@@ -63034,6 +63068,30 @@ function Track(mediaTrack, mediaStream) {
     });
   };
 
+  /**
+   * When a track is muted, we forward this to any listener.
+   * This handler is tipically invoked by actions triggered outside the
+   * direct control of the webrtc SDK.
+   */
+  track.onmute = event => {
+    log.debug('Event emitted: ', event);
+    emitter.emit('muted', {
+      trackId: track.id
+    });
+  };
+
+  /**
+   * When a track is unmuted, we forward this to any listener.
+   * This handler is tipically invoked by actions triggered outside the
+   * direct control of the webrtc SDK.
+   */
+  track.onunmute = event => {
+    log.debug('Event emitted: ', event);
+    emitter.emit('unmuted', {
+      trackId: track.id
+    });
+  };
+
   function setStream(newStream) {
     stream = newStream;
   }
@@ -63052,8 +63110,8 @@ function Track(mediaTrack, mediaStream) {
       streamId: stream.id,
       kind: track.kind,
       label: track.label,
-      muted: !track.enabled,
-      disabled: track.muted,
+      muted: track.muted,
+      disabled: !track.enabled,
       state: track.readyState,
       containers: containers.map(element => element.id)
     };
