@@ -335,12 +335,6 @@
                     <li class='h5'><span>Types</span></li>
                     
                       <li><a
-                        href='#calldeviceinfo'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> DeviceInfo
-                      </a></li>
-                    
-                      <li><a
                         href='#callcallobject'
                         class='regular pre-open'>
                         <span style="color:blue">ⓣ</span> CallObject
@@ -353,21 +347,9 @@
                       </a></li>
                     
                       <li><a
-                        href='#callmediaobject'
+                        href='#callbandwidthcontrols'
                         class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> MediaObject
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsdphandlerfunction'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> SdpHandlerFunction
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsdphandlerinfo'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> SdpHandlerInfo
+                        <span style="color:blue">ⓣ</span> BandwidthControls
                       </a></li>
                     
                       <li><a
@@ -377,15 +359,27 @@
                       </a></li>
                     
                       <li><a
-                        href='#callbandwidthcontrols'
+                        href='#callsdphandlerinfo'
                         class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> BandwidthControls
+                        <span style="color:blue">ⓣ</span> SdpHandlerInfo
                       </a></li>
                     
                       <li><a
                         href='#callmediaconstraint'
                         class='regular pre-open'>
                         <span style="color:blue">ⓣ</span> MediaConstraint
+                      </a></li>
+                    
+                      <li><a
+                        href='#callsdphandlerfunction'
+                        class='regular pre-open'>
+                        <span style="color:blue">ⓣ</span> SdpHandlerFunction
+                      </a></li>
+                    
+                      <li><a
+                        href='#callmediaobject'
+                        class='regular pre-open'>
+                        <span style="color:blue">ⓣ</span> MediaObject
                       </a></li>
                     
                       <li><a
@@ -398,6 +392,12 @@
                         href='#calldevicesobject'
                         class='regular pre-open'>
                         <span style="color:blue">ⓣ</span> DevicesObject
+                      </a></li>
+                    
+                      <li><a
+                        href='#calldeviceinfo'
+                        class='regular pre-open'>
+                        <span style="color:blue">ⓣ</span> DeviceInfo
                       </a></li>
                     
                       <li><a
@@ -562,12 +562,6 @@
                       </a></li>
                     
                       <li><a
-                        href='#callchangeinputdevices'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .changeInputDevices
-                      </a></li>
-                    
-                      <li><a
                         href='#callsetdefaultdevices'
                         class='regular pre-open'>
                         <span style="color:green">ⓕ</span> .setDefaultDevices
@@ -583,6 +577,12 @@
                         href='#callchangespeaker'
                         class='regular pre-open'>
                         <span style="color:green">ⓕ</span> .changeSpeaker
+                      </a></li>
+                    
+                      <li><a
+                        href='#callchangeinputdevices'
+                        class='regular pre-open'>
+                        <span style="color:green">ⓕ</span> .changeInputDevices
                       </a></li>
                     
                     </ul>
@@ -3609,6 +3609,109 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
 
   
 
+  <p>Connect by providing an OAuth token, to any backend services that the SDK instance deals with.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username without the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.oauthToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>An OAuth token provided by an outside service.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.connect({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">oauthToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
+});</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apiconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>connect(credentials)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
   <p>Connect by providing an access token to any backend services that the SDK instance deals with.
 You can optionally provide a refresh token and the SDK will automatically get new access tokens.</p>
 
@@ -3707,109 +3810,6 @@ You can optionally provide a refresh token and the SDK will automatically get ne
   <span class="hljs-attr">accessToken</span>: <span class="hljs-string">'AT0V1fswAiJadokx1iJMQdG04pRf'</span>,
   <span class="hljs-attr">refreshToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>,
   <span class="hljs-attr">expires</span>: <span class="hljs-number">3600</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apiconnect'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>connect(credentials)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Connect by providing an OAuth token, to any backend services that the SDK instance deals with.</p>
-
-
-  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username without the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.oauthToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>An OAuth token provided by an outside service.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">oauthToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
 });</pre>
     
   
@@ -4023,109 +4023,6 @@ You can optionally provide a refresh token and the SDK will automatically get ne
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>updateToken(credentials)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>If you're authenticating with tokens that expire and have not provided a refresh token to the <code>connect</code> function, you can update your access token with <code>updateToken</code> before it expires to stay connected.</p>
-
-
-  <div class='pre p1 fill-light mt0'>updateToken(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username without the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.oauthToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>An OAuth token provided by an outside service.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.updateToken({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">oauthToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apiupdatetoken'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
             <span class='code strong strong truncate'>updateToken(credentials, credentials)</span>
         </div>
       </div>
@@ -4222,6 +4119,109 @@ You can optionally provide a refresh token and the SDK will automatically get ne
 
   
 
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apiupdatetoken'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>updateToken(credentials)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>If you're authenticating with tokens that expire and have not provided a refresh token to the <code>connect</code> function, you can update your access token with <code>updateToken</code> before it expires to stay connected.</p>
+
+
+  <div class='pre p1 fill-light mt0'>updateToken(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username without the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.oauthToken</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>An OAuth token provided by an outside service.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.updateToken({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">oauthToken</span>: <span class="hljs-string">'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'</span>
+});</pre>
+    
   
 
   
@@ -5036,124 +5036,6 @@ SIP users and PSTN phones.</p>
       <div class='py1 quiet mt1 prose-big'>Types</div>
       <div class="clearfix">
   
-    <div class='border-bottom' id='calldeviceinfo'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>DeviceInfo</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Contains information about a device.</p>
-
-
-  <div class='pre p1 fill-light mt0'>DeviceInfo</div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Properties</div>
-    <div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>deviceId</span> 
-          <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
-          </code>
-
-          
-
-          
-             : The ID of the device.
-
-          
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>groupId</span> 
-          <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
-          </code>
-
-          
-
-          
-             : The group ID of the device. Devices that share a 
-<code>groupId</code>
- belong to the same physical device.
-
-          
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>kind</span> 
-          <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
-          </code>
-
-          
-
-          
-             : The type of the device (audioinput, audiooutput, videoinput).
-
-          
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>label</span> 
-          <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
-          </code>
-
-          
-
-          
-             : The name of the device.
-
-          
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
     <div class='border-bottom' id='callcallobject'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -5549,11 +5431,11 @@ client.call.make(destination, mediaConstraints,
       </div>
     </div>
   
-    <div class='border-bottom' id='callmediaobject'>
+    <div class='border-bottom' id='callbandwidthcontrols'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>MediaObject</span>
+            <span class='code strong strong truncate'>BandwidthControls</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -5561,11 +5443,11 @@ client.call.make(destination, mediaConstraints,
 
   
 
-  <p>The state representation of a Media object.
-Media is a collection of Track objects.</p>
+  <p>The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
+BandwidthControls only affect received remote tracks of the specified type.</p>
 
 
-  <div class='pre p1 fill-light mt0'>MediaObject</div>
+  <div class='pre p1 fill-light mt0'>BandwidthControls</div>
   
     <p>
       Type:
@@ -5588,45 +5470,30 @@ Media is a collection of Track objects.</p>
     <div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>id</span> 
+          <span class='code bold'>audio</span> 
           <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)
           </code>
 
           
 
           
-             : The ID of the Media object.
+             : The desired bandwidth bitrate in kilobits per second for received remote audio.
 
           
           
         </div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>local</span> 
+          <span class='code bold'>video</span> 
           <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)
           </code>
 
           
 
           
-             : Indicator on whether this media is local or remote.
-
-          
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>tracks</span> 
-          <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#calltrackobject">call.TrackObject</a>>)
-          </code>
-
-          
-
-          
-             : A list of Track objects that are contained in this Media object.
+             : The desired bandwidth bitrate in kilobits per second for received remote video.
 
           
           
@@ -5640,183 +5507,18 @@ Media is a collection of Track objects.</p>
   
 
   
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='callsdphandlerfunction'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>SdpHandlerFunction(newSdp, info, originalSdp)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>The form of an SDP handler function and the expected arguments that it receives.</p>
-
-
-  <div class='pre p1 fill-light mt0'>SdpHandlerFunction(newSdp: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, info: <a href="#callsdphandlerinfo">call.SdpHandlerInfo</a>, originalSdp: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>newSdp</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The SDP so far (could have been modified by previous handlers).
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>info</span> <code class='quiet'>(<a href="#callsdphandlerinfo">call.SdpHandlerInfo</a>)</code>
-	    Additional information that might be useful when making SDP modifications.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>originalSdp</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The SDP in its initial state.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Returns</div>
+    <div class='py1 quiet mt1 prose-big'>Example</div>
     
-      <div>
-        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
-          The resulting modified SDP based on the changes made by this function.
-
-        
-      </div>
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Specify received remote video bandwidth limits when making a call.</span>
+client.call.make(destination, mediaConstraints,
+ {
+   <span class="hljs-attr">bandwidth</span>: {
+     <span class="hljs-attr">video</span>: <span class="hljs-number">5</span>
+   }
+ }
+)</pre>
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='callsdphandlerinfo'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>SdpHandlerInfo</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  
-
-  <div class='pre p1 fill-light mt0'>SdpHandlerInfo</div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Properties</div>
-    <div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>type</span> 
-          <code class='quiet'>
-            (RTCSdpType)
-          </code>
-
-          
-
-          
-             : The session description's type.
-
-          
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>endpoint</span> 
-          <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
-          </code>
-
-          
-
-          
-             : Which end of the connection created the SDP.
-
-          
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
   
 
   
@@ -5916,11 +5618,11 @@ Media is a collection of Track objects.</p>
       </div>
     </div>
   
-    <div class='border-bottom' id='callbandwidthcontrols'>
+    <div class='border-bottom' id='callsdphandlerinfo'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>BandwidthControls</span>
+            <span class='code strong strong truncate'>SdpHandlerInfo</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -5928,11 +5630,9 @@ Media is a collection of Track objects.</p>
 
   
 
-  <p>The BandwidthControls type defines the format for configuring media and/or track bandwidth options.
-BandwidthControls only affect received remote tracks of the specified type.</p>
+  
 
-
-  <div class='pre p1 fill-light mt0'>BandwidthControls</div>
+  <div class='pre p1 fill-light mt0'>SdpHandlerInfo</div>
   
     <p>
       Type:
@@ -5955,30 +5655,30 @@ BandwidthControls only affect received remote tracks of the specified type.</p>
     <div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>audio</span> 
+          <span class='code bold'>type</span> 
           <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)
+            (RTCSdpType)
           </code>
 
           
 
           
-             : The desired bandwidth bitrate in kilobits per second for received remote audio.
+             : The session description's type.
 
           
           
         </div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>video</span> 
+          <span class='code bold'>endpoint</span> 
           <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
           </code>
 
           
 
           
-             : The desired bandwidth bitrate in kilobits per second for received remote video.
+             : Which end of the connection created the SDP.
 
           
           
@@ -5991,19 +5691,6 @@ BandwidthControls only affect received remote tracks of the specified type.</p>
 
   
 
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Specify received remote video bandwidth limits when making a call.</span>
-client.call.make(destination, mediaConstraints,
- {
-   <span class="hljs-attr">bandwidth</span>: {
-     <span class="hljs-attr">video</span>: <span class="hljs-number">5</span>
-   }
- }
-)</pre>
-    
   
 
   
@@ -6111,6 +5798,201 @@ client.call.make(destination, {
    }
 })</pre>
     
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='callsdphandlerfunction'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>SdpHandlerFunction(newSdp, info, originalSdp)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>The form of an SDP handler function and the expected arguments that it receives.</p>
+
+
+  <div class='pre p1 fill-light mt0'>SdpHandlerFunction(newSdp: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, info: <a href="#callsdphandlerinfo">call.SdpHandlerInfo</a>, originalSdp: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>newSdp</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The SDP so far (could have been modified by previous handlers).
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>info</span> <code class='quiet'>(<a href="#callsdphandlerinfo">call.SdpHandlerInfo</a>)</code>
+	    Additional information that might be useful when making SDP modifications.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>originalSdp</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The SDP in its initial state.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Returns</div>
+    
+      <div>
+        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+          The resulting modified SDP based on the changes made by this function.
+
+        
+      </div>
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='callmediaobject'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>MediaObject</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>The state representation of a Media object.
+Media is a collection of Track objects.</p>
+
+
+  <div class='pre p1 fill-light mt0'>MediaObject</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>id</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The ID of the Media object.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>local</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)
+          </code>
+
+          
+
+          
+             : Indicator on whether this media is local or remote.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>tracks</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#calltrackobject">call.TrackObject</a>>)
+          </code>
+
+          
+
+          
+             : A list of Track objects that are contained in this Media object.
+
+          
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
   
 
   
@@ -6377,6 +6259,124 @@ Tracks can be retrieved using the Media module's <code>getTrackById</code> API a
 
           
              : A list of speaker device information.
+
+          
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='calldeviceinfo'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>DeviceInfo</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Contains information about a device.</p>
+
+
+  <div class='pre p1 fill-light mt0'>DeviceInfo</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>deviceId</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The ID of the device.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>groupId</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The group ID of the device. Devices that share a 
+<code>groupId</code>
+ belong to the same physical device.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>kind</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The type of the device (audioinput, audiooutput, videoinput).
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>label</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The name of the device.
 
           
           
@@ -9186,83 +9186,6 @@ client.call.replaceTrack(callId, videoTrack.id, {
       </div>
     </div>
   
-    <div class='border-bottom' id='callchangeinputdevices'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>changeInputDevices()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Changes the camera and/or microphone used for a Call's media input.</p>
-<p>The latest SDK release (v4.X+) has not yet implemented this API in the
-same way that it was available in previous releases (v3.X). In place
-of this API, the SDK has a more general API that can be used for this
-same behaviour.</p>
-<p>The same behaviour as the <code>changeInputDevices</code> API can be implemented
-using the general-purpose <a href="#callreplacetrack">call.replaceTrack</a> API. This API can
-be used to replace an existing media track with a new track of the
-same type, allowing an application to change certain aspects of the
-media, such as input device.</p>
-
-
-  <div class='pre p1 fill-light mt0'>changeInputDevices()</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> call = client.call.getById(callId)
-<span class="hljs-comment">// Get the ID of the Call's video track.</span>
-<span class="hljs-keyword">const</span> videoTrack = call.localTracks.find(<span class="hljs-function"><span class="hljs-params">trackId</span> =&gt;</span> {
-   <span class="hljs-keyword">const</span> track = client.media.getTrackById(trackId)
-   <span class="hljs-keyword">return</span> track.kind === <span class="hljs-string">'video'</span>
-})
-
-<span class="hljs-comment">// Select the new video options.</span>
-<span class="hljs-keyword">const</span> media = {
-   <span class="hljs-attr">video</span>: <span class="hljs-literal">true</span>,
-   <span class="hljs-attr">videoOptions</span>: {
-       <span class="hljs-attr">deviceId</span>: <span class="hljs-string">'cameraId'</span>
-   }
-}
-
-<span class="hljs-comment">// Change the call's camera by replacing the video track.</span>
-client.call.replaceTrack(callId, videoTrack, media)</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
     <div class='border-bottom' id='callsetdefaultdevices'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -9579,6 +9502,83 @@ client.media.removeTrack([ audioTrack ], audioContainer)
 client.media.renderTrack([ audioTrack ], audioContainer, {
    <span class="hljs-attr">speakerId</span>: <span class="hljs-string">'speakerId'</span>
 })</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='callchangeinputdevices'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>changeInputDevices()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Changes the camera and/or microphone used for a Call's media input.</p>
+<p>The latest SDK release (v4.X+) has not yet implemented this API in the
+same way that it was available in previous releases (v3.X). In place
+of this API, the SDK has a more general API that can be used for this
+same behaviour.</p>
+<p>The same behaviour as the <code>changeInputDevices</code> API can be implemented
+using the general-purpose <a href="#callreplacetrack">call.replaceTrack</a> API. This API can
+be used to replace an existing media track with a new track of the
+same type, allowing an application to change certain aspects of the
+media, such as input device.</p>
+
+
+  <div class='pre p1 fill-light mt0'>changeInputDevices()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> call = client.call.getById(callId)
+<span class="hljs-comment">// Get the ID of the Call's video track.</span>
+<span class="hljs-keyword">const</span> videoTrack = call.localTracks.find(<span class="hljs-function"><span class="hljs-params">trackId</span> =&gt;</span> {
+   <span class="hljs-keyword">const</span> track = client.media.getTrackById(trackId)
+   <span class="hljs-keyword">return</span> track.kind === <span class="hljs-string">'video'</span>
+})
+
+<span class="hljs-comment">// Select the new video options.</span>
+<span class="hljs-keyword">const</span> media = {
+   <span class="hljs-attr">video</span>: <span class="hljs-literal">true</span>,
+   <span class="hljs-attr">videoOptions</span>: {
+       <span class="hljs-attr">deviceId</span>: <span class="hljs-string">'cameraId'</span>
+   }
+}
+
+<span class="hljs-comment">// Change the call's camera by replacing the video track.</span>
+client.call.replaceTrack(callId, videoTrack, media)</pre>
     
   
 
