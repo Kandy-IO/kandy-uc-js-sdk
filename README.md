@@ -1,4 +1,4 @@
-# @kandy-io/uc-sdk
+# Kandy UC JavaScript SDK
 
 ## Install
 
@@ -15,14 +15,24 @@ To install a particular build branch or beta branch with the Github URL, run:
 ### In the browser :
 ```html
 <script src="https://unpkg.com/@kandy-io/uc-sdk@4.14.0/dist/kandy.js"
-  integrity="sha384-+q7vy3H9ENIQr29Dlz988BPUtRdDT/eAefQvY4Jf9XFnEsA64kSB6OBOpglMKnbP"
+  integrity="sha384-ZbDVfZLnM2QjCu0dRBb3lHYeMPtOQ6t/86sSXs9TPe3fNZ8znRtiKlNj4p2JK4jm"
   crossorigin="anonymous">
 </script>
 ```
-## Reference
+## Documentation
 
 The information about tutorials and documents can be found in the links below
 
 * `Documents`: [docs](https://kandy-io.github.io/kandy-uc-js-sdk/docs)
 
 
+
+## Compatiblity
+
+| Browsers | Versions              | Operating Systems              |
+|----------|-----------------------|--------------------------------|
+| Chrome   | Last 3 Major Versions | Windows, MacOS, Linux, Android |
+| Firefox  | Last 3 Major Versions | Windows, MacOS, Linux          |
+| Edge     | Latest Major Version  | Windows, MacOS                 |
+| Safari   | Latest Major Version  | MacOS, iOS                     |
+| Electron | Last 2 Major Versions | Windows, MacOS, Linux          |
