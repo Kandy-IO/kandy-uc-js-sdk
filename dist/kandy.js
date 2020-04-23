@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.15.0-beta.381
+ * Version: 4.15.0-beta.382
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -26932,7 +26932,6 @@ function* extendSubscription() {
 function* disconnect() {
   log.info('Disconnecting user.');
   const connection = yield (0, _effects4.select)(_selectors.getConnectionInfo, platform);
-  const { protocol, server, version, port } = connection.server;
 
   const wsState = yield (0, _effects4.select)(_selectors2.getConnectionState, platform);
   if (wsState.connected) {
@@ -26944,38 +26943,9 @@ function* disconnect() {
 
   const subscribeResponse = yield (0, _effects4.call)(_requests.unsubscribe, connection, subscription.url);
 
-  if (connection.accessToken) {
-    const tokenResponse = yield (0, _effects3.default)({
-      url: `${protocol}://${server}:${port}/${version}/auth/revoke_token`
-    }, connection.requestOptions);
-
-    if (tokenResponse.error) {
-      if (tokenResponse.payload.body) {
-        // Handle errors from the server.
-        log.debug('Disconnect error encountered.', tokenResponse.payload.body.error);
-        yield (0, _effects4.put)(actions.disconnectFinished({
-          error: new _errors2.default({
-            message: `There was an error revoking the token. Error: ${tokenResponse.payload.body.error.human}`,
-            code: _errors.authCodes.UC_DISCONNECT_FAIL
-          })
-        }));
-      } else {
-        // Handle errors from the request plugin.
-        log.debug('Disconnect error encountered.', tokenResponse.payload.result);
-        yield (0, _effects4.put)(actions.disconnectFinished({
-          error: new _errors2.default({
-            message: 'Request to revoke token failed. Access and refresh tokens removed from state.',
-            code: _errors.authCodes.UC_DISCONNECT_FAIL
-          })
-        }));
-      }
-    } else if (subscribeResponse.error) {
-      // Handle errors from the unsubscription.
-      yield (0, _effects4.put)(actions.disconnectFinished(subscribeResponse));
-    } else {
-      log.debug('Successfully disconnected user.');
-      yield (0, _effects4.put)(actions.disconnectFinished());
-    }
+  if (subscribeResponse.error) {
+    // Handle errors from the unsubscription.
+    yield (0, _effects4.put)(actions.disconnectFinished(subscribeResponse));
   } else {
     log.debug('Successfully disconnected user.');
     yield (0, _effects4.put)(actions.disconnectFinished());
@@ -41419,7 +41389,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.15.0-beta.381';
+  return '4.15.0-beta.382';
 }
 
 /***/ }),
