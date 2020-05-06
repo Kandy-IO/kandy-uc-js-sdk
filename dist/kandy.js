@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.16.0-beta.397
+ * Version: 4.16.0-beta.398
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -32468,6 +32468,8 @@ function* incomingCallNotification(deps) {
   function* linkIncomingCall(action) {
     const message = action.payload.notificationMessage;
 
+    const notificationParams = message.callNotificationParams || {};
+
     // Massage data into a generic format, instead of Link-specific.
     const params = {
       // The remote SDP offer included with the notification (if any).
@@ -32475,10 +32477,10 @@ function* incomingCallNotification(deps) {
       // ID that the server uses to identify the session.
       wrtcsSessionId: message.sessionParams.sessionData,
       // Remote participant information.
-      remoteName: message.callNotificationParams.callerName,
-      remoteNumber: message.callNotificationParams.callerDisplayNumber,
+      remoteName: notificationParams.callerName,
+      remoteNumber: notificationParams.callerDisplayNumber,
       // Where the call was sent
-      calleeNumber: message.callNotificationParams.calleeDisplayNumber,
+      calleeNumber: notificationParams.calleeDisplayNumber,
       // Custom Parameters
       customParameters: message.customParameters
 
@@ -32513,26 +32515,17 @@ function* sessionProgressNotification(deps) {
   function* parseSessionProgress(action) {
     const message = action.payload.notificationMessage;
 
-    let params;
+    const notificationParams = message.callNotificationParams || {};
 
-    if (!message.callNotificationParams) {
-      // `sessionProgress` notifications don't have `callNotificationParams`.
-      log.debug(`Notification does not contain property 'callNotificationParams'.`);
-      params = {
-        sdp: message.sessionParams.sdp,
-        wrtcsSessionId: message.sessionParams.sessionData,
-        customParameters: message.customParameters
-      };
-    } else {
-      // Massage data into a generic format, instead of Link-specific.
-      params = {
-        sdp: message.sessionParams.sdp,
-        wrtcsSessionId: message.sessionParams.sessionData,
-        remoteName: message.callNotificationParams.remoteName,
-        remoteNumber: message.callNotificationParams.remoteDisplayNumber,
-        customParameters: message.customParameters
-      };
-    }
+    // Massage data into a generic format, instead of Link-specific.
+    const params = {
+      sdp: message.sessionParams.sdp,
+      wrtcsSessionId: message.sessionParams.sessionData,
+      remoteName: notificationParams.remoteName,
+      remoteNumber: notificationParams.remoteDisplayNumber,
+      customParameters: message.customParameters
+    };
+
     yield (0, _effects.call)(_notifications.receiveEarlyMedia, deps, params);
   }
 
@@ -41410,7 +41403,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.16.0-beta.397';
+  return '4.16.0-beta.398';
 }
 
 /***/ }),
