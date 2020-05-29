@@ -5,7 +5,7 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 4.16.0 - beta
+## 4.16.0 - 2020-05-29
 
 ### Added
 
@@ -28,6 +28,7 @@ Kandy.js change log.
 - Fixed the triggering of call:trackEnded event (on caller's side) when a media track is removed as well as duplication of such event (on callee's side) when plan-b is used. `KAA-2343`
 - Fixed an issue with the `user.search` API where searching with a filter would not work. `KAA-2341`
 - Fixed an issue with removing media for a 'Connected' Call (after an earlier attempt was made while the Call was 'On Hold') `KAA-2353`
+- Fixed documentation for Conversation in messaging plugin. `KAA-2102`
 
 ### Changed
 
