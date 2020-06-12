@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.17.0-beta.438
+ * Version: 4.17.0-beta.440
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -41238,6 +41238,7 @@ exports.mergeValues = mergeValues;
 exports.toQueryString = toQueryString;
 exports.autoRestart = autoRestart;
 exports.forwardAction = forwardAction;
+exports.normalizeServices = normalizeServices;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
@@ -41321,6 +41322,21 @@ function autoRestart(saga) {
  */
 function* forwardAction(action) {
   yield (0, _effects.put)(action);
+}
+
+/**
+ * Ensures that services are in the same format understood by the server regardless,
+ * of whether the client provides services as strings or objects.
+ * @param {Array} services The list of services requested by the client.
+ * @return {Array} A normalized list of services requested by the client.
+ */
+function normalizeServices(services = []) {
+  return services.map(service => {
+    if ((0, _fp.isPlainObject)(service) && service.hasOwnProperty('service')) {
+      return service;
+    }
+    return { service: service };
+  });
 }
 
 /***/ }),
@@ -41467,7 +41483,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.17.0-beta.438';
+  return '4.17.0-beta.440';
 }
 
 /***/ }),
