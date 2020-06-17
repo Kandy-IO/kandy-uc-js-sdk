@@ -17,6 +17,7 @@ Kandy.js change log.
 - Added the 'auth:changed' event trigger on subscription GONE notification for backwards
   compatibility. `KAA-2360`
 - Fixed a Call issue where the callee would not receive a `call:newTrack` event for the remote tracks when answering the call. `KAA-2380`
+- Fixed a Call issue where SDP Handlers were not given the opportunity to act on a local SDP before it was sent to the remote endpoint. `KAA-2136`
 
 ## 4.16.0 - 2020-05-29
 
