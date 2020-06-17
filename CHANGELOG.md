@@ -18,6 +18,7 @@ Kandy.js change log.
   compatibility. `KAA-2360`
 - Fixed a Call issue where the callee would not receive a `call:newTrack` event for the remote tracks when answering the call. `KAA-2380`
 - Fixed a Call issue where SDP Handlers were not given the opportunity to act on a local SDP before it was sent to the remote endpoint. `KAA-2136`
+- Fixed an Authentication issue where the `connect` API would not include the `clientCorrelator` and `forceLogOut` options in a new subscription. `KAA-2204`
 
 ## 4.16.0 - 2020-05-29
 
@@ -55,6 +56,7 @@ Kandy.js change log.
 ### Added
 
 - Added the handling of mute/unmute events which are being generated when a media source is muted/unmuted by triggers that are outside of SDK's control. `KAA-1641`
+- Added support for providing a Client Correlator with a user's subscription. `KAA-2204`
 
 ### Fixed
 
