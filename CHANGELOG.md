@@ -13,7 +13,6 @@ Kandy.js change log.
 - Added ability to add and remove services by updating a subscription using the subscription plugin. `KAA-2266`
 - Added documentation about `CodecSelectors` for `sdpHandlers.createCodecRemover`.
 - Added callId parameter passed to SDP pipeline handlers `call.SdpHandlerFunction`. `KAA-2242`
--
 
 ### Fixed
 
@@ -23,6 +22,7 @@ Kandy.js change log.
 - Fixed a Call issue where SDP Handlers were not given the opportunity to act on a local SDP before it was sent to the remote endpoint. `KAA-2136`
 - Fixed an Authentication issue where the `connect` API would not include the `clientCorrelator` and `forceLogOut` options in a new subscription. `KAA-2204`
 - Fixed the custom header (sent by any request to backend & used for analytics) so that its value reflects the actual platform (or service) used by SDK. `KAA-2395`
+- Fixed an issue where replacing a track and then ending it wasn't emitting the proper `call:trackEnded` event. `KAA-2370` `KAA-2387`
 - Normalized error data returned from all REST requests to internal components. Doesn't impact public API. `KAA-2348`
 - Fixed an issue with `sdpHandlers.createCodecRemover` where it wasn't handling multiple codecs selectors with the same name. `KAA-2416`
 
@@ -461,7 +461,7 @@ Version 3.0 is a hard break in backwards compatibility for Kandy.js. This latest
 
 The summary of the breaking changes are (1) most API functions have been namespaced, (2) many API function names have been slightly changed, (3) many event names have been slightly changed, (4) event argument parameters have changed, and (5) renaming of SDK build files.
 
-For in-depth information about what has changed, please see: https://confluence.genband.com/display/KSDK/Kandy.js+3.0.0-beta+Breaking+Changes
+For in-depth information about what has changed, please see: <https://confluence.genband.com/display/KSDK/Kandy.js+3.0.0-beta+Breaking+Changes>
 
 ### Fixed
 
