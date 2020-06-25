@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.17.0-beta.459
+ * Version: 4.17.0-beta.460
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -27523,7 +27523,16 @@ function makeCallFinish(id, params) {
 }
 
 function makeAnonymousCall(id, params) {
-  return callActionHelper(actionTypes.MAKE_ANONYMOUS_CALL, id, params);
+  return {
+    type: actionTypes.MAKE_ANONYMOUS_CALL,
+    payload: {
+      id,
+      callee: params.callee,
+      credentials: params.credentials,
+      mediaConstraints: params.mediaConstraints,
+      callOptions: params.callOptions
+    }
+  };
 }
 
 function makeAnonymousCallFinish(id, params) {
@@ -41634,7 +41643,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.17.0-beta.459';
+  return '4.17.0-beta.460';
 }
 
 /***/ }),
