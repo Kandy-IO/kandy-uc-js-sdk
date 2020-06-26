@@ -5,7 +5,7 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 4.17.0 - beta
+## 4.17.0 - 2020-06-26
 
 ### Added
 
@@ -16,8 +16,7 @@ Kandy.js change log.
 
 ### Fixed
 
-- Added the 'auth:changed' event trigger on subscription GONE notification for backwards
-  compatibility. `KAA-2360`
+- Added the 'auth:changed' event trigger on subscription GONE notification for backwards compatibility. `KAA-2360`
 - Fixed a Call issue where the callee would not receive a `call:newTrack` event for the remote tracks when answering the call. `KAA-2380`
 - Fixed a Call issue where SDP Handlers were not given the opportunity to act on a local SDP before it was sent to the remote endpoint. `KAA-2136`
 - Fixed an Authentication issue where the `connect` API would not include the `clientCorrelator` and `forceLogOut` options in a new subscription. `KAA-2204`
@@ -34,14 +33,9 @@ Kandy.js change log.
 
 ### Added
 
-- Added new call config option 'mediaBrokerOnly'. When set to true the SDK will
-  not try to recreate a calls PeerConnection. This is intended for backends configured
-  to disallow peer to peer connections. `KAA-2259`
-- Added new Call API `call.getAvailableCodecs` which can be used to return a list
-  of available codecs
-  supported by the browser. `KAA-2275`
-- Added a configuration parameter that allows the user to choose the authentication
-  method for the WebSocket.`KAA-2279`
+- Added new call config option 'mediaBrokerOnly'. When set to true the SDK will not try to recreate a calls PeerConnection. This is intended for backends configured to disallow peer to peer connections. `KAA-2259`
+- Added new Call API `call.getAvailableCodecs` which can be used to return a list of available codecs supported by the browser. `KAA-2275`
+- Added a configuration parameter that allows the user to choose the authentication method for the WebSocket.`KAA-2279`
 - Added new Call option for configuring DSCP markings on the media traffic. `KAA-2256`
 - DSCP controls can be configured with the `call.make`, `call.answer`, `call.addMedia`, and `call.startVideo` Call APIs.
 - Added `removeBundling` flag to the call config for users that want to turn it off. `KAA-2338`
