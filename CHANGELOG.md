@@ -5,12 +5,37 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 4.18.0 - beta
+
+### Important changes
+
+#### media:sourceMuted & media:sourceUnmuted (`KAA-2407`)
+
+The SDK has been updated to use `unified-plan` as the default value for
+'sdpSemantics'. `plan-b` only works in Chrome, and is being removed from Chrome
+very soon. You will need to handle `media:sourceMuted` and `media:sourceUnmuted` events to
+know when to render/unrender remote media.
+
+To see how to use these events, visit our tutorials.
+Choose your configuration ([Kandy-US](https://kandy-io.github.io/kandy-link-js-sdk/tutorials/?config=us#/Configurations), [Kandy-EMEA](https://kandy-io.github.io/kandy-link-js-sdk/tutorials/?config=emea#/Configurations), [Kandy-UAE](https://kandy-io.github.io/kandy-link-js-sdk/tutorials/?config=uae#/Configurations))
+
+### Added
+
+- Added new Call API `call.setSdpHandlers` for setting SDP Handlers after the SDK has been initialized. `KAA-2322`
+
+### Changed
+
+- Removed the Call default values for BandwidthControls when adding media to a call. `KAA-2402`
+  - This affects the `make`, `answer`, `addMedia`, and `startVideo` Call APIs.
+  - If the `options.bandwidth` parameter is not provided, the SDK will now default to the browser's behaviour instead of setting its own bandwidth limits for audio and video (of 5000 each).
+
 ## 4.17.0 - 2020-06-26
 
 ### Added
 
 - Added new parameter validation to all configs used with the `create` function. Incorrect parameters will log a `VALIDATION` message. `KAA-2223`
 - Added ability to add and remove services by updating a subscription using the subscription plugin. `KAA-2266`
+- Added new session level bandwidth limit parameter to the call API. The parameter is `call` and should be passed in the same options object as `audio` and `video` bandwidth controls. `KAA-2108`
 - Added documentation about `CodecSelectors` for `sdpHandlers.createCodecRemover`.
 - Added callId parameter passed to SDP pipeline handlers `call.SdpHandlerFunction`. `KAA-2242`
 
@@ -27,7 +52,10 @@ Kandy.js change log.
 
 ### Changed
 
-- Changed `call.getAvailableCodecs` Call API to return a Promise, so that caller can get the list of codecs as part of invkoing this API, without the need to setup a separate event listener. This does not impact the existing use of API. `KAA-2423`
+- Changed `call.getAvailableCodecs` Call API to return a Promise, so that caller can get the list of codecs as part of invoking this API, without the need to setup a separate event listener. This does not impact the existing use of API. `KAA-2423`
+- Changed the default configuration value for 'sdpSemantics' to be 'unified-plan', instead of 'plan-b'. `KAA-2401`
+  - 'plan-b' is an option supported only by Chrome and it has been deprecated. Further details are [here](https://webrtc.org/getting-started/unified-plan-transition-guide).
+  - This should not be a breaking change since Kandy Link supports the interoperability between 'plan-b' and 'unified-plan', transparently.
 
 ## 4.16.0 - 2020-05-29
 
@@ -98,7 +126,7 @@ Kandy.js change log.
 
 ### Added
 
-- Added a destroy function to allow users to wipe the SDK state and render the SDK unusuable. `KAA-2181`
+- Added a destroy function to allow users to wipe the SDK state and render the SDK unusable. `KAA-2181`
   - This is useful when a user is finished with the SDK and wants their data to not be available to the next SDK consumer. After destroy is called, the SDK must be recreated for an application to continue working.
 - Added four API's `kandy.notification.registerApplePush`,`kandy.notification.registerAndroidPush`, `kandy.notification.unregisterAndroidPush` and `kandy.notification.unregisterApplePush` to handle the push registration notifications for Apple and Android respectively. `KAA-2153`
 - Added a new call configuration to trigger a resync of all active calls upon connecting to the websocket. `KAA-2154`
@@ -268,13 +296,13 @@ Version 4.4.0 has many breaking changes for call APIs. Please see the API refere
 
 ### Added
 
-- Added the error event to the `subscription`, to prevent subscription change to emmited when there is a subscription failure `KAA-1351`
+- Added the error event to the `subscription`, to prevent subscription change to emitted when there is a subscription failure `KAA-1351`
 - Added a lastMessage property as part of conversation state object which holds the text for the last message in that conversation `KAA-903`
 - Added a DEBUG log at the start of every public API invocation, which will better help with future investigations `KAA-1353`
 
 ### Changed
 
-- The `subscription:change` event is no longer emmitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
+- The `subscription:change` event is no longer emitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
 - No longer stores call stats in localstorage by default. Use the `recordCallStats` configuration to turn this back on. `KAA-1552`
 
 ## 3.3.0 - 2019-03-29
