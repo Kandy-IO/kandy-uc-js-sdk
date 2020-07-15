@@ -26,6 +26,7 @@ Choose your configuration ([Kandy-US](https://kandy-io.github.io/kandy-link-js-s
 ### Fixed
 
 - Fixed an issue preventing the playing of video tracks during a call on iOS Safari. `KAA-2382`
+- Added check for failed file/json blob uploads in messaging and emit `messages:error` event in the case of a failed file/json blob upload. `KAA-2277`
 
 ### Changed
 
