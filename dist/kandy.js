@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.18.0-beta.484
+ * Version: 4.18.0-beta.485
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -40207,8 +40207,16 @@ function* setupCall(deps, mediaConstraints, sessionOptions) {
     endpoint: 'local',
     bandwidth
   });
-  offer = yield (0, _effects.call)([session, 'setLocalDescription'], offer);
-
+  try {
+    offer = yield (0, _effects.call)([session, 'setLocalDescription'], offer);
+  } catch (e) {
+    return {
+      error: true,
+      offerSdp: null,
+      sessionId: null,
+      mediaIds: null
+    };
+  }
   // Run the SDP through the Pipeline again before we send it to the remote side.
   //    This is the "pre send local" stage.
   // Assign it to a new variable because some browsers enforce the read-only
@@ -40397,7 +40405,15 @@ function* answerWebrtcSession(deps, mediaConstraints, sessionOptions) {
     endpoint: 'local',
     bandwidth
   });
-  answer = yield (0, _effects.call)([session, 'setLocalDescription'], answer);
+  try {
+    answer = yield (0, _effects.call)([session, 'setLocalDescription'], answer);
+  } catch (e) {
+    return {
+      error: true,
+      answerSDP: null,
+      mediaIds: null
+    };
+  }
 
   // Run the SDP through the Pipeline again before we send it to the remote side.
   //    This is the "pre send local" stage.
@@ -40675,7 +40691,15 @@ function* handleOffer(deps, offer, webrtcSessionId, bandwidth) {
     endpoint: 'local',
     bandwidth
   });
-  answer = yield (0, _effects.call)([session, 'setLocalDescription'], answer);
+
+  try {
+    answer = yield (0, _effects.call)([session, 'setLocalDescription'], answer);
+  } catch (e) {
+    return {
+      error: true,
+      answerSDP: null
+    };
+  }
 
   // Run the SDP through the Pipeline again before we send it to the remote side.
   //    This is the "pre send local" stage.
@@ -40738,8 +40762,16 @@ function* generateOffer(deps, sessionId, mediaDirections, bandwidth) {
     endpoint: 'local',
     bandwidth
   });
-  offer = yield (0, _effects.call)([session, 'setLocalDescription'], offer);
 
+  try {
+    offer = yield (0, _effects.call)([session, 'setLocalDescription'], offer);
+  } catch (e) {
+    return {
+      error: true,
+      type: null,
+      sdp: null
+    };
+  }
   // This is the "pre send local" stage.
   // Assign it to a new variable because some browsers enforce the read-only
   //    properties of a RTCSessionDescription object. The object from
@@ -40819,7 +40851,16 @@ function* webRtcAddMedia(deps, mediaConstraints, sessionOptions) {
     endpoint: 'local',
     bandwidth
   });
-  offer = yield (0, _effects.call)([session, 'setLocalDescription'], offer);
+
+  try {
+    offer = yield (0, _effects.call)([session, 'setLocalDescription'], offer);
+  } catch (e) {
+    return {
+      error: true,
+      medias: null,
+      sdp: null
+    };
+  }
 
   // This is the "pre send local" stage.
   // Assign it to a new variable because some browsers enforce the read-only
@@ -40909,8 +40950,15 @@ function* webRtcRemoveMedia(deps, sessionOptions) {
     endpoint: 'local',
     bandwidth
   });
-  offer = yield (0, _effects.call)([session, 'setLocalDescription'], offer);
 
+  try {
+    offer = yield (0, _effects.call)([session, 'setLocalDescription'], offer);
+  } catch (e) {
+    return {
+      error: true,
+      sdp: null
+    };
+  }
   // This is the "pre send local" stage.
   // Assign it to a new variable because some browsers enforce the read-only
   //    properties of a RTCSessionDescription object. The object from
@@ -42045,7 +42093,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.18.0-beta.484';
+  return '4.18.0-beta.485';
 }
 
 /***/ }),

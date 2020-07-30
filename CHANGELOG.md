@@ -13,15 +13,15 @@ With this release we're announcing the deprecation of `plan-b` SDP semantics and
 to change the default SDP semantics to the standard compliant `unified-plan` semantics starting with
 the 4.19.0 release next month.
 
-This change has been on the horizon since the WebRTC standard commitee chose `unified-plan` as the
+This change has been on the horizon since the WebRTC standard committee chose `unified-plan` as the
 way forward. Since then, Chrome has been on a path to make this change and eventually remove `plan-b`
 as a supported option.
 You can read about Chrome's transition plan here:
 [https://webrtc.org/getting-started/unified-plan-transition-guide](https://webrtc.org/getting-started/unified-plan-transition-guide)
 
-Browsers other than Chrome or Chrome-based browers are unaffected by this change since they don't support `plan-b` and have supported `unified-plan` for a while.
+Browsers other than Chrome or Chrome-based browsers are unaffected by this change since they don't support `plan-b` and have supported `unified-plan` for a while.
 
-#### What does this mean for developers?
+#### What does this mean for developers
 
 `unified-plan` support is available today and you can start testing your application today. In
 order to do so you need to change the sdpSemantics option in your configuration when creating the
@@ -65,6 +65,7 @@ Choose the configuration that applies to you:
 - Fixed an issue preventing the playing of video tracks during a call on iOS Safari. `KAA-2382`
 - Added check for failed file/json blob uploads in messaging and emit `messages:error` event in the case of a failed file/json blob upload. `KAA-2277`
 - Fixed an issue preventing the proper termination of an audio+video outgoing call when camera was already in use. `KAA-2426`
+- Fixed issue where uncaught errors in `setLocalDescription` were crashing the saga. These events are now being properly handled. `KAA-2460`
 
 ### Changed
 
