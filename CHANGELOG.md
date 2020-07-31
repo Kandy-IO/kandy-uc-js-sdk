@@ -66,6 +66,7 @@ Choose the configuration that applies to you:
 - Added check for failed file/json blob uploads in messaging and emit `messages:error` event in the case of a failed file/json blob upload. `KAA-2277`
 - Fixed an issue preventing the proper termination of an audio+video outgoing call when camera was already in use. `KAA-2426`
 - Fixed issue where uncaught errors in `setLocalDescription` were crashing the saga. These events are now being properly handled. `KAA-2460`
+- Fixed `media:sourceMuted` and `media:sourceUnmuted` events by adding `trackId` data instead of passing it in a single element array. `KAA-2455`
 
 ### Changed
 
