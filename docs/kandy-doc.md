@@ -263,32 +263,6 @@ Removes a global event listener from SDK instance.
 
 ### connect
 
-Connect with user credentials to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][7]** The credentials object.
-    -   `credentials.username` **[string][8]** The username including the application's domain.
-    -   `credentials.password` **[string][8]** The user's password.
-    -   `credentials.authname` **[string][8]?** The user's authorization name.
--   `options` **[Object][7]?** The options object for non-credential options.
-    -   `options.forceLogOut` **[boolean][11]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
-    -   `options.clientCorrelator` **[string][8]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-}, {
-  forceLogOut: true
-});
-```
-
-### connect
-
 Connect by providing an access token to any backend services that the SDK instance deals with.
 You can optionally provide a refresh token and the SDK will automatically get new access tokens.
 
@@ -357,9 +331,47 @@ client.connect({
 });
 ```
 
+### connect
+
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][7]** The credentials object.
+    -   `credentials.username` **[string][8]** The username including the application's domain.
+    -   `credentials.password` **[string][8]** The user's password.
+    -   `credentials.authname` **[string][8]?** The user's authorization name.
+-   `options` **[Object][7]?** The options object for non-credential options.
+    -   `options.forceLogOut` **[boolean][11]?** Force the oldest connection to log out if too many simultaneous connections. Link only.
+    -   `options.clientCorrelator` **[string][8]?** Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+}, {
+  forceLogOut: true
+});
+```
+
 ### disconnect
 
 Disconnects from the backend. This will close the websocket and you will stop receiving events.
+
+### updateToken
+
+If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
+
+**Parameters**
+
+-   `credentials` **[Object][7]** The credentials object.
+    -   `credentials.accessToken` **[string][8]** The new access token.
+    -   `credentials.username` **[string][8]** The username without the application's domain.
+    -   `credentials.accessToken` **[string][8]** An access token for the user with the provided user Id.
+-   `credentials` **[Object][7]** The credentials object.
 
 ### updateToken
 
@@ -379,18 +391,6 @@ client.updateToken({
   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
 });
 ```
-
-### updateToken
-
-If you're authenticating with tokens that expire and have not provided a refresh token to the `connect` function, you can update your access token with `updateToken` before it expires to stay connected.
-
-**Parameters**
-
--   `credentials` **[Object][7]** The credentials object.
-    -   `credentials.accessToken` **[string][8]** The new access token.
-    -   `credentials.username` **[string][8]** The username without the application's domain.
-    -   `credentials.accessToken` **[string][8]** An access token for the user with the provided user Id.
--   `credentials` **[Object][7]** The credentials object.
 
 ### getUserInfo
 
@@ -1428,54 +1428,42 @@ This is an advanced feature, changing the SDP handlers mid-call may cause
 
 -   `sdpHandlers` **[Array][13]&lt;[call.SdpHandlerFunction][16]>** The list of SDP handler functions to modify SDP.
 
-### changeInputDevices
+### changeSpeaker
 
-Changes the camera and/or microphone used for a Call's media input.
+Changes the speaker used for a Call's audio output. Supported on
+   browser's that support HTMLMediaElement.setSinkId().
 
 The latest SDK release (v4.X+) has not yet implemented this API in the
    same way that it was available in previous releases (v3.X). In place
    of this API, the SDK has a more general API that can be used for this
    same behaviour.
 
-The same behaviour as the `changeInputDevices` API can be implemented
-   using the general-purpose [call.replaceTrack][57] API. This API can
-   be used to replace an existing media track with a new track of the
-   same type, allowing an application to change certain aspects of the
-   media, such as input device.
+The same behaviour as the `changeSpeaker` API can be implemented by
+   re-rendering the Call's audio track.  A speaker can be selected when
+   rendering an audio track, so changing a speaker can be simulated
+   by unrendering the track with [media.removeTracks][57], then
+   re-rendering it with a new speaker with [media.renderTracks][58].
 
 **Examples**
 
 ```javascript
 const call = client.call.getById(callId)
-// Get the ID of the Call's video track.
-const videoTrack = call.localTracks.find(trackId => {
+// Get the ID of the Call's audio track.
+const audioTrack = call.localTracks.find(trackId => {
    const track = client.media.getTrackById(trackId)
-   return track.kind === 'video'
+   return track.kind === 'audio'
 })
 
-// Select the new video options.
-const media = {
-   video: true,
-   videoOptions: {
-       deviceId: 'cameraId'
-   }
-}
+// Where the audio track was previously rendered.
+const audioContainer = ...
 
-// Change the call's camera by replacing the video track.
-client.call.replaceTrack(callId, videoTrack, media)
+// Unrender the audio track we want to change speaker for.
+client.media.removeTrack([ audioTrack ], audioContainer)
+// Re-render the audio track with a new speaker.
+client.media.renderTrack([ audioTrack ], audioContainer, {
+   speakerId: 'speakerId'
+})
 ```
-
-### setDefaultDevices
-
-The `setDefaultDevices` API from previous SDK releases (3.X) has been
-   deprecated in the latest releases (4.X+). The SDK no longer keeps
-   track of "default devices" on behalf of the application.
-
-The devices used for a call can be selected as part of the APIs for
-   starting the call. Microphone and/or camera can be chosen in the
-   [call.make][30] and [call.answer][31] APIs, and speaker can be
-   chosen when the audio track is rendered with the
-   [media.renderTracks][58] API.
 
 ### states
 
@@ -1523,52 +1511,64 @@ client.on('call:stateChange', function (params) {
 })
 ```
 
-### changeSpeaker
+### changeInputDevices
 
-Changes the speaker used for a Call's audio output. Supported on
-   browser's that support HTMLMediaElement.setSinkId().
+Changes the camera and/or microphone used for a Call's media input.
 
 The latest SDK release (v4.X+) has not yet implemented this API in the
    same way that it was available in previous releases (v3.X). In place
    of this API, the SDK has a more general API that can be used for this
    same behaviour.
 
-The same behaviour as the `changeSpeaker` API can be implemented by
-   re-rendering the Call's audio track.  A speaker can be selected when
-   rendering an audio track, so changing a speaker can be simulated
-   by unrendering the track with [media.removeTracks][59], then
-   re-rendering it with a new speaker with [media.renderTracks][58].
+The same behaviour as the `changeInputDevices` API can be implemented
+   using the general-purpose [call.replaceTrack][59] API. This API can
+   be used to replace an existing media track with a new track of the
+   same type, allowing an application to change certain aspects of the
+   media, such as input device.
 
 **Examples**
 
 ```javascript
 const call = client.call.getById(callId)
-// Get the ID of the Call's audio track.
-const audioTrack = call.localTracks.find(trackId => {
+// Get the ID of the Call's video track.
+const videoTrack = call.localTracks.find(trackId => {
    const track = client.media.getTrackById(trackId)
-   return track.kind === 'audio'
+   return track.kind === 'video'
 })
 
-// Where the audio track was previously rendered.
-const audioContainer = ...
+// Select the new video options.
+const media = {
+   video: true,
+   videoOptions: {
+       deviceId: 'cameraId'
+   }
+}
 
-// Unrender the audio track we want to change speaker for.
-client.media.removeTrack([ audioTrack ], audioContainer)
-// Re-render the audio track with a new speaker.
-client.media.renderTrack([ audioTrack ], audioContainer, {
-   speakerId: 'speakerId'
-})
+// Change the call's camera by replacing the video track.
+client.call.replaceTrack(callId, videoTrack, media)
 ```
 
-### TEL_URI
+### setDefaultDevices
 
-The TEL URI ie: tel:+18885559876
+The `setDefaultDevices` API from previous SDK releases (3.X) has been
+   deprecated in the latest releases (4.X+). The SDK no longer keeps
+   track of "default devices" on behalf of the application.
 
-Type: [string][8]
+The devices used for a call can be selected as part of the APIs for
+   starting the call. Microphone and/or camera can be chosen in the
+   [call.make][30] and [call.answer][31] APIs, and speaker can be
+   chosen when the audio track is rendered with the
+   [media.renderTracks][58] API.
 
 ### SIP_URI
 
 The SIP URI ie: sip:joe@domain.com
+
+Type: [string][8]
+
+### TEL_URI
+
+The TEL URI ie: tel:+18885559876
 
 Type: [string][8]
 
@@ -2799,11 +2799,11 @@ Returns voicemail data from the store.
 
 [56]: #callsdphandlerfunction
 
-[57]: #callreplacetrack
+[57]: #mediaremovetracks
 
 [58]: #mediarendertracks
 
-[59]: #mediaremovetracks
+[59]: #callreplacetrack
 
 [60]: #conversationconversation
 
