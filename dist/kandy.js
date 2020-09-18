@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.20.0-beta.532
+ * Version: 4.20.0-beta.533
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -42148,7 +42148,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.20.0-beta.532';
+  return '4.20.0-beta.533';
 }
 
 /***/ }),
@@ -57513,7 +57513,7 @@ function mediaAPI({ dispatch, getState }) {
      *    const container = params.local ? localContainer : remoteContainer
      *
      *    // Render the Call's new track when it first becomes available.
-     *    client.media.renderTracks([ track.id ], container)
+     *    client.media.renderTracks([ track.trackId ], container)
      * })
      */
     renderTracks(trackIds, cssSelector, options = {}) {
