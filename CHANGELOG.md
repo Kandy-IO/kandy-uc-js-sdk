@@ -19,6 +19,10 @@ Kandy.js change log.
 
 - Fixed documentation for `renderTracks` function to correctly use `track.trackId` instead of the incorrect `track.id`. `KAA-2502`
 
+### Changed
+
+- Removed `Creating LogManager` debug log since it was only in place to work around a bug in Chrome that has been fixed. `KAA-2494`
+
 ## 4.19.0 - 2020-08-28
 
 ### SDP Semantics Defaults
