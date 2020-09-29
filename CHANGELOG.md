@@ -19,6 +19,7 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed documentation for `renderTracks` function to correctly use `track.trackId` instead of the incorrect `track.id`. `KAA-2502`
+- Fixed a Media issue for `Unified-Plan` calls where a remote track would incorrectly be marked as muted when created. `KAA-2519`
 
 ### Changed
 
