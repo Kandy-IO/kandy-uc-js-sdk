@@ -5,6 +5,26 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 4.20.0 - 2020-10-02
+
+### Added
+
+- Added a new media API `media.initializeDevices`to get the list of available media devices with permission from the users-end device. `KAA-2445`
+- Improved debugging logs for network operations. `KAA-2503`
+  - Added new debug level logs for REST request and response information.
+  - Added new debug level logs for messages sent and received on the websocket.
+  - Added new section to the Logging tutorial to better describe the log levels.
+- Added the ability to name the redux store instance for debugging with redux devtools extension.
+
+### Fixed
+
+- Fixed documentation for `renderTracks` function to correctly use `track.trackId` instead of the incorrect `track.id`. `KAA-2502`
+- Fixed a Media issue for `Unified-Plan` calls where a remote track would incorrectly be marked as muted when created. `KAA-2519`
+
+### Changed
+
+- Removed `Creating LogManager` debug log since it was only in place to work around a bug in Chrome that has been fixed. `KAA-2494`
+
 ## 4.19.0 - 2020-08-28
 
 ### SDP Semantics Defaults
