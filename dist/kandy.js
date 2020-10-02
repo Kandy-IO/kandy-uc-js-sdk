@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.20.0-beta.544
+ * Version: 4.20.0-beta.545
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -42148,7 +42148,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.20.0-beta.544';
+  return '4.20.0-beta.545';
 }
 
 /***/ }),
@@ -44849,9 +44849,8 @@ function factory(plugins, options = {}) {
   const version = (0, _version.getVersion)();
   log.info(`SDK version: ${version}`);
 
-  parseOptions(options);
-
   options = (0, _utils.mergeValues)(factoryDefaults, options);
+  parseOptions(options);
 
   var sagas = [];
   var store;
