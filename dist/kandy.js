@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.22.0-beta.586
+ * Version: 4.22.0-beta.587
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -33182,6 +33182,12 @@ function* callStatusNotification(deps) {
     const message = action.payload.notificationMessage;
     const { eventType } = message;
     const { sessionData: wrtcsSessionId, reasonText, statusCode } = message.sessionParams;
+
+    const targetCall = yield (0, _effects.select)(_selectors.getCallByWrtcsSessionId, wrtcsSessionId);
+    if (!targetCall) {
+      log.info('A remote operation is being requested on a call that no longer exists.');
+    }
+
     const remoteInfo = yield (0, _effects.call)(_utils.getRemoteParticipant, message);
 
     const params = (0, _extends3.default)({
@@ -33287,6 +33293,14 @@ function* receiveRemoteOffer(deps) {
    */
   function* parseOfferNotification(action) {
     const message = action.payload.notificationMessage;
+    const { sessionData: wrtcsSessionId } = message.sessionParams;
+
+    const targetCall = yield (0, _effects.select)(_selectors.getCallByWrtcsSessionId, wrtcsSessionId);
+    if (!targetCall) {
+      log.info('A remote operation is being requested on a call that no longer exists.');
+      return;
+    }
+
     const remoteInfo = yield (0, _effects.call)(_utils.getRemoteParticipant, message);
 
     // Pull-out the parameters into a standard format for the Callstack.
@@ -33325,6 +33339,14 @@ function* receiveRemoteAnswer(deps) {
    */
   function* parseAnswerNotification(action) {
     const message = action.payload.notificationMessage;
+    const { sessionData: wrtcsSessionId } = message.sessionParams;
+
+    const targetCall = yield (0, _effects.select)(_selectors.getCallByWrtcsSessionId, wrtcsSessionId);
+    if (!targetCall) {
+      log.info('A remote operation is being requested on a call that no longer exists.');
+      return;
+    }
+
     const remoteInfo = yield (0, _effects.call)(_utils.getRemoteParticipant, message);
 
     // Pull-out the parameters into a standard format for the Callstack.
@@ -33634,6 +33656,12 @@ const log = _logs.logManager.getLogger('CALL');
 function* getRemoteParticipant(notification) {
   const wrtcsSessionId = notification.sessionParams.sessionData;
   const targetCall = yield (0, _effects.select)(_selectors.getCallByWrtcsSessionId, wrtcsSessionId);
+
+  // If the call isn't found, just log a warning and return an empty object.
+  if (!targetCall) {
+    log.info('A remote operation is being requested on a call that no longer exists.');
+    return {};
+  }
 
   let remoteInfo = {};
   if (!notification.callNotificationParams) {
@@ -42403,7 +42431,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.22.0-beta.586';
+  return '4.22.0-beta.587';
 }
 
 /***/ }),
