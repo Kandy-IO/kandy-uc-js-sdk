@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.23.0-beta.594
+ * Version: 4.23.0-beta.595
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -42447,7 +42447,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.23.0-beta.594';
+  return '4.23.0-beta.595';
 }
 
 /***/ }),
@@ -46407,6 +46407,7 @@ function logPlugin(options = {}) {
   const name = 'logs';
 
   const logger = _index.logManager.getLogger('LOGS');
+
   // Make sure the configured log handler was a function.
   if (options.handler && typeof options.handler !== 'function') {
     delete options.handler;
@@ -46444,12 +46445,24 @@ function logPlugin(options = {}) {
     }
   });
 
-  function* init() {
+  function* init({ webRTC }) {
     // Send the provided options to the store.
     // This will be `state.config[name]`.
     yield (0, _effects.put)((0, _actions4.update)(options, name));
     // Update state with the initial Logger levels.
     yield (0, _effects.put)(actions.levelsChanged((0, _sagas.getLevelMap)(_index.logManager)));
+    // Update everything to
+    //    use those values from the application configs instead of default values in the webrtc Stack.
+    const webRTCLogManager = webRTC.managers.logs;
+    if (options.handler) {
+      webRTCLogManager.setHandler(options.handler);
+    }
+    (0, _values2.default)(webRTCLogManager.getLoggers()).forEach(logger => {
+      logger.setLevel(options.logLevel);
+      if (options.handler) {
+        logger.setHandler(options.handler);
+      }
+    });
   }
 
   const components = {
