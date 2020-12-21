@@ -5,6 +5,13 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 4.23.0 - 2020-12-21
+
+### Added
+
+- Added a request authorization event: `request:error` `KAA-1076`
+  - This event is specific for authorization issues when communicating with the server and notifies an application that the user's credentials should be updated/fixed. This event is emitted _in addition_ to any regular error event for an operation that may be emitted.
+
 ## 4.22.0 - 2020-11-27
 
 ### Added
@@ -22,6 +29,7 @@ Kandy.js change log.
 - Update the Call `MediaConstraint` format description to include the "direct value" approach. `KAA-2565`
 - Fix the Voicemail `fetch` API description to mention the correct event emitted. `KAA-2569`
 - Changed `call.getStats` Call API to return a Promise, so that caller can get the report of the call as part of invoking this API. `KAA-2558`
+- Fixed a Call issue where a crash would occur when a remote SDP offer does not have a media-level direction attribute. `KAA-2585`
 
 ## 4.21.0 - 2020-10-30
 
