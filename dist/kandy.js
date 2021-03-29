@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.26.0-beta.637
+ * Version: 4.26.0-beta.638
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -28957,6 +28957,8 @@ function callAPI({ dispatch, getState }) {
      * @param {call.UserID|call.PhoneNumber} destination The destination to forward the call to.
      */
     forward(callId, destination) {
+      log.debug(_logs.API_LOG_TAG + 'call.forward: ', destination);
+
       const config = (0, _selectors.getOptions)(getState());
       if (config.normalizeDestination) {
         // Normalize callee addresses
@@ -29025,6 +29027,8 @@ function callAPI({ dispatch, getState }) {
      * @param {string} otherCallId ID of the other call being acted on.
      */
     consultativeTransfer(callId, otherCallId) {
+      log.debug(_logs.API_LOG_TAG + 'call.consultativeTransfer: ', callId, otherCallId);
+
       dispatch(_actions.callActions.consultativeTransfer(callId, { otherCallId }));
     },
 
@@ -29082,6 +29086,8 @@ function callAPI({ dispatch, getState }) {
      * @param {call.UserID|call.PhoneNumber} destination The destination to transfer the call to.
      */
     directTransfer(callId, destination) {
+      log.debug(_logs.API_LOG_TAG + 'call.directTransfer: ', callId, destination);
+
       const config = (0, _selectors.getOptions)(getState());
       if (config.normalizeDestination) {
         // Normalize callee addresses
@@ -29148,6 +29154,8 @@ function callAPI({ dispatch, getState }) {
      * @param {string} otherCallId ID of the other call being acted on.
      */
     join(callId, otherCallId) {
+      log.debug(_logs.API_LOG_TAG + 'call.join: ', callId, otherCallId);
+
       const newCallId = (0, _uuid.v4)();
       const from = (0, _selectors2.getUserInfo)(getState()).username;
       dispatch(_actions.callActions.join(callId, { otherCallId, newCallId, from }));
@@ -29219,6 +29227,8 @@ function callAPI({ dispatch, getState }) {
      * })
      */
     replaceTrack(callId, trackId, media) {
+      log.debug(_logs.API_LOG_TAG + 'call.replaceTrack: ', callId, trackId, media);
+
       const mediaConstraints = {
         audio: media.audio && !(0, _fp.isEmpty)(media.audioOptions) ? media.audioOptions : media.audio,
         video: media.video && !(0, _fp.isEmpty)(media.videoOptions) ? media.videoOptions : media.video,
@@ -42367,7 +42377,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.26.0-beta.637';
+  return '4.26.0-beta.638';
 }
 
 /***/ }),
@@ -58275,7 +58285,7 @@ function mediaAPI({ dispatch, getState }) {
      * @return {call.TrackObject} A Track object.
      */
     getTrackById(trackId) {
-      log.debug(_logs.API_LOG_TAG + 'media.getByTrackId: ', trackId);
+      log.debug(_logs.API_LOG_TAG + 'media.getTrackById: ', trackId);
       return (0, _selectors.getTrackById)(getState(), trackId);
     },
 
