@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.27.0-beta.646
+ * Version: 4.27.0-beta.647
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -44441,7 +44441,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.27.0-beta.646';
+  return '4.27.0-beta.647';
 }
 
 /***/ }),
@@ -56422,6 +56422,7 @@ function* sipEventSubscribe() {
 
     // Determine if the user is subscribed to the specified sip event.
     const subscribedServices = yield (0, _effects3.select)(_selectors4.getSubscribedServices);
+
     const sipEvents = subscribedServices.filter(service => service.startsWith('event:'));
 
     if (!(0, _fp.includes)(action.payload.eventType, sipEvents)) {
