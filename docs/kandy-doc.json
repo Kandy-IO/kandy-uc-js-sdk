@@ -86705,8 +86705,11 @@
               "description": "The ID of the call this SIP event links to.",
               "lineNumber": 15,
               "type": {
-                "type": "NameExpression",
-                "name": "string"
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
               },
               "name": "params.links.callId"
             },
@@ -87056,8 +87059,11 @@
                         }
                       },
                       "type": {
-                        "type": "NameExpression",
-                        "name": "string"
+                        "type": "OptionalType",
+                        "expression": {
+                          "type": "NameExpression",
+                          "name": "string"
+                        }
                       }
                     }
                   ]
