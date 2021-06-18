@@ -19,6 +19,7 @@ Kandy.js change log.
 - Reworked Call audits so that the audits are performed with more consistency with respect to the interval. `KJS-149`
 - Fixed a Call issue where the SDK incorrectly handled remote operations from SIP devices in specific scenarios. `KAA-2593`
   - The SDK will now have better interop with remote endpoints that do not have `a=mid` lines in their initial offer.
+- Fixed Authentication behaviour where issues encountered while disconnecting should still unsubscribe the user locally but wouldn't.
 - Switched from using String.prototype.replaceAll to String.prototype.replace and using regex to do the correct string replacement. Some browsers don't yet
   support replaceAll. `KJS-164`
 - Fixed a Call issue where a remote hold operation would not be processed correctly in some scenarios. `KAA-2639`
