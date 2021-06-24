@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.29.0-beta.706
+ * Version: 4.29.0-beta.707
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3384,6 +3384,31 @@ exports.f = __webpack_require__(21) ? Object.defineProperty : function definePro
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+const prefix = '@@KANDY/';
+
+const PROCESS_NOTIFICATION = exports.PROCESS_NOTIFICATION = prefix + 'PROCESS_NOTIFICATION';
+const PROCESS_NOTIFICATION_FINISH = exports.PROCESS_NOTIFICATION_FINISH = prefix + 'PROCESS_NOTIFICATION_FINISH';
+const NOTIFICATION_RECEIVED = exports.NOTIFICATION_RECEIVED = prefix + 'NOTIFICATION_RECEIVED';
+
+const ENABLE_NOTIFICATION_CHANNEL = exports.ENABLE_NOTIFICATION_CHANNEL = prefix + 'ENABLE_NOTIFICATION_CHANNEL';
+const ENABLE_NOTIFICATION_CHANNEL_FINISH = exports.ENABLE_NOTIFICATION_CHANNEL_FINISH = prefix + 'ENABLE_NOTIFICATION_CHANNEL_FINISH';
+
+const REGISTER_APPLE_PUSH_NOTIFICATION = exports.REGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'REGISTER_APPLE_PUSH_NOTIFICATION';
+const REGISTER_ANDROID_PUSH_NOTIFICATION = exports.REGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'REGISTER_ANDROID_PUSH_NOTIFICATION';
+
+const UNREGISTER_APPLE_PUSH_NOTIFICATION = exports.UNREGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'UNREGISTER_APPLE_PUSH_NOTIFICATION';
+const UNREGISTER_ANDROID_PUSH_NOTIFICATION = exports.UNREGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'UNREGISTER_ANDROID_PUSH_NOTIFICATION';
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.miscActions = exports.mediaActions = exports.sessionActions = exports.trackActions = exports.deviceActions = undefined;
 
 var _devices = __webpack_require__(364);
@@ -3416,31 +3441,6 @@ const trackActions = exports.trackActions = trackActionsImport;
 const sessionActions = exports.sessionActions = sessionActionsImport;
 const mediaActions = exports.mediaActions = mediaActionsImport;
 const miscActions = exports.miscActions = miscActionsImport;
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-const prefix = '@@KANDY/';
-
-const PROCESS_NOTIFICATION = exports.PROCESS_NOTIFICATION = prefix + 'PROCESS_NOTIFICATION';
-const PROCESS_NOTIFICATION_FINISH = exports.PROCESS_NOTIFICATION_FINISH = prefix + 'PROCESS_NOTIFICATION_FINISH';
-const NOTIFICATION_RECEIVED = exports.NOTIFICATION_RECEIVED = prefix + 'NOTIFICATION_RECEIVED';
-
-const ENABLE_NOTIFICATION_CHANNEL = exports.ENABLE_NOTIFICATION_CHANNEL = prefix + 'ENABLE_NOTIFICATION_CHANNEL';
-const ENABLE_NOTIFICATION_CHANNEL_FINISH = exports.ENABLE_NOTIFICATION_CHANNEL_FINISH = prefix + 'ENABLE_NOTIFICATION_CHANNEL_FINISH';
-
-const REGISTER_APPLE_PUSH_NOTIFICATION = exports.REGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'REGISTER_APPLE_PUSH_NOTIFICATION';
-const REGISTER_ANDROID_PUSH_NOTIFICATION = exports.REGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'REGISTER_ANDROID_PUSH_NOTIFICATION';
-
-const UNREGISTER_APPLE_PUSH_NOTIFICATION = exports.UNREGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'UNREGISTER_APPLE_PUSH_NOTIFICATION';
-const UNREGISTER_ANDROID_PUSH_NOTIFICATION = exports.UNREGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'UNREGISTER_ANDROID_PUSH_NOTIFICATION';
 
 /***/ }),
 /* 30 */
@@ -6806,7 +6806,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.29.0-beta.706';
+  return '4.29.0-beta.707';
 }
 
 /***/ }),
@@ -10827,7 +10827,7 @@ exports.unregisterApplePushNotification = unregisterApplePushNotification;
 exports.unregisterAndroidPushNotification = unregisterAndroidPushNotification;
 exports.enableNotificationChannelFinish = enableNotificationChannelFinish;
 
-var _actionTypes = __webpack_require__(29);
+var _actionTypes = __webpack_require__(28);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -25852,7 +25852,7 @@ function authCpaas(options = {}) {
   const capabilities = ['connect', 'userCredentialsAuth', 'accessTokenAuth', 'services', 'oauthToken'];
 
   return {
-    sagas: [_sagas.connectFlow, _sagas.updateTokenSaga, _sagas.extendSubscription, _sagas.onConnectionLostEntry],
+    sagas: [_sagas.connectFlow, _sagas.updateTokenSaga, _sagas.extendSubscription, _sagas.onConnectionLostEntry, _sagas.onSubscriptionGone],
     capabilities,
     init,
     api: _interface.api,
@@ -26797,6 +26797,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 exports.connectFlow = connectFlow;
 exports.connect = connect;
 exports.subscribe = subscribe;
+exports.onSubscriptionGone = onSubscriptionGone;
 exports.extendSubscription = extendSubscription;
 exports.disconnect = disconnect;
 exports.updateTokenSaga = updateTokenSaga;
@@ -26820,6 +26821,8 @@ var _requests = __webpack_require__(314);
 var _actionTypes2 = __webpack_require__(40);
 
 var connectivityActionTypes = _interopRequireWildcard(_actionTypes2);
+
+var _actionTypes3 = __webpack_require__(28);
 
 var _effects = __webpack_require__(316);
 
@@ -26846,16 +26849,16 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Libraries.
-// Auth plugin.
+
+
+// Other plugins.
 const platform = _constants2.platforms.UC;
 
 // Constants
 
 
 // Helpers.
-
-
-// Other plugins.
+// Auth plugin.
 
 const log = _logs.logManager.getLogger('AUTH');
 
@@ -27109,6 +27112,32 @@ function* subscribe(config, tokenInfo, options) {
       log.debug('Refreshing token');
       yield (0, _effects4.fork)(refreshTokenSaga);
     }
+  }
+}
+
+/**
+ * Saga that handles a "subscription gone" notification.
+ * Treat the notification as a forced disconnect.
+ * @method onSubscriptionGone
+ */
+function* onSubscriptionGone() {
+  // Redux-saga take() pattern.
+  // Take notifications about the subscription being 'gone'.
+  function takeGoneSubscription(action) {
+    return action.type === _actionTypes3.NOTIFICATION_RECEIVED && action.payload.notificationMessage && action.payload.notificationMessage.eventType === 'gone';
+  }
+
+  while (true) {
+    yield (0, _effects4.take)(takeGoneSubscription);
+    // Dispatch an action to disconnect the websocket (and let the connectivity
+    //      plugin know we expect it to be disconnected).
+    const wsState = yield (0, _effects4.select)(_selectors2.getConnectionState, platform);
+    if (wsState.connected) {
+      yield (0, _effects.disconnectWebsocket)(undefined, platform);
+    }
+
+    // Dispatch a disconnect finished action to trigger "user disconnected" logic.
+    yield (0, _effects4.put)(actions.disconnectFinished({ reason: _constants.DISCONNECT_REASONS.GONE }));
   }
 }
 
@@ -31606,7 +31635,7 @@ var _codecs = __webpack_require__(369);
 
 var _effects = __webpack_require__(3);
 
-var _actionTypes4 = __webpack_require__(29);
+var _actionTypes4 = __webpack_require__(28);
 
 var _actionTypes5 = __webpack_require__(370);
 
@@ -39689,7 +39718,7 @@ var _midcall = __webpack_require__(69);
 
 var _logs = __webpack_require__(1);
 
-var _actions2 = __webpack_require__(28);
+var _actions2 = __webpack_require__(29);
 
 var _actionTypes2 = __webpack_require__(11);
 
@@ -48258,7 +48287,7 @@ var _sagas = __webpack_require__(438);
 
 var sagas = _interopRequireWildcard(_sagas);
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _actions2 = __webpack_require__(15);
 
@@ -48434,7 +48463,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = mediaAPI;
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _selectors = __webpack_require__(83);
 
@@ -49367,7 +49396,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = watchDeviceEvents;
 exports.setListeners = setListeners;
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _utils = __webpack_require__(17);
 
@@ -49442,7 +49471,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = watchTrackManagerEvents;
 exports.setListeners = setListeners;
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _actionTypes = __webpack_require__(11);
 
@@ -49571,7 +49600,7 @@ var _effects = __webpack_require__(3);
 
 var _reduxSaga = __webpack_require__(31);
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _utils = __webpack_require__(17);
 
@@ -49653,7 +49682,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = watchMediaManagerEvents;
 exports.setListeners = setListeners;
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _actionTypes = __webpack_require__(11);
 
@@ -49765,7 +49794,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = watchMediaEvents;
 exports.setListeners = setListeners;
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _utils = __webpack_require__(17);
 
@@ -49866,7 +49895,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = watchSessionManagerEvents;
 exports.setListeners = setListeners;
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _actionTypes = __webpack_require__(11);
 
@@ -49971,7 +50000,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = watchSessionEvents;
 exports.setListeners = setListeners;
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _utils = __webpack_require__(17);
 
@@ -50242,7 +50271,7 @@ exports.muteTracks = muteTracks;
 exports.unmuteTracks = unmuteTracks;
 exports.initializeDevices = initializeDevices;
 
-var _actions = __webpack_require__(28);
+var _actions = __webpack_require__(29);
 
 var _logs = __webpack_require__(1);
 
@@ -53401,7 +53430,7 @@ var _selectors = __webpack_require__(129);
 
 var _selectors2 = __webpack_require__(8);
 
-var _actionTypes2 = __webpack_require__(29);
+var _actionTypes2 = __webpack_require__(28);
 
 var _effects = __webpack_require__(24);
 
@@ -55897,7 +55926,7 @@ var _effects = __webpack_require__(3);
 
 var _selectors = __webpack_require__(8);
 
-var _actionTypes = __webpack_require__(29);
+var _actionTypes = __webpack_require__(28);
 
 var _actions = __webpack_require__(187);
 
@@ -56174,7 +56203,7 @@ var _extends2 = __webpack_require__(5);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__(29);
+var _actionTypes = __webpack_require__(28);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -56459,7 +56488,7 @@ var _eventTypes = __webpack_require__(495);
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__(29);
+var _actionTypes = __webpack_require__(28);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -56566,7 +56595,7 @@ var _selectors = __webpack_require__(8);
 
 var _logs = __webpack_require__(1);
 
-var _actionTypes = __webpack_require__(29);
+var _actionTypes = __webpack_require__(28);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -56720,7 +56749,7 @@ var _actions = __webpack_require__(127);
 
 var actions = _interopRequireWildcard(_actions);
 
-var _actionTypes = __webpack_require__(29);
+var _actionTypes = __webpack_require__(28);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -63739,7 +63768,7 @@ var _requests = __webpack_require__(513);
 
 var _selectors = __webpack_require__(8);
 
-var _actionTypes2 = __webpack_require__(29);
+var _actionTypes2 = __webpack_require__(28);
 
 var _effects = __webpack_require__(3);
 
@@ -64638,7 +64667,7 @@ var _selectors3 = __webpack_require__(14);
 
 var _selectors4 = __webpack_require__(122);
 
-var _actionTypes2 = __webpack_require__(29);
+var _actionTypes2 = __webpack_require__(28);
 
 var _effects = __webpack_require__(24);
 
