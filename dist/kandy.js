@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.30.0-beta.709
+ * Version: 4.30.0-beta.710
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -6806,7 +6806,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.30.0-beta.709';
+  return '4.30.0-beta.710';
 }
 
 /***/ }),
@@ -33724,6 +33724,7 @@ function* answerCall(deps, action) {
 
     // Setup a webRTC session.
     webrtcInfo = yield (0, _effects.call)(_establish.setupCall, deps, mediaConstraints, {
+      callId: action.payload.id,
       sdpSemantics: callOptions.sdpSemantics,
       turnInfo,
       bandwidth,
@@ -36587,7 +36588,8 @@ function* join(deps, action) {
     trickleIceMode,
     dscpControls,
     removeBundling,
-    bandwidth
+    bandwidth,
+    callId: action.payload.newCallId
   });
 
   // Collect the information needed to make the request.
