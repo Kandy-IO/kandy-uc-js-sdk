@@ -5,11 +5,18 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 4.31.0 - beta
+
+### Added
+
+- Added `retryAfter` value to the 'subscription:change' event that SDK sends to application. The SDK receives this value as part of an incoming subscription GONE notification. `KJS-175`
+- Added Call functionality to automatically attempt media restart when disconnected. `KJS-157`
+  - When the `call:mediaConnectionChange` event indicates media has `failed`, the SDK will attempt an ICE restart operation.
+- Added exception handling to the SDP handler pipeline. If any handler throws an exception, it's now logged and execution continues with the next handler in the pipeline. `KJS-181`
+- Added previous media connection state to `call:mediaConnectionChange` event data. `KJS-204`
+- Added improved Call handling for local network errors occurring during hold and unhold midcall operations. `KJS-183`
+
 ## 4.30.0 - 2021-07-30
-
-## Fixed
-
-- Improved YAML SDP log output by not repeating the final SDP if there has been no changes from the `logHandlers`.
 
 ## 4.29.0 - 2021-06-25
 
