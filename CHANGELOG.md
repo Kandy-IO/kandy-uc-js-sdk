@@ -16,6 +16,10 @@ Kandy.js change log.
 - Added previous media connection state to `call:mediaConnectionChange` event data. `KJS-204`
 - Added improved Call handling for local network errors occurring during hold and unhold midcall operations. `KJS-183`
 
+### Changed
+
+- Changed how we merge data when the `updateConfig()` API is called. For arrays, it will now replace the array instead of merging it's elements. All other types should update in the same way they previously updated. `KJS-239`
+
 ## 4.30.0 - 2021-07-30
 
 ## 4.29.0 - 2021-06-25

@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.31.0-beta.719
+ * Version: 4.31.0-beta.720
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -2479,7 +2479,7 @@ function handleActions(handlers, defaultState, options) {
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var core = __webpack_require__(7);
 var ctx = __webpack_require__(37);
 var hide = __webpack_require__(38);
@@ -2686,6 +2686,126 @@ function getTurnInfo(state) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _keys = __webpack_require__(44);
+
+var _keys2 = _interopRequireDefault(_keys);
+
+exports.mergeValues = mergeValues;
+exports.toQueryString = toQueryString;
+exports.autoRestart = autoRestart;
+exports.forwardAction = forwardAction;
+exports.normalizeServices = normalizeServices;
+
+var _fp = __webpack_require__(2);
+
+var _queryString = __webpack_require__(222);
+
+var _queryString2 = _interopRequireDefault(_queryString);
+
+var _effects = __webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Deeply merges the values of multiple objects. Objects on the left receive the values from objects on their right.
+ * Unlike lodash's default merge behavior this doesn't merge arrays.
+ *
+ * @name mergeValues
+ * @param {...Object} objects - Objects to merge
+ * @return {Object} A new object containing the merged values.
+ */
+function mergeValues(...objects) {
+  return (0, _fp.mergeAllWith)((leftValue, rightValue) => {
+    // Overwrite the default behavior of lodash's merge for arrays and simply
+    // clobber what's on the left so we don't end up with merged arrays.
+    if ((0, _fp.isArray)(leftValue)) {
+      return rightValue;
+    }
+  }, objects);
+}
+
+/**
+ * Utility function to convert an object to a query string.
+ *
+ * @param {Object} params An object of query parameters to be parsed and converted for use in a URL string
+ * @param {Object} [options] Options to be passed to the query-string library
+ * * @param {String} [options.arrayFormat] Format in which to compose array values which were passed as query parameters
+ */
+// Libraries.
+function toQueryString(params = {}, options = {}) {
+  if ((0, _keys2.default)(params).length > 0) {
+    const stringifiedParams = _queryString2.default.stringify(params, options);
+    return '?' + stringifiedParams;
+  }
+  return '';
+}
+
+/**
+ * Higher-order function to auto-restart sagas when they crash.
+ * Based on: https://github.com/redux-saga/redux-saga/pull/644#issuecomment-266454875
+ * @method autoRestart
+ * @param  {Generator} saga The saga to wrap.
+ * @return {Generator} Wrapped saga.
+ */
+function autoRestart(saga) {
+  return function* autoRestarting(...args) {
+    // Only restart the saga if it crashed; avoid restarting it if
+    //      it returned normally.
+    let shouldRestart = false;
+    do {
+      try {
+        yield (0, _effects.call)(saga, ...args);
+        shouldRestart = false;
+      } catch (e) {
+        // TODO: Re-add this log line.
+        // Importing the LogManager in this file breaks tests for an unknown
+        //    reason. Should find out why so that we can log in our utils.
+        // log.error(`Unhandled error in saga ${saga.name}.`, e)
+        console.log(`Unhandled error in saga ${saga.name}.`, e);
+        shouldRestart = true;
+      }
+    } while (shouldRestart);
+  };
+}
+
+/**
+ * Forwards the actions by directly dispatching them.
+ * For example, this can be used with a takeEvery effect to grab actions from a channel and dispatch them.
+ * @param {Object} action The action to be forwarded.
+ * @example
+ * const channel = eventChannel(...)
+ * yield takeEvery(channel, forwardAction)
+ */
+function* forwardAction(action) {
+  yield (0, _effects.put)(action);
+}
+
+/**
+ * Ensures that services are in the same format understood by the server regardless,
+ * of whether the client provides services as strings or objects.
+ * @param {Array} services The list of services requested by the client.
+ * @return {Array} A normalized list of services requested by the client.
+ */
+function normalizeServices(services = []) {
+  return services.map(service => {
+    if ((0, _fp.isPlainObject)(service) && service.hasOwnProperty('service')) {
+      return service;
+    }
+    return { service: service };
+  });
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.mapEvents = mapEvents;
 exports.on = on;
 exports.off = off;
@@ -2814,7 +2934,7 @@ function aliasEvent(type, alias) {
 }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -2826,132 +2946,12 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _keys = __webpack_require__(44);
-
-var _keys2 = _interopRequireDefault(_keys);
-
-exports.mergeValues = mergeValues;
-exports.toQueryString = toQueryString;
-exports.autoRestart = autoRestart;
-exports.forwardAction = forwardAction;
-exports.normalizeServices = normalizeServices;
-
-var _fp = __webpack_require__(2);
-
-var _queryString = __webpack_require__(222);
-
-var _queryString2 = _interopRequireDefault(_queryString);
-
-var _effects = __webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Deeply merges the values of multiple objects. Objects on the left receive the values from objects on their right.
- * Unlike lodash's default merge behavior this doesn't merge arrays.
- *
- * @name mergeValues
- * @param {...Object} objects - Objects to merge
- * @return {Object} A new object containing the merged values.
- */
-function mergeValues(...objects) {
-  return (0, _fp.mergeAllWith)((leftValue, rightValue) => {
-    // Overwrite the default behavior of lodash's merge for arrays and simply
-    // clobber what's on the left so we don't end up with merged arrays.
-    if ((0, _fp.isArray)(leftValue)) {
-      return rightValue;
-    }
-  }, objects);
-}
-
-/**
- * Utility function to convert an object to a query string.
- *
- * @param {Object} params An object of query parameters to be parsed and converted for use in a URL string
- * @param {Object} [options] Options to be passed to the query-string library
- * * @param {String} [options.arrayFormat] Format in which to compose array values which were passed as query parameters
- */
-// Libraries.
-function toQueryString(params = {}, options = {}) {
-  if ((0, _keys2.default)(params).length > 0) {
-    const stringifiedParams = _queryString2.default.stringify(params, options);
-    return '?' + stringifiedParams;
-  }
-  return '';
-}
-
-/**
- * Higher-order function to auto-restart sagas when they crash.
- * Based on: https://github.com/redux-saga/redux-saga/pull/644#issuecomment-266454875
- * @method autoRestart
- * @param  {Generator} saga The saga to wrap.
- * @return {Generator} Wrapped saga.
- */
-function autoRestart(saga) {
-  return function* autoRestarting(...args) {
-    // Only restart the saga if it crashed; avoid restarting it if
-    //      it returned normally.
-    let shouldRestart = false;
-    do {
-      try {
-        yield (0, _effects.call)(saga, ...args);
-        shouldRestart = false;
-      } catch (e) {
-        // TODO: Re-add this log line.
-        // Importing the LogManager in this file breaks tests for an unknown
-        //    reason. Should find out why so that we can log in our utils.
-        // log.error(`Unhandled error in saga ${saga.name}.`, e)
-        console.log(`Unhandled error in saga ${saga.name}.`, e);
-        shouldRestart = true;
-      }
-    } while (shouldRestart);
-  };
-}
-
-/**
- * Forwards the actions by directly dispatching them.
- * For example, this can be used with a takeEvery effect to grab actions from a channel and dispatch them.
- * @param {Object} action The action to be forwarded.
- * @example
- * const channel = eventChannel(...)
- * yield takeEvery(channel, forwardAction)
- */
-function* forwardAction(action) {
-  yield (0, _effects.put)(action);
-}
-
-/**
- * Ensures that services are in the same format understood by the server regardless,
- * of whether the client provides services as strings or objects.
- * @param {Array} services The list of services requested by the client.
- * @return {Array} A normalized list of services requested by the client.
- */
-function normalizeServices(services = []) {
-  return services.map(service => {
-    if ((0, _fp.isPlainObject)(service) && service.hasOwnProperty('service')) {
-      return service;
-    }
-    return { service: service };
-  });
-}
-
-/***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(101)('wks');
 var uid = __webpack_require__(72);
-var Symbol = __webpack_require__(16).Symbol;
+var Symbol = __webpack_require__(17).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function (name) {
@@ -3223,7 +3223,7 @@ var actions = _interopRequireWildcard(_actions);
 
 var _utils = __webpack_require__(308);
 
-var _utils2 = __webpack_require__(17);
+var _utils2 = __webpack_require__(15);
 
 var _fp = __webpack_require__(2);
 
@@ -6714,7 +6714,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.31.0-beta.719';
+  return '4.31.0-beta.720';
 }
 
 /***/ }),
@@ -7823,7 +7823,7 @@ const HANDLERS_CHANGE = exports.HANDLERS_CHANGE = prefix + 'HANDLERS_CHANGE';
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(253);
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var hide = __webpack_require__(38);
 var Iterators = __webpack_require__(65);
 var TO_STRING_TAG = __webpack_require__(18)('toStringTag');
@@ -9201,7 +9201,7 @@ module.exports = { "default": __webpack_require__(204), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(20);
-var document = __webpack_require__(16).document;
+var document = __webpack_require__(17).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
@@ -9278,7 +9278,7 @@ module.exports = function (key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var core = __webpack_require__(7);
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
 
@@ -9373,7 +9373,7 @@ exports.f = __webpack_require__(18);
 /* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var core = __webpack_require__(7);
 var LIBRARY = __webpack_require__(59);
 var wksExt = __webpack_require__(107);
@@ -9905,7 +9905,7 @@ var _fp = __webpack_require__(2);
 
 var _selectors = __webpack_require__(8);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 /**
  * Plugin selector function to expose state globally
@@ -11428,7 +11428,7 @@ module.exports = __webpack_require__(21) ? Object.defineProperties : function de
 /* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var document = __webpack_require__(16).document;
+var document = __webpack_require__(17).document;
 module.exports = document && document.documentElement;
 
 
@@ -11866,7 +11866,7 @@ module.exports = __webpack_require__(7).getIteratorMethod = function (it) {
 
 "use strict";
 
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var core = __webpack_require__(7);
 var dP = __webpack_require__(27);
 var DESCRIPTORS = __webpack_require__(21);
@@ -11887,7 +11887,7 @@ module.exports = function (KEY) {
 
 "use strict";
 
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var $export = __webpack_require__(13);
 var meta = __webpack_require__(75);
 var fails = __webpack_require__(41);
@@ -12089,7 +12089,7 @@ var ctx = __webpack_require__(37);
 var invoke = __webpack_require__(286);
 var html = __webpack_require__(141);
 var cel = __webpack_require__(95);
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var process = global.process;
 var setTask = global.setImmediate;
 var clearTask = global.clearImmediate;
@@ -18418,7 +18418,7 @@ var _compose = __webpack_require__(133);
 
 var _compose2 = _interopRequireDefault(_compose);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _version = __webpack_require__(61);
 
@@ -21071,7 +21071,7 @@ module.exports = __webpack_require__(7).Symbol;
 "use strict";
 
 // ECMAScript 6 symbols shim
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var has = __webpack_require__(39);
 var DESCRIPTORS = __webpack_require__(21);
 var $export = __webpack_require__(13);
@@ -22549,7 +22549,7 @@ var _actions3 = _interopRequireDefault(_actions2);
 
 var _actions4 = __webpack_require__(34);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _effects = __webpack_require__(3);
 
@@ -24370,7 +24370,7 @@ var actionTypes = _interopRequireWildcard(_actionTypes);
 
 var _reduxActions = __webpack_require__(12);
 
-var _fp = __webpack_require__(2);
+var _utils = __webpack_require__(15);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -24380,7 +24380,7 @@ const reducers = {};
 
 reducers[actionTypes.CONFIG_UPDATE] = {
   next(state, action) {
-    return (0, _fp.merge)(state, action.payload);
+    return (0, _utils.mergeValues)(state, action.payload);
   }
 };
 
@@ -24419,7 +24419,7 @@ var _interface = __webpack_require__(291);
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _actionTypes = __webpack_require__(119);
 
@@ -24563,7 +24563,7 @@ module.exports = __webpack_require__(7).Promise;
 "use strict";
 
 var LIBRARY = __webpack_require__(59);
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var ctx = __webpack_require__(37);
 var classof = __webpack_require__(115);
 var $export = __webpack_require__(13);
@@ -24875,7 +24875,7 @@ module.exports = function (fn, args, that) {
 /* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var macrotask = __webpack_require__(161).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
@@ -24950,7 +24950,7 @@ module.exports = function () {
 /* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var navigator = global.navigator;
 
 module.exports = navigator && navigator.userAgent || '';
@@ -24965,7 +24965,7 @@ module.exports = navigator && navigator.userAgent || '';
 
 var $export = __webpack_require__(13);
 var core = __webpack_require__(7);
-var global = __webpack_require__(16);
+var global = __webpack_require__(17);
 var speciesConstructor = __webpack_require__(160);
 var promiseResolve = __webpack_require__(163);
 
@@ -25048,7 +25048,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _logs = __webpack_require__(1);
 
@@ -25382,7 +25382,7 @@ var _events = __webpack_require__(296);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _logs = __webpack_require__(1);
 
@@ -25390,7 +25390,7 @@ var _interface = __webpack_require__(298);
 
 var _actions2 = __webpack_require__(34);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _validation = __webpack_require__(46);
 
@@ -27836,7 +27836,7 @@ var _logs = __webpack_require__(1);
 
 var _effects3 = __webpack_require__(3);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28183,13 +28183,13 @@ var _events = __webpack_require__(366);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _actions2 = __webpack_require__(34);
 
 var _logs = __webpack_require__(1);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _fp = __webpack_require__(2);
 
@@ -48305,11 +48305,11 @@ var sagas = _interopRequireWildcard(_sagas);
 
 var _actions = __webpack_require__(29);
 
-var _actions2 = __webpack_require__(15);
+var _actions2 = __webpack_require__(16);
 
 var _logs = __webpack_require__(1);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _kandyWebrtc = __webpack_require__(180);
 
@@ -49414,7 +49414,7 @@ exports.setListeners = setListeners;
 
 var _actions = __webpack_require__(29);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _effects = __webpack_require__(3);
 
@@ -49618,7 +49618,7 @@ var _reduxSaga = __webpack_require__(32);
 
 var _actions = __webpack_require__(29);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 /**
  * Sets up event listeners for a Track's events.
@@ -49812,7 +49812,7 @@ exports.setListeners = setListeners;
 
 var _actions = __webpack_require__(29);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _effects = __webpack_require__(3);
 
@@ -50018,7 +50018,7 @@ exports.setListeners = setListeners;
 
 var _actions = __webpack_require__(29);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _effects = __webpack_require__(3);
 
@@ -50481,7 +50481,7 @@ var _events = __webpack_require__(446);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _fp = __webpack_require__(2);
 
@@ -51668,7 +51668,7 @@ var _events = __webpack_require__(454);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _effects = __webpack_require__(3);
 
@@ -52209,7 +52209,7 @@ var _sagas = __webpack_require__(463);
 
 var _actions = __webpack_require__(34);
 
-var _actions2 = __webpack_require__(15);
+var _actions2 = __webpack_require__(16);
 
 var _effects = __webpack_require__(3);
 
@@ -53046,7 +53046,7 @@ var _reduxSaga = __webpack_require__(32);
 
 var _effects = __webpack_require__(3);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _actions2 = __webpack_require__(126);
 
@@ -53189,7 +53189,7 @@ var _events = __webpack_require__(466);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _actions2 = __webpack_require__(34);
 
@@ -55095,7 +55095,7 @@ var _compose = __webpack_require__(133);
 
 var _compose2 = _interopRequireDefault(_compose);
 
-var _actions2 = __webpack_require__(15);
+var _actions2 = __webpack_require__(16);
 
 var _eventTypes = __webpack_require__(186);
 
@@ -55628,7 +55628,7 @@ var _events = __webpack_require__(478);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _interface = __webpack_require__(480);
 
@@ -56092,7 +56092,7 @@ var _notification = __webpack_require__(492);
 
 var notificationSagas = _interopRequireWildcard(_notification);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _actions2 = __webpack_require__(34);
 
@@ -63675,7 +63675,7 @@ var _events2 = _interopRequireDefault(_events);
 
 var _constants = __webpack_require__(191);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _effects = __webpack_require__(3);
 
@@ -64701,7 +64701,7 @@ var _events = __webpack_require__(508);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _effects = __webpack_require__(3);
 
@@ -65729,7 +65729,7 @@ var _users2 = __webpack_require__(519);
 
 var _users3 = _interopRequireDefault(_users2);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(16);
 
 var _effects = __webpack_require__(24);
 
@@ -67117,9 +67117,9 @@ var _events2 = _interopRequireDefault(_events);
 
 var _actions = __webpack_require__(34);
 
-var _actions2 = __webpack_require__(15);
+var _actions2 = __webpack_require__(16);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 var _effects = __webpack_require__(3);
 
@@ -67361,7 +67361,7 @@ var _freeze2 = _interopRequireDefault(_freeze);
 
 var _logs = __webpack_require__(1);
 
-var _utils = __webpack_require__(17);
+var _utils = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
