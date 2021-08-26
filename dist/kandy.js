@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.31.0-beta.729
+ * Version: 4.31.0-beta.730
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3356,7 +3356,7 @@ module.exports = invariant;
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 var IE8_DOM_DEFINE = __webpack_require__(131);
 var toPrimitive = __webpack_require__(96);
 var dP = Object.defineProperty;
@@ -3452,34 +3452,6 @@ const miscActions = exports.miscActions = miscActionsImport;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.turnActions = exports.callActions = undefined;
-
-var _call = __webpack_require__(169);
-
-var callActionsImport = _interopRequireWildcard(_call);
-
-var _turn = __webpack_require__(316);
-
-var turnActionsImport = _interopRequireWildcard(_turn);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-// Apparently the following doesn't work:
-//      export * as newName from './place';
-// So import everything from each file, then re-export.
-const callActions = exports.callActions = callActionsImport;
-const turnActions = exports.turnActions = turnActionsImport;
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 /**
  * Constants relating to the Peer model.
  */
@@ -3516,7 +3488,7 @@ const PEER = exports.PEER = {
 };
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4987,7 +4959,7 @@ function sagaMiddlewareFactory(_temp) {
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(20);
@@ -4998,7 +4970,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5080,6 +5052,34 @@ function setSdpHandlers(sdpHandlers, options) {
     }
   };
 }
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.turnActions = exports.callActions = undefined;
+
+var _call = __webpack_require__(169);
+
+var callActionsImport = _interopRequireWildcard(_call);
+
+var _turn = __webpack_require__(316);
+
+var turnActionsImport = _interopRequireWildcard(_turn);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+// Apparently the following doesn't work:
+//      export * as newName from './place';
+// So import everything from each file, then re-export.
+const callActions = exports.callActions = callActionsImport;
+const turnActions = exports.turnActions = turnActionsImport;
 
 /***/ }),
 /* 35 */
@@ -5182,8 +5182,8 @@ const JOIN_FINISH = exports.JOIN_FINISH = callPrefix + 'JOIN_FINISH';
 const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
 const REPLACE_TRACK_FINISH = exports.REPLACE_TRACK_FINISH = callPrefix + 'REPLACE_TRACK_FINISH';
 
-const ICE_RESTART = exports.ICE_RESTART = callPrefix + 'ICE_RESTART';
-const ICE_RESTART_FINISH = exports.ICE_RESTART_FINISH = callPrefix + 'ICE_RESTART_FINISH';
+const MEDIA_RESTART = exports.MEDIA_RESTART = callPrefix + 'MEDIA_RESTART';
+const MEDIA_RESTART_FINISH = exports.MEDIA_RESTART_FINISH = callPrefix + 'MEDIA_RESTART_FINISH';
 
 /**
  * Miscellaneous call actions
@@ -5963,7 +5963,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.isUnifiedPlan = isUnifiedPlan;
 exports.getSdpSemanticsList = getSdpSemanticsList;
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 var _fp = __webpack_require__(2);
 
@@ -6714,7 +6714,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.31.0-beta.729';
+  return '4.31.0-beta.730';
 }
 
 /***/ }),
@@ -6828,7 +6828,7 @@ module.exports = {};
 var ctx = __webpack_require__(37);
 var call = __webpack_require__(149);
 var isArrayIter = __webpack_require__(150);
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 var toLength = __webpack_require__(71);
 var getIterFn = __webpack_require__(151);
 var BREAK = {};
@@ -6954,7 +6954,7 @@ const OPERATIONS = exports.OPERATIONS = {
   DIRECT_TRANSFER: 'DIRECT_TRANSFER',
   JOIN: 'JOIN',
   REPLACE_TRACK: 'REPLACE_TRACK',
-  ICE_RESTART: 'ICE_RESTART',
+  MEDIA_RESTART: 'MEDIA_RESTART',
   // Remote-only.
   START_MOH: 'START_MOH',
   STOP_MOH: 'STOP_MOH',
@@ -7752,7 +7752,7 @@ var meta = module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 var dPs = __webpack_require__(140);
 var enumBugKeys = __webpack_require__(102);
 var IE_PROTO = __webpack_require__(100)('IE_PROTO');
@@ -10070,7 +10070,7 @@ exports.setupCall = setupCall;
 exports.setupIncomingCall = setupIncomingCall;
 exports.answerWebrtcSession = answerWebrtcSession;
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _selectors = __webpack_require__(14);
 
@@ -10462,7 +10462,7 @@ exports.preventDtlsRoleChange = preventDtlsRoleChange;
 
 var _logs = __webpack_require__(25);
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11410,7 +11410,7 @@ module.exports = Array.isArray || function isArray(arg) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(27);
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 var getKeys = __webpack_require__(50);
 
 module.exports = __webpack_require__(21) ? Object.defineProperties : function defineProperties(O, Properties) {
@@ -11819,7 +11819,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 module.exports = function (iterator, fn, value, entries) {
   try {
     return entries ? fn(anObject(value)[0], value[1]) : fn(value);
@@ -12071,7 +12071,7 @@ const SET_SDP_HANDLERS = exports.SET_SDP_HANDLERS = PREFIX + 'SET_SDP_HANDLERS';
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 var aFunction = __webpack_require__(57);
 var SPECIES = __webpack_require__(18)('species');
 module.exports = function (O, D) {
@@ -12188,7 +12188,7 @@ module.exports = function (exec) {
 /* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 var isObject = __webpack_require__(20);
 var newPromiseCapability = __webpack_require__(118);
 
@@ -12911,8 +12911,8 @@ exports.remoteRemoveMediaFinish = remoteRemoveMediaFinish;
 exports.remoteStartMohFinish = remoteStartMohFinish;
 exports.remoteStopMohFinish = remoteStopMohFinish;
 exports.remoteSlowStart = remoteSlowStart;
-exports.restartIce = restartIce;
-exports.restartIceFinish = restartIceFinish;
+exports.restartMedia = restartMedia;
+exports.restartMediaFinish = restartMediaFinish;
 exports.updateCall = updateCall;
 
 var _actionTypes = __webpack_require__(35);
@@ -13258,12 +13258,12 @@ function remoteSlowStart(id, params) {
   return callActionHelper(actionTypes.REMOTE_SLOW_START, id, params);
 }
 
-function restartIce(id, params) {
-  return callActionHelper(actionTypes.ICE_RESTART, id, params);
+function restartMedia(id, params) {
+  return callActionHelper(actionTypes.MEDIA_RESTART, id, params);
 }
 
-function restartIceFinish(id, params) {
-  return callActionHelper(actionTypes.ICE_RESTART_FINISH, id, params);
+function restartMediaFinish(id, params) {
+  return callActionHelper(actionTypes.MEDIA_RESTART_FINISH, id, params);
 }
 
 // Generic action.
@@ -18462,7 +18462,7 @@ var _redux = __webpack_require__(92);
 
 var _reduxDevtoolsExtension = __webpack_require__(210);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 var _reduxSaga2 = _interopRequireDefault(_reduxSaga);
 
@@ -21142,7 +21142,7 @@ var wksExt = __webpack_require__(107);
 var wksDefine = __webpack_require__(108);
 var enumKeys = __webpack_require__(232);
 var isArray = __webpack_require__(139);
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 var isObject = __webpack_require__(20);
 var toObject = __webpack_require__(43);
 var toIObject = __webpack_require__(42);
@@ -22603,7 +22603,7 @@ var _actions2 = __webpack_require__(263);
 
 var _actions3 = _interopRequireDefault(_actions2);
 
-var _actions4 = __webpack_require__(34);
+var _actions4 = __webpack_require__(33);
 
 var _utils = __webpack_require__(15);
 
@@ -24333,7 +24333,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(33);
 
 var actions = _interopRequireWildcard(_actions);
 
@@ -25444,7 +25444,7 @@ var _logs = __webpack_require__(1);
 
 var _interface = __webpack_require__(298);
 
-var _actions2 = __webpack_require__(34);
+var _actions2 = __webpack_require__(33);
 
 var _utils = __webpack_require__(15);
 
@@ -28241,7 +28241,7 @@ var _events2 = _interopRequireDefault(_events);
 
 var _actions = __webpack_require__(16);
 
-var _actions2 = __webpack_require__(34);
+var _actions2 = __webpack_require__(33);
 
 var _logs = __webpack_require__(1);
 
@@ -28814,7 +28814,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = callAPI;
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _selectors = __webpack_require__(14);
 
@@ -28822,7 +28822,7 @@ var _normalization = __webpack_require__(170);
 
 var _selectors2 = __webpack_require__(8);
 
-var _actions2 = __webpack_require__(34);
+var _actions2 = __webpack_require__(33);
 
 var _uuid = __webpack_require__(55);
 
@@ -30102,6 +30102,11 @@ function callAPI({ dispatch, getState }) {
      *  state can be used alongside the {@link call.states Call state} to determine if media issues
      *  are occurring while the participants are expecting to be connected.
      *
+     * An important state to check for is the `FAILED` state. This state signifies that there is no
+     *    media connection between the call participants and an action must be taken to resolve the
+     *    problem. Using the {@link call.restartMedia} API will attempt to reconnect the media. See
+     *    the {@link call.restartMedia} API description for more information.
+     *
      * These states are direct reflections of the possible
      *  [RTCPeerConnection.iceConnectionState](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/iceConnectionState) values.
      *
@@ -30128,7 +30133,7 @@ function callAPI({ dispatch, getState }) {
      *  the Call endpoints will receive each other's media.
      * @property {string} DISCONNECTED Media has become disconnected and the Call endpoints have stopped receiving each other's media.
      *  The Call will automatically attempt to reconnect, transitioning back to `completed` if successful or to `failed` if not.
-     * @property {string} FAILED The connection has failed and cannot be recovered automatically. A full media connection refresh is required to restablish a connection.
+     * @property {string} FAILED The connection has failed and cannot be recovered automatically. A full media connection refresh is required to restablish a connection. See the {@link call.restartMedia} API.
      * @property {string} CLOSED The connection has been shut down and is no longer in use.
      * @example
      * // Use the media connection states to check the status of the media connection of the Call.
@@ -30156,16 +30161,69 @@ function callAPI({ dispatch, getState }) {
      *       ...
      *       break
      *     case mediaConnectionStates.FAILED:
+     *      // Media has failed. The call requires a media refresh to restablish.
+     *      // This state will occur after the `DISCONNECTED` state is encountered.
+     *      ...
+     *       break
      *     case mediaConnectionStates.CLOSED:
-     *       // Media ended: The Call's media is not connected. The Call has either ended (CLOSED)
-     *       //    or requires a media refresh to reestablish (FAILED).
-     *       // These states will occur after Call establishment.
+     *       // Media ended due to the Call being ended.
+     *       // This state will occur after Call establishment.
      *       ...
      *       break
      *   }
      * }
      */
-    mediaConnectionStates: _constants.CALL_MEDIA_CONNECTION_STATES
+    mediaConnectionStates: _constants.CALL_MEDIA_CONNECTION_STATES,
+
+    /**
+     * Attempt to re-establish a media connection for a call.
+     *
+     * This API will perform a "refresh" operation on the call with the intention
+     *    of resolving media issues that may have been encountered. This API is only
+     *    necessary after the Call's {@link call.mediaConnectionStates mediaConnectionState}
+     *    has entered the `failed` state, but may be used in other scenarios.
+     *
+     * After the operation completes successfully, the Call will be re-establishing
+     *    its media connection. By this time, or shortly after, the Call's
+     *    {@link call.mediaConnectionStates mediaConnectionState} should have
+     *    transitioned to `checking` (via a
+     *    {@link call.event:call:mediaConnectionChange call:mediaConnectionChange}
+     *    event) to signify the re-establishment. It will then transition to either
+     *    `connected` or `failed` state, similar to during the initial Call establishment.
+     *
+     * If this operation fails, then the Call will not attempt the re-establishment
+     *    and will remain in the `failed` {@link call.mediaConnectionStates mediaConnectionState}.
+     *
+     * Behaviour during the operation may differ slightly based on the browser.
+     *    Notably, Firefox will always transition to the `checking`
+     *    {@link call.mediaConnectionStates mediaConnectionState} no matter what
+     *    the previous state was. Whereas Chrome will skip the `checking` state,
+     *    transitioning directly to either `connected` or `failed`. This has the
+     *    implication for Chrome that if the state does not change (for example,
+     *    the Call is in the `failed` state before the media restart operation,
+     *    and media re-establishment fails), then there will be no
+     *    {@link call.event:call:mediaConnectionChange call:mediaConnectionChange}
+     *    event emitted. For this reason, Chrome-based applications may need a
+     *    short delay after receiving the {@link call.event:call:mediaRestart call:mediaRestart}
+     *    event before checking the Call's updated
+     *    {@link call.mediaConnectionStates mediaConnectionState} to ensure the
+     *    application is acting on the "latest" state.
+     *
+     * The SDK will emit a {@link call.event:call:mediaRestart call:mediaRestart}
+     *    event when the operation completes.
+     *
+     * The progress of the operation will be tracked via the
+     *    {@link call.event:call:operation call:operation} event.
+     * @public
+     * @static
+     * @memberof call
+     * @method restartMedia
+     * @param {string} callId The ID of the call to act on.
+     */
+    restartMedia(callId) {
+      log.debug(`${_logs.API_LOG_TAG}call.restartMedia, callId: ${callId}`);
+      dispatch(_actions.callActions.restartMedia(callId));
+    }
 
     /**
      * The `setDefaultDevices` API from previous SDK releases (3.X) has been
@@ -30931,7 +30989,7 @@ callReducers[webrtcActionTypes.SESSION_ICE_CONNECTION_STATE_CHANGE] = {
 const callReducer = (0, _reduxActions.handleActions)(callReducers, {});
 
 // Actions routed to call-tier reducers.
-const specificCallActions = (0, _reduxActions.combineActions)(actionTypes.PENDING_OPERATION, actionTypes.PENDING_MAKE_CALL, actionTypes.MAKE_CALL_FINISH, actionTypes.ANSWER_CALL, actionTypes.ANSWER_CALL_FINISH, actionTypes.REJECT_CALL, actionTypes.REJECT_CALL_FINISH, actionTypes.CALL_ACCEPTED, actionTypes.SEND_RINGING_FEEDBACK, actionTypes.SEND_RINGING_FEEDBACK_FINISH, actionTypes.CALL_RINGING, actionTypes.SESSION_PROGRESS, actionTypes.CALL_CANCELLED, actionTypes.IGNORE_CALL, actionTypes.IGNORE_CALL_FINISH, actionTypes.END_CALL, actionTypes.END_CALL_FINISH, actionTypes.CALL_HOLD, actionTypes.CALL_HOLD_FINISH, actionTypes.CALL_UNHOLD, actionTypes.CALL_UNHOLD_FINISH, actionTypes.SET_CUSTOM_PARAMETERS, actionTypes.SEND_CUSTOM_PARAMETERS, actionTypes.SEND_CUSTOM_PARAMETERS_FINISH, actionTypes.CALL_REMOTE_HOLD_FINISH, actionTypes.CALL_REMOTE_UNHOLD_FINISH, actionTypes.ADD_MEDIA, actionTypes.ADD_BASIC_MEDIA, actionTypes.ADD_MEDIA_FINISH, actionTypes.REMOVE_MEDIA, actionTypes.REMOVE_BASIC_MEDIA, actionTypes.REMOVE_MEDIA_FINISH, actionTypes.RENEGOTIATE, actionTypes.RENEGOTIATE_FINISH, actionTypes.UPDATE_CALL, actionTypes.FORWARD_CALL, actionTypes.FORWARD_CALL_FINISH, actionTypes.DIRECT_TRANSFER, actionTypes.DIRECT_TRANSFER_FINISH, actionTypes.SEND_DTMF, actionTypes.SEND_DTMF_FINISH, actionTypes.JOIN, actionTypes.REPLACE_TRACK, actionTypes.REPLACE_TRACK_FINISH, actionTypes.ICE_RESTART, actionTypes.ICE_RESTART_FINISH, actionTypes.REMOTE_SLOW_START, actionTypes.REMOTE_START_MOH_FINISH, actionTypes.REMOTE_STOP_MOH_FINISH, actionTypes.GET_STATS, actionTypes.GET_STATS_FINISH, actionTypes.SESSION_CREATED);
+const specificCallActions = (0, _reduxActions.combineActions)(actionTypes.PENDING_OPERATION, actionTypes.PENDING_MAKE_CALL, actionTypes.MAKE_CALL_FINISH, actionTypes.ANSWER_CALL, actionTypes.ANSWER_CALL_FINISH, actionTypes.REJECT_CALL, actionTypes.REJECT_CALL_FINISH, actionTypes.CALL_ACCEPTED, actionTypes.SEND_RINGING_FEEDBACK, actionTypes.SEND_RINGING_FEEDBACK_FINISH, actionTypes.CALL_RINGING, actionTypes.SESSION_PROGRESS, actionTypes.CALL_CANCELLED, actionTypes.IGNORE_CALL, actionTypes.IGNORE_CALL_FINISH, actionTypes.END_CALL, actionTypes.END_CALL_FINISH, actionTypes.CALL_HOLD, actionTypes.CALL_HOLD_FINISH, actionTypes.CALL_UNHOLD, actionTypes.CALL_UNHOLD_FINISH, actionTypes.SET_CUSTOM_PARAMETERS, actionTypes.SEND_CUSTOM_PARAMETERS, actionTypes.SEND_CUSTOM_PARAMETERS_FINISH, actionTypes.CALL_REMOTE_HOLD_FINISH, actionTypes.CALL_REMOTE_UNHOLD_FINISH, actionTypes.ADD_MEDIA, actionTypes.ADD_BASIC_MEDIA, actionTypes.ADD_MEDIA_FINISH, actionTypes.REMOVE_MEDIA, actionTypes.REMOVE_BASIC_MEDIA, actionTypes.REMOVE_MEDIA_FINISH, actionTypes.RENEGOTIATE, actionTypes.RENEGOTIATE_FINISH, actionTypes.UPDATE_CALL, actionTypes.FORWARD_CALL, actionTypes.FORWARD_CALL_FINISH, actionTypes.DIRECT_TRANSFER, actionTypes.DIRECT_TRANSFER_FINISH, actionTypes.SEND_DTMF, actionTypes.SEND_DTMF_FINISH, actionTypes.JOIN, actionTypes.REPLACE_TRACK, actionTypes.REPLACE_TRACK_FINISH, actionTypes.MEDIA_RESTART, actionTypes.MEDIA_RESTART_FINISH, actionTypes.REMOTE_SLOW_START, actionTypes.REMOTE_START_MOH_FINISH, actionTypes.REMOTE_STOP_MOH_FINISH, actionTypes.GET_STATS, actionTypes.GET_STATS_FINISH, actionTypes.SESSION_CREATED);
 
 const specificWebrtcSessionActions = (0, _reduxActions.combineActions)(webrtcActionTypes.SESSION_ICE_CONNECTION_STATE_CHANGE);
 
@@ -31273,10 +31331,7 @@ exports.joinEntry = joinEntry;
 exports.replaceTrackEntry = replaceTrackEntry;
 exports.getAvailableCodecsEntry = getAvailableCodecsEntry;
 exports.restartIce = restartIce;
-exports.iceConnectionFailed = iceConnectionFailed;
 exports.watchForMediaDisconnect = watchForMediaDisconnect;
-
-var _actions = __webpack_require__(30);
 
 var _actionTypes = __webpack_require__(35);
 
@@ -31333,12 +31388,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Other plugins
-/**
- * Call saga index.
- * Defines which actions trigger which sagas.
- */
-
-// Call plugin.
 const log = _logs.logManager.getLogger('CALL');
 
 /**
@@ -31357,6 +31406,12 @@ const log = _logs.logManager.getLogger('CALL');
 
 
 // Callstack plugin.
+/**
+ * Call saga index.
+ * Defines which actions trigger which sagas.
+ */
+
+// Call plugin.
 function* createCall(deps) {
   yield (0, _effects.takeEvery)(actionTypes.MAKE_CALL, _establish.makeCall, (0, _extends3.default)({}, deps, { requests }));
 }
@@ -31936,34 +31991,7 @@ function* getAvailableCodecsEntry(deps) {
  * @param {Object} deps.webRTC      The WebRTC stack.
  */
 function* restartIce(deps) {
-  yield (0, _effects.takeEvery)(actionTypes.ICE_RESTART, midcallSagas.iceRestart, (0, _extends3.default)({}, deps, { requests }));
-}
-
-/**
- * Handles ICE connectin failure
- * @method iceConnectionFailed
- * @param {Object} deps             Dependencies to be injected.
- * @param {Object} deps.webRTC      The WebRTC stack.
- */
-function* iceConnectionFailed(deps) {
-  // Only restart ICE candidate collection if we get a failed ice connection state
-  function failedICEConnectionState(action) {
-    return action.type === webrtcActionTypes.SESSION_ICE_CONNECTION_STATE_CHANGE && action.payload.iceConnectionState === _constants.CALL_MEDIA_CONNECTION_STATES.FAILED;
-  }
-
-  /**
-   * Initiate an ICE restart operation
-   * @method initiateIceRestart
-   * @param {Object} action
-   */
-  function* initiateIceRestart(action) {
-    const { id: sessionId } = action.payload;
-    const { id: callId } = yield (0, _effects.select)(_selectors.getCallByWebrtcSessionId, sessionId);
-
-    yield (0, _effects.put)(_actions.callActions.restartIce(callId));
-  }
-
-  yield (0, _effects.takeEvery)(failedICEConnectionState, initiateIceRestart);
+  yield (0, _effects.takeEvery)(actionTypes.MEDIA_RESTART, midcallSagas.iceRestart, (0, _extends3.default)({}, deps, { requests }));
 }
 
 /**
@@ -32002,7 +32030,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 exports.setTurnCredentials = setTurnCredentials;
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _selectors = __webpack_require__(14);
 
@@ -33104,7 +33132,7 @@ exports.rejectCall = rejectCall;
 exports.ignoreCall = ignoreCall;
 exports.forwardCall = forwardCall;
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _selectors = __webpack_require__(14);
 
@@ -35189,7 +35217,7 @@ var rollbackOps = _interopRequireWildcard(_rollback);
 
 var _bandwidth = __webpack_require__(172);
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _selectors = __webpack_require__(14);
 
@@ -36558,7 +36586,7 @@ function* iceRestart(deps, action) {
   const offer = yield (0, _effects2.call)(_midcall.generateOffer, deps, webrtcSessionId, mediaDirections, bandwidth);
   if (!offer) {
     log.debug('Failed to generate offer.');
-    yield (0, _effects2.put)(_actions.callActions.restartIceFinish(callId, {
+    yield (0, _effects2.put)(_actions.callActions.restartMediaFinish(callId, {
       local: true,
       error: new _errors2.default({
         code: _errors.callCodes.INVALID_OFFER,
@@ -36580,7 +36608,7 @@ function* iceRestart(deps, action) {
 
   if (response.error) {
     log.info('Failed to renegotiate call.');
-    yield (0, _effects2.put)(_actions.callActions.restartIceFinish(callId, {
+    yield (0, _effects2.put)(_actions.callActions.restartMediaFinish(callId, {
       local: true,
       error: response.error
     }));
@@ -36803,7 +36831,7 @@ exports.callStatusUpdateFailed = callStatusUpdateFailed;
 exports.callCancelled = callCancelled;
 exports.receiveEarlyMedia = receiveEarlyMedia;
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _selectors = __webpack_require__(14);
 
@@ -37593,7 +37621,7 @@ var _operations = __webpack_require__(353);
 
 var _operations2 = _interopRequireDefault(_operations);
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _selectors = __webpack_require__(14);
 
@@ -38058,8 +38086,8 @@ function* handleUpdateResponse(deps, targetCall, params) {
         case _constants2.OPERATIONS.RENEGOTIATE:
           finishAction = _actions.callActions.renegotiateFinish;
           break;
-        case _constants2.OPERATIONS.ICE_RESTART:
-          finishAction = _actions.callActions.restartIceFinish;
+        case _constants2.OPERATIONS.MEDIA_RESTART:
+          finishAction = _actions.callActions.restartMediaFinish;
       }
       if (finishAction) {
         log.info(`Finished processing remote response to local ${localOp.operation}. Changing state based on operation.`);
@@ -39300,7 +39328,7 @@ exports.hasTelephoneEvent = hasTelephoneEvent;
 exports.convertTone = convertTone;
 exports.splitTones = splitTones;
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _selectors = __webpack_require__(14);
 
@@ -39731,7 +39759,7 @@ exports.getSessions = getSessions;
 exports.updateCallState = updateCallState;
 exports.normalizeIceFailure = normalizeIceFailure;
 
-var _actions = __webpack_require__(30);
+var _actions = __webpack_require__(34);
 
 var _actionTypes = __webpack_require__(35);
 
@@ -40610,7 +40638,7 @@ function callOperationHandler(action, params) {
 const callEvents = exports.callEvents = {};
 
 // START actions
-const startActionTypesAndOperations = [{ type: actionTypes.SEND_RINGING_FEEDBACK, operation: _constants.OPERATIONS.SEND_RINGING_FEEDBACK }, { type: actionTypes.ANSWER_CALL, operation: _constants.OPERATIONS.ANSWER }, { type: actionTypes.REJECT_CALL, operation: _constants.OPERATIONS.REJECT }, { type: actionTypes.IGNORE_CALL, operation: _constants.OPERATIONS.IGNORE }, { type: actionTypes.END_CALL, operation: _constants.OPERATIONS.END }, { type: actionTypes.FORWARD_CALL, operation: _constants.OPERATIONS.FORWARD_CALL }, { type: actionTypes.CALL_HOLD, operation: _constants.OPERATIONS.HOLD }, { type: actionTypes.CALL_UNHOLD, operation: _constants.OPERATIONS.UNHOLD }, { type: actionTypes.SEND_CUSTOM_PARAMETERS, operation: _constants.OPERATIONS.SEND_CUSTOM_PARAMETERS }, { type: actionTypes.ADD_MEDIA, operation: _constants.OPERATIONS.ADD_MEDIA }, { type: actionTypes.ADD_BASIC_MEDIA, operation: _constants.OPERATIONS.ADD_BASIC_MEDIA }, { type: actionTypes.REMOVE_MEDIA, operation: _constants.OPERATIONS.REMOVE_MEDIA }, { type: actionTypes.REMOVE_BASIC_MEDIA, operation: _constants.OPERATIONS.REMOVE_BASIC_MEDIA }, { type: actionTypes.RENEGOTIATE, operation: _constants.OPERATIONS.RENEGOTIATE }, { type: actionTypes.SEND_DTMF, operation: _constants.OPERATIONS.SEND_DTMF }, { type: actionTypes.GET_STATS, operation: _constants.OPERATIONS.GET_STATS }, { type: actionTypes.CONSULTATIVE_TRANSFER, operation: _constants.OPERATIONS.CONSULTATIVE_TRANSFER }, { type: actionTypes.DIRECT_TRANSFER, operation: _constants.OPERATIONS.DIRECT_TRANSFER }, { type: actionTypes.JOIN, operation: _constants.OPERATIONS.JOIN }, { type: actionTypes.REPLACE_TRACK, operation: _constants.OPERATIONS.REPLACE_TRACK }];
+const startActionTypesAndOperations = [{ type: actionTypes.SEND_RINGING_FEEDBACK, operation: _constants.OPERATIONS.SEND_RINGING_FEEDBACK }, { type: actionTypes.ANSWER_CALL, operation: _constants.OPERATIONS.ANSWER }, { type: actionTypes.REJECT_CALL, operation: _constants.OPERATIONS.REJECT }, { type: actionTypes.IGNORE_CALL, operation: _constants.OPERATIONS.IGNORE }, { type: actionTypes.END_CALL, operation: _constants.OPERATIONS.END }, { type: actionTypes.FORWARD_CALL, operation: _constants.OPERATIONS.FORWARD_CALL }, { type: actionTypes.CALL_HOLD, operation: _constants.OPERATIONS.HOLD }, { type: actionTypes.CALL_UNHOLD, operation: _constants.OPERATIONS.UNHOLD }, { type: actionTypes.SEND_CUSTOM_PARAMETERS, operation: _constants.OPERATIONS.SEND_CUSTOM_PARAMETERS }, { type: actionTypes.ADD_MEDIA, operation: _constants.OPERATIONS.ADD_MEDIA }, { type: actionTypes.ADD_BASIC_MEDIA, operation: _constants.OPERATIONS.ADD_BASIC_MEDIA }, { type: actionTypes.REMOVE_MEDIA, operation: _constants.OPERATIONS.REMOVE_MEDIA }, { type: actionTypes.REMOVE_BASIC_MEDIA, operation: _constants.OPERATIONS.REMOVE_BASIC_MEDIA }, { type: actionTypes.RENEGOTIATE, operation: _constants.OPERATIONS.RENEGOTIATE }, { type: actionTypes.MEDIA_RESTART, operation: _constants.OPERATIONS.MEDIA_RESTART }, { type: actionTypes.SEND_DTMF, operation: _constants.OPERATIONS.SEND_DTMF }, { type: actionTypes.GET_STATS, operation: _constants.OPERATIONS.GET_STATS }, { type: actionTypes.CONSULTATIVE_TRANSFER, operation: _constants.OPERATIONS.CONSULTATIVE_TRANSFER }, { type: actionTypes.DIRECT_TRANSFER, operation: _constants.OPERATIONS.DIRECT_TRANSFER }, { type: actionTypes.JOIN, operation: _constants.OPERATIONS.JOIN }, { type: actionTypes.REPLACE_TRACK, operation: _constants.OPERATIONS.REPLACE_TRACK }];
 startActionTypesAndOperations.forEach(startActionTypeAndOperation => {
   callEvents[startActionTypeAndOperation.type] = (action, params) => {
     return callOperationHandler(action, (0, _extends3.default)({}, params, {
@@ -40886,6 +40914,16 @@ callEvents[actionTypes.MAKE_ANONYMOUS_CALL_FINISH] = (action, context) => {
   return callEventHandler(eventTypes.CALL_STARTED, action, {
     error: action.payload.error
   });
+};
+
+callEvents[actionTypes.MEDIA_RESTART_FINISH] = (action, params) => {
+  return [callOperationHandler(action, (0, _extends3.default)({}, params, {
+    operation: _constants.OPERATIONS.MEDIA_RESTART,
+    transition: _constants.OP_TRANSITIONS.FINISH,
+    isLocal: true
+  })), callEventHandler(eventTypes.MEDIA_RESTART, action, {
+    error: action.payload.error
+  })];
 };
 
 exports.default = (0, _extends3.default)({}, callEvents);
@@ -41177,6 +41215,40 @@ const AVAILABLE_CODECS = exports.AVAILABLE_CODECS = 'call:availableCodecs';
  * @param {string} params.previous.state The previous state of the media connection.
  */
 const MEDIA_CONNECTION_CHANGE = exports.MEDIA_CONNECTION_CHANGE = 'call:mediaConnectionChange';
+
+/**
+ * A media restart operation for a Call has been attempted.
+ *
+ * This event is emitted as a result of the {@link call.restartMedia} API being called.
+ *    See the description for {@link call.restartMedia} for information about its
+ *    usage.
+ *
+ * The {@link call.event:call:mediaConnectionChange call:mediaConnectionChange} event
+ *    will also be emitted alongside this event when the media restart operation is
+ *    successful.
+ * @public
+ * @static
+ * @memberof call
+ * @event call:mediaRestart
+ * @param {Object} params
+ * @param {string} params.callId The ID of the Call that was acted on.
+ * @param {api.BasicError} [params.error] An error object, if the operation was not successful.
+ * @example
+ * client.on('call:mediaRestart', function (params) {
+ *    if (params.error) {
+ *      // The operation failed. May want to determine whether to re-attempt the
+ *      //    operation (if the failure was simply a connectivity issue) or to
+ *      //    consider the call's media irrecoverable.
+ *      ...
+ *    } else {
+ *      // The call should be re-establishing media, with the call's
+ *      //    `mediaConnectionState` being updated.
+ *      const mediaState = client.call.getById(params.callId).mediaConnectionState
+ *      ...
+ *    }
+ * })
+ */
+const MEDIA_RESTART = exports.MEDIA_RESTART = 'call:mediaRestart';
 
 /***/ }),
 /* 368 */
@@ -44728,7 +44800,7 @@ var getPrototypeOf = __webpack_require__(112);
 var has = __webpack_require__(39);
 var $export = __webpack_require__(13);
 var createDesc = __webpack_require__(49);
-var anObject = __webpack_require__(33);
+var anObject = __webpack_require__(32);
 var isObject = __webpack_require__(20);
 
 function set(target, propertyKey, V /* , receiver */) {
@@ -44814,7 +44886,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = onicecandidate;
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 /**
  * Event wrapper for `icecandidate` event.
@@ -44922,7 +44994,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = onicegatheringstatechange;
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 /**
  * Event wrapper for `icegatheringstatechange` event.
@@ -45279,7 +45351,7 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = createAnswer;
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 var _sdpSemantics = __webpack_require__(54);
 
@@ -45362,7 +45434,7 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = createOffer;
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 var _sdpSemantics = __webpack_require__(54);
 
@@ -45742,7 +45814,7 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = setLocalDescription;
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 var _iceCollectionLoop = __webpack_require__(392);
 
@@ -46057,7 +46129,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setTransceiverDirection = setTransceiverDirection;
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 var _fp = __webpack_require__(2);
 
@@ -46350,7 +46422,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 /**
  * Configuration object for a Peer.
@@ -47091,7 +47163,7 @@ exports.default = Session;
 
 var _logs = __webpack_require__(25);
 
-var _constants = __webpack_require__(31);
+var _constants = __webpack_require__(30);
 
 var _pipeline = __webpack_require__(86);
 
@@ -49486,7 +49558,7 @@ var _utils = __webpack_require__(15);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 /**
  * Listen for events emitted from the webRTC Device Manager.
@@ -49567,7 +49639,7 @@ var _track2 = _interopRequireDefault(_track);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49682,7 +49754,7 @@ exports.setListeners = setListeners;
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 var _actions = __webpack_require__(29);
 
@@ -49778,7 +49850,7 @@ var _media2 = _interopRequireDefault(_media);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49884,7 +49956,7 @@ var _utils = __webpack_require__(15);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 /**
  * Sets up event listeners for a Media's events.
@@ -49991,7 +50063,7 @@ var _session2 = _interopRequireDefault(_session);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50090,7 +50162,7 @@ var _utils = __webpack_require__(15);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 /**
  * Sets up event listeners for a Session's events.
@@ -52275,7 +52347,7 @@ var _events2 = _interopRequireDefault(_events);
 
 var _sagas = __webpack_require__(463);
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(33);
 
 var _actions2 = __webpack_require__(16);
 
@@ -53110,7 +53182,7 @@ exports.wsEmitter = wsEmitter;
 
 var _actions = __webpack_require__(82);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 var _effects = __webpack_require__(3);
 
@@ -53259,7 +53331,7 @@ var _events2 = _interopRequireDefault(_events);
 
 var _actions = __webpack_require__(16);
 
-var _actions2 = __webpack_require__(34);
+var _actions2 = __webpack_require__(33);
 
 var _fp = __webpack_require__(2);
 
@@ -56162,7 +56234,7 @@ var notificationSagas = _interopRequireWildcard(_notification);
 
 var _actions = __webpack_require__(16);
 
-var _actions2 = __webpack_require__(34);
+var _actions2 = __webpack_require__(33);
 
 var _effects = __webpack_require__(3);
 
@@ -56819,7 +56891,7 @@ var _fp = __webpack_require__(2);
 
 var _pako = __webpack_require__(493);
 
-var _reduxSaga = __webpack_require__(32);
+var _reduxSaga = __webpack_require__(31);
 
 var _effects = __webpack_require__(3);
 
@@ -67183,7 +67255,7 @@ var _events = __webpack_require__(525);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(33);
 
 var _actions2 = __webpack_require__(16);
 
