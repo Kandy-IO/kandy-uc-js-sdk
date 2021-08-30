@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.31.0-beta.733
+ * Version: 4.31.0-beta.734
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -6714,7 +6714,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.31.0-beta.733';
+  return '4.31.0-beta.734';
 }
 
 /***/ }),
@@ -38168,7 +38168,16 @@ function* handleSlowUpdateResponse(deps, targetCall, params) {
   const mediaDiff = yield (0, _effects.call)(_compareMedia2.default, remoteDesc.sdp, sdp);
 
   let remoteOp = yield (0, _effects.call)(_operations2.default, mediaDiff);
+  log.debug(`Interpreted slow-start response as a ${remoteOp} operation.`);
   const mediaFlowing = yield (0, _effects.call)(_sdp.hasMediaFlowing, sdp);
+
+  if (remoteOp === 'UNKNOWN') {
+    log.debug('Could not determine remote operation; retrying.');
+    // Try it again, but this time match medias naively.
+    const mediaDiff = yield (0, _effects.call)(_compareMedia2.default, remoteDesc.sdp, sdp, true);
+    remoteOp = yield (0, _effects.call)(_operations2.default, mediaDiff);
+    log.debug(`Re-interpreted slow-start response as a ${remoteOp} operation.`);
+  }
 
   /**
    * Special case: Assume the remote operation was actually a Hold.
