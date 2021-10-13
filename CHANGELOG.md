@@ -11,6 +11,10 @@ Kandy.js change log.
 
 - Added improved handling for local network errors occuring during add media and remove media operations for calls. `KJS-184`
 
+### Fixed
+
+- Fixed a CallHistory issue where removing a single record would remove other records as well.
+
 ## 4.32.0 - 2021-09-24
 
 ### Added
