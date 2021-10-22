@@ -9,7 +9,8 @@ Kandy.js change log.
 
 ### Added
 
-- Added improved handling for local network errors occuring during add media and remove media operations for calls. `KJS-184`
+- Added improved handling for local network errors occurring during add media and remove media operations for calls. `KJS-184`
+- A new `connectivity.resetConnection` API to allow for a reset of websocket connection. This can be invoked by the application when it detects unstable network conditions. `KJS-373`
 
 ### Fixed
 
