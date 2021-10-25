@@ -15,6 +15,8 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed a CallHistory issue where removing a single record would remove other records as well.
+- Fixed a Call issue where EarlyMedia could be enabled on Firefox even though it cannot support it. `KJS-366`
+  - A warning will be logged on SDK initialization and the configuration will be disabled.
 
 ## 4.32.0 - 2021-09-24
 
