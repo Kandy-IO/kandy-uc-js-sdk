@@ -5,6 +5,20 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 4.33.0 - 2021-10-29
+
+### Added
+
+- Added improved handling for local network errors occurring during add media and remove media operations for calls. `KJS-184`
+- A new `connectivity.resetConnection` API to allow for a reset of websocket connection. This can be invoked by the application when it detects unstable network conditions. `KJS-373`
+- Added new `fetch` API. `kandy.fetch` allows the client to send any Kandy REST request through the SDK. `KJS-374`
+
+### Fixed
+
+- Fixed a CallHistory issue where removing a single record would remove other records as well.
+- Fixed a Call issue where EarlyMedia could be enabled on Firefox even though it cannot support it. `KJS-366`
+  - A warning will be logged on SDK initialization and the configuration will be disabled.
+
 ## 4.32.0 - 2021-09-24
 
 ### Added
