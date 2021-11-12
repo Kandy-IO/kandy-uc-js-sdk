@@ -7,6 +7,11 @@ Kandy.js change log.
 
 ## 4.34.0 - beta
 
+### Fixed
+
+- Fixed an issue where the media direction wasn't being set correctly when adding video to a transceiver that we are reusing, this resulted in
+  the call losing remote video when local video is added. `KJS-396`
+
 ## 4.33.0 - 2021-10-29
 
 ### Added
