@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.34.0-beta.791
+ * Version: 4.34.0-beta.792
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -1828,6 +1828,12 @@ Object.defineProperty(exports, 'usersCodes', {
   enumerable: true,
   get: function () {
     return _codes.usersCodes;
+  }
+});
+Object.defineProperty(exports, 'webrtcCodes', {
+  enumerable: true,
+  get: function () {
+    return _codes.webrtcCodes;
   }
 });
 class BasicError {
@@ -6703,7 +6709,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.34.0-beta.791';
+  return '4.34.0-beta.792';
 }
 
 /***/ }),
@@ -16914,6 +16920,20 @@ const TRACK_SOURCE_MUTED = exports.TRACK_SOURCE_MUTED = 'media:sourceMuted';
  * @param {string} params.trackId The track that is affected as a result of media source being unmuted.
  */
 const TRACK_SOURCE_UNMUTED = exports.TRACK_SOURCE_UNMUTED = 'media:sourceUnmuted';
+
+/**
+ * The specified Track has been rendered into an element.
+ *
+ * @public
+ * @static
+ * @memberof media
+ * @event media:trackRendered
+ * @param {Object} params
+ * @param {Array<string>} params.trackIds The list of track id's that were rendered.
+ * @param {string} params.selector The css selector used to identify the element the track is rendered into.
+ * @param {api.BasicError} [params.error] An error object, if the operation was not successful.
+ */
+const TRACK_RENDERED = exports.TRACK_RENDERED = 'media:trackRendered';
 
 /***/ }),
 /* 186 */
@@ -27885,6 +27905,13 @@ const authCodes = exports.authCodes = {
   REFRESH_CONTACTS_FAIL: 'users:2',
   DIRECTORY_REQUEST_FAIL: 'users:3',
   INVALID_PARAM: 'users:4'
+
+  /**
+   * Error codes for the Webrtc plugin
+   * @name webrtcCodes
+   */
+};const webrtcCodes = exports.webrtcCodes = {
+  INVALID_PARAM: 'webrtc:1'
 };
 
 /***/ }),
@@ -40567,11 +40594,17 @@ function trackRemoved(trackId, params) {
 }
 
 function trackHelper(type, payload = {}, meta = {}) {
-  return {
+  const action = {
     type,
     payload,
     meta
   };
+
+  if (payload.error) {
+    action.error = true;
+  }
+
+  return action;
 }
 
 function muteTracks(trackIds) {
@@ -49878,6 +49911,17 @@ events[actionTypes.TRACK_SOURCE_UNMUTED] = action => {
   };
 };
 
+events[actionTypes.RENDER_TRACKS_FINISH] = action => {
+  return {
+    type: eventTypes.TRACK_RENDERED,
+    args: {
+      trackIds: action.payload.trackIds,
+      selector: action.payload.selector,
+      error: action.payload.error
+    }
+  };
+};
+
 exports.default = events;
 
 /***/ }),
@@ -50842,8 +50886,13 @@ var _effects = __webpack_require__(3);
 
 var _fp = __webpack_require__(2);
 
-// Libraries.
-// Webrtc plugin.
+var _errors = __webpack_require__(9);
+
+var _errors2 = _interopRequireDefault(_errors);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Other plugins.
 const log = _logs.logManager.getLogger('MEDIA');
 
 /**
@@ -50853,23 +50902,47 @@ const log = _logs.logManager.getLogger('MEDIA');
  */
 
 
-// Other plugins.
+// Libraries.
+// Webrtc plugin.
 function* renderTracks(webRTC, action) {
   const { trackIds, selector, speakerId } = action.payload;
-  log.info(`Rendering track(s) in element ${selector}.`, trackIds);
 
   // Get the tracks that are to be rendered.
   const tracks = yield (0, _effects.call)([webRTC.track, 'getTracks'], trackIds);
   const filteredTracks = tracks.filter(track => !(0, _fp.isUndefined)(track));
+  let payload = {};
 
-  // Render the tracks.
-  yield (0, _effects.all)(filteredTracks.map(track => (0, _effects.call)([track, 'renderIn'], selector, speakerId)));
+  // Each of trackIds, selector and speakerId must be present in order to render a track
+  if (trackIds &&
+  // trackIds is an array
+  trackIds instanceof Array &&
+  // trackIds is not empty
+  trackIds.length > 0 && selector &&
+  // selector is a string
+  (0, _fp.isString)(selector) &&
+  // selector is not empty
+  selector.length > 0) {
+    log.info(`Rendering track(s) in element ${selector}.`, trackIds);
 
-  log.info('Finished rendering track(s).', filteredTracks.map(track => track.id));
+    // Render the tracks.
+    yield (0, _effects.all)(filteredTracks.map(track => (0, _effects.call)([track, 'renderIn'], selector, speakerId)));
+
+    log.info('Finished rendering track(s).', filteredTracks.map(track => track.id));
+
+    payload = { selector };
+  } else {
+    const message = 'Failed to render tracks. One of trackIds or cssSelector is missing from request.';
+
+    log.info(message, filteredTracks.map(track => track.id));
+
+    payload.error = new _errors2.default({
+      message,
+      code: _errors.webrtcCodes.INVALID_PARAM
+    });
+  }
+
   // Report operation done.
-  yield (0, _effects.put)(_actions.trackActions.renderTracksFinish(filteredTracks.map(track => track.id), {
-    selector
-  }));
+  yield (0, _effects.put)(_actions.trackActions.renderTracksFinish(filteredTracks.map(track => track.id), payload));
 }
 
 /**
