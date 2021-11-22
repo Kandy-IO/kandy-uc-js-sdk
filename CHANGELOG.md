@@ -7,6 +7,11 @@ Kandy.js change log.
 
 ## 4.34.0 - beta
 
+### Added
+
+- Added the ability to use the `call.replaceTrack` API on a call as long as it is on-going. `KJS-334`
+  - Previously the operation required the call to be in the 'Connected' state only.
+
 ### Fixed
 
 - Fixed an issue where the media direction wasn't being set correctly when adding video to a transceiver that we are reusing, this resulted in
