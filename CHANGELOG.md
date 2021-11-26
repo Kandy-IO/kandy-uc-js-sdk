@@ -22,6 +22,7 @@ Kandy.js change log.
 - Fixed an issue where calls would occasionally get stuck in `Initiating` state if no user info was provided. `KJS-421`
 - Fixed an issue where if the client updated the notifications config and set idCacheLength to 0 (disable duplicate checking) it wouldn't be
   used by the SDK and it would continue to check for duplicate notifications. `KJS-419`
+- Fixed an issue where the `auth:credentialsSet` event was not being emitted when credentials were set. `KJS-432`
 
 ## 4.33.0 - 2021-10-29
 
