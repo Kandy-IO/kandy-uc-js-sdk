@@ -1479,44 +1479,21 @@
             },
             {
               "title": "param",
-              "description": "The sdpSemantics to use (`'unified-plan'` or `'plan-b'`).\n   As 'plan-b' has become a deprecated option, it will therefore be removed in the future.",
+              "description": "A key-value dictionary that corresponds\n   to the available RTCPeerConfiguration which is normally passed when creating an RTCPeerConnection.\n   See {@link https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/RTCPeerConnection#parameters RTCPeerConnection's configuration parameters} for more information.\n   This is the recommended way of setting ICE servers and other RTCPeerConnection-related configuration.",
               "lineNumber": 7,
               "type": {
                 "type": "OptionalType",
                 "expression": {
                   "type": "NameExpression",
-                  "name": "string"
+                  "name": "call.RTCPeerConnectionConfig"
                 }
               },
-              "name": "call.sdpSemantics",
-              "default": "'unified-plan'"
-            },
-            {
-              "title": "param",
-              "description": "The list of ICE servers to be used for calls.",
-              "lineNumber": 9,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "TypeApplication",
-                  "expression": {
-                    "type": "NameExpression",
-                    "name": "Array"
-                  },
-                  "applications": [
-                    {
-                      "type": "NameExpression",
-                      "name": "call.IceServer"
-                    }
-                  ]
-                }
-              },
-              "name": "call.iceServers"
+              "name": "call.defaultPeerConfig"
             },
             {
               "title": "param",
               "description": "Time, in milliseconds, to delay in between\n   ICE candidate checks. If ICE collection does not complete normally, the SDK will check\n   collected candidates at this interval to determine if the operation can continue.",
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1530,7 +1507,7 @@
             {
               "title": "param",
               "description": "Maximum time, in milliseconds, to wait for ICE\n   collection to complete normally. After this time, the process will timeout and the\n   operation will attempt to continue no matter how many candidates have been collected.",
-              "lineNumber": 13,
+              "lineNumber": 14,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1544,7 +1521,7 @@
             {
               "title": "param",
               "description": "Function to check whether collected candidates\n   can be used to continue the operation. The function will receive the following two parameters:\n   an array of ICE servers & an extra details object, to help in the decision making.\n   The details object includes: an array of ICE candidates, the elapsed time so far (in milliseconds),\n   the maximum ICE collection timeout (in milliseconds) and an array of offered media.\n   The function must return a boolean value of whether the SDK should attempt to continue\n   the operation. By default, the check is to ensure at least one relay candidate has been\n   collected.",
-              "lineNumber": 16,
+              "lineNumber": 17,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1557,7 +1534,7 @@
             {
               "title": "param",
               "description": "Whether server-provided TURN credentials should be used.",
-              "lineNumber": 24,
+              "lineNumber": 25,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1571,7 +1548,7 @@
             {
               "title": "param",
               "description": "List of SDP handler functions to modify SDP. Advanced usage.",
-              "lineNumber": 25,
+              "lineNumber": 26,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1593,7 +1570,7 @@
             {
               "title": "param",
               "description": "Whether to remove \"H264\" codec lines from incoming and outgoing SDP messages.",
-              "lineNumber": 26,
+              "lineNumber": 27,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1607,7 +1584,7 @@
             {
               "title": "param",
               "description": "Whether early media should be supported for calls. Not supported on Firefox.",
-              "lineNumber": 27,
+              "lineNumber": 28,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1621,7 +1598,7 @@
             {
               "title": "param",
               "description": "Whether the SDK should re-sync all call states after connecting (requires Kandy Link 4.7.1+).",
-              "lineNumber": 28,
+              "lineNumber": 29,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1635,7 +1612,7 @@
             {
               "title": "param",
               "description": "Whether all Calls will be anchored on the MediaBroker instead of being peer-to-peer. Set to true if the backend is configured for broker only mode.",
-              "lineNumber": 29,
+              "lineNumber": 30,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1649,7 +1626,7 @@
             {
               "title": "param",
               "description": "Whether to remove a=group attributes to stop media bundling from incoming and outgoing SDP messages.",
-              "lineNumber": 30,
+              "lineNumber": 31,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1663,7 +1640,7 @@
             {
               "title": "param",
               "description": "The mode for sending ringing feedback to the Caller ('auto', 'manual').\n   By default, feedback will be automatically sent when a call has been received. In 'manual' mode, the application\n   must initiate the feedback being sent. See the `call.sendRingingFeedback` API for more info.",
-              "lineNumber": 31,
+              "lineNumber": 32,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1677,7 +1654,7 @@
             {
               "title": "param",
               "description": "Time interval, in milliseconds between call audits.",
-              "lineNumber": 34,
+              "lineNumber": 35,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1691,7 +1668,7 @@
             {
               "title": "param",
               "description": "Delay, in milliseconds for the passive side of a call to wait before trying a media reconnection.",
-              "lineNumber": 35,
+              "lineNumber": 36,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1705,7 +1682,7 @@
             {
               "title": "param",
               "description": "Specifies whether or not SIP address normalization will be applied.",
-              "lineNumber": 36,
+              "lineNumber": 37,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -1723,18 +1700,18 @@
               "column": 0
             },
             "end": {
-              "line": 62,
+              "line": 63,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 71,
+                "line": 72,
                 "column": 0
               },
               "end": {
-                "line": 90,
+                "line": 93,
                 "column": 1
               }
             },
@@ -1769,7 +1746,7 @@
               "properties": [
                 {
                   "title": "param",
-                  "name": "call.sdpSemantics",
+                  "name": "call.defaultPeerConfig",
                   "lineNumber": 7,
                   "description": {
                     "type": "root",
@@ -1779,47 +1756,23 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The sdpSemantics to use ("
+                            "value": "A key-value dictionary that corresponds\nto the available RTCPeerConfiguration which is normally passed when creating an RTCPeerConnection.\nSee "
                           },
                           {
-                            "type": "inlineCode",
-                            "value": "'unified-plan'"
+                            "type": "link",
+                            "url": "https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/RTCPeerConnection#parameters",
+                            "title": null,
+                            "jsdoc": true,
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "RTCPeerConnection's configuration parameters"
+                              }
+                            ]
                           },
                           {
                             "type": "text",
-                            "value": " or "
-                          },
-                          {
-                            "type": "inlineCode",
-                            "value": "'plan-b'"
-                          },
-                          {
-                            "type": "text",
-                            "value": ").\nAs 'plan-b' has become a deprecated option, it will therefore be removed in the future."
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  },
-                  "default": "'unified-plan'"
-                },
-                {
-                  "title": "param",
-                  "name": "call.iceServers",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The list of ICE servers to be used for calls."
+                            "value": " for more information.\nThis is the recommended way of setting ICE servers and other RTCPeerConnection-related configuration."
                           }
                         ]
                       }
@@ -1828,24 +1781,15 @@
                   "type": {
                     "type": "OptionalType",
                     "expression": {
-                      "type": "TypeApplication",
-                      "expression": {
-                        "type": "NameExpression",
-                        "name": "Array"
-                      },
-                      "applications": [
-                        {
-                          "type": "NameExpression",
-                          "name": "call.IceServer"
-                        }
-                      ]
+                      "type": "NameExpression",
+                      "name": "call.RTCPeerConnectionConfig"
                     }
                   }
                 },
                 {
                   "title": "param",
                   "name": "call.iceCollectionDelay",
-                  "lineNumber": 10,
+                  "lineNumber": 11,
                   "description": {
                     "type": "root",
                     "children": [
@@ -1869,7 +1813,7 @@
                 {
                   "title": "param",
                   "name": "call.maxIceTimeout",
-                  "lineNumber": 13,
+                  "lineNumber": 14,
                   "description": {
                     "type": "root",
                     "children": [
@@ -1893,7 +1837,7 @@
                 {
                   "title": "param",
                   "name": "call.iceCollectionCheck",
-                  "lineNumber": 16,
+                  "lineNumber": 17,
                   "description": {
                     "type": "root",
                     "children": [
@@ -1919,7 +1863,7 @@
                 {
                   "title": "param",
                   "name": "call.serverTurnCredentials",
-                  "lineNumber": 24,
+                  "lineNumber": 25,
                   "description": {
                     "type": "root",
                     "children": [
@@ -1943,7 +1887,7 @@
                 {
                   "title": "param",
                   "name": "call.sdpHandlers",
-                  "lineNumber": 25,
+                  "lineNumber": 26,
                   "description": {
                     "type": "root",
                     "children": [
@@ -1978,7 +1922,7 @@
                 {
                   "title": "param",
                   "name": "call.removeH264Codecs",
-                  "lineNumber": 26,
+                  "lineNumber": 27,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2002,7 +1946,7 @@
                 {
                   "title": "param",
                   "name": "call.earlyMedia",
-                  "lineNumber": 27,
+                  "lineNumber": 28,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2026,7 +1970,7 @@
                 {
                   "title": "param",
                   "name": "call.resyncOnConnect",
-                  "lineNumber": 28,
+                  "lineNumber": 29,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2050,7 +1994,7 @@
                 {
                   "title": "param",
                   "name": "call.mediaBrokerOnly",
-                  "lineNumber": 29,
+                  "lineNumber": 30,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2074,7 +2018,7 @@
                 {
                   "title": "param",
                   "name": "call.removeBundling",
-                  "lineNumber": 30,
+                  "lineNumber": 31,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2098,7 +2042,7 @@
                 {
                   "title": "param",
                   "name": "call.ringingFeedbackMode",
-                  "lineNumber": 31,
+                  "lineNumber": 32,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2130,7 +2074,7 @@
                 {
                   "title": "param",
                   "name": "call.callAuditTimer",
-                  "lineNumber": 34,
+                  "lineNumber": 35,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2154,7 +2098,7 @@
                 {
                   "title": "param",
                   "name": "call.mediaConnectionRetryDelay",
-                  "lineNumber": 35,
+                  "lineNumber": 36,
                   "description": {
                     "type": "root",
                     "children": [
@@ -2178,7 +2122,7 @@
                 {
                   "title": "param",
                   "name": "call.normalizeDestination",
-                  "lineNumber": 36,
+                  "lineNumber": 37,
                   "description": {
                     "type": "root",
                     "children": [
@@ -8190,6 +8134,16 @@
                 "name": "string"
               },
               "name": "LOST_CONNECTION"
+            },
+            {
+              "title": "property",
+              "description": "WebSocket was overridden by the server",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "WS_OVERRIDDEN"
             }
           ],
           "loc": {
@@ -8198,18 +8152,18 @@
               "column": 4
             },
             "end": {
-              "line": 315,
+              "line": 316,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 316,
+                "line": 317,
                 "column": 4
               },
               "end": {
-                "line": 316,
+                "line": 317,
                 "column": 41
               }
             },
@@ -8256,6 +8210,29 @@
                       {
                         "type": "text",
                         "value": "Internet connection was lost"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            },
+            {
+              "title": "property",
+              "name": "WS_OVERRIDDEN",
+              "lineNumber": 8,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "WebSocket was overridden by the server"
                       }
                     ]
                   }
@@ -8383,22 +8360,22 @@
           ],
           "loc": {
             "start": {
-              "line": 348,
+              "line": 349,
               "column": 4
             },
             "end": {
-              "line": 365,
+              "line": 366,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 429,
+                "line": 430,
                 "column": 4
               },
               "end": {
-                "line": 443,
+                "line": 444,
                 "column": 5
               }
             },
@@ -8928,11 +8905,11 @@
     "context": {
       "loc": {
         "start": {
-          "line": 365,
+          "line": 386,
           "column": 0
         },
         "end": {
-          "line": 369,
+          "line": 390,
           "column": 1
         }
       },
@@ -13411,11 +13388,11 @@
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -14126,11 +14103,11 @@
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -14308,11 +14285,11 @@
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -14504,11 +14481,11 @@
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -14743,11 +14720,11 @@
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -14920,6 +14897,388 @@
           "namespace": "call.DSCPControls"
         },
         {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Configuration options for an RTCPeerConnection.\nIt represents an RTCPeerConfiguration dictionary, whose parameters are documented "
+                  },
+                  {
+                    "type": "link",
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/RTCPeerConnection#parameters",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "here"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "value": "."
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 4
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "RTCPeerConnectionConfig"
+            },
+            {
+              "title": "memberof",
+              "description": "call",
+              "lineNumber": 6
+            },
+            {
+              "title": "param",
+              "description": "The list of ICE servers to be used for calls.\n  The full set of properties defined for an RTCIceServer, are mentioned\n  {@link https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer#properties here}.",
+              "lineNumber": 7,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Array"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "RTCIceServer"
+                    }
+                  ]
+                }
+              },
+              "name": "iceServers"
+            },
+            {
+              "title": "param",
+              "description": "The sdpSemantics to use (`'unified-plan'` or `'plan-b'`).\n  As 'plan-b' has become a deprecated option, it will therefore be removed in the future.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "sdpSemantics",
+              "default": "'unified-plan'"
+            },
+            {
+              "title": "param",
+              "description": "An unsigned 16-bit integer value which specifies\n  the size of the prefetched ICE candidate pool. The default value is 0 (meaning no candidate prefetching will occur).",
+              "lineNumber": 12,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "number"
+                }
+              },
+              "name": "iceCandidatePoolSize"
+            },
+            {
+              "title": "param",
+              "description": "The current ICE transport policy; if the policy isn't specified,\n  'all' is assumed by default. Possible values are: 'all', 'public', 'relay'.",
+              "lineNumber": 14,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "iceTransportPolicy"
+            },
+            {
+              "title": "param",
+              "description": "For further description on this and other properties,\n  see {@link https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/RTCPeerConnection#parameters RTCPeerConnection's configuration parameters}.",
+              "lineNumber": 16,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "bundlePolicy"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 177,
+              "column": 0
+            },
+            "end": {
+              "line": 195,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 386,
+                "column": 0
+              },
+              "end": {
+                "line": 390,
+                "column": 1
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interfaceNew/api/index.js"
+          },
+          "augments": [],
+          "examples": [],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "iceServers",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The list of ICE servers to be used for calls.\nThe full set of properties defined for an RTCIceServer, are mentioned\n"
+                      },
+                      {
+                        "type": "link",
+                        "url": "https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer#properties",
+                        "title": null,
+                        "jsdoc": true,
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "here"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": "."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Array"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "RTCIceServer"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "title": "param",
+              "name": "sdpSemantics",
+              "lineNumber": 10,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The sdpSemantics to use ("
+                      },
+                      {
+                        "type": "inlineCode",
+                        "value": "'unified-plan'"
+                      },
+                      {
+                        "type": "text",
+                        "value": " or "
+                      },
+                      {
+                        "type": "inlineCode",
+                        "value": "'plan-b'"
+                      },
+                      {
+                        "type": "text",
+                        "value": ").\nAs 'plan-b' has become a deprecated option, it will therefore be removed in the future."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "default": "'unified-plan'"
+            },
+            {
+              "title": "param",
+              "name": "iceCandidatePoolSize",
+              "lineNumber": 12,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "An unsigned 16-bit integer value which specifies\nthe size of the prefetched ICE candidate pool. The default value is 0 (meaning no candidate prefetching will occur)."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "number"
+                }
+              }
+            },
+            {
+              "title": "param",
+              "name": "iceTransportPolicy",
+              "lineNumber": 14,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The current ICE transport policy; if the policy isn't specified,\n'all' is assumed by default. Possible values are: 'all', 'public', 'relay'."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              }
+            },
+            {
+              "title": "param",
+              "name": "bundlePolicy",
+              "lineNumber": 16,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "For further description on this and other properties,\nsee "
+                      },
+                      {
+                        "type": "link",
+                        "url": "https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/RTCPeerConnection#parameters",
+                        "title": null,
+                        "jsdoc": true,
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "RTCPeerConnection's configuration parameters"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": "."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "typedef",
+          "name": "RTCPeerConnectionConfig",
+          "type": {
+            "type": "NameExpression",
+            "name": "Object"
+          },
+          "memberof": "call",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "call",
+              "kind": "namespace"
+            },
+            {
+              "name": "RTCPeerConnectionConfig",
+              "kind": "typedef",
+              "scope": "static"
+            }
+          ],
+          "namespace": "call.RTCPeerConnectionConfig"
+        },
+        {
           "description": "",
           "tags": [
             {
@@ -14988,26 +15347,39 @@
                 }
               },
               "name": "credential"
+            },
+            {
+              "title": "property",
+              "description": "The credential needed by the ICE server.",
+              "lineNumber": 7,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "username"
             }
           ],
           "loc": {
             "start": {
-              "line": 177,
+              "line": 197,
               "column": 0
             },
             "end": {
-              "line": 184,
+              "line": 205,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -15079,6 +15451,32 @@
               "title": "property",
               "name": "credential",
               "lineNumber": 6,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credential needed by the ICE server."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              }
+            },
+            {
+              "title": "property",
+              "name": "username",
+              "lineNumber": 7,
               "description": {
                 "type": "root",
                 "children": [
@@ -15208,22 +15606,22 @@
           ],
           "loc": {
             "start": {
-              "line": 186,
+              "line": 207,
               "column": 0
             },
             "end": {
-              "line": 197,
+              "line": 218,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -15445,22 +15843,22 @@
           ],
           "loc": {
             "start": {
-              "line": 199,
+              "line": 220,
               "column": 0
             },
             "end": {
-              "line": 209,
+              "line": 230,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -15681,22 +16079,22 @@
           ],
           "loc": {
             "start": {
-              "line": 211,
+              "line": 232,
               "column": 0
             },
             "end": {
-              "line": 222,
+              "line": 243,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -15982,22 +16380,22 @@
           ],
           "loc": {
             "start": {
-              "line": 224,
+              "line": 245,
               "column": 0
             },
             "end": {
-              "line": 245,
+              "line": 266,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -16384,22 +16782,22 @@
           ],
           "loc": {
             "start": {
-              "line": 247,
+              "line": 268,
               "column": 0
             },
             "end": {
-              "line": 257,
+              "line": 278,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -16626,22 +17024,22 @@
           ],
           "loc": {
             "start": {
-              "line": 259,
+              "line": 280,
               "column": 0
             },
             "end": {
-              "line": 270,
+              "line": 291,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -17056,22 +17454,22 @@
           ],
           "loc": {
             "start": {
-              "line": 272,
+              "line": 293,
               "column": 0
             },
             "end": {
-              "line": 312,
+              "line": 333,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 365,
+                "line": 386,
                 "column": 0
               },
               "end": {
-                "line": 369,
+                "line": 390,
                 "column": 1
               }
             },
@@ -39768,11 +40166,11 @@
     "context": {
       "loc": {
         "start": {
-          "line": 365,
+          "line": 386,
           "column": 0
         },
         "end": {
-          "line": 369,
+          "line": 390,
           "column": 1
         }
       },
