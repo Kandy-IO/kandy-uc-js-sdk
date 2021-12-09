@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.35.0-beta.802
+ * Version: 4.35.0-beta.803
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8325,7 +8325,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.35.0-beta.802';
+  return '4.35.0-beta.803';
 }
 
 /***/ }),
@@ -36343,6 +36343,7 @@ exports.checkRenegotiationFlag = checkRenegotiationFlag;
 exports.renegotiate = renegotiate;
 exports.addBasicMedia = addBasicMedia;
 exports.removeBasicMedia = removeBasicMedia;
+exports.getLocalTracks = getLocalTracks;
 exports.directTransfer = directTransfer;
 exports.consultativeTransfer = consultativeTransfer;
 exports.join = join;
@@ -36631,12 +36632,16 @@ function* offerFullMedia(deps, action) {
   const targetCall = yield (0, _effects2.select)(_selectors.getCallById, action.payload.id);
   const { wrtcsSessionId, webrtcSessionId, isAnonymous, account, customParameters, customBodies } = targetCall;
 
-  // TODO: Make sure the session is in the correct signaling state to start a
-  //    renegotiation operation.
-  const offer = yield (0, _effects2.call)(_midcall.generateOffer, deps, webrtcSessionId, {
-    audio: 'sendrecv',
-    video: 'sendrecv'
-  }, targetCall.bandwidth);
+  // If we're not sending any audio or video, change the media direction(s) to recvonly to prevent the other side
+  //  from getting empty tracks.
+  const localTracks = yield (0, _effects2.call)(getLocalTracks, targetCall.id);
+  const mediaDirections = {
+    audio: localTracks.some(track => track.kind === 'audio') ? 'sendrecv' : 'recvonly',
+    video: localTracks.some(track => track.kind === 'video') ? 'sendrecv' : 'recvonly'
+
+    // TODO: Make sure the session is in the correct signaling state to start a
+    //    renegotiation operation.
+  };const offer = yield (0, _effects2.call)(_midcall.generateOffer, deps, webrtcSessionId, mediaDirections, targetCall.bandwidth);
 
   if (!offer) {
     log.debug('Invalid SDP offer or SDP offer not received.');
@@ -37298,7 +37303,7 @@ function* addBasicMedia(deps, action) {
   const log = _logs.logManager.getLogger('CALL', id);
   log.debug(`Adding ${kind} media to call.`);
 
-  const tracks = yield getTracks(id, kind);
+  const tracks = yield (0, _effects2.call)(getLocalTracks, id, kind);
   if (tracks.length >= 1) {
     const message = `Too many ${kind} tracks for basic scenario!`;
     log.debug(message);
@@ -37338,7 +37343,7 @@ function* removeBasicMedia(deps, action) {
   const log = _logs.logManager.getLogger('CALL', id);
   log.debug(`Removing ${kind} media from call.`);
 
-  const tracks = yield getTracks(id, kind);
+  const tracks = yield (0, _effects2.call)(getLocalTracks, id, kind);
   if (tracks.length !== 1) {
     const message = `Must have only one ${kind} track for basic scenario!`;
     log.debug(message);
@@ -37352,7 +37357,7 @@ function* removeBasicMedia(deps, action) {
   } else {
     yield (0, _effects2.call)(removeMedia, deps, (0, _extends3.default)({}, action, {
       payload: (0, _extends3.default)({}, action.payload, {
-        tracks: tracks
+        tracks: tracks.map(trackObj => trackObj.trackId)
       })
     }));
   }
@@ -37360,19 +37365,19 @@ function* removeBasicMedia(deps, action) {
 
 /**
  *
- * Helper function to get all tracks of a certain type
+ * Helper function to get all local tracks of a certain type
  *
- * @param {string} id     - the id of the call
- * @param {string} kind   - Kind must be of type 'audio', 'video', or 'screen'
- * @return {Array} tracks - returns the array of tracks of the given type
+ * @param {string} id the id of the call
+ * @param {string} [kind] Kind must be of type 'audio' or 'video'
+ * @return {Array<Object>} returns an array of tracks of the given type
  */
-function* getTracks(id, kind) {
+function* getLocalTracks(id, kind) {
   const call = yield (0, _effects2.select)(_selectors.getCallById, id);
   const localTracks = call ? call.localTracks : [];
   const tracks = yield (0, _effects2.all)(localTracks.map(id => (0, _effects2.select)(_selectors2.getTrackById, id)));
-  const mediaTracks = tracks.filter(track => track.kind === kind);
-  return mediaTracks.map(trackObj => trackObj.trackId);
+  return kind ? tracks.filter(track => track.kind === kind) : tracks;
 }
+
 /**
  *
  * Direct Transfers an ongoing call.
@@ -37796,8 +37801,13 @@ function* iceRestart(deps, action) {
   const mediaDirections = {
     audio: localHold ? 'inactive' : 'sendrecv',
     video: localHold ? 'inactive' : 'sendrecv'
-  };
-
+    // If we're not on hold nor sending any audio or video, change the media direction(s) to recvonly to
+    //  prevent the other side from getting empty tracks.
+  };if (!localHold) {
+    const localTracks = yield (0, _effects2.call)(getLocalTracks, callId);
+    mediaDirections.audio = localTracks.some(track => track.kind === 'audio') ? 'sendrecv' : 'recvonly';
+    mediaDirections.video = localTracks.some(track => track.kind === 'video') ? 'sendrecv' : 'recvonly';
+  }
   const offer = yield (0, _effects2.call)(_midcall.generateOffer, deps, webrtcSessionId, mediaDirections, bandwidth);
   if (!offer) {
     log.debug('Failed to generate offer.');
