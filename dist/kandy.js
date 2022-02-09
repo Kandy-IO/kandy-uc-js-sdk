@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.newUC.js
- * Version: 4.37.0-beta.830
+ * Version: 4.37.0-beta.831
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3390,7 +3390,7 @@ module.exports = invariant;
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 var IE8_DOM_DEFINE = __webpack_require__(131);
 var toPrimitive = __webpack_require__(96);
 var dP = Object.defineProperty;
@@ -3486,6 +3486,144 @@ const miscActions = exports.miscActions = miscActionsImport;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+const callPrefix = '@@KANDY/CALL/';
+
+/**
+ * Basic call operation actions.
+ */
+const MAKE_CALL = exports.MAKE_CALL = callPrefix + 'MAKE';
+const PENDING_MAKE_CALL = exports.PENDING_MAKE_CALL = callPrefix + 'PENDING_MAKE';
+const SESSION_CREATED = exports.SESSION_CREATED = callPrefix + 'SESSION_CREATED';
+const MAKE_CALL_FINISH = exports.MAKE_CALL_FINISH = callPrefix + 'MAKE_FINISH';
+
+const MAKE_ANONYMOUS_CALL = exports.MAKE_ANONYMOUS_CALL = callPrefix + 'MAKE_ANONYMOUS_CALL';
+const MAKE_ANONYMOUS_CALL_FINISH = exports.MAKE_ANONYMOUS_CALL_FINISH = callPrefix + 'MAKE_ANONYMOUS_CALL_FINISH';
+
+const CALL_INCOMING = exports.CALL_INCOMING = callPrefix + 'INCOMING';
+
+const SEND_RINGING_FEEDBACK = exports.SEND_RINGING_FEEDBACK = callPrefix + 'SEND_RINGING_FEEDBACK';
+const SEND_RINGING_FEEDBACK_FINISH = exports.SEND_RINGING_FEEDBACK_FINISH = callPrefix + 'SEND_RINGING_FEEDBACK_FINISH';
+
+const CALL_RINGING = exports.CALL_RINGING = callPrefix + 'RINGING';
+const SESSION_PROGRESS = exports.SESSION_PROGRESS = callPrefix + 'SESSION_PROGRESS';
+const CALL_CANCELLED = exports.CALL_CANCELLED = callPrefix + 'CANCELLED';
+
+const ANSWER_CALL = exports.ANSWER_CALL = callPrefix + 'ANSWER';
+const ANSWER_CALL_FINISH = exports.ANSWER_CALL_FINISH = callPrefix + 'ANSWER_FINISH';
+
+const REJECT_CALL = exports.REJECT_CALL = callPrefix + 'REJECT';
+const REJECT_CALL_FINISH = exports.REJECT_CALL_FINISH = callPrefix + 'REJECT_FINISH';
+
+const IGNORE_CALL = exports.IGNORE_CALL = callPrefix + 'IGNORE';
+const IGNORE_CALL_FINISH = exports.IGNORE_CALL_FINISH = callPrefix + 'IGNORE_FINISH';
+
+const CALL_ACCEPTED = exports.CALL_ACCEPTED = callPrefix + 'ACCEPTED';
+
+const END_CALL = exports.END_CALL = callPrefix + 'END';
+const END_CALL_FINISH = exports.END_CALL_FINISH = callPrefix + 'END_FINISH';
+
+const FORWARD_CALL = exports.FORWARD_CALL = callPrefix + 'FORWARD_CALL';
+const FORWARD_CALL_FINISH = exports.FORWARD_CALL_FINISH = callPrefix + 'FORWARD_CALL_FINISH';
+
+const PENDING_OPERATION = exports.PENDING_OPERATION = callPrefix + 'PENDING_OPERATION';
+
+/**
+ * Mid-call operation actions.
+ */
+
+const UPDATE_CALL = exports.UPDATE_CALL = callPrefix + 'UPDATE_CALL';
+
+const CALL_HOLD = exports.CALL_HOLD = callPrefix + 'HOLD';
+const CALL_HOLD_FINISH = exports.CALL_HOLD_FINISH = callPrefix + 'HOLD_FINISH';
+
+const CALL_UNHOLD = exports.CALL_UNHOLD = callPrefix + 'UNHOLD';
+const CALL_UNHOLD_FINISH = exports.CALL_UNHOLD_FINISH = callPrefix + 'UNHOLD_FINISH';
+
+const SET_CUSTOM_PARAMETERS = exports.SET_CUSTOM_PARAMETERS = callPrefix + 'SET_CUSTOM_PARAMETERS';
+
+const SEND_CUSTOM_PARAMETERS = exports.SEND_CUSTOM_PARAMETERS = callPrefix + 'SEND_CUSTOM_PARAMETERS';
+const SEND_CUSTOM_PARAMETERS_FINISH = exports.SEND_CUSTOM_PARAMETERS_FINISH = callPrefix + 'SEND_CUSTOM_PARAMETERS_FINISH';
+
+const ADD_MEDIA = exports.ADD_MEDIA = callPrefix + 'ADD_MEDIA';
+const ADD_MEDIA_FINISH = exports.ADD_MEDIA_FINISH = callPrefix + 'ADD_MEDIA_FINISH';
+const ADD_BASIC_MEDIA = exports.ADD_BASIC_MEDIA = callPrefix + 'ADD_BASIC_MEDIA';
+
+const REMOVE_MEDIA = exports.REMOVE_MEDIA = callPrefix + 'REMOVE_MEDIA';
+const REMOVE_MEDIA_FINISH = exports.REMOVE_MEDIA_FINISH = callPrefix + 'REMOVE_MEDIA_FINISH';
+const REMOVE_BASIC_MEDIA = exports.REMOVE_BASIC_MEDIA = callPrefix + 'REMOVE_BASIC_MEDIA';
+
+const RENEGOTIATE = exports.RENEGOTIATE = callPrefix + 'RENEGOTIATE';
+const RENEGOTIATE_FINISH = exports.RENEGOTIATE_FINISH = callPrefix + 'RENEGOTIATE_FINISH';
+
+const MUSIC_ON_HOLD = exports.MUSIC_ON_HOLD = callPrefix + 'MUSIC_ON_HOLD';
+
+const SEND_DTMF = exports.SEND_DTMF = callPrefix + 'SEND_DTMF';
+const SEND_DTMF_FINISH = exports.SEND_DTMF_FINISH = callPrefix + 'SEND_DTMF_FINISH';
+
+const GET_STATS = exports.GET_STATS = callPrefix + 'GET_STATS';
+const GET_STATS_FINISH = exports.GET_STATS_FINISH = callPrefix + 'GET_STATS_FINISH';
+
+const CONSULTATIVE_TRANSFER = exports.CONSULTATIVE_TRANSFER = callPrefix + 'CONSULTATIVE_TRANSFER';
+const PENDING_CONSULTATIVE_TRANSFER = exports.PENDING_CONSULTATIVE_TRANSFER = callPrefix + 'PENDING_CONSULTATIVE_TRANSFER';
+const CONSULTATIVE_TRANSFER_FINISH = exports.CONSULTATIVE_TRANSFER_FINISH = callPrefix + 'CONSULTATIVE_TRANSFER_FINISH';
+
+const DIRECT_TRANSFER = exports.DIRECT_TRANSFER = callPrefix + 'DIRECT_TRANSFER';
+const DIRECT_TRANSFER_FINISH = exports.DIRECT_TRANSFER_FINISH = callPrefix + 'DIRECT_TRANSFER_FINISH';
+
+const JOIN = exports.JOIN = callPrefix + 'JOIN';
+const JOIN_START = exports.JOIN_START = callPrefix + 'JOIN_START';
+const PENDING_JOIN = exports.PENDING_JOIN = callPrefix + 'PENDING_JOIN';
+const JOIN_FINISH = exports.JOIN_FINISH = callPrefix + 'JOIN_FINISH';
+
+const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
+const REPLACE_TRACK_FINISH = exports.REPLACE_TRACK_FINISH = callPrefix + 'REPLACE_TRACK_FINISH';
+
+const MEDIA_RESTART = exports.MEDIA_RESTART = callPrefix + 'MEDIA_RESTART';
+const MEDIA_RESTART_FINISH = exports.MEDIA_RESTART_FINISH = callPrefix + 'MEDIA_RESTART_FINISH';
+
+/**
+ * Miscellaneous call actions
+ */
+const CUSTOM_PARAMETERS_RECEIVED = exports.CUSTOM_PARAMETERS_RECEIVED = callPrefix + 'CUSTOM_PARAMETERS_RECEIVED';
+const GET_AVAILABLE_CODECS = exports.GET_AVAILABLE_CODECS = callPrefix + 'GET_AVAILABLE_CODECS';
+const AVAILABLE_CODECS_RETRIEVED = exports.AVAILABLE_CODECS_RETRIEVED = callPrefix + 'AVAILABLE_CODECS_RETRIEVED';
+
+/**
+ * Remote operation actions.
+ */
+const CALL_REMOTE_HOLD_FINISH = exports.CALL_REMOTE_HOLD_FINISH = callPrefix + 'REMOTE_HOLD_FINISH';
+const CALL_REMOTE_UNHOLD_FINISH = exports.CALL_REMOTE_UNHOLD_FINISH = callPrefix + 'REMOTE_UNHOLD_FINISH';
+const REMOTE_ADD_MEDIA_FINISH = exports.REMOTE_ADD_MEDIA_FINISH = callPrefix + 'REMOTE_ADD_MEDIA_FINISH';
+const REMOTE_REMOVE_MEDIA_FINISH = exports.REMOTE_REMOVE_MEDIA_FINISH = callPrefix + 'REMOTE_REMOVE_MEDIA_FINISH';
+const REMOTE_START_MOH_FINISH = exports.REMOTE_START_MOH_FINISH = callPrefix + 'REMOTE_START_MOH_FINISH';
+const REMOTE_STOP_MOH_FINISH = exports.REMOTE_STOP_MOH_FINISH = callPrefix + 'REMOTE_STOP_MOH_FINISH';
+const REMOTE_SLOW_START = exports.REMOTE_SLOW_START = callPrefix + 'REMOTE_SLOW_START';
+
+/**
+ * Turn action types.
+ */
+const turnPrefix = callPrefix + 'TURN/';
+
+const TURN_CHANGED = exports.TURN_CHANGED = turnPrefix + 'CHANGED';
+
+/**
+ * Track action types.
+ */
+const trackPrefix = callPrefix + 'TRACK/';
+
+const TRACK_ADDED = exports.TRACK_ADDED = trackPrefix + 'ADDED';
+const TRACK_REMOVED = exports.TRACK_REMOVED = trackPrefix + 'REMOVED';
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * Constants relating to the Peer model.
  */
@@ -3540,7 +3678,7 @@ const PEER = exports.PEER = {
 };
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5662,7 +5800,7 @@ function sagaMiddlewareFactory(_temp) {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(21);
@@ -5673,7 +5811,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5757,7 +5895,7 @@ function setSdpHandlers(sdpHandlers, options) {
 }
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5783,144 +5921,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // So import everything from each file, then re-export.
 const callActions = exports.callActions = callActionsImport;
 const turnActions = exports.turnActions = turnActionsImport;
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-const callPrefix = '@@KANDY/CALL/';
-
-/**
- * Basic call operation actions.
- */
-const MAKE_CALL = exports.MAKE_CALL = callPrefix + 'MAKE';
-const PENDING_MAKE_CALL = exports.PENDING_MAKE_CALL = callPrefix + 'PENDING_MAKE';
-const SESSION_CREATED = exports.SESSION_CREATED = callPrefix + 'SESSION_CREATED';
-const MAKE_CALL_FINISH = exports.MAKE_CALL_FINISH = callPrefix + 'MAKE_FINISH';
-
-const MAKE_ANONYMOUS_CALL = exports.MAKE_ANONYMOUS_CALL = callPrefix + 'MAKE_ANONYMOUS_CALL';
-const MAKE_ANONYMOUS_CALL_FINISH = exports.MAKE_ANONYMOUS_CALL_FINISH = callPrefix + 'MAKE_ANONYMOUS_CALL_FINISH';
-
-const CALL_INCOMING = exports.CALL_INCOMING = callPrefix + 'INCOMING';
-
-const SEND_RINGING_FEEDBACK = exports.SEND_RINGING_FEEDBACK = callPrefix + 'SEND_RINGING_FEEDBACK';
-const SEND_RINGING_FEEDBACK_FINISH = exports.SEND_RINGING_FEEDBACK_FINISH = callPrefix + 'SEND_RINGING_FEEDBACK_FINISH';
-
-const CALL_RINGING = exports.CALL_RINGING = callPrefix + 'RINGING';
-const SESSION_PROGRESS = exports.SESSION_PROGRESS = callPrefix + 'SESSION_PROGRESS';
-const CALL_CANCELLED = exports.CALL_CANCELLED = callPrefix + 'CANCELLED';
-
-const ANSWER_CALL = exports.ANSWER_CALL = callPrefix + 'ANSWER';
-const ANSWER_CALL_FINISH = exports.ANSWER_CALL_FINISH = callPrefix + 'ANSWER_FINISH';
-
-const REJECT_CALL = exports.REJECT_CALL = callPrefix + 'REJECT';
-const REJECT_CALL_FINISH = exports.REJECT_CALL_FINISH = callPrefix + 'REJECT_FINISH';
-
-const IGNORE_CALL = exports.IGNORE_CALL = callPrefix + 'IGNORE';
-const IGNORE_CALL_FINISH = exports.IGNORE_CALL_FINISH = callPrefix + 'IGNORE_FINISH';
-
-const CALL_ACCEPTED = exports.CALL_ACCEPTED = callPrefix + 'ACCEPTED';
-
-const END_CALL = exports.END_CALL = callPrefix + 'END';
-const END_CALL_FINISH = exports.END_CALL_FINISH = callPrefix + 'END_FINISH';
-
-const FORWARD_CALL = exports.FORWARD_CALL = callPrefix + 'FORWARD_CALL';
-const FORWARD_CALL_FINISH = exports.FORWARD_CALL_FINISH = callPrefix + 'FORWARD_CALL_FINISH';
-
-const PENDING_OPERATION = exports.PENDING_OPERATION = callPrefix + 'PENDING_OPERATION';
-
-/**
- * Mid-call operation actions.
- */
-
-const UPDATE_CALL = exports.UPDATE_CALL = callPrefix + 'UPDATE_CALL';
-
-const CALL_HOLD = exports.CALL_HOLD = callPrefix + 'HOLD';
-const CALL_HOLD_FINISH = exports.CALL_HOLD_FINISH = callPrefix + 'HOLD_FINISH';
-
-const CALL_UNHOLD = exports.CALL_UNHOLD = callPrefix + 'UNHOLD';
-const CALL_UNHOLD_FINISH = exports.CALL_UNHOLD_FINISH = callPrefix + 'UNHOLD_FINISH';
-
-const SET_CUSTOM_PARAMETERS = exports.SET_CUSTOM_PARAMETERS = callPrefix + 'SET_CUSTOM_PARAMETERS';
-
-const SEND_CUSTOM_PARAMETERS = exports.SEND_CUSTOM_PARAMETERS = callPrefix + 'SEND_CUSTOM_PARAMETERS';
-const SEND_CUSTOM_PARAMETERS_FINISH = exports.SEND_CUSTOM_PARAMETERS_FINISH = callPrefix + 'SEND_CUSTOM_PARAMETERS_FINISH';
-
-const ADD_MEDIA = exports.ADD_MEDIA = callPrefix + 'ADD_MEDIA';
-const ADD_MEDIA_FINISH = exports.ADD_MEDIA_FINISH = callPrefix + 'ADD_MEDIA_FINISH';
-const ADD_BASIC_MEDIA = exports.ADD_BASIC_MEDIA = callPrefix + 'ADD_BASIC_MEDIA';
-
-const REMOVE_MEDIA = exports.REMOVE_MEDIA = callPrefix + 'REMOVE_MEDIA';
-const REMOVE_MEDIA_FINISH = exports.REMOVE_MEDIA_FINISH = callPrefix + 'REMOVE_MEDIA_FINISH';
-const REMOVE_BASIC_MEDIA = exports.REMOVE_BASIC_MEDIA = callPrefix + 'REMOVE_BASIC_MEDIA';
-
-const RENEGOTIATE = exports.RENEGOTIATE = callPrefix + 'RENEGOTIATE';
-const RENEGOTIATE_FINISH = exports.RENEGOTIATE_FINISH = callPrefix + 'RENEGOTIATE_FINISH';
-
-const MUSIC_ON_HOLD = exports.MUSIC_ON_HOLD = callPrefix + 'MUSIC_ON_HOLD';
-
-const SEND_DTMF = exports.SEND_DTMF = callPrefix + 'SEND_DTMF';
-const SEND_DTMF_FINISH = exports.SEND_DTMF_FINISH = callPrefix + 'SEND_DTMF_FINISH';
-
-const GET_STATS = exports.GET_STATS = callPrefix + 'GET_STATS';
-const GET_STATS_FINISH = exports.GET_STATS_FINISH = callPrefix + 'GET_STATS_FINISH';
-
-const CONSULTATIVE_TRANSFER = exports.CONSULTATIVE_TRANSFER = callPrefix + 'CONSULTATIVE_TRANSFER';
-const PENDING_CONSULTATIVE_TRANSFER = exports.PENDING_CONSULTATIVE_TRANSFER = callPrefix + 'PENDING_CONSULTATIVE_TRANSFER';
-const CONSULTATIVE_TRANSFER_FINISH = exports.CONSULTATIVE_TRANSFER_FINISH = callPrefix + 'CONSULTATIVE_TRANSFER_FINISH';
-
-const DIRECT_TRANSFER = exports.DIRECT_TRANSFER = callPrefix + 'DIRECT_TRANSFER';
-const DIRECT_TRANSFER_FINISH = exports.DIRECT_TRANSFER_FINISH = callPrefix + 'DIRECT_TRANSFER_FINISH';
-
-const JOIN = exports.JOIN = callPrefix + 'JOIN';
-const JOIN_START = exports.JOIN_START = callPrefix + 'JOIN_START';
-const PENDING_JOIN = exports.PENDING_JOIN = callPrefix + 'PENDING_JOIN';
-const JOIN_FINISH = exports.JOIN_FINISH = callPrefix + 'JOIN_FINISH';
-
-const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
-const REPLACE_TRACK_FINISH = exports.REPLACE_TRACK_FINISH = callPrefix + 'REPLACE_TRACK_FINISH';
-
-const MEDIA_RESTART = exports.MEDIA_RESTART = callPrefix + 'MEDIA_RESTART';
-const MEDIA_RESTART_FINISH = exports.MEDIA_RESTART_FINISH = callPrefix + 'MEDIA_RESTART_FINISH';
-
-/**
- * Miscellaneous call actions
- */
-const CUSTOM_PARAMETERS_RECEIVED = exports.CUSTOM_PARAMETERS_RECEIVED = callPrefix + 'CUSTOM_PARAMETERS_RECEIVED';
-const GET_AVAILABLE_CODECS = exports.GET_AVAILABLE_CODECS = callPrefix + 'GET_AVAILABLE_CODECS';
-const AVAILABLE_CODECS_RETRIEVED = exports.AVAILABLE_CODECS_RETRIEVED = callPrefix + 'AVAILABLE_CODECS_RETRIEVED';
-
-/**
- * Remote operation actions.
- */
-const CALL_REMOTE_HOLD_FINISH = exports.CALL_REMOTE_HOLD_FINISH = callPrefix + 'REMOTE_HOLD_FINISH';
-const CALL_REMOTE_UNHOLD_FINISH = exports.CALL_REMOTE_UNHOLD_FINISH = callPrefix + 'REMOTE_UNHOLD_FINISH';
-const REMOTE_ADD_MEDIA_FINISH = exports.REMOTE_ADD_MEDIA_FINISH = callPrefix + 'REMOTE_ADD_MEDIA_FINISH';
-const REMOTE_REMOVE_MEDIA_FINISH = exports.REMOTE_REMOVE_MEDIA_FINISH = callPrefix + 'REMOTE_REMOVE_MEDIA_FINISH';
-const REMOTE_START_MOH_FINISH = exports.REMOTE_START_MOH_FINISH = callPrefix + 'REMOTE_START_MOH_FINISH';
-const REMOTE_STOP_MOH_FINISH = exports.REMOTE_STOP_MOH_FINISH = callPrefix + 'REMOTE_STOP_MOH_FINISH';
-const REMOTE_SLOW_START = exports.REMOTE_SLOW_START = callPrefix + 'REMOTE_SLOW_START';
-
-/**
- * Turn action types.
- */
-const turnPrefix = callPrefix + 'TURN/';
-
-const TURN_CHANGED = exports.TURN_CHANGED = turnPrefix + 'CHANGED';
-
-/**
- * Track action types.
- */
-const trackPrefix = callPrefix + 'TRACK/';
-
-const TRACK_ADDED = exports.TRACK_ADDED = trackPrefix + 'ADDED';
-const TRACK_REMOVED = exports.TRACK_REMOVED = trackPrefix + 'REMOVED';
 
 /***/ }),
 /* 36 */
@@ -6667,7 +6667,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.isUnifiedPlan = isUnifiedPlan;
 exports.getSdpSemanticsList = getSdpSemanticsList;
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 var _fp = __webpack_require__(2);
 
@@ -7471,7 +7471,7 @@ module.exports = function (it, tag, stat) {
 var ctx = __webpack_require__(37);
 var call = __webpack_require__(140);
 var isArrayIter = __webpack_require__(141);
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 var toLength = __webpack_require__(73);
 var getIterFn = __webpack_require__(142);
 var BREAK = {};
@@ -7514,7 +7514,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '4.37.0-beta.830';
+  return '4.37.0-beta.831';
 }
 
 /***/ }),
@@ -8409,7 +8409,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 var dPs = __webpack_require__(137);
 var enumBugKeys = __webpack_require__(102);
 var IE_PROTO = __webpack_require__(100)('IE_PROTO');
@@ -10300,7 +10300,7 @@ exports.setupCall = setupCall;
 exports.setupIncomingCall = setupIncomingCall;
 exports.answerWebrtcSession = answerWebrtcSession;
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
 
 var _selectors = __webpack_require__(15);
 
@@ -10741,7 +10741,7 @@ exports.preventDtlsRoleChange = preventDtlsRoleChange;
 
 var _logs = __webpack_require__(25);
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11645,7 +11645,7 @@ module.exports = __webpack_require__(38);
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(27);
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 var getKeys = __webpack_require__(51);
 
 module.exports = __webpack_require__(22) ? Object.defineProperties : function defineProperties(O, Properties) {
@@ -11681,7 +11681,7 @@ module.exports = function (done, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 module.exports = function (iterator, fn, value, entries) {
   try {
     return entries ? fn(anObject(value)[0], value[1]) : fn(value);
@@ -11727,7 +11727,7 @@ module.exports = __webpack_require__(8).getIteratorMethod = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 var aFunction = __webpack_require__(57);
 var SPECIES = __webpack_require__(19)('species');
 module.exports = function (O, D) {
@@ -11844,7 +11844,7 @@ module.exports = function (exec) {
 /* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 var isObject = __webpack_require__(21);
 var newPromiseCapability = __webpack_require__(110);
 
@@ -13910,7 +13910,7 @@ exports.restartMedia = restartMedia;
 exports.restartMediaFinish = restartMediaFinish;
 exports.updateCall = updateCall;
 
-var _actionTypes = __webpack_require__(35);
+var _actionTypes = __webpack_require__(30);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -19798,7 +19798,7 @@ var _redux = __webpack_require__(200);
 
 var _reduxDevtoolsExtension = __webpack_require__(212);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 var _reduxSaga2 = _interopRequireDefault(_reduxSaga);
 
@@ -23031,7 +23031,7 @@ var wksExt = __webpack_require__(113);
 var wksDefine = __webpack_require__(114);
 var enumKeys = __webpack_require__(246);
 var isArray = __webpack_require__(151);
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 var isObject = __webpack_require__(21);
 var toObject = __webpack_require__(44);
 var toIObject = __webpack_require__(43);
@@ -24492,7 +24492,7 @@ var _actions2 = __webpack_require__(273);
 
 var _actions3 = _interopRequireDefault(_actions2);
 
-var _actions4 = __webpack_require__(33);
+var _actions4 = __webpack_require__(34);
 
 var _utils = __webpack_require__(10);
 
@@ -26131,7 +26131,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__(33);
+var _actions = __webpack_require__(34);
 
 var actions = _interopRequireWildcard(_actions);
 
@@ -27199,7 +27199,7 @@ var _logs = __webpack_require__(1);
 
 var _interface = __webpack_require__(304);
 
-var _actions2 = __webpack_require__(33);
+var _actions2 = __webpack_require__(34);
 
 var _utils = __webpack_require__(10);
 
@@ -29890,7 +29890,7 @@ var _configs2 = _interopRequireDefault(_configs);
 
 var _actions = __webpack_require__(16);
 
-var _actions2 = __webpack_require__(33);
+var _actions2 = __webpack_require__(34);
 
 var _logs = __webpack_require__(1);
 
@@ -30585,7 +30585,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = callAPI;
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
 
 var _selectors = __webpack_require__(15);
 
@@ -30593,7 +30593,7 @@ var _normalization = __webpack_require__(172);
 
 var _selectors2 = __webpack_require__(9);
 
-var _actions2 = __webpack_require__(33);
+var _actions2 = __webpack_require__(34);
 
 var _uuid = __webpack_require__(55);
 
@@ -32146,7 +32146,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.turnChanged = turnChanged;
 
-var _actionTypes = __webpack_require__(35);
+var _actionTypes = __webpack_require__(30);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -32214,7 +32214,7 @@ var _extends2 = __webpack_require__(4);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__(35);
+var _actionTypes = __webpack_require__(30);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -32561,7 +32561,24 @@ callReducers[actionTypes.UPDATE_CALL] = {
     const _action$payload = action.payload,
           { transition } = _action$payload,
           payloadWithoutTransition = (0, _objectWithoutProperties3.default)(_action$payload, ['transition']);
-    return (0, _extends3.default)({}, state, payloadWithoutTransition);
+    const newState = (0, _extends3.default)({}, state, payloadWithoutTransition);
+
+    /*
+     * Edge-case workaround.
+     * If the current operation is an on-going remote slow-start, then this remote
+     *   update call action is intended to be the "finish" for it. The "update call"
+     *   action being used here is an edge-case when the remote operation wasn't
+     *   something we can identify.
+     * This is being done manually because the "update call" action does not work
+     *   with the SDK's "operation tracking" logic in the reducers.
+     * See function `handleSlowUpdateResponse` in `/call/negotiation.js` for more info.
+     * Reference: KJS-542
+     */
+    if (action.meta && action.meta.isRemote === true && newState.remoteOp && newState.remoteOp.operation === _constants.OPERATIONS.SLOW_START && newState.remoteOp.status === _constants.OP_STATUS.ONGOING) {
+      newState.remoteOp = undefined;
+    }
+
+    return newState;
   }
 };
 
@@ -33089,7 +33106,7 @@ var _extends2 = __webpack_require__(4);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__(35);
+var _actionTypes = __webpack_require__(30);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -33172,7 +33189,7 @@ exports.restartIce = restartIce;
 exports.watchForMediaDisconnect = watchForMediaDisconnect;
 exports.callCollectionCheckEntry = callCollectionCheckEntry;
 
-var _actionTypes = __webpack_require__(35);
+var _actionTypes = __webpack_require__(30);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -33890,7 +33907,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 exports.setTurnCredentials = setTurnCredentials;
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
 
 var _selectors = __webpack_require__(15);
 
@@ -35000,7 +35017,7 @@ exports.rejectCall = rejectCall;
 exports.ignoreCall = ignoreCall;
 exports.forwardCall = forwardCall;
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
 
 var _selectors = __webpack_require__(15);
 
@@ -36840,7 +36857,7 @@ var rollbackOps = _interopRequireWildcard(_rollback);
 
 var _bandwidth = __webpack_require__(173);
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
 
 var _selectors = __webpack_require__(15);
 
@@ -38663,7 +38680,7 @@ exports.callStatusUpdateFailed = callStatusUpdateFailed;
 exports.callCancelled = callCancelled;
 exports.receiveEarlyMedia = receiveEarlyMedia;
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
 
 var _selectors = __webpack_require__(15);
 
@@ -39152,6 +39169,8 @@ function* sessionStatusUpdateEnded(deps, params) {
   // Close the local webRTC session
   yield (0, _effects.call)(_midcall.closeCall, deps.webRTC, currentCall.webrtcSessionId);
 
+  // If we had the local operation tracked in state, then we can dispatch the action
+  //    intended to "finish" the operation.
   const localOp = currentCall.localOp;
   if (localOp && localOp.operation && localOp.status === _constants2.OP_STATUS.PENDING) {
     let transition;
@@ -39178,31 +39197,32 @@ function* sessionStatusUpdateEnded(deps, params) {
           statusCode: _constants.STATUS_CODES.JOIN_SUCCESS
         };
         break;
+      default:
+        log.info('Unknown local call operation for completed notice. Cannot provide transition information.');
+        break;
     }
     if (finishAction) {
-      log.debug('Marking call locally as ended. Call ID: ', currentCall.id);
-
       yield (0, _effects.put)(finishAction(currentCall.id, { transition }));
-
-      // We also need to notify the backend that call with currentCall.id should be removed
-      // by sending a DELETE REST request.
-      // Perform signalling to end the session on server's side.
-      const isAnonymous = currentCall.isAnonymous;
-      const account = currentCall.account;
-      log.info('Ending call by requesting to be removed from backend ...');
-      const response = yield (0, _effects.call)(requests.endSession, { wrtcsSessionId, isAnonymous, account });
-
-      if (!response.error) {
-        log.info(`Finished ending call. Changing call state to ${_constants.CALL_STATES.ENDED}.`);
-        yield (0, _effects.put)(_actions.callActions.endCallFinish(currentCall.id, (0, _index.generateEndParams)(currentCall.state, true, params)));
-      } else {
-        log.debug(`Error received when attempting to end the session: ${response.error}. Changing call state to ${_constants.CALL_STATES.ENDED}.`);
-        yield (0, _effects.put)(_actions.callActions.endCallFinish(currentCall.id, {
-          isLocal: true,
-          error: response.error
-        }));
-      }
     }
+  }
+
+  // We also need to notify the backend that call with currentCall.id should be removed
+  // by sending a DELETE REST request.
+  // Perform signalling to end the session on server's side.
+  const isAnonymous = currentCall.isAnonymous;
+  const account = currentCall.account;
+  log.debug('Ending call session on server-side.');
+  const response = yield (0, _effects.call)(requests.endSession, { wrtcsSessionId, isAnonymous, account });
+
+  if (!response.error) {
+    log.info(`Finished ending call. Changing call state to ${_constants.CALL_STATES.ENDED}.`);
+    yield (0, _effects.put)(_actions.callActions.endCallFinish(currentCall.id, (0, _index.generateEndParams)(currentCall.state, true, params)));
+  } else {
+    log.debug(`Error received when attempting to end the session: ${response.error}. Changing call state to ${_constants.CALL_STATES.ENDED}.`);
+    yield (0, _effects.put)(_actions.callActions.endCallFinish(currentCall.id, {
+      isLocal: true,
+      error: response.error
+    }));
   }
 }
 
@@ -39478,7 +39498,11 @@ var _operations = __webpack_require__(356);
 
 var _operations2 = _interopRequireDefault(_operations);
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
+
+var _actionTypes = __webpack_require__(30);
+
+var actionTypes = _interopRequireWildcard(_actionTypes);
 
 var _selectors = __webpack_require__(15);
 
@@ -39498,16 +39522,14 @@ var _negotiation = __webpack_require__(359);
 
 var _effects = __webpack_require__(3);
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Other plugins.
 
 
 // Call plugin helpers.
-
-
-// Call plugin.
-// Callstack.
 const log = _logs.logManager.getLogger('CALL');
 
 /**
@@ -39545,6 +39567,10 @@ const log = _logs.logManager.getLogger('CALL');
 
 
 // Libraries.
+
+
+// Call plugin.
+// Callstack.
 function* handleUpdateRequest(deps, targetCall, params) {
   const { webRTC, requests } = deps;
 
@@ -40089,14 +40115,35 @@ function* handleSlowUpdateResponse(deps, targetCall, params) {
     const nextState = mediaFlowing ? _constants.CALL_STATES.CONNECTED : _constants.CALL_STATES.ON_HOLD;
 
     log.info(`Finished processing remote slow-start response. Changing to ${nextState}.`);
-    yield (0, _effects.put)(callAction(targetCall.id, {
+
+    const action = callAction(targetCall.id, {
       state: nextState,
       // Remote participant's information.
       remoteParticipant: {
         displayNumber: params.remoteNumber,
         displayName: params.remoteName
       }
-    }));
+    });
+
+    if (action.type === actionTypes.UPDATE_CALL) {
+      /*
+       * This is a hack. The proper solution would be to never use a generic action for state changes.
+       * This action doesn't work with the SDK's "operation tracking" logic in the call reducers, so
+       *     the call state becomes out-of-sync with the operations.
+       *  In this scenario, the operation start was a remote slow-start negotiation, but the SDK fails
+       *      to determine what the actual operation was, so it falls-back to using the generic action
+       *      for the "finish". This means that the remoteOp in state never gets cleaned-up, which can
+       *      cause issues later.
+       *  The workaround is to mark the action as a remote update action, so that the reducer can
+       *      manually clean-up the remote operation in this scenario.
+       * Reference: KJS-542
+       */
+      action.meta = {
+        isRemote: true
+      };
+    }
+
+    yield (0, _effects.put)(action);
   } else {
     // Scenario: The call is in an unexpected state for receiving a remote
     //    answer SDP. This should never happen.
@@ -41196,7 +41243,7 @@ exports.hasTelephoneEvent = hasTelephoneEvent;
 exports.convertTone = convertTone;
 exports.splitTones = splitTones;
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
 
 var _selectors = __webpack_require__(15);
 
@@ -41637,9 +41684,9 @@ exports.updateCallState = updateCallState;
 exports.normalizeIceFailure = normalizeIceFailure;
 exports.callIceCollectionCheck = callIceCollectionCheck;
 
-var _actions = __webpack_require__(34);
+var _actions = __webpack_require__(35);
 
-var _actionTypes = __webpack_require__(35);
+var _actionTypes = __webpack_require__(30);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -42469,7 +42516,7 @@ var _eventTypes = __webpack_require__(370);
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__(35);
+var _actionTypes = __webpack_require__(30);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -46746,7 +46793,7 @@ var getPrototypeOf = __webpack_require__(107);
 var has = __webpack_require__(39);
 var $export = __webpack_require__(14);
 var createDesc = __webpack_require__(50);
-var anObject = __webpack_require__(32);
+var anObject = __webpack_require__(33);
 var isObject = __webpack_require__(21);
 
 function set(target, propertyKey, V /* , receiver */) {
@@ -46832,7 +46879,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = onicecandidate;
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 /**
  * Event wrapper for `icecandidate` event.
@@ -46950,7 +46997,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = onicegatheringstatechange;
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 /**
  * Event wrapper for `icegatheringstatechange` event.
@@ -47308,7 +47355,7 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = createAnswer;
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 var _sdpSemantics = __webpack_require__(54);
 
@@ -47391,7 +47438,7 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = createOffer;
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 var _sdpSemantics = __webpack_require__(54);
 
@@ -47771,7 +47818,7 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = setLocalDescription;
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 var _iceCollectionScheduledCheck = __webpack_require__(184);
 
@@ -47998,7 +48045,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setTransceiverDirection = setTransceiverDirection;
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 var _fp = __webpack_require__(2);
 
@@ -48291,7 +48338,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 /**
  * Configuration object for a Peer.
@@ -49012,7 +49059,7 @@ exports.default = Session;
 
 var _logs = __webpack_require__(25);
 
-var _constants = __webpack_require__(30);
+var _constants = __webpack_require__(31);
 
 var _pipeline = __webpack_require__(88);
 
@@ -51545,7 +51592,7 @@ var _utils = __webpack_require__(10);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 /**
  * Listen for events emitted from the webRTC Device Manager.
@@ -51626,7 +51673,7 @@ var _track2 = _interopRequireDefault(_track);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51741,7 +51788,7 @@ exports.setListeners = setListeners;
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 var _actions = __webpack_require__(29);
 
@@ -51837,7 +51884,7 @@ var _media2 = _interopRequireDefault(_media);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51943,7 +51990,7 @@ var _utils = __webpack_require__(10);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 /**
  * Sets up event listeners for a Media's events.
@@ -52050,7 +52097,7 @@ var _session2 = _interopRequireDefault(_session);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52149,7 +52196,7 @@ var _utils = __webpack_require__(10);
 
 var _effects = __webpack_require__(3);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 /**
  * Sets up event listeners for a Session's events.
@@ -53039,7 +53086,7 @@ var actionTypes = _interopRequireWildcard(_actionTypes);
 
 var _actionTypes2 = __webpack_require__(447);
 
-var _actionTypes3 = __webpack_require__(35);
+var _actionTypes3 = __webpack_require__(30);
 
 var _constants = __webpack_require__(18);
 
@@ -53354,7 +53401,7 @@ var _actions = __webpack_require__(125);
 
 var _selectors = __webpack_require__(9);
 
-var _actionTypes = __webpack_require__(35);
+var _actionTypes = __webpack_require__(30);
 
 var _constants = __webpack_require__(18);
 
@@ -54384,7 +54431,7 @@ var _events2 = _interopRequireDefault(_events);
 
 var _sagas = __webpack_require__(465);
 
-var _actions = __webpack_require__(33);
+var _actions = __webpack_require__(34);
 
 var _actions2 = __webpack_require__(16);
 
@@ -55311,7 +55358,7 @@ exports.wsEmitter = wsEmitter;
 
 var _actions = __webpack_require__(84);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 var _effects = __webpack_require__(3);
 
@@ -55458,7 +55505,7 @@ var _events2 = _interopRequireDefault(_events);
 
 var _actions = __webpack_require__(16);
 
-var _actions2 = __webpack_require__(33);
+var _actions2 = __webpack_require__(34);
 
 var _fp = __webpack_require__(2);
 
@@ -58359,7 +58406,7 @@ var _notification = __webpack_require__(494);
 
 var _actions = __webpack_require__(16);
 
-var _actions2 = __webpack_require__(33);
+var _actions2 = __webpack_require__(34);
 
 var _effects = __webpack_require__(3);
 
@@ -59026,7 +59073,7 @@ exports.normalizeSDP = normalizeSDP;
 
 var _fp = __webpack_require__(2);
 
-var _reduxSaga = __webpack_require__(31);
+var _reduxSaga = __webpack_require__(32);
 
 var _pako = __webpack_require__(495);
 
@@ -69502,7 +69549,7 @@ var _events2 = _interopRequireDefault(_events);
 
 var _interface = __webpack_require__(528);
 
-var _actions = __webpack_require__(33);
+var _actions = __webpack_require__(34);
 
 var _actions2 = __webpack_require__(16);
 
