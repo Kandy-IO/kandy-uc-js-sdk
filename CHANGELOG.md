@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 4.38.0 - 2022-03-25
+
+### Fixed
+
+- Fixed a Call issue where removing a local track would not trigger a `call:trackEnded` event if the user had previously been receiving music-on-hold. `KJS-626`
+
 ## 4.37.1 - 2022-03-08
 
 ### Fixed
