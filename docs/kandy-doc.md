@@ -4114,6 +4114,7 @@ An error has occurred during a SIP event operation.
 *   `params` **[Object][7]** 
 
     *   `params.error` **[api.BasicError][30]** The Basic error object.
+    *   `params.eventType` **[string][8]** The name of the SIP event.
 
 #### Examples
 
